@@ -1,0 +1,26 @@
+name: daily-watch
+on:
+  schedule:
+    - cron: "50 7 * * *"   # 11:50 Mauritius (UTC+4)
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency: watch
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check watched items
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 watch.py
+      - name: Save state and report
+        if: always()
+        run: |
+          git config user.name "github-watch"
+          git config user.email "github-watch@users.noreply.github.com"
+          git add -A
+          git commit -m "watch: $(date -u +%FT%TZ)" || echo "nothing to commit"
+          git push

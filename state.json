@@ -1,0 +1,99 @@
+{
+ "issues": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "comment_ids": [
+    5483164042,
+    5483258896,
+    5513127533,
+    5549023108,
+    5688809213,
+    5691466416,
+    5705347732,
+    5706528615,
+    5716661029,
+    5748163508,
+    5748518304,
+    5752850370,
+    5752933855,
+    5753640827,
+    5753657657,
+    5757535641,
+    5758851529,
+    5758880892,
+    5759021584,
+    5760203287,
+    5760350473,
+    5760471162,
+    5760581507,
+    5760952460,
+    5761603320,
+    5762333961,
+    5762552087,
+    5763962105,
+    5763966825,
+    5764768162,
+    5764780658,
+    5764933878,
+    5765045236,
+    5768426608,
+    5768454487,
+    5768620153,
+    5773069172,
+    5773210334,
+    5773413954,
+    5773438874,
+    5773609129,
+    5780671896,
+    5808468177,
+    5808970346,
+    5809067981,
+    5810796376
+   ],
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 2,
+   "comment_ids": [
+    5812866974,
+    5906584459
+   ],
+   "updated_at": "2026-09-30T07:44:14Z",
+   "last_comment": {
+    "author": "magentixai",
+    "at": "2026-09-30T07:44:13Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-5906584459",
+    "text": "Martin Sansone here, founding committer on the proposed lab.\n\nAgreed with source-origin on both points, and they map to what the lab's own draft governance already says: it issues no conformance verdicts and certifies nothing.\n\nSo to answer the question directly: reference by pin, not host. The lab should point at families and run records where they already live, and re-host nothing that another suite owns. Vectors and run records stay yours.\n\nOn judgment records: a criterion that judges a combination is an authored decision, not a recomputed fact. Any such record needs to name its author and "
+   }
+  }
+ },
+ "repo": {
+  "refs": {
+   "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+   "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+   "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+  },
+  "main_latest": {
+   "sha": "9fa189f",
+   "at": "2026-09-24T06:25:33Z",
+   "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+  }
+ },
+ "last_checked": "2026-09-30T08:00:06+00:00"
+}
