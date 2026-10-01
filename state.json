@@ -69,17 +69,18 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 2,
+   "comments": 3,
    "comment_ids": [
     5812866974,
-    5906584459
+    5906584459,
+    5912769196
    ],
-   "updated_at": "2026-09-30T07:44:14Z",
+   "updated_at": "2026-09-30T13:57:34Z",
    "last_comment": {
-    "author": "magentixai",
-    "at": "2026-09-30T07:44:13Z",
-    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-5906584459",
-    "text": "Martin Sansone here, founding committer on the proposed lab.\n\nAgreed with source-origin on both points, and they map to what the lab's own draft governance already says: it issues no conformance verdicts and certifies nothing.\n\nSo to answer the question directly: reference by pin, not host. The lab should point at families and run records where they already live, and re-host nothing that another suite owns. Vectors and run records stay yours.\n\nOn judgment records: a criterion that judges a combination is an authored decision, not a recomputed fact. Any such record needs to name its author and "
+    "author": "giskard09",
+    "at": "2026-09-30T13:57:34Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-5912769196",
+    "text": "Agreed with Martin's read \u2014 reference by pin, not host, and criteria marked as authored judgment rather than recomputed fact is the shape we intended when we opened this. That answers the cross-reference question from our side: the lab holds only the criteria, everything else (families, run records, vectors) stays pinned where it already lives, including the action-ref vectors this suite already hosts. Thanks both for working through it."
    }
   }
  },
@@ -95,5 +96,5 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-09-30T08:17:55+00:00"
+ "last_checked": "2026-10-01T08:21:01+00:00"
 }
