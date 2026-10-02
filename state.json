@@ -66,21 +66,23 @@
   },
   "Agent-Authority-Conformance/aps-conformance-suite#121": {
    "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
-   "state": "open",
-   "state_reason": null,
+   "state": "closed",
+   "state_reason": "completed",
    "labels": [],
-   "comments": 3,
+   "comments": 5,
    "comment_ids": [
     5812866974,
     5906584459,
-    5912769196
+    5912769196,
+    5936568271,
+    5939128229
    ],
-   "updated_at": "2026-09-30T13:57:34Z",
+   "updated_at": "2026-10-01T20:03:02Z",
    "last_comment": {
     "author": "giskard09",
-    "at": "2026-09-30T13:57:34Z",
-    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-5912769196",
-    "text": "Agreed with Martin's read \u2014 reference by pin, not host, and criteria marked as authored judgment rather than recomputed fact is the shape we intended when we opened this. That answers the cross-reference question from our side: the lab holds only the criteria, everything else (families, run records, vectors) stays pinned where it already lives, including the action-ref vectors this suite already hosts. Thanks both for working through it."
+    "at": "2026-10-01T19:38:30Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-5939128229",
+    "text": "@aeoess Thanks for closing the loop directly \u2014 that's exactly the boundary we intended. Noted on pinning to a tag/commit on main rather than a moving branch, and checking CLARIFICATIONS.md for any later correction. Appreciate you, Martin and source-origin working through this with us."
    }
   }
  },
@@ -96,5 +98,5 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-01T14:48:03+00:00"
+ "last_checked": "2026-10-02T08:21:37+00:00"
 }
