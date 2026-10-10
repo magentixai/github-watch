@@ -1,0 +1,106 @@
+{
+ "checked_at": "2026-10-10T21:54:27+00:00",
+ "previous_check": "2026-10-10T13:58:52+00:00",
+ "changes": [],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 5,
+   "updated_at": "2026-10-01T20:03:02Z",
+   "last_comment": {
+    "author": "giskard09",
+    "at": "2026-10-01T19:38:30Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-5939128229",
+    "text": "@aeoess Thanks for closing the loop directly \u2014 that's exactly the boundary we intended. Noted on pinning to a tag/commit on main rather than a moving branch, and checking CLARIFICATIONS.md for any later correction. Appreciate you, Martin and source-origin working through this with us."
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 141,
+   "updated_at": "2026-10-08T12:49:38Z",
+   "last_comment": {
+    "author": "TKCollective",
+    "at": "2026-10-08T12:49:38Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6060232003",
+    "text": "@robertolocatelli81-dev @babyblueviper1 @Tetsurohhori \u2014 closing the loop: the eight proposed vectors are merged in TKCollective/tanilo-receipt-spec#11 as 2980113.\n\nThe merge report records matching hashes, byte-identical regeneration, 8/8 on both pinned checkers, and the pre-fix control failing exactly vectors 7 and 8. Rev9 and the filed -03 text remain unchanged; these are proposed additions under fixtures/contrib/, not a released rev10 corpus.\n\nThank you for the contribution, reruns and clearly stated limits.\n"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 90,
+   "updated_at": "2026-10-10T15:35:55Z",
+   "last_comment": {
+    "author": "guidoalejo",
+    "at": "2026-10-10T15:35:54Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6099162345",
+    "text": "Sluzen issuer onboarding was updated. If an earlier invite used a local or API-only URL, it may not open anymore. Fresh one-use link, expires in 8 days:\nhttps://sluzen.network/onboard?invite=sluzeninv_5bb974f970e1ecf19536bc221d6adfd645ce26be74d74ac2f92e630aeaae21e8"
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 63,
+   "updated_at": "2026-10-06T06:34:09Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-06T06:34:09Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6010784398",
+    "text": "We implemented the single-payment part of this draft (\u00a76, \u00a77) in presign-guard, a pre-sign check for agent payments:\n\n- POST /v1/check takes an optional mandate next to an EIP-3009 signature and turns a payment outside it red before the agent signs (wrong payer/asset/recipient, over perPayment or cap, expired, bad issuer signature, nonce \u2260 binding).\n- presign-guard-wallet's mandatePayer() makes x402 payments with the \u00a77 binding as the EIP-3009 nonce.\n- JCS bytes, digest, signature and the EIP-3009/Permit2 binding values match authority-vectors.json byte for byte.\n\nNot covered: cumulative spend"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-10-10T21:54:27+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 9,
+   "pushed_at": "2026-10-10T20:16:10Z",
+   "issues_tracked": 9
+  }
+ },
+ "first_run": false
+}
