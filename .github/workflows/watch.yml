@@ -1,8 +1,11 @@
 name: daily-watch
 on:
   schedule:
-    - cron: "50 7 * * *"   # 11:50 Mauritius (UTC+4)
+    - cron: "30 5 * * *"   # 09:30 Mauritius (UTC+4) - before the 10:00 report and 10:15 x402 run
   workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths: [watch.py, .github/workflows/watch.yml]   # test run when the watch list changes
 permissions:
   contents: write
 concurrency: watch

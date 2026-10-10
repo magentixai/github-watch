@@ -7,8 +7,12 @@ import json, os, sys, urllib.request, datetime
 HERE = os.path.dirname(os.path.abspath(__file__))
 STATE = os.path.join(HERE, "state.json")
 ISSUES = ["LF-Decentralized-Trust/lab-proposals#2",
-          "Agent-Authority-Conformance/aps-conformance-suite#121"]
+          "Agent-Authority-Conformance/aps-conformance-suite#121",
+          "x402-foundation/tsc#4",          # evidence-record WG chartering
+          "x402-foundation/x402#2887",      # correctness / evidence thread
+          "x402-foundation/x402#3220"]      # authority extension PR (reviews tracked too)
 REPO = "giskard09/action-ref-conformance"
+WATCH_REPOS = ["magentixai/axes"]           # every issue/PR, comment, state change, plus stars/forks
 def get(url):
     req = urllib.request.Request(url, headers={"Accept": "application/vnd.github+json", "User-Agent": "martin-watch"})
     tok = os.environ.get("GITHUB_TOKEN")
@@ -30,12 +34,23 @@ for key in ISSUES:
     try:
         meta = get(f"https://api.github.com/repos/{repo}/issues/{num}")
         comments = paged(f"https://api.github.com/repos/{repo}/issues/{num}/comments")
+        if meta.get("pull_request"):
+            pr = get(f"https://api.github.com/repos/{repo}/pulls/{num}")
+            for rv in paged(f"https://api.github.com/repos/{repo}/pulls/{num}/reviews"):
+                if rv.get("submitted_at"):
+                    comments.append({"id": rv["id"], "user": rv["user"], "created_at": rv["submitted_at"],
+                                     "html_url": rv["html_url"], "body": f"[review: {rv['state']}] " + (rv.get("body") or "")})
+            for rc in paged(f"https://api.github.com/repos/{repo}/pulls/{num}/comments"):
+                comments.append({"id": rc["id"], "user": rc["user"], "created_at": rc["created_at"],
+                                 "html_url": rc["html_url"], "body": f"[review comment on {rc.get('path')}] " + (rc.get("body") or "")})
+            comments.sort(key=lambda c: c["created_at"])
+            if pr.get("merged"): meta["state"] = "merged"
         old = state["issues"].get(key, {})
         seen = set(old.get("comment_ids", []))
         new = [c for c in comments if c["id"] not in seen] if old else []
         for c in new:
             report["changes"].append({"item": key, "type": "comment", "author": c["user"]["login"],
-                "at": c["created_at"], "url": c["html_url"], "text": c["body"][:600]})
+                "at": c["created_at"], "url": c["html_url"], "text": (c["body"] or "")[:600]})
         if old and old.get("state") != meta["state"]:
             report["changes"].append({"item": key, "type": "state", "from": old.get("state"), "to": meta["state"],
                 "reason": meta.get("state_reason"), "url": meta["html_url"]})
@@ -46,7 +61,7 @@ for key in ISSUES:
             "labels": [l["name"] for l in meta.get("labels", [])], "comments": len(comments),
             "comment_ids": [c["id"] for c in comments], "updated_at": meta["updated_at"],
             "last_comment": {"author": last["user"]["login"], "at": last["created_at"], "url": last["html_url"],
-                             "text": last["body"][:600]} if last else None}
+                             "text": (last["body"] or "")[:600]} if last else None}
         report["summary"][key] = {k: v for k, v in new_state["issues"][key].items() if k != "comment_ids"}
     except Exception as e:
         report["failures"].append({"item": key, "error": repr(e)})
@@ -78,6 +93,36 @@ try:
     report["summary"][REPO] = new_state["repo"]
 except Exception as e:
     report["failures"].append({"item": REPO, "error": repr(e)})
+state.setdefault("repos", {}); new_state.setdefault("repos", {})
+for r in WATCH_REPOS:
+    try:
+        old = state["repos"].get(r, {})
+        info = get(f"https://api.github.com/repos/{r}")
+        items = paged(f"https://api.github.com/repos/{r}/issues?state=all")
+        cur = {str(i["number"]): {"title": i["title"], "state": i["state"], "pr": bool(i.get("pull_request")),
+               "comments": i["comments"], "author": i["user"]["login"], "url": i["html_url"]} for i in items}
+        since = old.get("checked")
+        if old:
+            for n, i in cur.items():
+                o = old["items"].get(n)
+                if not o:
+                    report["changes"].append({"item": f"{r}#{n}", "type": "new_pr" if i["pr"] else "new_issue",
+                        "author": i["author"], "title": i["title"], "url": i["url"]})
+                elif o["state"] != i["state"]:
+                    report["changes"].append({"item": f"{r}#{n}", "type": "state", "from": o["state"], "to": i["state"], "url": i["url"]})
+            for c in paged(f"https://api.github.com/repos/{r}/issues/comments?since={since}"):
+                if c["created_at"] > since:
+                    report["changes"].append({"item": f"{r}#{c['issue_url'].rsplit('/',1)[1]}", "type": "comment",
+                        "author": c["user"]["login"], "at": c["created_at"], "url": c["html_url"], "text": (c["body"] or "")[:600]})
+            for k in ("stargazers_count", "forks_count", "subscribers_count"):
+                if old.get(k) is not None and old[k] != info.get(k):
+                    report["changes"].append({"item": r, "type": "count", "field": k, "from": old[k], "to": info.get(k)})
+        new_state["repos"][r] = {"checked": now, "items": cur, "stargazers_count": info.get("stargazers_count"),
+            "forks_count": info.get("forks_count"), "subscribers_count": info.get("subscribers_count"),
+            "open_issues_count": info.get("open_issues_count"), "pushed_at": info.get("pushed_at")}
+        report["summary"][r] = {k: v for k, v in new_state["repos"][r].items() if k != "items"} | {"issues_tracked": len(cur)}
+    except Exception as e:
+        report["failures"].append({"item": r, "error": repr(e)})
 report["first_run"] = not state.get("last_checked")
 if not report["failures"]:
     new_state["last_checked"] = now
