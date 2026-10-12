@@ -92,7 +92,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 149,
+   "comments": 153,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -242,14 +242,18 @@
     6115826942,
     6115924633,
     6117080837,
-    6117148383
+    6117148383,
+    6122431228,
+    6122568217,
+    6122639002,
+    6123500484
    ],
-   "updated_at": "2026-10-12T03:21:39Z",
+   "updated_at": "2026-10-12T11:38:12Z",
    "last_comment": {
-    "author": "babyblueviper1",
-    "at": "2026-10-12T03:21:39Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6117148383",
-    "text": "@robertolocatelli81-dev listed, in the form you proposed: [`e2d896b`](https://github.com/babyblueviper1/preaction-governance-conformance/tree/e2d896b/examples/acceptance-record-cold#independent-implementations). I re-ran it cold at `fd88fbb` first, from your pinned sources: 27/27 at `d750291`, 25/25 at `646588c`, the always-accept control 3/27, and the three readings flipped together 23/27. All as you reported.\n\nThat makes three implementations of the conditions, two of them written without opening the reference.\n\nThe places you list as pinned by no vector (an unknown signed member, an envelop"
+    "author": "robertolocatelli81-dev",
+    "at": "2026-10-12T11:38:12Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6123500484",
+    "text": "@magentixai, a re-check of gt-v2.1 (tag `corpus/2026-10-12-gt-v2.1` \u2192 `c72b620`), done from the specification side only: VERIFY.md, docs/, the report_D \u00a71 procedure and the data. None of the AXES scripts were read or run; I used my own RFC 8785 canonicalizer and .ots parser (Linux, Python 3.11.2) and OpenSSL 3.0.22 for the RFC 3161 token. All four digests agree.\n\n- Chains: fin and ind each recompute 76/76 envelope hashes (scope: `integrity.envelope_hash` and `integrity.envelope_signature` removed), 76/76 `previous_envelope_hash` links, sequence 1..76. Heads `cbd1a73e\u202659f1` / `5ca428ea\u20269dd6`.\n-"
    }
   },
   "x402-foundation/x402#2887": {
@@ -459,11 +463,27 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-12T05:57:22+00:00",
+ "last_checked": "2026-10-12T13:23:35+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-12T05:57:22+00:00",
+   "checked": "2026-10-12T13:23:35+00:00",
    "items": {
+    "14": {
+     "title": "CI: check gt-v2.1 at its tag",
+     "state": "open",
+     "pr": true,
+     "comments": 0,
+     "author": "magentixai",
+     "url": "https://github.com/magentixai/axes/pull/14"
+    },
+    "13": {
+     "title": "gt-v2.1: retire write_once_store (SIMULATED); anchor the release; one tree on main (WO21)",
+     "state": "closed",
+     "pr": true,
+     "comments": 0,
+     "author": "magentixai",
+     "url": "https://github.com/magentixai/axes/pull/13"
+    },
     "12": {
      "title": "Outstanding AXES landings for x402/AEP coherence (role, signing, identity)",
      "state": "open",
@@ -500,7 +520,7 @@
      "title": "Seed: conformance vectors (canoncheck-class byte-identity harness)",
      "state": "open",
      "pr": false,
-     "comments": 30,
+     "comments": 32,
      "author": "magentixai",
      "url": "https://github.com/magentixai/axes/issues/6"
     },
@@ -514,9 +534,9 @@
     },
     "4": {
      "title": "EB-004: Real existence-bound anchor for Golden Trace v2",
-     "state": "open",
+     "state": "closed",
      "pr": false,
-     "comments": 2,
+     "comments": 3,
      "author": "magentixai",
      "url": "https://github.com/magentixai/axes/issues/4"
     },
@@ -541,7 +561,7 @@
    "forks_count": 1,
    "subscribers_count": 0,
    "open_issues_count": 9,
-   "pushed_at": "2026-10-10T20:16:10Z"
+   "pushed_at": "2026-10-12T10:50:14Z"
   }
  }
 }

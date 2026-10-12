@@ -1,0 +1,160 @@
+{
+ "checked_at": "2026-10-12T13:23:35+00:00",
+ "previous_check": "2026-10-12T05:57:22+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "robertolocatelli81-dev",
+   "at": "2026-10-12T10:29:08Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6122431228",
+   "text": "@babyblueviper1 thank you for the listing, and for setting out the terms so clearly. I started on the four vectors and\npaused: the README at `e2d896b` does not yet say what any of the four should produce, so an expectation \"written by\nhand from the README\" would be my reading rather than the README's. Rather than only asking, here are four sentences\nthe README could carry, offered as suggestions to take, reword or drop. The first three follow what the reference\nchecker already returns; the fourth would change it, and I see two readings there. With any of them in, I'd be glad to\nsend the matchi"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "magentixai",
+   "at": "2026-10-12T10:36:51Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6122568217",
+   "text": "**gt-v2.1 is tagged**: corpus/2026-10-12-gt-v2.1 (c72b620). \nIt **retires** `write_once_store` (SIMULATED). The trace is synthetic, so its in-trace anchors stay simulated, but they now say so in `basis_status`, and no envelope claims `externally_anchored` over them. \n\nThe release statement committing to both chain heads and bundle digests is anchored with RFC 3161 (FreeTSA, verified offline) and OpenTimestamps (Bitcoin, upgrading). Digests and verification steps are in RELEASES.md and VERIFY.md, and every key change is in docs/19 with its reason. \n\n@giskard09 @wowlegend @MarkovianProtocol, you"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-10-12T10:41:09Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6122639002",
+   "text": "@robertolocatelli81-dev thanks, and the last row is a real bug in the reference: I reproduced the identity-key case (R = identity, S = 0 verifies any message). Fixed at `90b5032`: a small-order key in the trust material is now `key_unresolved` (your first reading: it isn't a key of the confirming party, so no check runs, the same as the 31-byte key), and a small-order R fails as `signature_invalid`. All 8 small-order encodings are refused; the 27 vectors are unchanged.\n\nThe README now carries your four sentences, 1\u20133 as you worded them, 4 as `key_unresolved`. So expectations for all four can b"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "robertolocatelli81-dev",
+   "at": "2026-10-12T11:38:12Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6123500484",
+   "text": "@magentixai, a re-check of gt-v2.1 (tag `corpus/2026-10-12-gt-v2.1` \u2192 `c72b620`), done from the specification side only: VERIFY.md, docs/, the report_D \u00a71 procedure and the data. None of the AXES scripts were read or run; I used my own RFC 8785 canonicalizer and .ots parser (Linux, Python 3.11.2) and OpenSSL 3.0.22 for the RFC 3161 token. All four digests agree.\n\n- Chains: fin and ind each recompute 76/76 envelope hashes (scope: `integrity.envelope_hash` and `integrity.envelope_signature` removed), 76/76 `previous_envelope_hash` links, sequence 1..76. Heads `cbd1a73e\u202659f1` / `5ca428ea\u20269dd6`.\n-"
+  },
+  {
+   "item": "magentixai/axes#14",
+   "type": "new_pr",
+   "author": "magentixai",
+   "title": "CI: check gt-v2.1 at its tag",
+   "url": "https://github.com/magentixai/axes/pull/14"
+  },
+  {
+   "item": "magentixai/axes#13",
+   "type": "new_pr",
+   "author": "magentixai",
+   "title": "gt-v2.1: retire write_once_store (SIMULATED); anchor the release; one tree on main (WO21)",
+   "url": "https://github.com/magentixai/axes/pull/13"
+  },
+  {
+   "item": "magentixai/axes#4",
+   "type": "state",
+   "from": "open",
+   "to": "closed",
+   "url": "https://github.com/magentixai/axes/issues/4"
+  }
+ ],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 5,
+   "updated_at": "2026-10-01T20:03:02Z",
+   "last_comment": {
+    "author": "giskard09",
+    "at": "2026-10-01T19:38:30Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-5939128229",
+    "text": "@aeoess Thanks for closing the loop directly \u2014 that's exactly the boundary we intended. Noted on pinning to a tag/commit on main rather than a moving branch, and checking CLARIFICATIONS.md for any later correction. Appreciate you, Martin and source-origin working through this with us."
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 153,
+   "updated_at": "2026-10-12T11:38:12Z",
+   "last_comment": {
+    "author": "robertolocatelli81-dev",
+    "at": "2026-10-12T11:38:12Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6123500484",
+    "text": "@magentixai, a re-check of gt-v2.1 (tag `corpus/2026-10-12-gt-v2.1` \u2192 `c72b620`), done from the specification side only: VERIFY.md, docs/, the report_D \u00a71 procedure and the data. None of the AXES scripts were read or run; I used my own RFC 8785 canonicalizer and .ots parser (Linux, Python 3.11.2) and OpenSSL 3.0.22 for the RFC 3161 token. All four digests agree.\n\n- Chains: fin and ind each recompute 76/76 envelope hashes (scope: `integrity.envelope_hash` and `integrity.envelope_signature` removed), 76/76 `previous_envelope_hash` links, sequence 1..76. Heads `cbd1a73e\u202659f1` / `5ca428ea\u20269dd6`.\n-"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 97,
+   "updated_at": "2026-10-11T23:23:55Z",
+   "last_comment": {
+    "author": "giskard09",
+    "at": "2026-10-11T23:22:09Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6115055025",
+    "text": "@SolomonisBlack Appreciate the precise scoping \u2014 that's exactly the line. GVP commits to what the answer said; [`settlement_evidence_ref`](https://github.com/giskard09/argentum-core/blob/main/docs/spec/settlement-evidence-ref.md) (settlement-evidence-ref-v1, stable) commits to what moved and to whom, independently recomputed from the rail's own ledger rather than the facilitator's `SettleResponse`. Same plane distinction @atmpushout-jpg's incident makes concrete: settlement finality and delivery are separate claims, and GVP sitting below both is the right shape.\n\nOn the refusal-drift check \u2014 w"
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 63,
+   "updated_at": "2026-10-06T06:34:09Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-06T06:34:09Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6010784398",
+    "text": "We implemented the single-payment part of this draft (\u00a76, \u00a77) in presign-guard, a pre-sign check for agent payments:\n\n- POST /v1/check takes an optional mandate next to an EIP-3009 signature and turns a payment outside it red before the agent signs (wrong payer/asset/recipient, over perPayment or cap, expired, bad issuer signature, nonce \u2260 binding).\n- presign-guard-wallet's mandatePayer() makes x402 payments with the \u00a77 binding as the EIP-3009 nonce.\n- JCS bytes, digest, signature and the EIP-3009/Permit2 binding values match authority-vectors.json byte for byte.\n\nNot covered: cumulative spend"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-10-12T13:23:35+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 9,
+   "pushed_at": "2026-10-12T10:50:14Z",
+   "issues_tracked": 11
+  }
+ },
+ "first_run": false
+}

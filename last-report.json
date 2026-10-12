@@ -1,102 +1,59 @@
 {
- "checked_at": "2026-10-12T05:57:22+00:00",
- "previous_check": "2026-10-11T11:31:21+00:00",
+ "checked_at": "2026-10-12T13:23:35+00:00",
+ "previous_check": "2026-10-12T05:57:22+00:00",
  "changes": [
   {
    "item": "x402-foundation/tsc#4",
    "type": "comment",
-   "author": "babyblueviper1",
-   "at": "2026-10-11T20:22:03Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6113338510",
-   "text": "@actaseal wrote a second, from-scratch implementation of the acceptance-record conditions against our vectors at `646588c` without opening our checker: [x402-acceptance-check-cold](https://github.com/actaseal/x402-acceptance-check-cold), with stdlib RFC 8032 Ed25519. 22/25 agree on every pinned field. The other three are places where our text allowed a second reading, so the fix belongs in the text:\n\n- `signature_invalid` (2 vectors): it stops evaluation like `key_unresolved`, but surfaces as result `malformed` with that single condition, while `key_unresolved` is its own token because no chec"
+   "author": "robertolocatelli81-dev",
+   "at": "2026-10-12T10:29:08Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6122431228",
+   "text": "@babyblueviper1 thank you for the listing, and for setting out the terms so clearly. I started on the four vectors and\npaused: the README at `e2d896b` does not yet say what any of the four should produce, so an expectation \"written by\nhand from the README\" would be my reading rather than the README's. Rather than only asking, here are four sentences\nthe README could carry, offered as suggestions to take, reword or drop. The first three follow what the reference\nchecker already returns; the fourth would change it, and I see two readings there. With any of them in, I'd be glad to\nsend the matchi"
   },
   {
    "item": "x402-foundation/tsc#4",
    "type": "comment",
-   "author": "actaseal",
-   "at": "2026-10-11T20:39:08Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6113504721",
-   "text": "@babyblueviper1 Thanks for folding these into the README at 5a4ea06 and for the credit.\n\nTwo small asks:\n1. Could x402-acceptance-check-cold be listed in the README (or spec) as an\n   independent implementation, pinned to 646588c? Happy to keep it in sync\n   with each corpus revision.\n\n2. For the signature_invalid / key_unresolved split: I can add two vectors\n   that pin the distinction directly, so the next implementation can't read\n   it the other way. PR to fixtures/contrib/ if useful."
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "babyblueviper1",
-   "at": "2026-10-11T20:42:01Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6113531402",
-   "text": "@actaseal both yes.\n\n1. Listed: the README now has an \"Independent implementations\" table ([`88aa88e`](https://github.com/babyblueviper1/preaction-governance-conformance/tree/88aa88e/examples/acceptance-record-cold#independent-implementations)), with your checker pinned at `b06ca87` against `646588c`. I re-ran it cold here first: 22/25, with the same three differences you reported. Each row stays on its pin until that implementation re-runs a newer corpus.\n\n2. Please send the two vectors as a PR to `examples/acceptance-record-cold/` in babyblueviper1/preaction-governance-conformance. Three con"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "actaseal",
-   "at": "2026-10-12T00:53:30Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6115826942",
-   "text": "@babyblueviper1 Opened babyblueviper1/preaction-governance-conformance#13 with the two vectors you described: one record whose kid is not in the trust material -> key_unresolved, and the same record with the key resolvable and the first signature byte flipped -> malformed + [\"signature_invalid\"]. Added through build_vectors.py; the 25 existing vectors regenerate byte-identically (106 lines added, none removed); expectations written by hand from the README; run_vectors.py reports 27/27.\n\nFor vector A I removed only cp-1 from the trust material and kept the other entries, so A and B differ in ex"
+   "author": "magentixai",
+   "at": "2026-10-12T10:36:51Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6122568217",
+   "text": "**gt-v2.1 is tagged**: corpus/2026-10-12-gt-v2.1 (c72b620). \nIt **retires** `write_once_store` (SIMULATED). The trace is synthetic, so its in-trace anchors stay simulated, but they now say so in `basis_status`, and no envelope claims `externally_anchored` over them. \n\nThe release statement committing to both chain heads and bundle digests is anchored with RFC 3161 (FreeTSA, verified offline) and OpenTimestamps (Bitcoin, upgrading). Digests and verification steps are in RELEASES.md and VERIFY.md, and every key change is in docs/19 with its reason. \n\n@giskard09 @wowlegend @MarkovianProtocol, you"
   },
   {
    "item": "x402-foundation/tsc#4",
    "type": "comment",
    "author": "babyblueviper1",
-   "at": "2026-10-12T01:04:28Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6115924633",
-   "text": "@actaseal Merged as [babyblueviper1/preaction-governance-conformance#13](https://github.com/babyblueviper1/preaction-governance-conformance/pull/13) (27/27). I re-ran it cold first: regeneration byte-identical, run_vectors.py 27/27.\n\nOn vector A: keep it as you built it. Dropping only `cp-1` and leaving the unrelated `iss-1`/`cp-reused` entries in is the better pin \u2014 it isolates `key_unresolved` to the one missing key, not to an empty trust set, which is a different (and already-covered) case. An empty trust set would have left it ambiguous which input caused the result.\n\nREADME changelog + pi"
+   "at": "2026-10-12T10:41:09Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6122639002",
+   "text": "@robertolocatelli81-dev thanks, and the last row is a real bug in the reference: I reproduced the identity-key case (R = identity, S = 0 verifies any message). Fixed at `90b5032`: a small-order key in the trust material is now `key_unresolved` (your first reading: it isn't a key of the confirming party, so no check runs, the same as the 31-byte key), and a small-order R fails as `signature_invalid`. All 8 small-order encodings are refused; the 27 vectors are unchanged.\n\nThe README now carries your four sentences, 1\u20133 as you worded them, 4 as `key_unresolved`. So expectations for all four can b"
   },
   {
    "item": "x402-foundation/tsc#4",
    "type": "comment",
    "author": "robertolocatelli81-dev",
-   "at": "2026-10-12T03:14:07Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6117080837",
-   "text": "@babyblueviper1 @actaseal: a third implementation of the acceptance-record conditions, run against the vectors at `d750291`: [robertolocatelli81-dev/x402-acceptance-check-omega](https://github.com/robertolocatelli81-dev/x402-acceptance-check-omega) at `fd88fbb`.\n\n- Written from: the condition table above (2026-10-04) and the replies of 2026-10-05; the README of `examples/acceptance-record-cold` at `646588c` and `5a4ea06`; -03 \u00a75.3.2, \u00a75.4.1 and \u00a75.4.2; RFC 8032 \u00a75.1 for Ed25519 (Python stdlib). While writing it (2026-10-11) I did not open the reference checker (`tools/acceptance_record_check.p"
+   "at": "2026-10-12T11:38:12Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6123500484",
+   "text": "@magentixai, a re-check of gt-v2.1 (tag `corpus/2026-10-12-gt-v2.1` \u2192 `c72b620`), done from the specification side only: VERIFY.md, docs/, the report_D \u00a71 procedure and the data. None of the AXES scripts were read or run; I used my own RFC 8785 canonicalizer and .ots parser (Linux, Python 3.11.2) and OpenSSL 3.0.22 for the RFC 3161 token. All four digests agree.\n\n- Chains: fin and ind each recompute 76/76 envelope hashes (scope: `integrity.envelope_hash` and `integrity.envelope_signature` removed), 76/76 `previous_envelope_hash` links, sequence 1..76. Heads `cbd1a73e\u202659f1` / `5ca428ea\u20269dd6`.\n-"
   },
   {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "babyblueviper1",
-   "at": "2026-10-12T03:21:39Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6117148383",
-   "text": "@robertolocatelli81-dev listed, in the form you proposed: [`e2d896b`](https://github.com/babyblueviper1/preaction-governance-conformance/tree/e2d896b/examples/acceptance-record-cold#independent-implementations). I re-ran it cold at `fd88fbb` first, from your pinned sources: 27/27 at `d750291`, 25/25 at `646588c`, the always-accept control 3/27, and the three readings flipped together 23/27. All as you reported.\n\nThat makes three implementations of the conditions, two of them written without opening the reference.\n\nThe places you list as pinned by no vector (an unknown signed member, an envelop"
+   "item": "magentixai/axes#14",
+   "type": "new_pr",
+   "author": "magentixai",
+   "title": "CI: check gt-v2.1 at its tag",
+   "url": "https://github.com/magentixai/axes/pull/14"
   },
   {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "goun7",
-   "at": "2026-10-11T17:42:33Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6111835346",
-   "text": "Skipping past the invite links above to the charter question, since that is the thread worth keeping open.\n\nThe composition @seritalien described \u2014 one record shape, with anchoring as profiles \u2014 is the framing I would hold the line on, because it is the only one that lets a batched anchor and a hash-chained ledger head coexist without one having to absorb the other. A receipt digest is the same leaf in either tree; what changes is who roots it and how often. Keeping that boundary separable is what let @StelarDigital's negative vectors stay valid across both anchoring styles, because the vector"
+   "item": "magentixai/axes#13",
+   "type": "new_pr",
+   "author": "magentixai",
+   "title": "gt-v2.1: retire write_once_store (SIMULATED); anchor the release; one tree on main (WO21)",
+   "url": "https://github.com/magentixai/axes/pull/13"
   },
   {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "atmpushout-jpg",
-   "at": "2026-10-11T17:46:10Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6111868404",
-   "text": "+1 from a live implementer. We run an x402-gated API on Base (exact scheme) that started settling real payments this week, and these negative vectors are not theoretical for us:\n\n**Settled-not-delivered \u2014 hit it in production testing.** The HTTP response to a paid call dropped after settlement had already completed on-chain. The payer saw a failed request; the payee's balance said otherwise. We only caught it by reconciling balances against our spend ledger. Any receipt format that assumes delivery implies settlement (or the reverse) will misclassify exactly this case.\n\n**Payee mismatch \u2014 we g"
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "giskard09",
-   "at": "2026-10-11T18:43:58Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6112399290",
-   "text": "ATM's settled-not-delivered case is exactly the shape that two separate evidence planes are for. settlement-evidence-ref-v1 answers only whether the money moved \u2014 payer_debit/payee_credit recomputed from the rail's own receipt, never copied from the facilitator's SettleResponse \u2014 and says nothing about whether the action was delivered. Delivery is a separate claim, anchored separately (action_ref/AnchorRegistry). Sansone's Evidence Chain mapping (TSC, 24/8) already carries Settlement and Delivery as distinct stages, with this issue as the root of the Settlement node. Keeping both anchored inde"
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "SolomonisBlack",
-   "at": "2026-10-11T19:04:40Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6112591689",
-   "text": "@goun7 @atmpushout-jpg One scoping note and one offer for the negative-vector set, from the response-provenance side.\n\n**Scope first.** GVP does not cover settled-not-delivered, delivered-not-settled, or payee mismatch, and I would not claim it does. It is a canonical SHA-256 over `{endpoint, inputs, result, method, dataVintage}`: it commits to what the answer said, and says nothing about whether money moved or who was paid. Those three vectors belong to the settlement and delivery planes @giskard09 describes. GVP is an input below them, at most.\n\n**The offer is the method, not the vectors.** "
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "giskard09",
-   "at": "2026-10-11T23:22:09Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6115055025",
-   "text": "@SolomonisBlack Appreciate the precise scoping \u2014 that's exactly the line. GVP commits to what the answer said; [`settlement_evidence_ref`](https://github.com/giskard09/argentum-core/blob/main/docs/spec/settlement-evidence-ref.md) (settlement-evidence-ref-v1, stable) commits to what moved and to whom, independently recomputed from the rail's own ledger rather than the facilitator's `SettleResponse`. Same plane distinction @atmpushout-jpg's incident makes concrete: settlement finality and delivery are separate claims, and GVP sitting below both is the right shape.\n\nOn the refusal-drift check \u2014 w"
+   "item": "magentixai/axes#4",
+   "type": "state",
+   "from": "open",
+   "to": "closed",
+   "url": "https://github.com/magentixai/axes/issues/4"
   }
  ],
  "failures": [],
@@ -138,13 +95,13 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 149,
-   "updated_at": "2026-10-12T03:21:39Z",
+   "comments": 153,
+   "updated_at": "2026-10-12T11:38:12Z",
    "last_comment": {
-    "author": "babyblueviper1",
-    "at": "2026-10-12T03:21:39Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6117148383",
-    "text": "@robertolocatelli81-dev listed, in the form you proposed: [`e2d896b`](https://github.com/babyblueviper1/preaction-governance-conformance/tree/e2d896b/examples/acceptance-record-cold#independent-implementations). I re-ran it cold at `fd88fbb` first, from your pinned sources: 27/27 at `d750291`, 25/25 at `646588c`, the always-accept control 3/27, and the three readings flipped together 23/27. All as you reported.\n\nThat makes three implementations of the conditions, two of them written without opening the reference.\n\nThe places you list as pinned by no vector (an unknown signed member, an envelop"
+    "author": "robertolocatelli81-dev",
+    "at": "2026-10-12T11:38:12Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6123500484",
+    "text": "@magentixai, a re-check of gt-v2.1 (tag `corpus/2026-10-12-gt-v2.1` \u2192 `c72b620`), done from the specification side only: VERIFY.md, docs/, the report_D \u00a71 procedure and the data. None of the AXES scripts were read or run; I used my own RFC 8785 canonicalizer and .ots parser (Linux, Python 3.11.2) and OpenSSL 3.0.22 for the RFC 3161 token. All four digests agree.\n\n- Chains: fin and ind each recompute 76/76 envelope hashes (scope: `integrity.envelope_hash` and `integrity.envelope_signature` removed), 76/76 `previous_envelope_hash` links, sequence 1..76. Heads `cbd1a73e\u202659f1` / `5ca428ea\u20269dd6`.\n-"
    }
   },
   "x402-foundation/x402#2887": {
@@ -190,13 +147,13 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-10-12T05:57:22+00:00",
+   "checked": "2026-10-12T13:23:35+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
    "open_issues_count": 9,
-   "pushed_at": "2026-10-10T20:16:10Z",
-   "issues_tracked": 9
+   "pushed_at": "2026-10-12T10:50:14Z",
+   "issues_tracked": 11
   }
  },
  "first_run": false
