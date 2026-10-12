@@ -92,7 +92,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 142,
+   "comments": 149,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -235,14 +235,21 @@
     6041133434,
     6051110438,
     6060232003,
-    6105811577
+    6105811577,
+    6113338510,
+    6113504721,
+    6113531402,
+    6115826942,
+    6115924633,
+    6117080837,
+    6117148383
    ],
-   "updated_at": "2026-10-11T05:24:58Z",
+   "updated_at": "2026-10-12T03:21:39Z",
    "last_comment": {
-    "author": "actaseal",
-    "at": "2026-10-11T05:24:58Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6105811577",
-    "text": "Updated the vendored verifier to <sha>. It now fails RECEIPT_SIGNER_PUBKEY_HASH_MISMATCH when the manifest key doesn\u2019t hash to the receipt\u2019s signed signer_pubkey_hash, and --receipt-public-key pins the operator key (RECEIPT_KEY_NOT_TRUSTED). Found while testing re-signed packets."
+    "author": "babyblueviper1",
+    "at": "2026-10-12T03:21:39Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6117148383",
+    "text": "@robertolocatelli81-dev listed, in the form you proposed: [`e2d896b`](https://github.com/babyblueviper1/preaction-governance-conformance/tree/e2d896b/examples/acceptance-record-cold#independent-implementations). I re-ran it cold at `fd88fbb` first, from your pinned sources: 27/27 at `d750291`, 25/25 at `646588c`, the always-accept control 3/27, and the three readings flipped together 23/27. All as you reported.\n\nThat makes three implementations of the conditions, two of them written without opening the reference.\n\nThe places you list as pinned by no vector (an unknown signed member, an envelop"
    }
   },
   "x402-foundation/x402#2887": {
@@ -250,7 +257,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 92,
+   "comments": 97,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -343,14 +350,19 @@
     6099162152,
     6099162345,
     6104965694,
-    6104965789
+    6104965789,
+    6111835346,
+    6111868404,
+    6112399290,
+    6112591689,
+    6115055025
    ],
-   "updated_at": "2026-10-11T04:59:07Z",
+   "updated_at": "2026-10-11T23:23:55Z",
    "last_comment": {
-    "author": "guidoalejo",
-    "at": "2026-10-11T03:20:04Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6104965789",
-    "text": "Sluzen issuer setup links were regenerated after the onboarding fix. Earlier URLs in this thread will not open.\n\nIf you want to try per-call settlement in front of your HTTP API while you work on dispute/correctness layers, here is a fresh one-use invite:\n\nExpires in 8 days:\nhttps://sluzen.network/onboard?invite=sluzeninv_f95797fb78a70faa630302ed1beecb16b543d79566ae5b8c1b565e7b4cb30b35"
+    "author": "giskard09",
+    "at": "2026-10-11T23:22:09Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6115055025",
+    "text": "@SolomonisBlack Appreciate the precise scoping \u2014 that's exactly the line. GVP commits to what the answer said; [`settlement_evidence_ref`](https://github.com/giskard09/argentum-core/blob/main/docs/spec/settlement-evidence-ref.md) (settlement-evidence-ref-v1, stable) commits to what moved and to whom, independently recomputed from the rail's own ledger rather than the facilitator's `SettleResponse`. Same plane distinction @atmpushout-jpg's incident makes concrete: settlement finality and delivery are separate claims, and GVP sitting below both is the right shape.\n\nOn the refusal-drift check \u2014 w"
    }
   },
   "x402-foundation/x402#3220": {
@@ -447,10 +459,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-11T11:31:21+00:00",
+ "last_checked": "2026-10-12T05:57:22+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-11T11:31:21+00:00",
+   "checked": "2026-10-12T05:57:22+00:00",
    "items": {
     "12": {
      "title": "Outstanding AXES landings for x402/AEP coherence (role, signing, identity)",
