@@ -92,7 +92,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 153,
+   "comments": 164,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -246,14 +246,25 @@
     6122431228,
     6122568217,
     6122639002,
-    6123500484
+    6123500484,
+    6126498724,
+    6126667021,
+    6129835954,
+    6130213815,
+    6130634704,
+    6134569800,
+    6135077808,
+    6135161184,
+    6138162676,
+    6138751809,
+    6139080249
    ],
-   "updated_at": "2026-10-12T11:38:12Z",
+   "updated_at": "2026-10-13T05:41:12Z",
    "last_comment": {
-    "author": "robertolocatelli81-dev",
-    "at": "2026-10-12T11:38:12Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6123500484",
-    "text": "@magentixai, a re-check of gt-v2.1 (tag `corpus/2026-10-12-gt-v2.1` \u2192 `c72b620`), done from the specification side only: VERIFY.md, docs/, the report_D \u00a71 procedure and the data. None of the AXES scripts were read or run; I used my own RFC 8785 canonicalizer and .ots parser (Linux, Python 3.11.2) and OpenSSL 3.0.22 for the RFC 3161 token. All four digests agree.\n\n- Chains: fin and ind each recompute 76/76 envelope hashes (scope: `integrity.envelope_hash` and `integrity.envelope_signature` removed), 76/76 `previous_envelope_hash` links, sequence 1..76. Heads `cbd1a73e\u202659f1` / `5ca428ea\u20269dd6`.\n-"
+    "author": "babyblueviper1",
+    "at": "2026-10-13T05:41:12Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6139080249",
+    "text": "@stillmarcus24 thank you. #15 is merged as `6eaf50c`, and the whitespace-only `confirming_party` case is now the 47th vector. Your checker is in the implementations table at [`62d61c8`](https://github.com/babyblueviper1/preaction-governance-conformance/blob/62d61c8/examples/acceptance-record-cold/README.md), along with your two sentence 8 choices. I re-ran `acceptance-record-cold-check.cjs` at `b18a864` against the corpus here and got 47/47. It's the first implementation not written in Python, which is the point you made, and your mutation battery found a rule the corpus had stated but never p"
    }
   },
   "x402-foundation/x402#2887": {
@@ -463,14 +474,22 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-12T13:23:35+00:00",
+ "last_checked": "2026-10-13T05:56:26+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-12T13:23:35+00:00",
+   "checked": "2026-10-13T05:56:26+00:00",
    "items": {
+    "15": {
+     "title": "Docs: fixes from the gt-v2.1 re-verification; record re-verifications",
+     "state": "open",
+     "pr": true,
+     "comments": 0,
+     "author": "magentixai",
+     "url": "https://github.com/magentixai/axes/pull/15"
+    },
     "14": {
      "title": "CI: check gt-v2.1 at its tag",
-     "state": "open",
+     "state": "closed",
      "pr": true,
      "comments": 0,
      "author": "magentixai",
@@ -520,7 +539,7 @@
      "title": "Seed: conformance vectors (canoncheck-class byte-identity harness)",
      "state": "open",
      "pr": false,
-     "comments": 32,
+     "comments": 33,
      "author": "magentixai",
      "url": "https://github.com/magentixai/axes/issues/6"
     },
@@ -561,7 +580,7 @@
    "forks_count": 1,
    "subscribers_count": 0,
    "open_issues_count": 9,
-   "pushed_at": "2026-10-12T10:50:14Z"
+   "pushed_at": "2026-10-12T16:06:45Z"
   }
  }
 }
