@@ -474,10 +474,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-13T05:56:26+00:00",
+ "last_checked": "2026-10-13T12:52:17+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-13T05:56:26+00:00",
+   "checked": "2026-10-13T12:52:17+00:00",
    "items": {
     "15": {
      "title": "Docs: fixes from the gt-v2.1 re-verification; record re-verifications",

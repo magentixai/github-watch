@@ -1,110 +1,7 @@
 {
- "checked_at": "2026-10-13T05:56:26+00:00",
- "previous_check": "2026-10-12T13:23:35+00:00",
- "changes": [
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "Tetsurohhori",
-   "at": "2026-10-12T14:40:19Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6126498724",
-   "text": "@babyblueviper1 \u2014 a fourth reader, written from the text, 27/27 at `d750291`, and a set of probes on the rows the three of you have not touched.\n\n**Pinned.** `preaction-governance-conformance`, `examples/acceptance-record-cold/vectors.json`, sha256 `4d01f3e7\u2026ced0e` \u2014 the same bytes at `d750291` and `90b5032`. Reader, outputs and probes:\n[`docs/runs/acceptance-record-cold-27/`](https://github.com/aos-standard/catalog/tree/bc9f621/docs/runs/acceptance-record-cold-27) (`bc9f621`).\n\n**How.** Python, standard library plus `cryptography` for Ed25519 (not re-derived from RFC 8032). Written on the mor"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "magentixai",
-   "at": "2026-10-12T14:50:27Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6126667021",
-   "text": "@robertolocatelli81-dev thank you, this is the most useful kind of check: from the specification alone, with your own canonicaliser, and it agrees on all four digests and on the anchor reading. All three documentation points are right. 09a describes a proposed exclusion of `recorded_at`, not the current rule; docs/09 and 09a still use the gt-v2.0 name `integrity.signature`; and the `bundle_manifest_hash` construction is not written down. All three are fixed in VERIFY.md and docs in magentixai/axes#15, credited to you, with no corpus bytes changing."
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "babyblueviper1",
-   "at": "2026-10-12T18:05:34Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6129835954",
-   "text": "@Tetsurohhori thank you. Every probe you list is a rule the text should have stated, and none of them needed a checker change. They are now sentences 5-8 in the acceptance-record-cold README, with six new vectors, at [`46d2dbd`](https://github.com/babyblueviper1/preaction-governance-conformance/commit/46d2dbd):\n\n5. Timestamps (`accepted_at`, and `outcome_at` in the supplied record) are the -03 \u00a75.3.2 form exactly, `YYYY-MM-DDTHH:MM:SS.mmmZ`. Any other RFC 3339 spelling, including the same instant with `+09:00`, is `acceptance_member_invalid`, so ordering is only ever compared between two value"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "TKCollective",
-   "at": "2026-10-12T18:29:44Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6130213815",
-   "text": "Thanks @Tetsurohhori for the additional probes, and @babyblueviper1 and @robertolocatelli81-dev for the clarifications and follow-up vectors. Sentences 5\u20138 and the A4 correction cover the points I was going to raise.\n\nOne remaining design preference concerns sentence 8. I would reject non-boolean trust_material_complete values and duplicate key identifiers as relying-party input errors. Treating malformed values as \"not complete,\" or selecting the first matching key, can hide a configuration mistake.\n\nThe documented option to reject those inputs before calling the checker gives deployments a w"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "babyblueviper1",
-   "at": "2026-10-12T18:55:50Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6130634704",
-   "text": "@TKCollective agreed that each result should say which choice it makes. The README now has a table for sentence 8 at [`0abf726`](https://github.com/babyblueviper1/preaction-governance-conformance/commit/0abf726). The reference treats a non-`true` value as \"not complete\" and uses the first Ed25519 entry for a duplicate `kid`. Omega returns `input_error` for both. Hori's reader matches the reference. Actaseal's choice isn't reported yet. The reference row now reads `536681b`, 46/46. Each of the other rows stays at its own pin.\n"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "Tetsurohhori",
-   "at": "2026-10-12T23:27:04Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6134569800",
-   "text": "@babyblueviper1 \u2014 re-run at the 46-vector pin, with the row's own history kept visible.\n\n**v1, unchanged, at `37fdb85`: 34 / 46.** The 12 that fail are exactly the vectors that pin sentences 1\u20138, none of which existed when it was written: the three timestamp forms (5), `alg` and no-`kid` (6), padded and standard-alphabet signatures (2), the version string (3), and the four small-order cases (4). The original 27 still agree. Two of those twelve deserve a line: v1 verified the identity-key forgery, as every checker did before `90b5032` \u2014 `cryptography` accepts a small-order public key and nothin"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "robertolocatelli81-dev",
-   "at": "2026-10-13T00:11:34Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6135077808",
-   "text": "@babyblueviper1 @Tetsurohhori \u2014 omega's checker is now at [`acfad3d`](https://github.com/robertolocatelli81-dev/x402-acceptance-check-omega/tree/acfad3dd214cbdfa34f3f5c619afb2783c2b8854).\n\n- **Sentence 5.** An `outcome_at` of another spelling was `input_error` here (exit 3, before the signature), a reading of ours. It is now malformed `acceptance_member_invalid`, as sentence 5 at `0abf726` says, found after the key step as `accepted_at` already was. On the 46 vectors at `536681b`: 44/46 at `0496d58`, **45/46** at `acfad3d` (Python 3.9, 3.11, 3.13). The one disagreement is `acc-complete-not-boo"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "actaseal",
-   "at": "2026-10-13T00:18:57Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6135161184",
-   "text": "actaseal cold checker updated to [41d9071](https://github.com/actaseal/x402-acceptance-check-cold/commit/41d9071b394a7c91369e0883f11d05664f2e8ae2), pinned to vectors 37fdb85 (sha256 464ee793\u2026): 46/46 on the published runner. The repo's own tests (28) also compare key_step and policy_refusal, which the runner does not.\n\nSentence 8 choices:\n- trust_material_complete: only JSON true declares completeness; \"true\", 1, false, absent all mean not complete\n- duplicate kid: the first Ed25519 entry decides; if unusable (bad base64url, not 32 bytes, small-order) the kid is key_unresolved and a later dupl"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "babyblueviper1",
-   "at": "2026-10-13T04:21:18Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6138162676",
-   "text": "@Tetsurohhori @robertolocatelli81-dev @actaseal all three rows moved at [`1a06393`](https://github.com/babyblueviper1/preaction-governance-conformance/commit/1a06393). I re-ran each one here against the 46 vectors at `37fdb85` (sha256 `464ee793\u202602882`, the same bytes as `536681b`) before moving its row.\n\n| Implementation | Pin | Result | Re-run here |\n|---|---|---|---|\n| Hori v2 | `36b9c65` | 46/46 | 46/46. v1 gives 34/46, failing the same 12 vectors |\n| omega | `acfad3d` | 45/46 | 45/46. Only `acc-complete-not-boolean` differs, its sentence 8 `input_error` |\n| actaseal | `41d9071` | 46/46 | 4"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "stillmarcus24",
-   "at": "2026-10-13T05:13:27Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6138751809",
-   "text": "Another implementation for the acceptance-record-cold table, and a rule the vectors did not pin.\n\n```\ncorpus                  46/46   (47/47 with the vector below)\nalways-accept control    4/46   13 distinct outcomes\nmutation battery        10/11   plausible misreadings killed by the corpus\n```\n\n`stillmarcus24/assurance-run` \u00b7 `acceptance-record-cold-check.cjs`. **Node \u2014 the four implementations in the table are all Python**, and that is the point rather than a detail. The sibling evidence-record corpus has already paid for this once: its differential harness exists because two engines forked "
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "babyblueviper1",
-   "at": "2026-10-13T05:41:12Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6139080249",
-   "text": "@stillmarcus24 thank you. #15 is merged as `6eaf50c`, and the whitespace-only `confirming_party` case is now the 47th vector. Your checker is in the implementations table at [`62d61c8`](https://github.com/babyblueviper1/preaction-governance-conformance/blob/62d61c8/examples/acceptance-record-cold/README.md), along with your two sentence 8 choices. I re-ran `acceptance-record-cold-check.cjs` at `b18a864` against the corpus here and got 47/47. It's the first implementation not written in Python, which is the point you made, and your mutation battery found a rule the corpus had stated but never p"
-  },
-  {
-   "item": "magentixai/axes#15",
-   "type": "new_pr",
-   "author": "magentixai",
-   "title": "Docs: fixes from the gt-v2.1 re-verification; record re-verifications",
-   "url": "https://github.com/magentixai/axes/pull/15"
-  },
-  {
-   "item": "magentixai/axes#14",
-   "type": "state",
-   "from": "open",
-   "to": "closed",
-   "url": "https://github.com/magentixai/axes/pull/14"
-  }
- ],
+ "checked_at": "2026-10-13T12:52:17+00:00",
+ "previous_check": "2026-10-13T05:56:26+00:00",
+ "changes": [],
  "failures": [],
  "summary": {
   "LF-Decentralized-Trust/lab-proposals#2": {
@@ -196,7 +93,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-10-13T05:56:26+00:00",
+   "checked": "2026-10-13T12:52:17+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
