@@ -1,7 +1,48 @@
 {
- "checked_at": "2026-10-14T10:26:36+00:00",
- "previous_check": "2026-10-14T05:58:23+00:00",
- "changes": [],
+ "checked_at": "2026-10-14T12:07:06+00:00",
+ "previous_check": "2026-10-14T10:26:36+00:00",
+ "changes": [
+  {
+   "item": "magentixai/axes#6",
+   "type": "comment",
+   "author": "magentixai",
+   "at": "2026-10-12T10:35:43Z",
+   "url": "https://github.com/magentixai/axes/issues/6#issuecomment-6122547417",
+   "text": "**gt-v2.1 is tagged**: corpus/2026-10-12-gt-v2.1 (c72b620). \nIt **retires** `write_once_store` (SIMULATED). The trace is synthetic, so its in-trace anchors stay simulated, but they now say so in `basis_status`, and no envelope claims `externally_anchored` over them. \n\nThe release statement committing to both chain heads and bundle digests is anchored with RFC 3161 (FreeTSA, verified offline) and OpenTimestamps (Bitcoin, upgrading). Digests and verification steps are in RELEASES.md and VERIFY.md, and every key change is in docs/19 with its reason. \n\n@giskard09 @wowlegend @MarkovianProtocol, you"
+  },
+  {
+   "item": "magentixai/axes#4",
+   "type": "comment",
+   "author": "magentixai",
+   "at": "2026-10-12T10:36:02Z",
+   "url": "https://github.com/magentixai/axes/issues/4#issuecomment-6122553160",
+   "text": "**gt-v2.1 is tagged**: corpus/2026-10-12-gt-v2.1 (c72b620). \nIt **retires** `write_once_store` (SIMULATED). The trace is synthetic, so its in-trace anchors stay simulated, but they now say so in `basis_status`, and no envelope claims `externally_anchored` over them. \n\nThe release statement committing to both chain heads and bundle digests is anchored with RFC 3161 (FreeTSA, verified offline) and OpenTimestamps (Bitcoin, upgrading). Digests and verification steps are in RELEASES.md and VERIFY.md, and every key change is in docs/19 with its reason. \n\n@giskard09 @wowlegend @MarkovianProtocol, you"
+  },
+  {
+   "item": "magentixai/axes#6",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-12T11:50:13Z",
+   "url": "https://github.com/magentixai/axes/issues/6#issuecomment-6123679475",
+   "text": "Re-ran against c72b620 \u2014 full agreement. Byte check, regeneration from scratch, and `axes_verify.py` all confirm (104/104 checks, coverage complete). The two anchors behave as declared: RFC 3161 verifies, OpenTimestamps shows pending per VERIFY.md. No digest disagreement to report.\n"
+  },
+  {
+   "item": "magentixai/axes#6",
+   "type": "comment",
+   "author": "magentixai",
+   "at": "2026-10-12T14:49:36Z",
+   "url": "https://github.com/magentixai/axes/issues/6#issuecomment-6126652707",
+   "text": "@giskard09 Pablo, thank you for the re-run against `c72b620`, and for raising the anchor point in public in the first place: gt-v2.1 exists because you did. Your result is recorded in RELEASES.md (#15). Leaving this open for @MarkovianProtocol and @wowlegend."
+  },
+  {
+   "item": "magentixai/axes#6",
+   "type": "comment",
+   "author": "MarkovianProtocol",
+   "at": "2026-10-13T17:08:48Z",
+   "url": "https://github.com/magentixai/axes/issues/6#issuecomment-6150961475",
+   "text": "Re-ran gt-v2.1 at `c72b620` on macOS (Python 3.9.6, Node 25), fresh `git clone --branch corpus/2026-10-12-gt-v2.1`. Everything matches.\n\n- `check_corpus_bytes.py` OK; both generators regenerate with an empty `git diff`.\n- Our own check with canoncheck (its Python and JS implementations, not the `jcs` package): 76/76 envelopes in each bundle recompute to the stored hash, with identical bytes from Python and Node; links, sequence numbers and the three in-trace anchoring subjects per bundle are consistent; files 38/38 and 40/40; chain heads `cbd1a73e\u2026` / `5ca428ea\u2026` and bundle digests `e922486b\u2026`"
+  }
+ ],
  "failures": [],
  "summary": {
   "LF-Decentralized-Trust/lab-proposals#2": {
@@ -93,7 +134,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-10-14T10:26:36+00:00",
+   "checked": "2026-10-14T12:07:06+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,

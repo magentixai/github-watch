@@ -1,0 +1,147 @@
+{
+ "checked_at": "2026-10-14T12:07:06+00:00",
+ "previous_check": "2026-10-14T10:26:36+00:00",
+ "changes": [
+  {
+   "item": "magentixai/axes#6",
+   "type": "comment",
+   "author": "magentixai",
+   "at": "2026-10-12T10:35:43Z",
+   "url": "https://github.com/magentixai/axes/issues/6#issuecomment-6122547417",
+   "text": "**gt-v2.1 is tagged**: corpus/2026-10-12-gt-v2.1 (c72b620). \nIt **retires** `write_once_store` (SIMULATED). The trace is synthetic, so its in-trace anchors stay simulated, but they now say so in `basis_status`, and no envelope claims `externally_anchored` over them. \n\nThe release statement committing to both chain heads and bundle digests is anchored with RFC 3161 (FreeTSA, verified offline) and OpenTimestamps (Bitcoin, upgrading). Digests and verification steps are in RELEASES.md and VERIFY.md, and every key change is in docs/19 with its reason. \n\n@giskard09 @wowlegend @MarkovianProtocol, you"
+  },
+  {
+   "item": "magentixai/axes#4",
+   "type": "comment",
+   "author": "magentixai",
+   "at": "2026-10-12T10:36:02Z",
+   "url": "https://github.com/magentixai/axes/issues/4#issuecomment-6122553160",
+   "text": "**gt-v2.1 is tagged**: corpus/2026-10-12-gt-v2.1 (c72b620). \nIt **retires** `write_once_store` (SIMULATED). The trace is synthetic, so its in-trace anchors stay simulated, but they now say so in `basis_status`, and no envelope claims `externally_anchored` over them. \n\nThe release statement committing to both chain heads and bundle digests is anchored with RFC 3161 (FreeTSA, verified offline) and OpenTimestamps (Bitcoin, upgrading). Digests and verification steps are in RELEASES.md and VERIFY.md, and every key change is in docs/19 with its reason. \n\n@giskard09 @wowlegend @MarkovianProtocol, you"
+  },
+  {
+   "item": "magentixai/axes#6",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-12T11:50:13Z",
+   "url": "https://github.com/magentixai/axes/issues/6#issuecomment-6123679475",
+   "text": "Re-ran against c72b620 \u2014 full agreement. Byte check, regeneration from scratch, and `axes_verify.py` all confirm (104/104 checks, coverage complete). The two anchors behave as declared: RFC 3161 verifies, OpenTimestamps shows pending per VERIFY.md. No digest disagreement to report.\n"
+  },
+  {
+   "item": "magentixai/axes#6",
+   "type": "comment",
+   "author": "magentixai",
+   "at": "2026-10-12T14:49:36Z",
+   "url": "https://github.com/magentixai/axes/issues/6#issuecomment-6126652707",
+   "text": "@giskard09 Pablo, thank you for the re-run against `c72b620`, and for raising the anchor point in public in the first place: gt-v2.1 exists because you did. Your result is recorded in RELEASES.md (#15). Leaving this open for @MarkovianProtocol and @wowlegend."
+  },
+  {
+   "item": "magentixai/axes#6",
+   "type": "comment",
+   "author": "MarkovianProtocol",
+   "at": "2026-10-13T17:08:48Z",
+   "url": "https://github.com/magentixai/axes/issues/6#issuecomment-6150961475",
+   "text": "Re-ran gt-v2.1 at `c72b620` on macOS (Python 3.9.6, Node 25), fresh `git clone --branch corpus/2026-10-12-gt-v2.1`. Everything matches.\n\n- `check_corpus_bytes.py` OK; both generators regenerate with an empty `git diff`.\n- Our own check with canoncheck (its Python and JS implementations, not the `jcs` package): 76/76 envelopes in each bundle recompute to the stored hash, with identical bytes from Python and Node; links, sequence numbers and the three in-trace anchoring subjects per bundle are consistent; files 38/38 and 40/40; chain heads `cbd1a73e\u2026` / `5ca428ea\u2026` and bundle digests `e922486b\u2026`"
+  }
+ ],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 5,
+   "updated_at": "2026-10-01T20:03:02Z",
+   "last_comment": {
+    "author": "giskard09",
+    "at": "2026-10-01T19:38:30Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-5939128229",
+    "text": "@aeoess Thanks for closing the loop directly \u2014 that's exactly the boundary we intended. Noted on pinning to a tag/commit on main rather than a moving branch, and checking CLARIFICATIONS.md for any later correction. Appreciate you, Martin and source-origin working through this with us."
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 168,
+   "updated_at": "2026-10-14T05:52:53Z",
+   "last_comment": {
+    "author": "babyblueviper1",
+    "at": "2026-10-14T05:52:53Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6161895777",
+    "text": "@robertolocatelli81-dev thanks, that's right \u2014 taken as the whole curve group's order the check becomes `[8L]A`, which is the identity for every point and would never fire. Fixed at [`5abe7a6`](https://github.com/babyblueviper1/preaction-governance-conformance/commit/5abe7a646ca2361a9009a18957f62215d23fa2dd): \"`L` the order of the base point `B` (RFC 8032 \u00a73; the curve group has order `8L`)\". No vector or checker change, wording only.\n\nGood to see omega land on `key_unresolved`/`signature_invalid` for mixed-order and get to 49/50 with only `acc-complete-not-boolean` (your own documented senten"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 102,
+   "updated_at": "2026-10-14T03:29:31Z",
+   "last_comment": {
+    "author": "payload-tools",
+    "at": "2026-10-14T03:29:31Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6160232331",
+    "text": "@stillmarcus24 That three plane framing is exactly how we think about it too, and entitlement is usually the one people skip. The console key is self-serve whenever you are ready. I would be curious whether having the owed amount pinned down first changes how you scope the delivery attestation."
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 63,
+   "updated_at": "2026-10-06T06:34:09Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-06T06:34:09Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6010784398",
+    "text": "We implemented the single-payment part of this draft (\u00a76, \u00a77) in presign-guard, a pre-sign check for agent payments:\n\n- POST /v1/check takes an optional mandate next to an EIP-3009 signature and turns a payment outside it red before the agent signs (wrong payer/asset/recipient, over perPayment or cap, expired, bad issuer signature, nonce \u2260 binding).\n- presign-guard-wallet's mandatePayer() makes x402 payments with the \u00a77 binding as the EIP-3009 nonce.\n- JCS bytes, digest, signature and the EIP-3009/Permit2 binding values match authority-vectors.json byte for byte.\n\nNot covered: cumulative spend"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-10-14T12:07:06+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 9,
+   "pushed_at": "2026-10-12T16:06:45Z",
+   "issues_tracked": 12
+  }
+ },
+ "first_run": false
+}
