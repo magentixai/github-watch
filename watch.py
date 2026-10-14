@@ -13,6 +13,8 @@ ISSUES = ["LF-Decentralized-Trust/lab-proposals#2",
           "x402-foundation/x402#3220"]      # authority extension PR (reviews tracked too)
 REPO = "giskard09/action-ref-conformance"
 WATCH_REPOS = ["magentixai/axes"]           # every issue/PR, comment, state change, plus stars/forks
+AXES_BACKFILL_SINCE = "2026-10-10T21:54:27+00:00"  # first AXES baseline; one-time catch-up of missed comments
+def ts(s): return datetime.datetime.fromisoformat(s.replace("Z", "+00:00"))
 def get(url):
     req = urllib.request.Request(url, headers={"Accept": "application/vnd.github+json", "User-Agent": "martin-watch"})
     tok = os.environ.get("GITHUB_TOKEN")
@@ -101,7 +103,9 @@ for r in WATCH_REPOS:
         items = paged(f"https://api.github.com/repos/{r}/issues?state=all")
         cur = {str(i["number"]): {"title": i["title"], "state": i["state"], "pr": bool(i.get("pull_request")),
                "comments": i["comments"], "author": i["user"]["login"], "url": i["html_url"]} for i in items}
-        since = old.get("checked")
+        # Comments are diffed by id (like ISSUES above), not by a server-side ?since= filter:
+        # the unencoded "+00:00" in since= turned into a space and GitHub silently dropped every comment.
+        comments = paged(f"https://api.github.com/repos/{r}/issues/comments")
         if old:
             for n, i in cur.items():
                 o = old["items"].get(n)
@@ -110,17 +114,21 @@ for r in WATCH_REPOS:
                         "author": i["author"], "title": i["title"], "url": i["url"]})
                 elif o["state"] != i["state"]:
                     report["changes"].append({"item": f"{r}#{n}", "type": "state", "from": o["state"], "to": i["state"], "url": i["url"]})
-            for c in paged(f"https://api.github.com/repos/{r}/issues/comments?since={since}"):
-                if c["created_at"] > since:
-                    report["changes"].append({"item": f"{r}#{c['issue_url'].rsplit('/',1)[1]}", "type": "comment",
+            if "comment_ids" in old:
+                seen = set(old["comment_ids"])
+                fresh = [c for c in comments if c["id"] not in seen]
+            else:  # first run after the fix: catch up on comments missed since AXES was added
+                fresh = [c for c in comments if ts(c["created_at"]) > ts(AXES_BACKFILL_SINCE)]
+            for c in fresh:
+                report["changes"].append({"item": f"{r}#{c['issue_url'].rsplit('/',1)[1]}", "type": "comment",
                         "author": c["user"]["login"], "at": c["created_at"], "url": c["html_url"], "text": (c["body"] or "")[:600]})
             for k in ("stargazers_count", "forks_count", "subscribers_count"):
                 if old.get(k) is not None and old[k] != info.get(k):
                     report["changes"].append({"item": r, "type": "count", "field": k, "from": old[k], "to": info.get(k)})
-        new_state["repos"][r] = {"checked": now, "items": cur, "stargazers_count": info.get("stargazers_count"),
+        new_state["repos"][r] = {"checked": now, "items": cur, "comment_ids": [c["id"] for c in comments], "stargazers_count": info.get("stargazers_count"),
             "forks_count": info.get("forks_count"), "subscribers_count": info.get("subscribers_count"),
             "open_issues_count": info.get("open_issues_count"), "pushed_at": info.get("pushed_at")}
-        report["summary"][r] = {k: v for k, v in new_state["repos"][r].items() if k != "items"} | {"issues_tracked": len(cur)}
+        report["summary"][r] = {k: v for k, v in new_state["repos"][r].items() if k not in ("items", "comment_ids")} | {"issues_tracked": len(cur)}
     except Exception as e:
         report["failures"].append({"item": r, "error": repr(e)})
 report["first_run"] = not state.get("last_checked")
