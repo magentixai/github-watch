@@ -92,7 +92,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 164,
+   "comments": 168,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -257,14 +257,18 @@
     6135161184,
     6138162676,
     6138751809,
-    6139080249
+    6139080249,
+    6146209141,
+    6148332958,
+    6161579639,
+    6161895777
    ],
-   "updated_at": "2026-10-13T05:41:12Z",
+   "updated_at": "2026-10-14T05:52:53Z",
    "last_comment": {
     "author": "babyblueviper1",
-    "at": "2026-10-13T05:41:12Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6139080249",
-    "text": "@stillmarcus24 thank you. #15 is merged as `6eaf50c`, and the whitespace-only `confirming_party` case is now the 47th vector. Your checker is in the implementations table at [`62d61c8`](https://github.com/babyblueviper1/preaction-governance-conformance/blob/62d61c8/examples/acceptance-record-cold/README.md), along with your two sentence 8 choices. I re-ran `acceptance-record-cold-check.cjs` at `b18a864` against the corpus here and got 47/47. It's the first implementation not written in Python, which is the point you made, and your mutation battery found a rule the corpus had stated but never p"
+    "at": "2026-10-14T05:52:53Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6161895777",
+    "text": "@robertolocatelli81-dev thanks, that's right \u2014 taken as the whole curve group's order the check becomes `[8L]A`, which is the identity for every point and would never fire. Fixed at [`5abe7a6`](https://github.com/babyblueviper1/preaction-governance-conformance/commit/5abe7a646ca2361a9009a18957f62215d23fa2dd): \"`L` the order of the base point `B` (RFC 8032 \u00a73; the curve group has order `8L`)\". No vector or checker change, wording only.\n\nGood to see omega land on `key_unresolved`/`signature_invalid` for mixed-order and get to 49/50 with only `acc-complete-not-boolean` (your own documented senten"
    }
   },
   "x402-foundation/x402#2887": {
@@ -272,7 +276,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 97,
+   "comments": 102,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -370,14 +374,19 @@
     6111868404,
     6112399290,
     6112591689,
-    6115055025
+    6115055025,
+    6153365959,
+    6153366210,
+    6157460445,
+    6159436987,
+    6160232331
    ],
-   "updated_at": "2026-10-11T23:23:55Z",
+   "updated_at": "2026-10-14T03:29:31Z",
    "last_comment": {
-    "author": "giskard09",
-    "at": "2026-10-11T23:22:09Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6115055025",
-    "text": "@SolomonisBlack Appreciate the precise scoping \u2014 that's exactly the line. GVP commits to what the answer said; [`settlement_evidence_ref`](https://github.com/giskard09/argentum-core/blob/main/docs/spec/settlement-evidence-ref.md) (settlement-evidence-ref-v1, stable) commits to what moved and to whom, independently recomputed from the rail's own ledger rather than the facilitator's `SettleResponse`. Same plane distinction @atmpushout-jpg's incident makes concrete: settlement finality and delivery are separate claims, and GVP sitting below both is the right shape.\n\nOn the refusal-drift check \u2014 w"
+    "author": "payload-tools",
+    "at": "2026-10-14T03:29:31Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6160232331",
+    "text": "@stillmarcus24 That three plane framing is exactly how we think about it too, and entitlement is usually the one people skip. The console key is self-serve whenever you are ready. I would be curious whether having the owed amount pinned down first changes how you scope the delivery attestation."
    }
   },
   "x402-foundation/x402#3220": {
@@ -474,10 +483,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-13T12:52:17+00:00",
+ "last_checked": "2026-10-14T05:58:23+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-13T12:52:17+00:00",
+   "checked": "2026-10-14T05:58:23+00:00",
    "items": {
     "15": {
      "title": "Docs: fixes from the gt-v2.1 re-verification; record re-verifications",
@@ -539,7 +548,7 @@
      "title": "Seed: conformance vectors (canoncheck-class byte-identity harness)",
      "state": "open",
      "pr": false,
-     "comments": 33,
+     "comments": 34,
      "author": "magentixai",
      "url": "https://github.com/magentixai/axes/issues/6"
     },

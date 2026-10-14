@@ -1,0 +1,179 @@
+{
+ "checked_at": "2026-10-14T05:58:23+00:00",
+ "previous_check": "2026-10-13T12:52:17+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "TKCollective",
+   "at": "2026-10-13T13:05:10Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6146209141",
+   "text": "Follow-up on the small-order Ed25519 report in this thread: tanilo-receipt-verify 0.2.1 is on PyPI.\n\nverify() now rejects small-order Ed25519 public keys and R values, non-canonical point encodings and out-of-range S values before the crypto library verifies the signature, and returns a failed verification with a reason. Rejecting small-order R is stricter than RFC 8032 verification requires.\n\nThese are our own measurements of our released package in the environment recorded below, not an independent reproduction. Environment: the 0.2.1 wheel from PyPI (sha256 2acc8939\u2026b32ab2) in a fresh envir"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-10-13T14:51:39Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6148332958",
+   "text": "@TKCollective thanks for the measurement table. Case 3 (mixed-order `A` and `R`, accepted by both your guard and the library) was not pinned anywhere in the acceptance-record corpus, so it now is: [`9d4cf2c`](https://github.com/babyblueviper1/preaction-governance-conformance/commit/9d4cf2c).\n\n**Sentence 9.** A mixed-order key (neither small-order nor in the prime-order subgroup, so `[L]A` is not the identity) is not a key of the confirming party: `key_unresolved`, as in sentence 4. A mixed-order `R` is `signature_invalid`. The reason is interop rather than forgery. Whether such a signature ver"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "robertolocatelli81-dev",
+   "at": "2026-10-14T05:26:38Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6161579639",
+   "text": "\n@babyblueviper1 \u2014 omega's checker is now at [`b37e471`](https://github.com/robertolocatelli81-dev/x402-acceptance-check-omega/tree/b37e47119bfd0dc045321ee05ac9c750e2f36198): a mixed-order key is `key_unresolved` and a mixed-order `R` is `signature_invalid`, as sentence 9 at `9d4cf2c` says. On the 50 vectors at `9d4cf2c`: 47/50 at `acfad3d`, the row's current pin (and at `6a137d0`, same receipts), **49/50** at `b37e471` (Python 3.9, 3.11, 3.13); the one disagreement is still `acc-complete-not-boolean`, our sentence 8 choice. Receipts are byte-identical to `acfad3d` on the other 48.\n\n@TKCollect"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-10-14T05:52:53Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6161895777",
+   "text": "@robertolocatelli81-dev thanks, that's right \u2014 taken as the whole curve group's order the check becomes `[8L]A`, which is the identity for every point and would never fire. Fixed at [`5abe7a6`](https://github.com/babyblueviper1/preaction-governance-conformance/commit/5abe7a646ca2361a9009a18957f62215d23fa2dd): \"`L` the order of the base point `B` (RFC 8032 \u00a73; the curve group has order `8L`)\". No vector or checker change, wording only.\n\nGood to see omega land on `key_unresolved`/`signature_invalid` for mixed-order and get to 49/50 with only `acc-complete-not-boolean` (your own documented senten"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "guidoalejo",
+   "at": "2026-10-13T19:22:28Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6153365959",
+   "text": "Sluzen settles per-call HTTP on the XRP Ledger. Default path: proxy in front, pay then origin. If you already return HTTP 402, register that https URL as a facilitator and settle only after your handler succeeds. A proxy route can also charge only after a 2xx (origin-before-settle). Price lands on your classic r\u2026; 0.8% is prepaid outside the caller\u2019s 402. Want a one-use issuer link?"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "guidoalejo",
+   "at": "2026-10-13T19:22:29Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6153366210",
+   "text": "Sluzen settles per-call HTTP on the XRP Ledger. Default path: proxy in front, pay then origin. If you already return HTTP 402, register that https URL as a facilitator and settle only after your handler succeeds. A proxy route can also charge only after a 2xx (origin-before-settle). Price lands on your classic r\u2026; 0.8% is prepaid outside the caller\u2019s 402. Want a one-use issuer link?"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "payload-tools",
+   "at": "2026-10-13T23:35:21Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6157460445",
+   "text": "Binding the verdict to evidence neither party controls is the right instinct, and the piece I would add is binding the payout itself back to what was originally owed. That is what we do at Payload with RevRule, full disclosure it is ours, where a verified Base USDC payout gets linked to the original entitlement entry so you can audit who was owed what against what actually settled: https://payload-rail.fly.dev/revrule-console/ We have run exactly one entitlement linked evidence record through it so far and that was our own validation, not a customer payout, but the console is free to try with "
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "stillmarcus24",
+   "at": "2026-10-14T02:19:52Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6159436987",
+   "text": "@guidoalejo \u2014 yes, and I'd rather make it two-sided than just take the link.\n\nOrigin-before-settle is the right shape. The gap it leaves is that a 2xx is not delivery \u2014 it's a status code the origin chose to emit. Charge-after-2xx fixes who gets charged and leaves the payer with nothing to point at when the call returned 200 and the content was wrong, stale, or empty. That is the dispute this thread keeps circling, and settlement timing alone cannot close it.\n\nThat gap is what I build. Every notary call emits an Ed25519-signed receipt over the canonical response, hash-chained, verifiable at `/"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "payload-tools",
+   "at": "2026-10-14T03:29:31Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6160232331",
+   "text": "@stillmarcus24 That three plane framing is exactly how we think about it too, and entitlement is usually the one people skip. The console key is self-serve whenever you are ready. I would be curious whether having the owed amount pinned down first changes how you scope the delivery attestation."
+  }
+ ],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 5,
+   "updated_at": "2026-10-01T20:03:02Z",
+   "last_comment": {
+    "author": "giskard09",
+    "at": "2026-10-01T19:38:30Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-5939128229",
+    "text": "@aeoess Thanks for closing the loop directly \u2014 that's exactly the boundary we intended. Noted on pinning to a tag/commit on main rather than a moving branch, and checking CLARIFICATIONS.md for any later correction. Appreciate you, Martin and source-origin working through this with us."
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 168,
+   "updated_at": "2026-10-14T05:52:53Z",
+   "last_comment": {
+    "author": "babyblueviper1",
+    "at": "2026-10-14T05:52:53Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6161895777",
+    "text": "@robertolocatelli81-dev thanks, that's right \u2014 taken as the whole curve group's order the check becomes `[8L]A`, which is the identity for every point and would never fire. Fixed at [`5abe7a6`](https://github.com/babyblueviper1/preaction-governance-conformance/commit/5abe7a646ca2361a9009a18957f62215d23fa2dd): \"`L` the order of the base point `B` (RFC 8032 \u00a73; the curve group has order `8L`)\". No vector or checker change, wording only.\n\nGood to see omega land on `key_unresolved`/`signature_invalid` for mixed-order and get to 49/50 with only `acc-complete-not-boolean` (your own documented senten"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 102,
+   "updated_at": "2026-10-14T03:29:31Z",
+   "last_comment": {
+    "author": "payload-tools",
+    "at": "2026-10-14T03:29:31Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6160232331",
+    "text": "@stillmarcus24 That three plane framing is exactly how we think about it too, and entitlement is usually the one people skip. The console key is self-serve whenever you are ready. I would be curious whether having the owed amount pinned down first changes how you scope the delivery attestation."
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 63,
+   "updated_at": "2026-10-06T06:34:09Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-06T06:34:09Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6010784398",
+    "text": "We implemented the single-payment part of this draft (\u00a76, \u00a77) in presign-guard, a pre-sign check for agent payments:\n\n- POST /v1/check takes an optional mandate next to an EIP-3009 signature and turns a payment outside it red before the agent signs (wrong payer/asset/recipient, over perPayment or cap, expired, bad issuer signature, nonce \u2260 binding).\n- presign-guard-wallet's mandatePayer() makes x402 payments with the \u00a77 binding as the EIP-3009 nonce.\n- JCS bytes, digest, signature and the EIP-3009/Permit2 binding values match authority-vectors.json byte for byte.\n\nNot covered: cumulative spend"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-10-14T05:58:23+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 9,
+   "pushed_at": "2026-10-12T16:06:45Z",
+   "issues_tracked": 12
+  }
+ },
+ "first_run": false
+}
