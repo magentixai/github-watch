@@ -1,0 +1,115 @@
+{
+ "checked_at": "2026-10-15T10:10:47+00:00",
+ "previous_check": "2026-10-15T05:56:08+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-10-15T08:55:15Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6188318669",
+   "text": "@TKCollective confirmed, and it's ours: the builder took `k` mod `L`, and RFC 8032 \u00a75.1.7 takes the full digest. For `acc-mixed-order-key-accepted-by-both-equations` the old signature has full `k` \u2261 5 mod 8, so a verifier that doesn't reduce `k` rejects it under the cofactorless equation, and the name was only true for reducing verifiers.\n\nFixed at [`6e487f0`](https://github.com/babyblueviper1/preaction-governance-conformance/commit/6e487f0): the builder now asserts both conventions (full `k` and `k mod L`) for all three sentence-9 vectors. Only that vector's `R` and `S` change; its expected r"
+  }
+ ],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 5,
+   "updated_at": "2026-10-01T20:03:02Z",
+   "last_comment": {
+    "author": "giskard09",
+    "at": "2026-10-01T19:38:30Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-5939128229",
+    "text": "@aeoess Thanks for closing the loop directly \u2014 that's exactly the boundary we intended. Noted on pinning to a tag/commit on main rather than a moving branch, and checking CLARIFICATIONS.md for any later correction. Appreciate you, Martin and source-origin working through this with us."
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 170,
+   "updated_at": "2026-10-15T08:55:16Z",
+   "last_comment": {
+    "author": "babyblueviper1",
+    "at": "2026-10-15T08:55:15Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6188318669",
+    "text": "@TKCollective confirmed, and it's ours: the builder took `k` mod `L`, and RFC 8032 \u00a75.1.7 takes the full digest. For `acc-mixed-order-key-accepted-by-both-equations` the old signature has full `k` \u2261 5 mod 8, so a verifier that doesn't reduce `k` rejects it under the cofactorless equation, and the name was only true for reducing verifiers.\n\nFixed at [`6e487f0`](https://github.com/babyblueviper1/preaction-governance-conformance/commit/6e487f0): the builder now asserts both conventions (full `k` and `k mod L`) for all three sentence-9 vectors. Only that vector's `R` and `S` change; its expected r"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 107,
+   "updated_at": "2026-10-15T01:34:57Z",
+   "last_comment": {
+    "author": "SolomonisBlack",
+    "at": "2026-10-15T01:34:57Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6182356482",
+    "text": "@giskard09 Thank you. I'll take your point as given: binding each vector to a reachable check, verified in both directions, \"sounds like a baseline requirement for Phase 1, not an implementation detail.\"\n\nIf it helps when you carry the shape into your vectors: what ports is the shape, not the file. [`tools/check-refusal-drift.mjs`](https://github.com/SolomonisBlack/golden-vector-provenance/blob/332faa5e7989fd6447e9065dbf99e721f8d15a4c/tools/check-refusal-drift.mjs) imports GVP's own modules and runs one probe per entry against them, so as written it only checks GVP. The property itself is one "
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 63,
+   "updated_at": "2026-10-06T06:34:09Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-06T06:34:09Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6010784398",
+    "text": "We implemented the single-payment part of this draft (\u00a76, \u00a77) in presign-guard, a pre-sign check for agent payments:\n\n- POST /v1/check takes an optional mandate next to an EIP-3009 signature and turns a payment outside it red before the agent signs (wrong payer/asset/recipient, over perPayment or cap, expired, bad issuer signature, nonce \u2260 binding).\n- presign-guard-wallet's mandatePayer() makes x402 payments with the \u00a77 binding as the EIP-3009 nonce.\n- JCS bytes, digest, signature and the EIP-3009/Permit2 binding values match authority-vectors.json byte for byte.\n\nNot covered: cumulative spend"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-10-15T10:10:47+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 9,
+   "pushed_at": "2026-10-12T16:06:45Z",
+   "issues_tracked": 12
+  }
+ },
+ "first_run": false
+}

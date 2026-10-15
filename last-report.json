@@ -1,62 +1,14 @@
 {
- "checked_at": "2026-10-15T05:56:08+00:00",
- "previous_check": "2026-10-14T12:07:06+00:00",
+ "checked_at": "2026-10-15T10:10:47+00:00",
+ "previous_check": "2026-10-15T05:56:08+00:00",
  "changes": [
   {
    "item": "x402-foundation/tsc#4",
    "type": "comment",
-   "author": "TKCollective",
-   "at": "2026-10-15T04:53:06Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6184705521",
-   "text": "Follow-up to the measurement table above.\n\ntanilo-receipt-verify now refuses an Ed25519 public key A or signature R that is mixed-order (outside the prime-order subgroup but not small-order), with reasons mixed_order_key and mixed_order_r. This was introduced in 0.2.2; 0.2.3 corrects test fixtures and documentation, with no behavior change. This stricter acceptance policy rejects mixed-order A or R before library signature verification, regardless of which equation the backend uses; 0.2.1 left those subgroup checks to the library. It is not a fix for a forgery against 0.2.1.\n\nIn our own run ag"
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "guidoalejo",
-   "at": "2026-10-14T16:26:41Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6173106237",
-   "text": "@stillmarcus24 - following up on the correctness / dispute-layer thread.\n\nWe can enable you on production this week under the architecture we run today.\n\nOne-use issuer invite (file + sanctions screen; API key shown once on /onboard):\nhttps://sluzen.network/onboard?invite=sluzeninv_1bc029495682b271fa2e251237c7e5d53655052dcfae8b853957f69e3871155f\n\nWhat this unlocks:\n- Register as a production issuer on Sluzen\n- Run facilitator resources and/or settle-after-origin (origin-before-settle) after accepting TERMS_RAIL 2026-10-03\n- Keep your Ed25519 notary running in parallel on your own HTTP headers "
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "stillmarcus24",
-   "at": "2026-10-14T19:33:28Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6176662866",
-   "text": "@guidoalejo \u2014 one ask before I claim the key, and it is the only thing I want settled before volume rather than after.\n\nYou have the attestation field under evaluation after first mainnet volume. Name the number. A GMV figure or a settled-call count that triggers it, and I go live this week without it, because then it is a threshold instead of a maybe. The leverage to ask for a schema change is lower once you have my volume than it is now.\n\nEverything else on your list works as written. Fee inside my own route price, your 0.8% untouched.\n\nTwo notes. Three chains settle on my side, not one. Acr"
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "payload-tools",
-   "at": "2026-10-14T21:04:45Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6178478594",
-   "text": "@stillmarcus24 That is the cleanest version of the argument I have seen in this thread. Once the owed amount is pinned, the receipt only has to answer the delivery question, and the contestable half falls away. The self serve key is in the console whenever you are ready: https://payload-rail.fly.dev/revrule-console/"
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "guidoalejo",
-   "at": "2026-10-14T23:54:15Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6181092277",
-   "text": "@stillmarcus24 - thanks for the clear ask. Short answer: there is no GMV or settled-call number to name, because the settlement metadata field is already live. You do not need to wait on volume to use it.\n\nOnce you claim the key and accept the rail terms dated 2026-10-14, `POST /facilitator/settle` takes an optional `originAssertion` string (max 256; charset `[A-Za-z0-9+/=._:-]`). Sluzen logs it on the settlement record as blind passthrough - we do not verify Ed25519, do not call `/notary/verify`, do not co-certify delivery, and settle does not depend on your notary being up. Facilitator and s"
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "SolomonisBlack",
-   "at": "2026-10-15T01:34:57Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6182356482",
-   "text": "@giskard09 Thank you. I'll take your point as given: binding each vector to a reachable check, verified in both directions, \"sounds like a baseline requirement for Phase 1, not an implementation detail.\"\n\nIf it helps when you carry the shape into your vectors: what ports is the shape, not the file. [`tools/check-refusal-drift.mjs`](https://github.com/SolomonisBlack/golden-vector-provenance/blob/332faa5e7989fd6447e9065dbf99e721f8d15a4c/tools/check-refusal-drift.mjs) imports GVP's own modules and runs one probe per entry against them, so as written it only checks GVP. The property itself is one "
-  },
-  {
-   "item": "magentixai/axes#6",
-   "type": "comment",
-   "author": "magentixai",
-   "at": "2026-10-14T13:52:31Z",
-   "url": "https://github.com/magentixai/axes/issues/6#issuecomment-6169972601",
-   "text": "@MarkovianProtocol thank you for the re-run at c72b620, and for doing it from a fresh clone on macOS with canoncheck\u2019s Python and JS paths rather than the jcs package. 76/76 per bundle, 38/38 and 40/40 files, and matching chain heads and bundle digests make this a fourth independent agreement on gt-v2.1. I\u2019ll record it with the other re-verifications."
+   "author": "babyblueviper1",
+   "at": "2026-10-15T08:55:15Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6188318669",
+   "text": "@TKCollective confirmed, and it's ours: the builder took `k` mod `L`, and RFC 8032 \u00a75.1.7 takes the full digest. For `acc-mixed-order-key-accepted-by-both-equations` the old signature has full `k` \u2261 5 mod 8, so a verifier that doesn't reduce `k` rejects it under the cofactorless equation, and the name was only true for reducing verifiers.\n\nFixed at [`6e487f0`](https://github.com/babyblueviper1/preaction-governance-conformance/commit/6e487f0): the builder now asserts both conventions (full `k` and `k mod L`) for all three sentence-9 vectors. Only that vector's `R` and `S` change; its expected r"
   }
  ],
  "failures": [],
@@ -98,13 +50,13 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 169,
-   "updated_at": "2026-10-15T04:53:06Z",
+   "comments": 170,
+   "updated_at": "2026-10-15T08:55:16Z",
    "last_comment": {
-    "author": "TKCollective",
-    "at": "2026-10-15T04:53:06Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6184705521",
-    "text": "Follow-up to the measurement table above.\n\ntanilo-receipt-verify now refuses an Ed25519 public key A or signature R that is mixed-order (outside the prime-order subgroup but not small-order), with reasons mixed_order_key and mixed_order_r. This was introduced in 0.2.2; 0.2.3 corrects test fixtures and documentation, with no behavior change. This stricter acceptance policy rejects mixed-order A or R before library signature verification, regardless of which equation the backend uses; 0.2.1 left those subgroup checks to the library. It is not a fix for a forgery against 0.2.1.\n\nIn our own run ag"
+    "author": "babyblueviper1",
+    "at": "2026-10-15T08:55:15Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6188318669",
+    "text": "@TKCollective confirmed, and it's ours: the builder took `k` mod `L`, and RFC 8032 \u00a75.1.7 takes the full digest. For `acc-mixed-order-key-accepted-by-both-equations` the old signature has full `k` \u2261 5 mod 8, so a verifier that doesn't reduce `k` rejects it under the cofactorless equation, and the name was only true for reducing verifiers.\n\nFixed at [`6e487f0`](https://github.com/babyblueviper1/preaction-governance-conformance/commit/6e487f0): the builder now asserts both conventions (full `k` and `k mod L`) for all three sentence-9 vectors. Only that vector's `R` and `S` change; its expected r"
    }
   },
   "x402-foundation/x402#2887": {
@@ -150,7 +102,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-10-15T05:56:08+00:00",
+   "checked": "2026-10-15T10:10:47+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
