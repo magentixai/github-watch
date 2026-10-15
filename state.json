@@ -92,7 +92,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 168,
+   "comments": 169,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -261,14 +261,15 @@
     6146209141,
     6148332958,
     6161579639,
-    6161895777
+    6161895777,
+    6184705521
    ],
-   "updated_at": "2026-10-14T05:52:53Z",
+   "updated_at": "2026-10-15T04:53:06Z",
    "last_comment": {
-    "author": "babyblueviper1",
-    "at": "2026-10-14T05:52:53Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6161895777",
-    "text": "@robertolocatelli81-dev thanks, that's right \u2014 taken as the whole curve group's order the check becomes `[8L]A`, which is the identity for every point and would never fire. Fixed at [`5abe7a6`](https://github.com/babyblueviper1/preaction-governance-conformance/commit/5abe7a646ca2361a9009a18957f62215d23fa2dd): \"`L` the order of the base point `B` (RFC 8032 \u00a73; the curve group has order `8L`)\". No vector or checker change, wording only.\n\nGood to see omega land on `key_unresolved`/`signature_invalid` for mixed-order and get to 49/50 with only `acc-complete-not-boolean` (your own documented senten"
+    "author": "TKCollective",
+    "at": "2026-10-15T04:53:06Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6184705521",
+    "text": "Follow-up to the measurement table above.\n\ntanilo-receipt-verify now refuses an Ed25519 public key A or signature R that is mixed-order (outside the prime-order subgroup but not small-order), with reasons mixed_order_key and mixed_order_r. This was introduced in 0.2.2; 0.2.3 corrects test fixtures and documentation, with no behavior change. This stricter acceptance policy rejects mixed-order A or R before library signature verification, regardless of which equation the backend uses; 0.2.1 left those subgroup checks to the library. It is not a fix for a forgery against 0.2.1.\n\nIn our own run ag"
    }
   },
   "x402-foundation/x402#2887": {
@@ -276,7 +277,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 102,
+   "comments": 107,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -379,14 +380,19 @@
     6153366210,
     6157460445,
     6159436987,
-    6160232331
+    6160232331,
+    6173106237,
+    6176662866,
+    6178478594,
+    6181092277,
+    6182356482
    ],
-   "updated_at": "2026-10-14T03:29:31Z",
+   "updated_at": "2026-10-15T01:34:57Z",
    "last_comment": {
-    "author": "payload-tools",
-    "at": "2026-10-14T03:29:31Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6160232331",
-    "text": "@stillmarcus24 That three plane framing is exactly how we think about it too, and entitlement is usually the one people skip. The console key is self-serve whenever you are ready. I would be curious whether having the owed amount pinned down first changes how you scope the delivery attestation."
+    "author": "SolomonisBlack",
+    "at": "2026-10-15T01:34:57Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6182356482",
+    "text": "@giskard09 Thank you. I'll take your point as given: binding each vector to a reachable check, verified in both directions, \"sounds like a baseline requirement for Phase 1, not an implementation detail.\"\n\nIf it helps when you carry the shape into your vectors: what ports is the shape, not the file. [`tools/check-refusal-drift.mjs`](https://github.com/SolomonisBlack/golden-vector-provenance/blob/332faa5e7989fd6447e9065dbf99e721f8d15a4c/tools/check-refusal-drift.mjs) imports GVP's own modules and runs one probe per entry against them, so as written it only checks GVP. The property itself is one "
    }
   },
   "x402-foundation/x402#3220": {
@@ -483,10 +489,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-14T12:07:06+00:00",
+ "last_checked": "2026-10-15T05:56:08+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-14T12:07:06+00:00",
+   "checked": "2026-10-15T05:56:08+00:00",
    "items": {
     "15": {
      "title": "Docs: fixes from the gt-v2.1 re-verification; record re-verifications",
@@ -548,7 +554,7 @@
      "title": "Seed: conformance vectors (canoncheck-class byte-identity harness)",
      "state": "open",
      "pr": false,
-     "comments": 34,
+     "comments": 35,
      "author": "magentixai",
      "url": "https://github.com/magentixai/axes/issues/6"
     },
@@ -641,7 +647,8 @@
     6122553160,
     6123679475,
     6126652707,
-    6150961475
+    6150961475,
+    6169972601
    ],
    "stargazers_count": 1,
    "forks_count": 1,

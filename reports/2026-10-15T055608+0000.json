@@ -1,0 +1,163 @@
+{
+ "checked_at": "2026-10-15T05:56:08+00:00",
+ "previous_check": "2026-10-14T12:07:06+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "TKCollective",
+   "at": "2026-10-15T04:53:06Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6184705521",
+   "text": "Follow-up to the measurement table above.\n\ntanilo-receipt-verify now refuses an Ed25519 public key A or signature R that is mixed-order (outside the prime-order subgroup but not small-order), with reasons mixed_order_key and mixed_order_r. This was introduced in 0.2.2; 0.2.3 corrects test fixtures and documentation, with no behavior change. This stricter acceptance policy rejects mixed-order A or R before library signature verification, regardless of which equation the backend uses; 0.2.1 left those subgroup checks to the library. It is not a fix for a forgery against 0.2.1.\n\nIn our own run ag"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "guidoalejo",
+   "at": "2026-10-14T16:26:41Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6173106237",
+   "text": "@stillmarcus24 - following up on the correctness / dispute-layer thread.\n\nWe can enable you on production this week under the architecture we run today.\n\nOne-use issuer invite (file + sanctions screen; API key shown once on /onboard):\nhttps://sluzen.network/onboard?invite=sluzeninv_1bc029495682b271fa2e251237c7e5d53655052dcfae8b853957f69e3871155f\n\nWhat this unlocks:\n- Register as a production issuer on Sluzen\n- Run facilitator resources and/or settle-after-origin (origin-before-settle) after accepting TERMS_RAIL 2026-10-03\n- Keep your Ed25519 notary running in parallel on your own HTTP headers "
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "stillmarcus24",
+   "at": "2026-10-14T19:33:28Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6176662866",
+   "text": "@guidoalejo \u2014 one ask before I claim the key, and it is the only thing I want settled before volume rather than after.\n\nYou have the attestation field under evaluation after first mainnet volume. Name the number. A GMV figure or a settled-call count that triggers it, and I go live this week without it, because then it is a threshold instead of a maybe. The leverage to ask for a schema change is lower once you have my volume than it is now.\n\nEverything else on your list works as written. Fee inside my own route price, your 0.8% untouched.\n\nTwo notes. Three chains settle on my side, not one. Acr"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "payload-tools",
+   "at": "2026-10-14T21:04:45Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6178478594",
+   "text": "@stillmarcus24 That is the cleanest version of the argument I have seen in this thread. Once the owed amount is pinned, the receipt only has to answer the delivery question, and the contestable half falls away. The self serve key is in the console whenever you are ready: https://payload-rail.fly.dev/revrule-console/"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "guidoalejo",
+   "at": "2026-10-14T23:54:15Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6181092277",
+   "text": "@stillmarcus24 - thanks for the clear ask. Short answer: there is no GMV or settled-call number to name, because the settlement metadata field is already live. You do not need to wait on volume to use it.\n\nOnce you claim the key and accept the rail terms dated 2026-10-14, `POST /facilitator/settle` takes an optional `originAssertion` string (max 256; charset `[A-Za-z0-9+/=._:-]`). Sluzen logs it on the settlement record as blind passthrough - we do not verify Ed25519, do not call `/notary/verify`, do not co-certify delivery, and settle does not depend on your notary being up. Facilitator and s"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "SolomonisBlack",
+   "at": "2026-10-15T01:34:57Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6182356482",
+   "text": "@giskard09 Thank you. I'll take your point as given: binding each vector to a reachable check, verified in both directions, \"sounds like a baseline requirement for Phase 1, not an implementation detail.\"\n\nIf it helps when you carry the shape into your vectors: what ports is the shape, not the file. [`tools/check-refusal-drift.mjs`](https://github.com/SolomonisBlack/golden-vector-provenance/blob/332faa5e7989fd6447e9065dbf99e721f8d15a4c/tools/check-refusal-drift.mjs) imports GVP's own modules and runs one probe per entry against them, so as written it only checks GVP. The property itself is one "
+  },
+  {
+   "item": "magentixai/axes#6",
+   "type": "comment",
+   "author": "magentixai",
+   "at": "2026-10-14T13:52:31Z",
+   "url": "https://github.com/magentixai/axes/issues/6#issuecomment-6169972601",
+   "text": "@MarkovianProtocol thank you for the re-run at c72b620, and for doing it from a fresh clone on macOS with canoncheck\u2019s Python and JS paths rather than the jcs package. 76/76 per bundle, 38/38 and 40/40 files, and matching chain heads and bundle digests make this a fourth independent agreement on gt-v2.1. I\u2019ll record it with the other re-verifications."
+  }
+ ],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 5,
+   "updated_at": "2026-10-01T20:03:02Z",
+   "last_comment": {
+    "author": "giskard09",
+    "at": "2026-10-01T19:38:30Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-5939128229",
+    "text": "@aeoess Thanks for closing the loop directly \u2014 that's exactly the boundary we intended. Noted on pinning to a tag/commit on main rather than a moving branch, and checking CLARIFICATIONS.md for any later correction. Appreciate you, Martin and source-origin working through this with us."
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 169,
+   "updated_at": "2026-10-15T04:53:06Z",
+   "last_comment": {
+    "author": "TKCollective",
+    "at": "2026-10-15T04:53:06Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6184705521",
+    "text": "Follow-up to the measurement table above.\n\ntanilo-receipt-verify now refuses an Ed25519 public key A or signature R that is mixed-order (outside the prime-order subgroup but not small-order), with reasons mixed_order_key and mixed_order_r. This was introduced in 0.2.2; 0.2.3 corrects test fixtures and documentation, with no behavior change. This stricter acceptance policy rejects mixed-order A or R before library signature verification, regardless of which equation the backend uses; 0.2.1 left those subgroup checks to the library. It is not a fix for a forgery against 0.2.1.\n\nIn our own run ag"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 107,
+   "updated_at": "2026-10-15T01:34:57Z",
+   "last_comment": {
+    "author": "SolomonisBlack",
+    "at": "2026-10-15T01:34:57Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6182356482",
+    "text": "@giskard09 Thank you. I'll take your point as given: binding each vector to a reachable check, verified in both directions, \"sounds like a baseline requirement for Phase 1, not an implementation detail.\"\n\nIf it helps when you carry the shape into your vectors: what ports is the shape, not the file. [`tools/check-refusal-drift.mjs`](https://github.com/SolomonisBlack/golden-vector-provenance/blob/332faa5e7989fd6447e9065dbf99e721f8d15a4c/tools/check-refusal-drift.mjs) imports GVP's own modules and runs one probe per entry against them, so as written it only checks GVP. The property itself is one "
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 63,
+   "updated_at": "2026-10-06T06:34:09Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-06T06:34:09Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6010784398",
+    "text": "We implemented the single-payment part of this draft (\u00a76, \u00a77) in presign-guard, a pre-sign check for agent payments:\n\n- POST /v1/check takes an optional mandate next to an EIP-3009 signature and turns a payment outside it red before the agent signs (wrong payer/asset/recipient, over perPayment or cap, expired, bad issuer signature, nonce \u2260 binding).\n- presign-guard-wallet's mandatePayer() makes x402 payments with the \u00a77 binding as the EIP-3009 nonce.\n- JCS bytes, digest, signature and the EIP-3009/Permit2 binding values match authority-vectors.json byte for byte.\n\nNot covered: cumulative spend"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-10-15T05:56:08+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 9,
+   "pushed_at": "2026-10-12T16:06:45Z",
+   "issues_tracked": 12
+  }
+ },
+ "first_run": false
+}
