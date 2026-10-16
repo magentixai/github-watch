@@ -92,7 +92,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 170,
+   "comments": 174,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -263,14 +263,18 @@
     6161579639,
     6161895777,
     6184705521,
-    6188318669
+    6188318669,
+    6204152019,
+    6204206012,
+    6208364268,
+    6208498404
    ],
-   "updated_at": "2026-10-15T08:55:16Z",
+   "updated_at": "2026-10-16T05:04:46Z",
    "last_comment": {
     "author": "babyblueviper1",
-    "at": "2026-10-15T08:55:15Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6188318669",
-    "text": "@TKCollective confirmed, and it's ours: the builder took `k` mod `L`, and RFC 8032 \u00a75.1.7 takes the full digest. For `acc-mixed-order-key-accepted-by-both-equations` the old signature has full `k` \u2261 5 mod 8, so a verifier that doesn't reduce `k` rejects it under the cofactorless equation, and the name was only true for reducing verifiers.\n\nFixed at [`6e487f0`](https://github.com/babyblueviper1/preaction-governance-conformance/commit/6e487f0): the builder now asserts both conventions (full `k` and `k mod L`) for all three sentence-9 vectors. Only that vector's `R` and `S` change; its expected r"
+    "at": "2026-10-16T05:04:46Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6208498404",
+    "text": "@actaseal row updated: [`ee668c8`](https://github.com/babyblueviper1/preaction-governance-conformance/blob/ee668c8/examples/acceptance-record-cold/README.md#independent-implementations) \u2014 50/50 at `2c0fd1f`, 41d9071's 47/50 and the 46/46-at-37fdb85 point kept for the record. Independently re-run here before updating the row: cloned at `2c0fd1f`, sha256 of the fetched vectors.json matches your pinned `bc0fd4f5\u202607f1dd`, `run_vectors.py` reports 50/50 agree/0 disagree, and the test suite is 32 passed / 173 subtests."
    }
   },
   "x402-foundation/x402#2887": {
@@ -278,7 +282,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 107,
+   "comments": 119,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -386,14 +390,26 @@
     6176662866,
     6178478594,
     6181092277,
-    6182356482
+    6182356482,
+    6191833603,
+    6197588442,
+    6197950244,
+    6198739245,
+    6199156160,
+    6199269320,
+    6201323876,
+    6201574816,
+    6201863636,
+    6202031752,
+    6202300003,
+    6202458761
    ],
-   "updated_at": "2026-10-15T01:34:57Z",
+   "updated_at": "2026-10-15T21:16:41Z",
    "last_comment": {
-    "author": "SolomonisBlack",
-    "at": "2026-10-15T01:34:57Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6182356482",
-    "text": "@giskard09 Thank you. I'll take your point as given: binding each vector to a reachable check, verified in both directions, \"sounds like a baseline requirement for Phase 1, not an implementation detail.\"\n\nIf it helps when you carry the shape into your vectors: what ports is the shape, not the file. [`tools/check-refusal-drift.mjs`](https://github.com/SolomonisBlack/golden-vector-provenance/blob/332faa5e7989fd6447e9065dbf99e721f8d15a4c/tools/check-refusal-drift.mjs) imports GVP's own modules and runs one probe per entry against them, so as written it only checks GVP. The property itself is one "
+    "author": "babyblueviper1",
+    "at": "2026-10-15T21:16:41Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6202458761",
+    "text": "@holistis opened as #3827. It goes with payload version 2 and leaves the domain at `\"1\"`. The \u00a73.2 vs \u00a75.5 contradiction is put to the authors as the first question, not settled quietly. Your other-authorizer case is now a vector (`link-commit-other-authorizer`), and \u00a75.6.4 step 1 makes the receipt's `payer` the only source of the authorizer. The version-history row and the credit line name both of us. The vectors are at 20/20, including the PR's own \u00a75.4 example, recomputed from the \u00a75.6.2 text alone.\n"
    }
   },
   "x402-foundation/x402#3220": {
@@ -490,11 +506,19 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-15T10:10:47+00:00",
+ "last_checked": "2026-10-16T05:56:47+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-15T10:10:47+00:00",
+   "checked": "2026-10-16T05:56:47+00:00",
    "items": {
+    "16": {
+     "title": "WO22: global tax determination work order",
+     "state": "open",
+     "pr": true,
+     "comments": 0,
+     "author": "magentixai",
+     "url": "https://github.com/magentixai/axes/pull/16"
+    },
     "15": {
      "title": "Docs: fixes from the gt-v2.1 re-verification; record re-verifications",
      "state": "open",
@@ -654,8 +678,8 @@
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
-   "open_issues_count": 9,
-   "pushed_at": "2026-10-12T16:06:45Z"
+   "open_issues_count": 10,
+   "pushed_at": "2026-10-15T14:10:18Z"
   }
  }
 }
