@@ -1,0 +1,106 @@
+{
+ "checked_at": "2026-10-16T10:02:01+00:00",
+ "previous_check": "2026-10-16T05:56:47+00:00",
+ "changes": [],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 5,
+   "updated_at": "2026-10-01T20:03:02Z",
+   "last_comment": {
+    "author": "giskard09",
+    "at": "2026-10-01T19:38:30Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-5939128229",
+    "text": "@aeoess Thanks for closing the loop directly \u2014 that's exactly the boundary we intended. Noted on pinning to a tag/commit on main rather than a moving branch, and checking CLARIFICATIONS.md for any later correction. Appreciate you, Martin and source-origin working through this with us."
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 174,
+   "updated_at": "2026-10-16T05:04:46Z",
+   "last_comment": {
+    "author": "babyblueviper1",
+    "at": "2026-10-16T05:04:46Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6208498404",
+    "text": "@actaseal row updated: [`ee668c8`](https://github.com/babyblueviper1/preaction-governance-conformance/blob/ee668c8/examples/acceptance-record-cold/README.md#independent-implementations) \u2014 50/50 at `2c0fd1f`, 41d9071's 47/50 and the 46/46-at-37fdb85 point kept for the record. Independently re-run here before updating the row: cloned at `2c0fd1f`, sha256 of the fetched vectors.json matches your pinned `bc0fd4f5\u202607f1dd`, `run_vectors.py` reports 50/50 agree/0 disagree, and the test suite is 32 passed / 173 subtests."
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 119,
+   "updated_at": "2026-10-15T21:16:41Z",
+   "last_comment": {
+    "author": "babyblueviper1",
+    "at": "2026-10-15T21:16:41Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6202458761",
+    "text": "@holistis opened as #3827. It goes with payload version 2 and leaves the domain at `\"1\"`. The \u00a73.2 vs \u00a75.5 contradiction is put to the authors as the first question, not settled quietly. Your other-authorizer case is now a vector (`link-commit-other-authorizer`), and \u00a75.6.4 step 1 makes the receipt's `payer` the only source of the authorizer. The version-history row and the credit line name both of us. The vectors are at 20/20, including the PR's own \u00a75.4 example, recomputed from the \u00a75.6.2 text alone.\n"
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 63,
+   "updated_at": "2026-10-06T06:34:09Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-06T06:34:09Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6010784398",
+    "text": "We implemented the single-payment part of this draft (\u00a76, \u00a77) in presign-guard, a pre-sign check for agent payments:\n\n- POST /v1/check takes an optional mandate next to an EIP-3009 signature and turns a payment outside it red before the agent signs (wrong payer/asset/recipient, over perPayment or cap, expired, bad issuer signature, nonce \u2260 binding).\n- presign-guard-wallet's mandatePayer() makes x402 payments with the \u00a77 binding as the EIP-3009 nonce.\n- JCS bytes, digest, signature and the EIP-3009/Permit2 binding values match authority-vectors.json byte for byte.\n\nNot covered: cumulative spend"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-10-16T10:02:01+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 10,
+   "pushed_at": "2026-10-15T14:10:18Z",
+   "issues_tracked": 13
+  }
+ },
+ "first_run": false
+}
