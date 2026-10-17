@@ -1,0 +1,131 @@
+{
+ "checked_at": "2026-10-17T09:35:08+00:00",
+ "previous_check": "2026-10-17T05:58:04+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "hheskihoran",
+   "at": "2026-10-17T08:15:28Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6231622439",
+   "text": "Disclosure: I maintain INAM Protocol. One concrete data point on the \"evidence record first\" direction in this thread.\n\nINAM receipts are signed by the worker and countersigned by the requester over hashes of the task spec and output (SPEC \u00a74). A receipt can be disputed within a window; a disputed receipt stops counting toward reputation, and opened and resolved disputes are appended to an RFC 6962-style transparency log (SPEC \u00a713), so a party cannot quietly drop it later. `inamFetch` can attach this to a plain HTTP call via the `INAM-Requester` and `INAM-Receipt` headers (SPEC \u00a715).\n\nWhat it "
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "holistis",
+   "at": "2026-10-17T08:38:20Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6231833428",
+   "text": "@hheskihoran that last sentence is the useful one, and it points at something this thread is missing. A reference from a chartered record to an INAM receipt id is only worth as much as someone's ability to check it, and every party here is interested in its own format. So the gap is not another format. It is a check that belongs to none of the proposers.\n\nI am not proposing one. What I can offer is the checking, and it already covers two of the formats under discussion.\n\n`agent-receipt-verify` verifies INAM countersigned receipts and x402 offer-receipts, each written from the published specifi"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "hheskihoran",
+   "at": "2026-10-17T09:04:02Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6232076404",
+   "text": "@holistis thank you. This is the first independent implementation of INAM receipt verification I know of, and it is the kind of check I meant. I agree with both limits you state.\n\nTwo concrete things on our side:\n\n1. I will link `agent-receipt-verify` from `docs/VERIFIER.md` and the interop README as an independent implementation, with exactly what it covers (INAM countersigned, 4 of 4 at `d5e5f45`). Tell me if you want the wording different.\n2. Since `d5e5f45` we added `interop/canonical/vectors.json`: key-order and escaping cases with characters beyond U+FFFF and lone surrogates. It exposed "
+  }
+ ],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 5,
+   "updated_at": "2026-10-01T20:03:02Z",
+   "last_comment": {
+    "author": "giskard09",
+    "at": "2026-10-01T19:38:30Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-5939128229",
+    "text": "@aeoess Thanks for closing the loop directly \u2014 that's exactly the boundary we intended. Noted on pinning to a tag/commit on main rather than a moving branch, and checking CLARIFICATIONS.md for any later correction. Appreciate you, Martin and source-origin working through this with us."
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 174,
+   "updated_at": "2026-10-16T05:04:46Z",
+   "last_comment": {
+    "author": "babyblueviper1",
+    "at": "2026-10-16T05:04:46Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6208498404",
+    "text": "@actaseal row updated: [`ee668c8`](https://github.com/babyblueviper1/preaction-governance-conformance/blob/ee668c8/examples/acceptance-record-cold/README.md#independent-implementations) \u2014 50/50 at `2c0fd1f`, 41d9071's 47/50 and the 46/46-at-37fdb85 point kept for the record. Independently re-run here before updating the row: cloned at `2c0fd1f`, sha256 of the fetched vectors.json matches your pinned `bc0fd4f5\u202607f1dd`, `run_vectors.py` reports 50/50 agree/0 disagree, and the test suite is 32 passed / 173 subtests."
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 122,
+   "updated_at": "2026-10-17T09:04:02Z",
+   "last_comment": {
+    "author": "hheskihoran",
+    "at": "2026-10-17T09:04:02Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6232076404",
+    "text": "@holistis thank you. This is the first independent implementation of INAM receipt verification I know of, and it is the kind of check I meant. I agree with both limits you state.\n\nTwo concrete things on our side:\n\n1. I will link `agent-receipt-verify` from `docs/VERIFIER.md` and the interop README as an independent implementation, with exactly what it covers (INAM countersigned, 4 of 4 at `d5e5f45`). Tell me if you want the wording different.\n2. Since `d5e5f45` we added `interop/canonical/vectors.json`: key-order and escaping cases with characters beyond U+FFFF and lone surrogates. It exposed "
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 63,
+   "updated_at": "2026-10-06T06:34:09Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-06T06:34:09Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6010784398",
+    "text": "We implemented the single-payment part of this draft (\u00a76, \u00a77) in presign-guard, a pre-sign check for agent payments:\n\n- POST /v1/check takes an optional mandate next to an EIP-3009 signature and turns a payment outside it red before the agent signs (wrong payer/asset/recipient, over perPayment or cap, expired, bad issuer signature, nonce \u2260 binding).\n- presign-guard-wallet's mandatePayer() makes x402 payments with the \u00a77 binding as the EIP-3009 nonce.\n- JCS bytes, digest, signature and the EIP-3009/Permit2 binding values match authority-vectors.json byte for byte.\n\nNot covered: cumulative spend"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-10-17T09:35:08+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 10,
+   "pushed_at": "2026-10-15T14:10:18Z",
+   "issues_tracked": 13
+  }
+ },
+ "first_run": false
+}

@@ -282,7 +282,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 119,
+   "comments": 122,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -402,14 +402,17 @@
     6201863636,
     6202031752,
     6202300003,
-    6202458761
+    6202458761,
+    6231622439,
+    6231833428,
+    6232076404
    ],
-   "updated_at": "2026-10-15T21:16:41Z",
+   "updated_at": "2026-10-17T09:04:02Z",
    "last_comment": {
-    "author": "babyblueviper1",
-    "at": "2026-10-15T21:16:41Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6202458761",
-    "text": "@holistis opened as #3827. It goes with payload version 2 and leaves the domain at `\"1\"`. The \u00a73.2 vs \u00a75.5 contradiction is put to the authors as the first question, not settled quietly. Your other-authorizer case is now a vector (`link-commit-other-authorizer`), and \u00a75.6.4 step 1 makes the receipt's `payer` the only source of the authorizer. The version-history row and the credit line name both of us. The vectors are at 20/20, including the PR's own \u00a75.4 example, recomputed from the \u00a75.6.2 text alone.\n"
+    "author": "hheskihoran",
+    "at": "2026-10-17T09:04:02Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6232076404",
+    "text": "@holistis thank you. This is the first independent implementation of INAM receipt verification I know of, and it is the kind of check I meant. I agree with both limits you state.\n\nTwo concrete things on our side:\n\n1. I will link `agent-receipt-verify` from `docs/VERIFIER.md` and the interop README as an independent implementation, with exactly what it covers (INAM countersigned, 4 of 4 at `d5e5f45`). Tell me if you want the wording different.\n2. Since `d5e5f45` we added `interop/canonical/vectors.json`: key-order and escaping cases with characters beyond U+FFFF and lone surrogates. It exposed "
    }
   },
   "x402-foundation/x402#3220": {
@@ -506,10 +509,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-17T05:58:04+00:00",
+ "last_checked": "2026-10-17T09:35:08+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-17T05:58:04+00:00",
+   "checked": "2026-10-17T09:35:08+00:00",
    "items": {
     "16": {
      "title": "WO22: global tax determination work order",

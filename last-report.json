@@ -1,7 +1,32 @@
 {
- "checked_at": "2026-10-17T05:58:04+00:00",
- "previous_check": "2026-10-16T10:02:01+00:00",
- "changes": [],
+ "checked_at": "2026-10-17T09:35:08+00:00",
+ "previous_check": "2026-10-17T05:58:04+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "hheskihoran",
+   "at": "2026-10-17T08:15:28Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6231622439",
+   "text": "Disclosure: I maintain INAM Protocol. One concrete data point on the \"evidence record first\" direction in this thread.\n\nINAM receipts are signed by the worker and countersigned by the requester over hashes of the task spec and output (SPEC \u00a74). A receipt can be disputed within a window; a disputed receipt stops counting toward reputation, and opened and resolved disputes are appended to an RFC 6962-style transparency log (SPEC \u00a713), so a party cannot quietly drop it later. `inamFetch` can attach this to a plain HTTP call via the `INAM-Requester` and `INAM-Receipt` headers (SPEC \u00a715).\n\nWhat it "
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "holistis",
+   "at": "2026-10-17T08:38:20Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6231833428",
+   "text": "@hheskihoran that last sentence is the useful one, and it points at something this thread is missing. A reference from a chartered record to an INAM receipt id is only worth as much as someone's ability to check it, and every party here is interested in its own format. So the gap is not another format. It is a check that belongs to none of the proposers.\n\nI am not proposing one. What I can offer is the checking, and it already covers two of the formats under discussion.\n\n`agent-receipt-verify` verifies INAM countersigned receipts and x402 offer-receipts, each written from the published specifi"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "hheskihoran",
+   "at": "2026-10-17T09:04:02Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6232076404",
+   "text": "@holistis thank you. This is the first independent implementation of INAM receipt verification I know of, and it is the kind of check I meant. I agree with both limits you state.\n\nTwo concrete things on our side:\n\n1. I will link `agent-receipt-verify` from `docs/VERIFIER.md` and the interop README as an independent implementation, with exactly what it covers (INAM countersigned, 4 of 4 at `d5e5f45`). Tell me if you want the wording different.\n2. Since `d5e5f45` we added `interop/canonical/vectors.json`: key-order and escaping cases with characters beyond U+FFFF and lone surrogates. It exposed "
+  }
+ ],
  "failures": [],
  "summary": {
   "LF-Decentralized-Trust/lab-proposals#2": {
@@ -55,13 +80,13 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 119,
-   "updated_at": "2026-10-15T21:16:41Z",
+   "comments": 122,
+   "updated_at": "2026-10-17T09:04:02Z",
    "last_comment": {
-    "author": "babyblueviper1",
-    "at": "2026-10-15T21:16:41Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6202458761",
-    "text": "@holistis opened as #3827. It goes with payload version 2 and leaves the domain at `\"1\"`. The \u00a73.2 vs \u00a75.5 contradiction is put to the authors as the first question, not settled quietly. Your other-authorizer case is now a vector (`link-commit-other-authorizer`), and \u00a75.6.4 step 1 makes the receipt's `payer` the only source of the authorizer. The version-history row and the credit line name both of us. The vectors are at 20/20, including the PR's own \u00a75.4 example, recomputed from the \u00a75.6.2 text alone.\n"
+    "author": "hheskihoran",
+    "at": "2026-10-17T09:04:02Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6232076404",
+    "text": "@holistis thank you. This is the first independent implementation of INAM receipt verification I know of, and it is the kind of check I meant. I agree with both limits you state.\n\nTwo concrete things on our side:\n\n1. I will link `agent-receipt-verify` from `docs/VERIFIER.md` and the interop README as an independent implementation, with exactly what it covers (INAM countersigned, 4 of 4 at `d5e5f45`). Tell me if you want the wording different.\n2. Since `d5e5f45` we added `interop/canonical/vectors.json`: key-order and escaping cases with characters beyond U+FFFF and lone surrogates. It exposed "
    }
   },
   "x402-foundation/x402#3220": {
@@ -93,7 +118,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-10-17T05:58:04+00:00",
+   "checked": "2026-10-17T09:35:08+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
