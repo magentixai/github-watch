@@ -92,7 +92,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 174,
+   "comments": 185,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -267,14 +267,25 @@
     6204152019,
     6204206012,
     6208364268,
-    6208498404
+    6208498404,
+    6235392799,
+    6235590798,
+    6238076034,
+    6239358859,
+    6239932667,
+    6243738021,
+    6243754562,
+    6244925693,
+    6244943187,
+    6245277513,
+    6245985668
    ],
-   "updated_at": "2026-10-16T05:04:46Z",
+   "updated_at": "2026-10-18T05:12:44Z",
    "last_comment": {
     "author": "babyblueviper1",
-    "at": "2026-10-16T05:04:46Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6208498404",
-    "text": "@actaseal row updated: [`ee668c8`](https://github.com/babyblueviper1/preaction-governance-conformance/blob/ee668c8/examples/acceptance-record-cold/README.md#independent-implementations) \u2014 50/50 at `2c0fd1f`, 41d9071's 47/50 and the 46/46-at-37fdb85 point kept for the record. Independently re-run here before updating the row: cloned at `2c0fd1f`, sha256 of the fetched vectors.json matches your pinned `bc0fd4f5\u202607f1dd`, `run_vectors.py` reports 50/50 agree/0 disagree, and the test suite is 32 passed / 173 subtests."
+    "at": "2026-10-18T05:12:44Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6245985668",
+    "text": "@maximusrufus one more data point for profile 1.2.1: an issuer that is not the producer is now live.\n\n1. `POST https://api.babyblueviper.com/work-acceptance/criteria` (free) commits the criteria before the work exists. It returns RFC 3161 tokens from FreeTSA and DigiCert plus an OpenTimestamps proof over `sha256(criteria)`. The first commitment of a hash is permanent.\n2. `POST /work-acceptance/check` (paid) checks a delivered file against each criterion and returns a record in your schema 1.2. The record is signed by our checker key, which is published at `/.well-known/invinoveritas-checker-ke"
    }
   },
   "x402-foundation/x402#2887": {
@@ -282,7 +293,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 122,
+   "comments": 128,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -405,14 +416,20 @@
     6202458761,
     6231622439,
     6231833428,
-    6232076404
+    6232076404,
+    6232697809,
+    6233660370,
+    6236091252,
+    6236953316,
+    6237474743,
+    6237860774
    ],
-   "updated_at": "2026-10-17T09:04:02Z",
+   "updated_at": "2026-10-17T17:41:17Z",
    "last_comment": {
-    "author": "hheskihoran",
-    "at": "2026-10-17T09:04:02Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6232076404",
-    "text": "@holistis thank you. This is the first independent implementation of INAM receipt verification I know of, and it is the kind of check I meant. I agree with both limits you state.\n\nTwo concrete things on our side:\n\n1. I will link `agent-receipt-verify` from `docs/VERIFIER.md` and the interop README as an independent implementation, with exactly what it covers (INAM countersigned, 4 of 4 at `d5e5f45`). Tell me if you want the wording different.\n2. Since `d5e5f45` we added `interop/canonical/vectors.json`: key-order and escaping cases with characters beyond U+FFFF and lone surrogates. It exposed "
+    "author": "holistis",
+    "at": "2026-10-17T17:41:17Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6237860774",
+    "text": "Make the paid call yourself. If I hand you the bytes, your recompute runs over data I supplied, and that is the one thing a countersignature is supposed to rule out.\n\nEverything you need:\n\n```\nPOST https://api.tokenizen.nl/api/paid/verify-ownership\nContent-Type: application/json\n\n{\"endpoint\":\"https://tokenizen.nl\",\"ownerAddress\":\"0x4E1174b774643B6AD9EE966A81ea1e3665D1159a\",\"method\":\"dns-txt\"}\n```\n\nAny publicly routable endpoint works there, and the outcome of the ownership check itself does not matter for what you are checking. Pick your own body if you prefer. What you are verifying is that t"
    }
   },
   "x402-foundation/x402#3220": {
@@ -509,10 +526,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-17T09:35:08+00:00",
+ "last_checked": "2026-10-18T05:58:22+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-17T09:35:08+00:00",
+   "checked": "2026-10-18T05:58:22+00:00",
    "items": {
     "16": {
      "title": "WO22: global tax determination work order",
@@ -684,5 +701,268 @@
    "open_issues_count": 10,
    "pushed_at": "2026-10-15T14:10:18Z"
   }
+ },
+ "cec": {
+  "Composable-Evidence-Criteria/.github": {
+   "items": {},
+   "comment_ids": [],
+   "main_sha": "9945f2ce82a2de654b3f15a36a941cd1deffb3e2",
+   "main_latest": {
+    "sha": "9945f2c",
+    "at": "2026-09-30T08:29:38Z",
+    "msg": "Update name"
+   },
+   "files": {}
+  },
+  "Composable-Evidence-Criteria/governance": {
+   "items": {
+    "2": {
+     "title": "Update team names add repo",
+     "state": "open",
+     "pr": true,
+     "comments": 0,
+     "author": "ryjones",
+     "url": "https://github.com/Composable-Evidence-Criteria/governance/pull/2",
+     "updated_at": "2026-09-30T13:49:16Z"
+    },
+    "1": {
+     "title": "Add maintainers",
+     "state": "merged",
+     "pr": true,
+     "comments": 0,
+     "author": "ryjones",
+     "url": "https://github.com/Composable-Evidence-Criteria/governance/pull/1",
+     "updated_at": "2026-09-28T13:35:06Z"
+    }
+   },
+   "comment_ids": [],
+   "main_sha": "6a2532c25997ce9fbcb677ff92614bbaa39ddf2b",
+   "main_latest": {
+    "sha": "6a2532c",
+    "at": "2026-09-24T10:28:39Z",
+    "msg": "Add maintainers"
+   },
+   "files": {
+    "teams.yaml": "ec2793a0ab34e7fb20c41df1a6e2553ef1a8d056"
+   }
+  },
+  "Composable-Evidence-Criteria/action-ref-conformance": {
+   "items": {
+    "8": {
+     "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
+     "state": "open",
+     "pr": true,
+     "comments": 0,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8",
+     "updated_at": "2026-10-17T21:49:53Z"
+    },
+    "7": {
+     "title": "Heads-up: Rama will offer paid conformance-QA engagements on top of this lab's public corpus",
+     "state": "open",
+     "pr": false,
+     "comments": 3,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/7",
+     "updated_at": "2026-10-17T17:09:26Z"
+    },
+    "6": {
+     "title": "GOVERNANCE: correct magentixai conflict-of-interest line",
+     "state": "merged",
+     "pr": true,
+     "comments": 2,
+     "author": "magentixai",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/6",
+     "updated_at": "2026-10-07T15:34:41Z"
+    },
+    "5": {
+     "title": "Lab communications: LFDT newsletter and meetup proposals, and who speaks for the lab",
+     "state": "open",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/5",
+     "updated_at": "2026-10-17T17:11:32Z"
+    },
+    "4": {
+     "title": "APS SDK passes the pinned action-ref v1 Action (verify-impl)",
+     "state": "open",
+     "pr": false,
+     "comments": 0,
+     "author": "aeoess",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/4",
+     "updated_at": "2026-10-03T06:53:44Z"
+    },
+    "3": {
+     "title": "Add SECURITY.md from the LF Decentralized Trust template",
+     "state": "merged",
+     "pr": true,
+     "comments": 0,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/3",
+     "updated_at": "2026-09-30T10:26:54Z"
+    },
+    "2": {
+     "title": "Lab name: recomputable-evidence is taken, proposed replacement",
+     "state": "open",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2",
+     "updated_at": "2026-10-05T19:37:03Z"
+    },
+    "1": {
+     "title": "GOVERNANCE: update write-access line now that the repository is in the lab org",
+     "state": "merged",
+     "pr": true,
+     "comments": 7,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/1",
+     "updated_at": "2026-10-07T14:03:07Z"
+    }
+   },
+   "comment_ids": [
+    5835303997,
+    5907615659,
+    5908895565,
+    5915790268,
+    5944938816,
+    5949872114,
+    5950610765,
+    5982727575,
+    5998437082,
+    6001661568,
+    6036258711,
+    6039319120,
+    6039331716,
+    6039513144,
+    6039632924,
+    6235012404,
+    6235053560,
+    6236339962,
+    6237195450,
+    6237195632,
+    6237290695,
+    6237323079,
+    5443489549,
+    5444397649,
+    5364951810,
+    5386327852,
+    5392631283
+   ],
+   "main_sha": "31644500900cc4afbd15f09f7e96c624d7c56921",
+   "main_latest": {
+    "sha": "3164450",
+    "at": "2026-10-07T15:34:40Z",
+    "msg": "Merge pull request #6: GOVERNANCE correct magentixai conflict-of-interest line"
+   },
+   "files": {
+    "GOVERNANCE.md": "05ab3f1a3bff355ef9bcebda91dad201afb06593"
+   }
+  }
+ },
+ "user_events": {
+  "giskard09": [
+   "24360745857",
+   "17500926311",
+   "24341796683",
+   "17486310655",
+   "17485710865",
+   "17485487214",
+   "17485154496",
+   "17482725364",
+   "17482558313",
+   "24320597055",
+   "17481253673",
+   "17454594919",
+   "17449561341",
+   "17447699162",
+   "17446144956",
+   "24248332286",
+   "24240781493",
+   "24237689979",
+   "17419504562",
+   "17418353222",
+   "17414309778",
+   "24222429272",
+   "17409444479",
+   "17407063619",
+   "24216630319",
+   "24196169927",
+   "17354449112",
+   "17350941810",
+   "24132075038",
+   "17343538574",
+   "17334337272",
+   "17322857957",
+   "17322010279",
+   "17289114740",
+   "24066996214",
+   "24003567264",
+   "17236458373",
+   "17227622154",
+   "17188728234",
+   "17185313380",
+   "17160689848",
+   "17160671288",
+   "17159715451",
+   "17159672804",
+   "23930177944",
+   "17158602079",
+   "17152289459",
+   "17128210745",
+   "17115432040",
+   "17051611551",
+   "17051228168",
+   "17050475902",
+   "17050283791",
+   "17049404258",
+   "17049250046",
+   "17049010270",
+   "17048567719",
+   "17033168576",
+   "23795228074",
+   "17027628657",
+   "17025934036",
+   "17023956595",
+   "17014761757",
+   "23761294345",
+   "23748575984",
+   "23735328613",
+   "23733302261",
+   "23728752031",
+   "23728531748",
+   "16968804984",
+   "16967861798",
+   "16957324010",
+   "16956624519",
+   "16956361499",
+   "16956267525",
+   "16949922950",
+   "16949585313",
+   "16949490069",
+   "23695521074",
+   "16949427699",
+   "16949213995",
+   "23680107798",
+   "16922508920",
+   "23641303297",
+   "23638914645",
+   "23635565575",
+   "23635159387",
+   "23634759996",
+   "16910495283",
+   "16910182695",
+   "16909572691",
+   "16904825846",
+   "16904586307",
+   "16904510976",
+   "16904196672",
+   "16904179965",
+   "16903112784",
+   "16902985521",
+   "16901896780",
+   "23598793058"
+  ]
  }
 }

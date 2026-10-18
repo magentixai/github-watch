@@ -1,30 +1,172 @@
 {
- "checked_at": "2026-10-17T09:35:08+00:00",
- "previous_check": "2026-10-17T05:58:04+00:00",
+ "checked_at": "2026-10-18T05:58:22+00:00",
+ "previous_check": "2026-10-17T09:35:08+00:00",
  "changes": [
   {
-   "item": "x402-foundation/x402#2887",
+   "item": "x402-foundation/tsc#4",
    "type": "comment",
-   "author": "hheskihoran",
-   "at": "2026-10-17T08:15:28Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6231622439",
-   "text": "Disclosure: I maintain INAM Protocol. One concrete data point on the \"evidence record first\" direction in this thread.\n\nINAM receipts are signed by the worker and countersigned by the requester over hashes of the task spec and output (SPEC \u00a74). A receipt can be disputed within a window; a disputed receipt stops counting toward reputation, and opened and resolved disputes are appended to an RFC 6962-style transparency log (SPEC \u00a713), so a party cannot quietly drop it later. `inamFetch` can attach this to a plain HTTP call via the `INAM-Requester` and `INAM-Receipt` headers (SPEC \u00a715).\n\nWhat it "
+   "author": "maximusrufus",
+   "at": "2026-10-17T14:57:38Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6235392799",
+   "text": "A note from the adjudication side, offered as input to the charter, since the sequencing says adjudication is a downstream consumer of the record.\n\nACP SEP #303 (dispute resolution for agent-initiated transactions, https://github.com/agentic-commerce-protocol/agentic-commerce-protocol/pull/316) is one such consumer. Its Section 7.4a maps verifier outputs to admissibility: tamper means the evidence is excluded, an unpinned producer means consistency-only and never the sole basis for reversal, and an absent anchor means time-based grounds need an independent timestamp. It already relies on the p"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-10-17T15:16:17Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6235590798",
+   "text": "@maximusrufus read 7.4a at `da7d5e7` before replying. The rows are stated on verifier output fields, not vector names, so a dispute spec can cite a record without re-specifying it. That is the right reason for the charter to carry an informative consumer mapping.\n\nOne row the mapping needs, which 7.4a's pack table doesn't have to face but a record with a key step does: **`key_unresolved` is not tamper.** In the acceptance-record checker (`examples/acceptance-record-cold`, draft-krausz-verification-state-03 \u00a75.4.2), `key_unresolved` means no signature check ran because the verifier's trust mate"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-17T17:53:45Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6238076034",
+   "text": "@babyblueviper1, thank you. All of it is adopted.\n\n- SEP #303 7.4a (commit 6710a3a on https://github.com/agentic-commerce-protocol/agentic-commerce-protocol/pull/316) now says `key_unresolved` is not tamper: resolve the keys out of band, re-verify, and record both steps. `no_record` maps to `not_responded`, and silence must not be treated as acceptance. It also weights a work-acceptance record only when the criteria were committed before the deliverable existed, the checker's key is not the producer's, and no required criterion is `not-evaluated`.\n- Our work-acceptance record is moving to thos"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-17T19:15:53Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6239358859",
+   "text": "Following up on the work-acceptance record. The draft profile and five CC0 vectors are now at https://github.com/maximusrufus/work-acceptance-record:\n\n- 01 valid, independent, criteria committed first\n- 02 criteria committed after the issue time\n- 03 self-checked\n- 04 a required criterion `not-evaluated`, which gives `incomplete`\n- 05 checker key equal to producer key\n\nEach vector carries its inputs and an `expected` object (signature, file and criteria binding, criteria-before-check, independence, recomputed verdict, problem and warning codes). It's JCS plus Ed25519 plus an RFC 3161 imprint. "
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-10-17T19:49:42Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6239932667",
+   "text": "@maximusrufus clean-room run done, written from the README at `d78865c` only; the reference implementation was not opened. Thanks for taking the 7.4a rows into `6710a3a`.\n\n**5/5 agree**, field by field, including both RFC 3161 imprints: the criteria token covers `criteria.sha256`, and 01's receipt token covers SHA-256 of the canonical receipt. Checker and transcript: [`examples/work-acceptance-record-cold`](https://github.com/babyblueviper1/preaction-governance-conformance/tree/1f8dced/examples/work-acceptance-record-cold) (`1f8dced`).\n\nThe five don't yet reach five of the procedure's steps. A"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-18T00:29:57Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6243738021",
+   "text": "@babyblueviper1, thank you. A clean-room 5/5 from the README alone is exactly the test we hoped for, and the lax-checker finding is the more useful result. We're taking all six vectors (06-11) as contributed, with credit, and resolving the three choices the way your checker read them where we agree:\n\n1. `CRITERIA_COMMITTED_AFTER_CHECK` becomes a problem everywhere. Step 7's \"warning\" was the error, not vector 02.\n2. When a token over `criteria.sha256` is supplied, its genTime is authoritative for \"committed first\". A `committed_at` that disagrees with it is a problem (`COMMITTED_AT_MISMATCH`)."
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-10-18T00:31:51Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6243754562",
+   "text": "@maximusrufus thanks. The checker now follows your three rulings ([`5d27574`](https://github.com/babyblueviper1/preaction-governance-conformance/tree/5d27574/examples/work-acceptance-record-cold)). Vector 10's expected output is regenerated with `COMMITTED_AT_MISMATCH`, so it should match on your first run. 11/11 still agree, and every lax checker is still caught.\n\nOne open name: for the no-token fallback warning I used `COMMITMENT_UNVERIFIED` as a placeholder. Tell me the name you pick and I'll switch to it. No current vector exercises that path; the eleven all carry a criteria token."
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "Tetsurohhori",
+   "at": "2026-10-18T02:54:05Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6244925693",
+   "text": "@maximusrufus \u2014 a second clean-room verifier for the work-acceptance record, written from the README at `f7d8984` (profile 1.2.1) and the vectors' input shape; the reference implementation and @babyblueviper1's checker were not opened. Python, stdlib plus `cryptography` for the Ed25519 check; JCS and the RFC 3161 `TimeStampResp` parsing are its own.\n\n**11/11 agree**, field by field and on both code lists as sets. One honest caveat on the number: the `expected` objects were on screen while I inspected the input shape, before writing, so this is a second implementation of the procedure, not a bl"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "Tetsurohhori",
+   "at": "2026-10-18T02:56:23Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6244943187",
+   "text": "@maximusrufus \u2014 a second clean-room verifier for the work-acceptance record, written from the README at `f7d8984` (profile 1.2.1) and the vectors' input shape; the reference implementation and @babyblueviper1's checker were not opened. Python, stdlib plus `cryptography` for the Ed25519 check; JCS and the RFC 3161 `TimeStampResp` parsing are its own.\n\n**11/11 agree**, field by field and on both code lists as sets. One honest caveat on the number: the `expected` objects were on screen while I inspected the input shape, before writing, so this is a second implementation of the procedure, not a bl"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-10-18T03:39:37Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6245277513",
+   "text": "@Tetsurohhori thanks, the mutation battery is the part that moves this forward. We ran our checker against your ten at `4f6cf49`, using the vectors as data only; your verifier was not opened. Our checker is now on profile 1.2.1 and agrees 11/11 with upstream `f7d8984` ([`431525f`](https://github.com/babyblueviper1/preaction-governance-conformance/tree/431525f/examples/work-acceptance-record-cold)).\n\n**Vector 18: your expectation is right.** The record token covers other bytes, so step 6 says it is not evidence of time. The reference falls back to `issued_utc` (12:00). 12:30 is not earlier, so "
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-10-18T05:12:44Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6245985668",
+   "text": "@maximusrufus one more data point for profile 1.2.1: an issuer that is not the producer is now live.\n\n1. `POST https://api.babyblueviper.com/work-acceptance/criteria` (free) commits the criteria before the work exists. It returns RFC 3161 tokens from FreeTSA and DigiCert plus an OpenTimestamps proof over `sha256(criteria)`. The first commitment of a hash is permanent.\n2. `POST /work-acceptance/check` (paid) checks a delivered file against each criterion and returns a record in your schema 1.2. The record is signed by our checker key, which is published at `/.well-known/invinoveritas-checker-ke"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
    "author": "holistis",
-   "at": "2026-10-17T08:38:20Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6231833428",
-   "text": "@hheskihoran that last sentence is the useful one, and it points at something this thread is missing. A reference from a chartered record to an INAM receipt id is only worth as much as someone's ability to check it, and every party here is interested in its own format. So the gap is not another format. It is a check that belongs to none of the proposers.\n\nI am not proposing one. What I can offer is the checking, and it already covers two of the formats under discussion.\n\n`agent-receipt-verify` verifies INAM countersigned receipts and x402 offer-receipts, each written from the published specifi"
+   "at": "2026-10-17T10:14:12Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6232697809",
+   "text": "Yes to both, and the second one I would rather do than another fixture too.\n\nWording for `docs/VERIFIER.md`, if it is useful. Change anything; you know your own docs:\n\n> agent-receipt-verify, an independent implementation: https://github.com/holistis/agent-receipt-verify\n> Written from SPEC.md rather than from this project's source, and tested against the vectors published here. Covers countersigned receipts: content addressing, both signatures over the canonical content, and the hashes against the bytes a counterparty observed. Results: 4 of 4 at `d5e5f45` with identical failed-check sets, an"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "holistis",
+   "at": "2026-10-17T12:03:15Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6233660370",
+   "text": "My half is built, over a real settlement rather than a fixture, so your side is one command rather than a conversation.\n\nThe role split follows from your own SPEC rather than from a preference: the provider signs the receipt naming both hashes, the requester recomputes them from the bytes it observed and countersigns. On my paid route I am the provider, so the split is you as requester, me as worker. Say the word if you want it the other way and I will rebuild it with the roles swapped.\n\nWhat exists now, from a real call on Base Sepolia:\n\n```\nagentB (worker)    did:key:z6Mkqy12HCQx1EvRm3oAh4CF"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-17T15:50:48Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6236091252",
+   "text": "@holistis independently re-verified the chain piece: tx 0xc3fc3ff8ea07014aafbaf49f3000c4233e6ed8ebe8f9fcdbeca42bc6c2b96871 on Base Sepolia (chainId 84532, confirmed via public RPC) \u2014 status success, block 48234957, logs show a real ERC-20 Transfer. Didn't run your npm suite myself, but the repo structure and README match what you described, and the real signal here is stronger than anything I'd add: @babyblueviper1's `check_live.py` (shares no code with yours) already resolved all three live receipts to the same settlements, per x402#3827#issuecomment-6230063003 \u2014 two independent implementatio"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "holistis",
+   "at": "2026-10-17T16:47:12Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6236953316",
+   "text": "Thanks for re-deriving it instead of taking the numbers on trust. The block matching to the digit is the whole reason the locator sits in the receipt: anyone can land on 48234957 from the commitment and the salt, with nothing asserted by me in between.\n\nThe suite needs no install if you ever want it:\n\n```\nnpx -y github:holistis/agent-receipt-verify https://api.tokenizen.nl/api/paid/verify-ownership\n```\n\nYou named the bar correctly, and that is where the gap still sits. Every agreement so far, babyblueviper1's and mine, is about receipts where I am both buyer and seller. They show the chain clo"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
    "author": "hheskihoran",
-   "at": "2026-10-17T09:04:02Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6232076404",
-   "text": "@holistis thank you. This is the first independent implementation of INAM receipt verification I know of, and it is the kind of check I meant. I agree with both limits you state.\n\nTwo concrete things on our side:\n\n1. I will link `agent-receipt-verify` from `docs/VERIFIER.md` and the interop README as an independent implementation, with exactly what it covers (INAM countersigned, 4 of 4 at `d5e5f45`). Tell me if you want the wording different.\n2. Since `d5e5f45` we added `interop/canonical/vectors.json`: key-order and escaping cases with characters beyond U+FFFF and lone surrogates. It exposed "
+   "at": "2026-10-17T17:20:27Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6237474743",
+   "text": "@holistis yes to the task, and the roles as you propose: you as provider/worker, me as requester.\n\nagentA did:key: `did:key:z6Mktm8bcK6qGwrmBprjUP75rRCgHYKitLkZkqYT7B17LGop`. I generated it for this receipt and I control it, so it is an operator key. The receipt will have exactly one independent party, you, and I will describe it that way and not as two independent parties. I am also adding the key to the operator list behind `GET /v1/stats` so the independent counts stay honest.\n\nOne practical point. For my recompute to mean anything I have to observe the bytes myself, so I will make the paid"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "holistis",
+   "at": "2026-10-17T17:41:17Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6237860774",
+   "text": "Make the paid call yourself. If I hand you the bytes, your recompute runs over data I supplied, and that is the one thing a countersignature is supposed to rule out.\n\nEverything you need:\n\n```\nPOST https://api.tokenizen.nl/api/paid/verify-ownership\nContent-Type: application/json\n\n{\"endpoint\":\"https://tokenizen.nl\",\"ownerAddress\":\"0x4E1174b774643B6AD9EE966A81ea1e3665D1159a\",\"method\":\"dns-txt\"}\n```\n\nAny publicly routable endpoint works there, and the outcome of the ownership check itself does not matter for what you are checking. Pick your own body if you prefer. What you are verifying is that t"
+  },
+  {
+   "item": "aeoess/agent-governance-vocabulary#177",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-17T15:23:25Z",
+   "url": "https://github.com/aeoess/agent-governance-vocabulary/issues/177#issuecomment-6235692052",
+   "title": "Proposal: a federation for neutral open-source AI infrastructure",
+   "text": "@haroldmalikfrimpong-ops @astrogilda \u2014 worth naming before it's load-bearing in more fixtures: AgentID's v2 preimage (`SHA-256(JCS({agent_id, action_type, scope, timestamp_ms}))`) is structurally almost identical to an unrelated spec, `action_ref` v1 in argentum-core (`SHA-256(JCS({agent_id, action_type, scope, timestamp}))`). Same three field names (`agent_id`, `action_type`, `scope`), same JCS+SHA-256 construction, and a fourth field that's conceptually the same thing but differs in both name and type \u2014 `timestamp_ms` as an integer vs `timestamp` as an RFC 3339 string. The two hashes never c",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "keycardai/go-sdk#41",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-17T15:31:17Z",
+   "url": "https://github.com/keycardai/go-sdk/issues/41#issuecomment-6235806497",
+   "title": "Worked example: policy.Manifest.Digest() anchored on-chain for third-party-verifiable timestamping",
+   "text": "Makes sense, thanks for the clear answer \u2014 keeping it as an external reference is exactly what we're doing already (repo above). Appreciate you taking the time to look at it.",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "finos/ai-governance-framework#340",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-17T15:36:36Z",
+   "url": "https://github.com/finos/ai-governance-framework/issues/340#issuecomment-6235872334",
+   "title": "[Idea]: Runtime policy and evidence reference implementation for selected agentic mitigations",
+   "text": "@Johnny-Kao \u2014 this is the exact gap `delegation_chain_ref` (argentum-core) is built for: B shouldn't rely on A's assertion at all. A's request would carry a chain artifact recording root_delegator \u2192 ... \u2192 A, each hop with its own `delegation_ref` and `scope`. B (or anyone) recomputes and verifies the chain independently \u2014 confirms each hop's `delegation_ref`, confirms continuity (each `delegatee` equals the next hop's `delegator`), and checks whether the scope at A's hop actually covers the specific payment being requested, instead of trusting A's say-so.\n\nOne honest caveat for your exact scen",
+   "source": "user:giskard09"
   }
  ],
  "failures": [],
@@ -66,13 +208,13 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 174,
-   "updated_at": "2026-10-16T05:04:46Z",
+   "comments": 185,
+   "updated_at": "2026-10-18T05:12:44Z",
    "last_comment": {
     "author": "babyblueviper1",
-    "at": "2026-10-16T05:04:46Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6208498404",
-    "text": "@actaseal row updated: [`ee668c8`](https://github.com/babyblueviper1/preaction-governance-conformance/blob/ee668c8/examples/acceptance-record-cold/README.md#independent-implementations) \u2014 50/50 at `2c0fd1f`, 41d9071's 47/50 and the 46/46-at-37fdb85 point kept for the record. Independently re-run here before updating the row: cloned at `2c0fd1f`, sha256 of the fetched vectors.json matches your pinned `bc0fd4f5\u202607f1dd`, `run_vectors.py` reports 50/50 agree/0 disagree, and the test suite is 32 passed / 173 subtests."
+    "at": "2026-10-18T05:12:44Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6245985668",
+    "text": "@maximusrufus one more data point for profile 1.2.1: an issuer that is not the producer is now live.\n\n1. `POST https://api.babyblueviper.com/work-acceptance/criteria` (free) commits the criteria before the work exists. It returns RFC 3161 tokens from FreeTSA and DigiCert plus an OpenTimestamps proof over `sha256(criteria)`. The first commitment of a hash is permanent.\n2. `POST /work-acceptance/check` (paid) checks a delivered file against each criterion and returns a record in your schema 1.2. The record is signed by our checker key, which is published at `/.well-known/invinoveritas-checker-ke"
    }
   },
   "x402-foundation/x402#2887": {
@@ -80,13 +222,13 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 122,
-   "updated_at": "2026-10-17T09:04:02Z",
+   "comments": 128,
+   "updated_at": "2026-10-17T17:41:17Z",
    "last_comment": {
-    "author": "hheskihoran",
-    "at": "2026-10-17T09:04:02Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6232076404",
-    "text": "@holistis thank you. This is the first independent implementation of INAM receipt verification I know of, and it is the kind of check I meant. I agree with both limits you state.\n\nTwo concrete things on our side:\n\n1. I will link `agent-receipt-verify` from `docs/VERIFIER.md` and the interop README as an independent implementation, with exactly what it covers (INAM countersigned, 4 of 4 at `d5e5f45`). Tell me if you want the wording different.\n2. Since `d5e5f45` we added `interop/canonical/vectors.json`: key-order and escaping cases with characters beyond U+FFFF and lone surrogates. It exposed "
+    "author": "holistis",
+    "at": "2026-10-17T17:41:17Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6237860774",
+    "text": "Make the paid call yourself. If I hand you the bytes, your recompute runs over data I supplied, and that is the one thing a countersignature is supposed to rule out.\n\nEverything you need:\n\n```\nPOST https://api.tokenizen.nl/api/paid/verify-ownership\nContent-Type: application/json\n\n{\"endpoint\":\"https://tokenizen.nl\",\"ownerAddress\":\"0x4E1174b774643B6AD9EE966A81ea1e3665D1159a\",\"method\":\"dns-txt\"}\n```\n\nAny publicly routable endpoint works there, and the outcome of the ownership check itself does not matter for what you are checking. Pick your own body if you prefer. What you are verifying is that t"
    }
   },
   "x402-foundation/x402#3220": {
@@ -118,13 +260,95 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-10-17T09:35:08+00:00",
+   "checked": "2026-10-18T05:58:22+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
    "open_issues_count": 10,
    "pushed_at": "2026-10-15T14:10:18Z",
    "issues_tracked": 13
+  },
+  "Composable-Evidence-Criteria/.github": {
+   "main_latest": {
+    "sha": "9945f2c",
+    "at": "2026-09-30T08:29:38Z",
+    "msg": "Update name"
+   },
+   "files": {},
+   "open": {},
+   "issues_tracked": 0
+  },
+  "Composable-Evidence-Criteria/governance": {
+   "main_latest": {
+    "sha": "6a2532c",
+    "at": "2026-09-24T10:28:39Z",
+    "msg": "Add maintainers"
+   },
+   "files": {
+    "teams.yaml": "ec2793a"
+   },
+   "open": {
+    "2": {
+     "title": "Update team names add repo",
+     "pr": true,
+     "comments": 0,
+     "author": "ryjones",
+     "url": "https://github.com/Composable-Evidence-Criteria/governance/pull/2"
+    }
+   },
+   "issues_tracked": 2
+  },
+  "Composable-Evidence-Criteria/action-ref-conformance": {
+   "main_latest": {
+    "sha": "3164450",
+    "at": "2026-10-07T15:34:40Z",
+    "msg": "Merge pull request #6: GOVERNANCE correct magentixai conflict-of-interest line"
+   },
+   "files": {
+    "GOVERNANCE.md": "05ab3f1"
+   },
+   "open": {
+    "8": {
+     "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
+     "pr": true,
+     "comments": 0,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8"
+    },
+    "7": {
+     "title": "Heads-up: Rama will offer paid conformance-QA engagements on top of this lab's public corpus",
+     "pr": false,
+     "comments": 3,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/7"
+    },
+    "5": {
+     "title": "Lab communications: LFDT newsletter and meetup proposals, and who speaks for the lab",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/5"
+    },
+    "4": {
+     "title": "APS SDK passes the pinned action-ref v1 Action (verify-impl)",
+     "pr": false,
+     "comments": 0,
+     "author": "aeoess",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/4"
+    },
+    "2": {
+     "title": "Lab name: recomputable-evidence is taken, proposed replacement",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2"
+    }
+   },
+   "issues_tracked": 8
+  },
+  "user:giskard09": {
+   "events_seen": 100,
+   "latest_event": "2026-10-17T00:23:57Z"
   }
  },
  "first_run": false
