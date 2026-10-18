@@ -1,0 +1,188 @@
+{
+ "checked_at": "2026-10-18T06:00:35+00:00",
+ "previous_check": "2026-10-18T05:58:22+00:00",
+ "changes": [],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 5,
+   "updated_at": "2026-10-01T20:03:02Z",
+   "last_comment": {
+    "author": "giskard09",
+    "at": "2026-10-01T19:38:30Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-5939128229",
+    "text": "@aeoess Thanks for closing the loop directly \u2014 that's exactly the boundary we intended. Noted on pinning to a tag/commit on main rather than a moving branch, and checking CLARIFICATIONS.md for any later correction. Appreciate you, Martin and source-origin working through this with us."
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 185,
+   "updated_at": "2026-10-18T05:12:44Z",
+   "last_comment": {
+    "author": "babyblueviper1",
+    "at": "2026-10-18T05:12:44Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6245985668",
+    "text": "@maximusrufus one more data point for profile 1.2.1: an issuer that is not the producer is now live.\n\n1. `POST https://api.babyblueviper.com/work-acceptance/criteria` (free) commits the criteria before the work exists. It returns RFC 3161 tokens from FreeTSA and DigiCert plus an OpenTimestamps proof over `sha256(criteria)`. The first commitment of a hash is permanent.\n2. `POST /work-acceptance/check` (paid) checks a delivered file against each criterion and returns a record in your schema 1.2. The record is signed by our checker key, which is published at `/.well-known/invinoveritas-checker-ke"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 128,
+   "updated_at": "2026-10-17T17:41:17Z",
+   "last_comment": {
+    "author": "holistis",
+    "at": "2026-10-17T17:41:17Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6237860774",
+    "text": "Make the paid call yourself. If I hand you the bytes, your recompute runs over data I supplied, and that is the one thing a countersignature is supposed to rule out.\n\nEverything you need:\n\n```\nPOST https://api.tokenizen.nl/api/paid/verify-ownership\nContent-Type: application/json\n\n{\"endpoint\":\"https://tokenizen.nl\",\"ownerAddress\":\"0x4E1174b774643B6AD9EE966A81ea1e3665D1159a\",\"method\":\"dns-txt\"}\n```\n\nAny publicly routable endpoint works there, and the outcome of the ownership check itself does not matter for what you are checking. Pick your own body if you prefer. What you are verifying is that t"
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 63,
+   "updated_at": "2026-10-06T06:34:09Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-06T06:34:09Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6010784398",
+    "text": "We implemented the single-payment part of this draft (\u00a76, \u00a77) in presign-guard, a pre-sign check for agent payments:\n\n- POST /v1/check takes an optional mandate next to an EIP-3009 signature and turns a payment outside it red before the agent signs (wrong payer/asset/recipient, over perPayment or cap, expired, bad issuer signature, nonce \u2260 binding).\n- presign-guard-wallet's mandatePayer() makes x402 payments with the \u00a77 binding as the EIP-3009 nonce.\n- JCS bytes, digest, signature and the EIP-3009/Permit2 binding values match authority-vectors.json byte for byte.\n\nNot covered: cumulative spend"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-10-18T06:00:35+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 10,
+   "pushed_at": "2026-10-15T14:10:18Z",
+   "issues_tracked": 13
+  },
+  "Composable-Evidence-Criteria/.github": {
+   "main_latest": {
+    "sha": "9945f2c",
+    "at": "2026-09-30T08:29:38Z",
+    "msg": "Update name"
+   },
+   "files": {},
+   "open": {},
+   "issues_tracked": 0
+  },
+  "Composable-Evidence-Criteria/governance": {
+   "main_latest": {
+    "sha": "6a2532c",
+    "at": "2026-09-24T10:28:39Z",
+    "msg": "Add maintainers"
+   },
+   "files": {
+    "teams.yaml": "ec2793a"
+   },
+   "open": {
+    "2": {
+     "title": "Update team names add repo",
+     "pr": true,
+     "comments": 0,
+     "author": "ryjones",
+     "url": "https://github.com/Composable-Evidence-Criteria/governance/pull/2"
+    }
+   },
+   "issues_tracked": 2
+  },
+  "Composable-Evidence-Criteria/action-ref-conformance": {
+   "main_latest": {
+    "sha": "3164450",
+    "at": "2026-10-07T15:34:40Z",
+    "msg": "Merge pull request #6: GOVERNANCE correct magentixai conflict-of-interest line"
+   },
+   "files": {
+    "GOVERNANCE.md": "05ab3f1"
+   },
+   "open": {
+    "8": {
+     "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
+     "pr": true,
+     "comments": 0,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8"
+    },
+    "7": {
+     "title": "Heads-up: Rama will offer paid conformance-QA engagements on top of this lab's public corpus",
+     "pr": false,
+     "comments": 3,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/7"
+    },
+    "5": {
+     "title": "Lab communications: LFDT newsletter and meetup proposals, and who speaks for the lab",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/5"
+    },
+    "4": {
+     "title": "APS SDK passes the pinned action-ref v1 Action (verify-impl)",
+     "pr": false,
+     "comments": 0,
+     "author": "aeoess",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/4"
+    },
+    "2": {
+     "title": "Lab name: recomputable-evidence is taken, proposed replacement",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2"
+    }
+   },
+   "issues_tracked": 8
+  },
+  "user:giskard09": {
+   "events_seen": 100,
+   "latest_event": "2026-10-17T21:49:53Z"
+  }
+ },
+ "first_run": false
+}
