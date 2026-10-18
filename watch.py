@@ -229,7 +229,7 @@ try:
     for page in (1, 2, 3):
         d = get(f"https://api.github.com/users/{WATCH_USER}/events/public?per_page=100&page={page}")
         evs += d
-        if len(d) < 100 or (since and d and ts(d[-1]["created_at"]) <= since): break
+        if len(d) < 100 or (since and d and min(ts(e["created_at"]) for e in d) <= since): break
     for ev in sorted(evs, key=lambda e: e["created_at"]):
         if ev["id"] in seen_ev or (since and ts(ev["created_at"]) <= since): continue
         repo, p, t = ev["repo"]["name"], ev.get("payload") or {}, ev["type"]
@@ -258,7 +258,7 @@ try:
             ch["source"] = f"user:{WATCH_USER}"
             report["changes"].append(ch)
     new_state.setdefault("user_events", {})[WATCH_USER] = [e["id"] for e in evs][:300]
-    report["summary"][f"user:{WATCH_USER}"] = {"events_seen": len(evs), "latest_event": evs[0]["created_at"] if evs else None}
+    report["summary"][f"user:{WATCH_USER}"] = {"events_seen": len(evs), "latest_event": max(e["created_at"] for e in evs) if evs else None}
 except Exception as e:
     report["failures"].append({"item": f"user:{WATCH_USER}", "error": repr(e)})
 report["first_run"] = not state.get("last_checked")
