@@ -92,7 +92,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 187,
+   "comments": 198,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -275,19 +275,30 @@
     6239932667,
     6243738021,
     6243754562,
-    6244925693,
     6244943187,
     6245277513,
     6245985668,
     6246983002,
-    6247444481
+    6247444481,
+    6248668457,
+    6248826316,
+    6251239282,
+    6251573298,
+    6252001854,
+    6252748811,
+    6253091930,
+    6253166277,
+    6253520547,
+    6256411444,
+    6256653354,
+    6256874938
    ],
-   "updated_at": "2026-10-18T08:05:42Z",
+   "updated_at": "2026-10-19T00:09:11Z",
    "last_comment": {
-    "author": "babyblueviper1",
-    "at": "2026-10-18T08:05:42Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6247444481",
-    "text": "@Tetsurohhori thanks. Your 12b, run with our checker as data only (your verifier not opened), at `8ff69f4`: **agree**, `CHECKER_NOT_SIGNER` and nothing else (file sha256 `66f7b870\u2026808f0`). Your SHA-1 vector also agrees under ours. So 12b plus 13\u201321 and our 22/23 give the same result from both verifiers, except 22, which waits on step 5.\n\nTo keep the numbers straight for @maximusrufus, we'd suggest:\n- 12b replaces 12;\n- our 23 (SHA-384 OID) is the algorithm pin, so your SHA-1 vector drops;\n- our 22 (reference time = earlier of `issued_utc` and the covering token's genTime) lands only with the o"
+    "author": "maximusrufus",
+    "at": "2026-10-19T00:09:11Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6256874938",
+    "text": "@babyblueviper1 thanks, and confirmed independently: we ran your `war_check.py` on an unmodified copy of `vectors/` at `270e9fe`. At [`fc810af`](https://github.com/babyblueviper1/preaction-governance-conformance/tree/fc810af/examples/work-acceptance-record-cold) it agrees on 28/28. At the previous commit, `2eb9847`, it agrees on 25/28 and disagrees on exactly 20, 26 and 27, as you describe. Yes to the composition case from the live issuer: a real record that anyone can fetch and re-verify makes a stronger vector than a synthetic one.\n\nTrilatic (@maximusrufus on GitHub)\n"
    }
   },
   "x402-foundation/x402#2887": {
@@ -295,7 +306,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 128,
+   "comments": 130,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -424,14 +435,16 @@
     6236091252,
     6236953316,
     6237474743,
-    6237860774
+    6237860774,
+    6252911257,
+    6253193861
    ],
-   "updated_at": "2026-10-17T17:41:17Z",
+   "updated_at": "2026-10-18T17:55:29Z",
    "last_comment": {
     "author": "holistis",
-    "at": "2026-10-17T17:41:17Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6237860774",
-    "text": "Make the paid call yourself. If I hand you the bytes, your recompute runs over data I supplied, and that is the one thing a countersignature is supposed to rule out.\n\nEverything you need:\n\n```\nPOST https://api.tokenizen.nl/api/paid/verify-ownership\nContent-Type: application/json\n\n{\"endpoint\":\"https://tokenizen.nl\",\"ownerAddress\":\"0x4E1174b774643B6AD9EE966A81ea1e3665D1159a\",\"method\":\"dns-txt\"}\n```\n\nAny publicly routable endpoint works there, and the outcome of the ownership check itself does not matter for what you are checking. Pick your own body if you prefer. What you are verifying is that t"
+    "at": "2026-10-18T17:55:29Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6253193861",
+    "text": "Thanks for the merge and for the link in VERIFIER.md. The way you wrote it is the right way: from SPEC.md rather than from your source, with the caveat that nobody audited our code and the reader should run the vectors himself.\n\nWhich is what we did, on the fifth vector you added after our 4 of 4. We failed it, in the worst direction: INFLATED-VALUE came back accepted on our side. The cause is not a missing check but a check that could not fire. Ours read `result.outcome` and `result.status`; this format carries neither, so the expected amount stayed undefined and the comparison was skipped en"
    }
   },
   "x402-foundation/x402#3220": {
@@ -528,10 +541,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-18T09:47:02+00:00",
+ "last_checked": "2026-10-19T05:56:58+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-18T09:47:02+00:00",
+   "checked": "2026-10-19T05:56:58+00:00",
    "items": {
     "16": {
      "title": "WO22: global tax determination work order",
@@ -865,6 +878,43 @@
  },
  "user_events": {
   "giskard09": [
+   "24499754274",
+   "24495606154",
+   "24494030420",
+   "24493616140",
+   "24486006499",
+   "17557291312",
+   "17556796374",
+   "17556122659",
+   "17554900394",
+   "24468857728",
+   "17554877539",
+   "24463553142",
+   "17544308864",
+   "17544095364",
+   "17543963784",
+   "24446943925",
+   "24441959117",
+   "24441912125",
+   "24441836957",
+   "17538087321",
+   "17538016777",
+   "17537957089",
+   "24439618627",
+   "17537532212",
+   "17536270924",
+   "17535624507",
+   "17534426358",
+   "17534404078",
+   "17534108924",
+   "24433036251",
+   "17533738325",
+   "24430543331",
+   "17532661525",
+   "17532384837",
+   "17532315972",
+   "17532203078",
+   "24421358460",
    "24412486515",
    "24406599583",
    "24360745857",
@@ -918,41 +968,7 @@
    "17033168576",
    "23795228074",
    "17027628657",
-   "17025934036",
-   "17023956595",
-   "17014761757",
-   "23761294345",
-   "23748575984",
-   "23735328613",
-   "23733302261",
-   "23728752031",
-   "23728531748",
-   "16968804984",
-   "16967861798",
-   "16957324010",
-   "16956624519",
-   "16956361499",
-   "16956267525",
-   "16949922950",
-   "16949585313",
-   "16949490069",
-   "23695521074",
-   "16949427699",
-   "16949213995",
-   "23680107798",
-   "23641303297",
-   "23638914645",
-   "23635565575",
-   "23635159387",
-   "23634759996",
-   "16910495283",
-   "16910182695",
-   "16909572691",
-   "16904825846",
-   "16904586307",
-   "16904510976",
-   "16904196672",
-   "16904179965"
+   "17025934036"
   ]
  }
 }

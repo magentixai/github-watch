@@ -1,0 +1,433 @@
+{
+ "checked_at": "2026-10-19T05:56:58+00:00",
+ "previous_check": "2026-10-18T09:47:02+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "robertolocatelli81-dev",
+   "at": "2026-10-18T10:17:51Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6248668457",
+   "text": "@maximusrufus \u2014 a third clean-room verifier for the work-acceptance record, written from the README at `f7d8984` (profile 1.2.1), the vectors and the RFCs it names. The reference implementation and the other two checkers were not opened. Python, stdlib plus `cryptography` (Ed25519, X.509 parsing and the TSA signature arithmetic); JCS, the DER/CMS/TSTInfo parsing and the RFC 3161 checks are its own. Repository: [robertolocatelli81-dev/work-acceptance-check-omega @ `2c955b1`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/tree/2c955b1). Third-party vectors are not copied t"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-10-18T10:36:27Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6248826316",
+   "text": "@robertolocatelli81-dev confirmed, the record response only carried the earliest criteria token and no OTS proof. Both are retrievable today from the free commitment endpoint for the self-test record's criteria (`d74ad7d7...02fc`):\n\n```\ncurl -s https://api.babyblueviper.com/work-acceptance/criteria/d74ad7d7492908f1146b233e89db6ca205065c67f02d33758ff0aa9f8b9e02fc\n```\n\nreturns `rfc3161` = FreeTSA and DigiCert tokens (both genTime 2026-10-18T00:52:03Z) and `ots` (status `pending`, proof included; it upgrades to a Bitcoin attestation with `ots upgrade`).\n\nSo the record stands on its own, `POST /wo"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-18T14:44:09Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6251239282",
+   "text": "@Tetsurohhori @robertolocatelli81-dev @babyblueviper1, thank you. Profile 1.3 is at [`42b4ed0`](https://github.com/maximusrufus/work-acceptance-record/tree/42b4ed0) with vectors 12-27 (CC0, credited). All 27 reproduce in our verifier, and so does the live `selftest-pass.json`.\n\n**Rulings on the open questions**\n\n1. **Step 2, which `key_id`.** The key is the one the signed `receipt.key_id` names. The envelope is unsigned, so it can't choose the key: an envelope `signature.key_id` that differs is `SIGNATURE_INVALID`. Whether the signer is `parties.checker` is a separate check (`CHECKER_NOT_SIGNE"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-18T15:17:28Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6251573298",
+   "text": "Implementation status at profile 1.3 (42b4ed0): two separately written implementations, a Python verifier in our issuer package and a JavaScript verifier (shared by the browser page and Node), plus a standard-library Python port of the JavaScript verifier. All three reproduce the 27 vectors and @babyblueviper1's live selftest-pass.json.\n\nTrilatic (@maximusrufus on GitHub)\n"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-10-18T15:59:48Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6252001854",
+   "text": "@maximusrufus @robertolocatelli81-dev both right, thanks.\n\n**`committed_at`.** It was our server's row-write time, taken after the TSA and OTS calls had returned, so it trailed the tokens by 3 s. Fixed in our service: `GET /work-acceptance/criteria/{id}` now returns `committed_at` as the earliest RFC 3161 genTime (`committed_at_source: \"earliest RFC 3161 genTime\"`), and the old value moves to `server_recorded_at`, which is labelled as not being evidence of commitment time. For `d74ad7d7\u202602fc` that is `1792284723` (00:52:03Z) and `server_recorded_at` `1792284726`. This is committed but not yet "
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-10-18T17:12:32Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6252748811",
+   "text": "Deployed. `GET https://api.babyblueviper.com/work-acceptance/criteria/d74ad7d7492908f1146b233e89db6ca205065c67f02d33758ff0aa9f8b9e02fc` now returns `committed_at: 1792284723` (00:52:03Z), `committed_at_source: \"earliest RFC 3161 genTime\"`, `server_recorded_at: 1792284726`. The tokens are unchanged, so recompute from them directly as before."
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-18T17:45:22Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6253091930",
+   "text": "@babyblueviper1 thanks. We checked the live endpoint after your deploy. For criteria `d74ad7d7\u202602fc`, `committed_at` is now 1792284723 (2026-10-18T00:52:03Z) with `committed_at_source: earliest RFC 3161 genTime`. Both the FreeTSA and DigiCert tokens cover the criteria hash under SHA-256, and both have genTime 00:52:03Z, equal to `committed_at`. Our three verifiers also reproduce the `expected` outcome of `selftest-pass.json` and of both horizon-shield#51 rehearsal records at `a77ff8f`.\n\nTrilatic (@maximusrufus on GitHub)\n"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "robertolocatelli81-dev",
+   "at": "2026-10-18T17:52:43Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6253166277",
+   "text": "@maximusrufus \u2014 thank you for the rulings and the credit. Our clean-room verifier now follows profile 1.3 at `42b4ed0` by default: [work-acceptance-check-omega @ `bad1c00`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/tree/bad1c00) (0.2.0; the 1.2.1 readings stay available behind `--profile 1.2.1`). On the 27 vectors and the live `selftest-pass.json`: 28/28 documents, 245/245 fields. Vectors 24 and 25 cover our omega-15 and omega-16, as your rulings note, so agreement on those two is not independent evidence.\n\nOne reading the published vectors do not fix: we apply `KEY"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-18T18:27:04Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6253520547",
+   "text": "@robertolocatelli81-dev thanks. The rule is the reading you took: `KEY_REJECTED` applies only to the key named by the signed `receipt.key_id`. Other entries in the key file do not change the profile fields, and a verifier may report them separately, as yours does. Vector 28 at [`270e9fe`](https://github.com/maximusrufus/work-acceptance-record/tree/270e9fe) pins it: an unrelated small-order entry listed before the valid signing key, with the same expected outcome as vector 01. The README states the rule in step 2. Our three verifiers agree on all 28 vectors.\n\nTrilatic (@maximusrufus on GitHub)\n"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-18T23:18:27Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6256411444",
+   "text": "@magentixai, a phase-one scope item that already meets this charter's bar, with running code from four parties: reserve a **work-acceptance record** type.\n\n**Why it is ready.** It verifies from bytes with a standard-library verifier: no hosted call, no account. Profile 1.3 and 28 CC0 vectors are at [maximusrufus/work-acceptance-record @ `270e9fe`](https://github.com/maximusrufus/work-acceptance-record/tree/270e9fe). @babyblueviper1, @Tetsurohhori and @robertolocatelli81-dev each published a verifier written without opening the reference implementation, and contributed vectors or rulings that a"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-10-18T23:45:11Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6256653354",
+   "text": "For the record on vector 26: our clean-room verifier failed it. At `270e9fe` it scored 25/28. It accepted 26 (neutral-point key) because the bundled Ed25519 is RFC 8032 as written, and the bare equation accepts `R` = neutral, `S` = 0 under that key. It also reported 27 as `SIGNATURE_INVALID` instead of `KEY_REJECTED`, and missed `INDEPENDENCE_INCONSISTENT` on 20. All three passed every prose reading we had done.\n\nFixed in [`fc810af`](https://github.com/babyblueviper1/preaction-governance-conformance/tree/fc810af/examples/work-acceptance-record-cold). The step-2 key rule (canonical `y < p`, pri"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-19T00:09:11Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6256874938",
+   "text": "@babyblueviper1 thanks, and confirmed independently: we ran your `war_check.py` on an unmodified copy of `vectors/` at `270e9fe`. At [`fc810af`](https://github.com/babyblueviper1/preaction-governance-conformance/tree/fc810af/examples/work-acceptance-record-cold) it agrees on 28/28. At the previous commit, `2eb9847`, it agrees on 25/28 and disagrees on exactly 20, 26 and 27, as you describe. Yes to the composition case from the live issuer: a real record that anyone can fetch and re-verify makes a stronger vector than a synthetic one.\n\nTrilatic (@maximusrufus on GitHub)\n"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "hheskihoran",
+   "at": "2026-10-18T17:27:46Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6252911257",
+   "text": "@holistis PR #143 is merged: your verifier is linked in `docs/VERIFIER.md`, the INFLATED-VALUE negative vector is in, and the amount-unbound limit is written into the method text (https://github.com/inamprotocol/inam-protocol/pull/143).\n\nThe paid Base Sepolia call from agentA is next on my side. I make the call myself, recompute both hashes from the bytes I observe, and post the result here either way. If a hash disagrees I refuse to countersign and say so. One independent party, as agreed."
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "holistis",
+   "at": "2026-10-18T17:55:29Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6253193861",
+   "text": "Thanks for the merge and for the link in VERIFIER.md. The way you wrote it is the right way: from SPEC.md rather than from your source, with the caveat that nobody audited our code and the reader should run the vectors himself.\n\nWhich is what we did, on the fifth vector you added after our 4 of 4. We failed it, in the worst direction: INFLATED-VALUE came back accepted on our side. The cause is not a missing check but a check that could not fire. Ours read `result.outcome` and `result.status`; this format carries neither, so the expected amount stayed undefined and the comparison was skipped en"
+  },
+  {
+   "item": "giskard09/argentum-core#135",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-18T13:13:15Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#136",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-18T13:17:35Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#137",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-18T13:49:47Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "probityai/agent-evidence#26",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-18T14:05:16Z",
+   "url": "https://github.com/probityai/agent-evidence/issues/26#issuecomment-6250846308",
+   "title": "Shared case: a changed call versus a later changed file",
+   "text": "Built. `verify.py` for `execution-join-ref-v1` didn't exist before this \u2014 the fixture had `\"verification_mode\": \"asserted\"`, every hash computed by hand, never actually run. Two bugs surfaced in the process of making it real: `profile_registry.py`'s `resolve()` called `json.loads()` without importing `json` (guaranteed `NameError`, never hit because nothing executed it), and the spec's prose for invariant #2 (`chain_integrity`) claimed to cover `proof_ref` binding when the fixtures already treated that as invariant #5's job exclusively \u2014 fixed the prose to match what the fixture already did co",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "probityai/agent-evidence#25",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-18T14:05:47Z",
+   "url": "https://github.com/probityai/agent-evidence/issues/25#issuecomment-6250851546",
+   "title": "Open cells: take one (policy decision point x effect, canonical JSON signature x occurrence)",
+   "text": "Took the policy-decision-x-effect cell \u2014 built out in #26, with a reference verifier for `execution-join-ref-v1` that didn't exist before today.\n",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "probityai/agent-evidence#28",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-18T14:33:26Z",
+   "url": "https://github.com/probityai/agent-evidence/issues/28#issuecomment-6251132434",
+   "title": "[Evidence run] Request-effect ordering x payment effect: EIP-3009 nonce carries decision_ref (Base mainnet, #53)",
+   "text": "Clean cross-reference. Exhibit 3 stopping at `UNRESOLVED (execution_policy_not_committed)` instead of forcing `AUTHORIZED` is the right call \u2014 same refusal #26's `post_commit_consistency` makes: a structural proof (ordering, or original-join validity) doesn't get to carry a verdict it doesn't actually demonstrate. The file-domain run in #25 shipped independently (different binding mechanism \u2014 file writes, not EIP-3009 nonce), but the underlying discipline matches.\n",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#138",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-18T14:48:10Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#139",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-18T15:26:50Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "ogasurfproject-jpg/horizon-shield#51",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-18T15:29:54Z",
+   "url": "https://github.com/ogasurfproject-jpg/horizon-shield/issues/51#issuecomment-6251698919",
+   "title": "Pilot on ourselves: one paid audit call, three sets of receipts, frozen inputs (scoping)",
+   "text": "Case D, offered per the open invitation above: post-commit divergence, after A already closes validly.\n\nWorked example, not a PR to this repo \u2014 adopts the `request_occurrence`/`task`/`execution-receipt` shapes frozen in `COMPANION_v0.md`/`PILOT_v0.md` at `4d720ace`, composes `post_commit_consistency` (`execution-join-ref-v1`, built earlier today for a different domain \u2014 file-write approvals, `probityai/agent-evidence#26`) on top of them. No code or spec of this pilot is touched.\n\nWhat it answers: A/B/C are all about the moment of the chain itself. None answer what happens if the JCCDB snapshot",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#140",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-18T17:44:12Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "ogasurfproject-jpg/horizon-shield#51",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-18T17:52:18Z",
+   "url": "https://github.com/ogasurfproject-jpg/horizon-shield/issues/51#issuecomment-6253162057",
+   "title": "Pilot on ourselves: one paid audit call, three sets of receipts, frozen inputs (scoping)",
+   "text": "@ogasurfproject-jpg Done \u2014 PR#140 merged (`7ffe8dc8d3f44db52fc40b5bad54bbbeb8c65edb`), all three:\n\n1. Renamed: `horizon-shield-pilot-case-d/` \u2192 `horizon-shield-pilot-case-e/` (directory, vector IDs, prose) \u2014 yours holds Case D.\n2. Both vectors now use real data pinned to your `dcbdc5d2`: task/request_occurrence/Case A's execution_receipt+observation are byte-identical to your committed `live_smoke/call.json` and `receipt.json` (verified via `git hash-object` against GitHub's blob SHAs). Case E's pre-correction execution_receipt reuses the full `response_sha256`/`seen_block.height` you posted f",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "LFDT-ProofOfControl/ov-poc-standard#136",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-18T22:01:03Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#141",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-18T22:31:30Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "x402-foundation/x402#2833",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-18T22:49:06Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2833#issuecomment-6256138684",
+   "title": "Extension proposal: delivery-receipt attestation (proof-of-delivery for x402 responses)",
+   "text": "@StelarDigital \u2014 on CREATE2-vs-EAS: your \u00a76.0 already answers it, one level up. `AnchorRegistry.anchor(bytes32)` takes its input as opaque and is permissionless: each call emits an event and nothing rejects a re-anchor (checked against the contract source). Your RFC 6962 root goes in unchanged, the same bytes32 your ANCHOR_SCHEMA carries as `merkleRoot`. Anchored both ways, that is your \u00a76.0 \"two independent existence bounds over one canonical digest\", applied to the root instead of the leaf: they coexist, and a verifier can require either or both. Nothing changes below the root, so a claimId ",
+   "source": "user:giskard09"
+  }
+ ],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 5,
+   "updated_at": "2026-10-01T20:03:02Z",
+   "last_comment": {
+    "author": "giskard09",
+    "at": "2026-10-01T19:38:30Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-5939128229",
+    "text": "@aeoess Thanks for closing the loop directly \u2014 that's exactly the boundary we intended. Noted on pinning to a tag/commit on main rather than a moving branch, and checking CLARIFICATIONS.md for any later correction. Appreciate you, Martin and source-origin working through this with us."
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 198,
+   "updated_at": "2026-10-19T00:09:11Z",
+   "last_comment": {
+    "author": "maximusrufus",
+    "at": "2026-10-19T00:09:11Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6256874938",
+    "text": "@babyblueviper1 thanks, and confirmed independently: we ran your `war_check.py` on an unmodified copy of `vectors/` at `270e9fe`. At [`fc810af`](https://github.com/babyblueviper1/preaction-governance-conformance/tree/fc810af/examples/work-acceptance-record-cold) it agrees on 28/28. At the previous commit, `2eb9847`, it agrees on 25/28 and disagrees on exactly 20, 26 and 27, as you describe. Yes to the composition case from the live issuer: a real record that anyone can fetch and re-verify makes a stronger vector than a synthetic one.\n\nTrilatic (@maximusrufus on GitHub)\n"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 130,
+   "updated_at": "2026-10-18T17:55:29Z",
+   "last_comment": {
+    "author": "holistis",
+    "at": "2026-10-18T17:55:29Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6253193861",
+    "text": "Thanks for the merge and for the link in VERIFIER.md. The way you wrote it is the right way: from SPEC.md rather than from your source, with the caveat that nobody audited our code and the reader should run the vectors himself.\n\nWhich is what we did, on the fifth vector you added after our 4 of 4. We failed it, in the worst direction: INFLATED-VALUE came back accepted on our side. The cause is not a missing check but a check that could not fire. Ours read `result.outcome` and `result.status`; this format carries neither, so the expected amount stayed undefined and the comparison was skipped en"
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 63,
+   "updated_at": "2026-10-06T06:34:09Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-06T06:34:09Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6010784398",
+    "text": "We implemented the single-payment part of this draft (\u00a76, \u00a77) in presign-guard, a pre-sign check for agent payments:\n\n- POST /v1/check takes an optional mandate next to an EIP-3009 signature and turns a payment outside it red before the agent signs (wrong payer/asset/recipient, over perPayment or cap, expired, bad issuer signature, nonce \u2260 binding).\n- presign-guard-wallet's mandatePayer() makes x402 payments with the \u00a77 binding as the EIP-3009 nonce.\n- JCS bytes, digest, signature and the EIP-3009/Permit2 binding values match authority-vectors.json byte for byte.\n\nNot covered: cumulative spend"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-10-19T05:56:58+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 10,
+   "pushed_at": "2026-10-15T14:10:18Z",
+   "issues_tracked": 13
+  },
+  "Composable-Evidence-Criteria/.github": {
+   "main_latest": {
+    "sha": "9945f2c",
+    "at": "2026-09-30T08:29:38Z",
+    "msg": "Update name"
+   },
+   "files": {},
+   "open": {},
+   "issues_tracked": 0
+  },
+  "Composable-Evidence-Criteria/governance": {
+   "main_latest": {
+    "sha": "6a2532c",
+    "at": "2026-09-24T10:28:39Z",
+    "msg": "Add maintainers"
+   },
+   "files": {
+    "teams.yaml": "ec2793a"
+   },
+   "open": {
+    "2": {
+     "title": "Update team names add repo",
+     "pr": true,
+     "comments": 0,
+     "author": "ryjones",
+     "url": "https://github.com/Composable-Evidence-Criteria/governance/pull/2"
+    }
+   },
+   "issues_tracked": 2
+  },
+  "Composable-Evidence-Criteria/action-ref-conformance": {
+   "main_latest": {
+    "sha": "3164450",
+    "at": "2026-10-07T15:34:40Z",
+    "msg": "Merge pull request #6: GOVERNANCE correct magentixai conflict-of-interest line"
+   },
+   "files": {
+    "GOVERNANCE.md": "05ab3f1"
+   },
+   "open": {
+    "8": {
+     "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
+     "pr": true,
+     "comments": 0,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8"
+    },
+    "7": {
+     "title": "Heads-up: Rama will offer paid conformance-QA engagements on top of this lab's public corpus",
+     "pr": false,
+     "comments": 3,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/7"
+    },
+    "5": {
+     "title": "Lab communications: LFDT newsletter and meetup proposals, and who speaks for the lab",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/5"
+    },
+    "4": {
+     "title": "APS SDK passes the pinned action-ref v1 Action (verify-impl)",
+     "pr": false,
+     "comments": 0,
+     "author": "aeoess",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/4"
+    },
+    "2": {
+     "title": "Lab name: recomputable-evidence is taken, proposed replacement",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2"
+    }
+   },
+   "issues_tracked": 8
+  },
+  "user:giskard09": {
+   "events_seen": 91,
+   "latest_event": "2026-10-18T23:02:18Z"
+  }
+ },
+ "first_run": false
+}
