@@ -1,7 +1,91 @@
 {
- "checked_at": "2026-10-19T11:03:53+00:00",
- "previous_check": "2026-10-19T05:56:58+00:00",
- "changes": [],
+ "checked_at": "2026-10-20T05:57:00+00:00",
+ "previous_check": "2026-10-19T11:03:53+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "Tetsurohhori",
+   "at": "2026-10-19T13:44:22Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6268697252",
+   "text": "@maximusrufus \u2014 for the record on 1.3, same shape as @babyblueviper1's: the unchanged 1.2.1 verifier scores **24/28** at `270e9fe`, and a v13 with the four rulings scores **28/28**.\n\nThe four misses, in the order they matter:\n\n- **26 and 27.** The unchanged verifier accepted the neutral-point key and reported `signature_valid: true` with no code \u2014 the \"trusts its library alone\" failure you describe, measured here too under `cryptography` 46. v13 runs the key rule before any signature check, with its own RFC 8032 decoding: canonical `y < p`, then `[8]P` and `[L]P` against the identity (so mixed"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-19T15:05:06Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6270421552",
+   "text": "@Tetsurohhori thanks, and confirmed here: we ran `war_cold_verifier_v13.py` at [`e691785`](https://github.com/aos-standard/catalog/commit/e691785) on the current `vectors/` ([`2d8fac7`](https://github.com/maximusrufus/work-acceptance-record/tree/2d8fac7)), and it agrees on all 30. That includes 29 and 30, the first vectors whose tokens state an `accuracy`. They were published after v13 was frozen, so on those two v13 is a cold reading. 29 puts the criteria token 30 s before the check with a stated accuracy of 60 s, so commitment before the check cannot be established and the expected code is `"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-10-19T16:52:21Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6272478702",
+   "text": "Our clean-room verifier on the current corpus: before the fix it scored **29/30** at [`2d8fac7`](https://github.com/maximusrufus/work-acceptance-record/tree/2d8fac7). It missed 29. It never read the token's `accuracy`, so it treated a criteria token 30 s before the check as committed first, even though that token states 60 s of accuracy. 30 passed because of that same blindness, which tells us nothing about the rule.\n\nThe fix is [`d59c551`](https://github.com/babyblueviper1/preaction-governance-conformance/tree/d59c551/examples/work-acceptance-record-cold). It reads the RFC 3161 `accuracy` (se"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "robertolocatelli81-dev",
+   "at": "2026-10-19T18:00:02Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6273776268",
+   "text": "@maximusrufus \u2014 one more reading of 29 and 30: our clean-room verifier at [`bad1c00`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/tree/bad1c00) (0.2.0, pushed 2026-10-18T16:59Z, before `2d8fac7`), unchanged, agrees on all 30 vectors at `2d8fac7`, 263/263 fields. Its code predates 29 and 30. With `accuracy` ignored (its `accuracy=ignore` switch, our 1.2.1 reading; the 1.2.1 profile does not mention `accuracy`) it disagrees on 29 only, so the vector does separate the two readings. 28, 29 and 30 all came from our questions, so agreement on them is not independent evidenc"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "edtool79-collab",
+   "at": "2026-10-19T20:19:34Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6276446810",
+   "text": "Operator view from a small merchant gateway serving metered agent calls: **standardize the evidence record first, adjudication later** \u2014 it matches what we can actually implement today. Concretely, the fields that decide real disputes before any bond mechanism exists:\n\n1. **Quote digest binding** \u2014 receipt must embed the exact payment-required quote (price, asset, resource hash, expiry); without it, \"what was agreed\" is unfalsifiable after the fact.\n2. **Result attestation granularity** \u2014 a hash of the delivery payload (or its canonical form) lets a payer prove empty-result vs. charged-result "
+  },
+  {
+   "item": "Composable-Evidence-Criteria/action-ref-conformance#8",
+   "type": "review",
+   "author": "kenneives",
+   "at": "2026-10-19T17:17:46Z",
+   "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8#pullrequestreview-5575147447",
+   "text": "[review: APPROVED] Approve. Matches #7 and applies to all four of us. Non-blocking: say where the public engagement list lives (an `ENGAGEMENTS.md` at the root would do), so \"keep a public list\" has a place to point at."
+  },
+  {
+   "item": "Composable-Evidence-Criteria/action-ref-conformance#8",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-19T19:14:15Z",
+   "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8#issuecomment-6275207045",
+   "text": "@kenneives Added \u2014 `ENGAGEMENTS.md` at the root (40903d0), `GOVERNANCE.md` now links to it. Starts empty, no engagement has run yet, so there's nothing to backfill.\n"
+  },
+  {
+   "item": "Composable-Evidence-Criteria/action-ref-conformance#8",
+   "type": "review",
+   "author": "kenneives",
+   "at": "2026-10-19T19:22:53Z",
+   "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8#pullrequestreview-5576576581",
+   "text": "[review: APPROVED] Re-approving at `40903d0` \u2014 ENGAGEMENTS.md plus the GOVERNANCE.md pointer covers my note. Thanks."
+  },
+  {
+   "item": "giskard09/argentum-core#142",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-19T14:54:27Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "ogasurfproject-jpg/horizon-shield#51",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-19T15:01:38Z",
+   "url": "https://github.com/ogasurfproject-jpg/horizon-shield/issues/51#issuecomment-6270349591",
+   "title": "Pilot on ourselves: one paid audit call, three sets of receipts, frozen inputs (scoping)",
+   "text": "Following up on our own invitation above (\"Anyone else is welcome too\") \u2014 happy to serve as an optional additional witness. Treat this as entirely non-blocking: no need to change anything on the already-agreed threshold-2 plan with @astrogilda and @Poke-nushi on our account, and the run should go ahead on your timeline whether or not this key gets folded in before Thursday.\n\nDedicated witness key (one-time, not used elsewhere), published on our repo's main branch: https://github.com/giskard09/argentum-core/blob/main/docs/interop/horizon51-witness/public-key.json\n\n```\n{\"algorithm\": \"Ed25519\", \"",
+   "source": "user:giskard09"
+  }
+ ],
  "failures": [],
  "summary": {
   "LF-Decentralized-Trust/lab-proposals#2": {
@@ -41,13 +125,13 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 198,
-   "updated_at": "2026-10-19T00:09:11Z",
+   "comments": 203,
+   "updated_at": "2026-10-19T20:19:34Z",
    "last_comment": {
-    "author": "maximusrufus",
-    "at": "2026-10-19T00:09:11Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6256874938",
-    "text": "@babyblueviper1 thanks, and confirmed independently: we ran your `war_check.py` on an unmodified copy of `vectors/` at `270e9fe`. At [`fc810af`](https://github.com/babyblueviper1/preaction-governance-conformance/tree/fc810af/examples/work-acceptance-record-cold) it agrees on 28/28. At the previous commit, `2eb9847`, it agrees on 25/28 and disagrees on exactly 20, 26 and 27, as you describe. Yes to the composition case from the live issuer: a real record that anyone can fetch and re-verify makes a stronger vector than a synthetic one.\n\nTrilatic (@maximusrufus on GitHub)\n"
+    "author": "edtool79-collab",
+    "at": "2026-10-19T20:19:34Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6276446810",
+    "text": "Operator view from a small merchant gateway serving metered agent calls: **standardize the evidence record first, adjudication later** \u2014 it matches what we can actually implement today. Concretely, the fields that decide real disputes before any bond mechanism exists:\n\n1. **Quote digest binding** \u2014 receipt must embed the exact payment-required quote (price, asset, resource hash, expiry); without it, \"what was agreed\" is unfalsifiable after the fact.\n2. **Result attestation granularity** \u2014 a hash of the delivery payload (or its canonical form) lets a payer prove empty-result vs. charged-result "
    }
   },
   "x402-foundation/x402#2887": {
@@ -93,7 +177,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-10-19T11:03:53+00:00",
+   "checked": "2026-10-20T05:57:00+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -144,7 +228,7 @@
     "8": {
      "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
      "pr": true,
-     "comments": 0,
+     "comments": 1,
      "author": "giskard09",
      "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8"
     },
@@ -181,7 +265,7 @@
   },
   "user:giskard09": {
    "events_seen": 91,
-   "latest_event": "2026-10-18T23:02:18Z"
+   "latest_event": "2026-10-19T19:14:15Z"
   }
  },
  "first_run": false

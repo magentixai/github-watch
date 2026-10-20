@@ -92,7 +92,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 198,
+   "comments": 203,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -291,14 +291,19 @@
     6253520547,
     6256411444,
     6256653354,
-    6256874938
+    6256874938,
+    6268697252,
+    6270421552,
+    6272478702,
+    6273776268,
+    6276446810
    ],
-   "updated_at": "2026-10-19T00:09:11Z",
+   "updated_at": "2026-10-19T20:19:34Z",
    "last_comment": {
-    "author": "maximusrufus",
-    "at": "2026-10-19T00:09:11Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6256874938",
-    "text": "@babyblueviper1 thanks, and confirmed independently: we ran your `war_check.py` on an unmodified copy of `vectors/` at `270e9fe`. At [`fc810af`](https://github.com/babyblueviper1/preaction-governance-conformance/tree/fc810af/examples/work-acceptance-record-cold) it agrees on 28/28. At the previous commit, `2eb9847`, it agrees on 25/28 and disagrees on exactly 20, 26 and 27, as you describe. Yes to the composition case from the live issuer: a real record that anyone can fetch and re-verify makes a stronger vector than a synthetic one.\n\nTrilatic (@maximusrufus on GitHub)\n"
+    "author": "edtool79-collab",
+    "at": "2026-10-19T20:19:34Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6276446810",
+    "text": "Operator view from a small merchant gateway serving metered agent calls: **standardize the evidence record first, adjudication later** \u2014 it matches what we can actually implement today. Concretely, the fields that decide real disputes before any bond mechanism exists:\n\n1. **Quote digest binding** \u2014 receipt must embed the exact payment-required quote (price, asset, resource hash, expiry); without it, \"what was agreed\" is unfalsifiable after the fact.\n2. **Result attestation granularity** \u2014 a hash of the delivery payload (or its canonical form) lets a payer prove empty-result vs. charged-result "
    }
   },
   "x402-foundation/x402#2887": {
@@ -541,10 +546,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-19T11:03:53+00:00",
+ "last_checked": "2026-10-20T05:57:00+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-19T11:03:53+00:00",
+   "checked": "2026-10-20T05:57:00+00:00",
    "items": {
     "16": {
      "title": "WO22: global tax determination work order",
@@ -767,10 +772,10 @@
      "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
      "state": "open",
      "pr": true,
-     "comments": 0,
+     "comments": 1,
      "author": "giskard09",
      "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8",
-     "updated_at": "2026-10-17T21:49:53Z"
+     "updated_at": "2026-10-19T19:22:53Z"
     },
     "7": {
      "title": "Heads-up: Rama will offer paid conformance-QA engagements on top of this lab's public corpus",
@@ -859,6 +864,9 @@
     6237195632,
     6237290695,
     6237323079,
+    6275207045,
+    5575147447,
+    5576576581,
     5443489549,
     5444397649,
     5364951810,
@@ -878,6 +886,11 @@
  },
  "user_events": {
   "giskard09": [
+   "17642371279",
+   "17637110829",
+   "17630684860",
+   "17609855661",
+   "24528959881",
    "24513679362",
    "24510957133",
    "24499754274",
@@ -963,12 +976,7 @@
    "17051228168",
    "17050475902",
    "17050283791",
-   "17049404258",
-   "17049250046",
-   "17049010270",
-   "17048567719",
-   "17033168576",
-   "23795228074"
+   "17049404258"
   ]
  }
 }
