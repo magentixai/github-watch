@@ -92,7 +92,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 203,
+   "comments": 205,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -296,14 +296,16 @@
     6270421552,
     6272478702,
     6273776268,
-    6276446810
+    6276446810,
+    6287646588,
+    6288271303
    ],
-   "updated_at": "2026-10-19T20:19:34Z",
+   "updated_at": "2026-10-20T09:53:10Z",
    "last_comment": {
-    "author": "edtool79-collab",
-    "at": "2026-10-19T20:19:34Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6276446810",
-    "text": "Operator view from a small merchant gateway serving metered agent calls: **standardize the evidence record first, adjudication later** \u2014 it matches what we can actually implement today. Concretely, the fields that decide real disputes before any bond mechanism exists:\n\n1. **Quote digest binding** \u2014 receipt must embed the exact payment-required quote (price, asset, resource hash, expiry); without it, \"what was agreed\" is unfalsifiable after the fact.\n2. **Result attestation granularity** \u2014 a hash of the delivery payload (or its canonical form) lets a payer prove empty-result vs. charged-result "
+    "author": "babyblueviper1",
+    "at": "2026-10-20T09:53:10Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6288271303",
+    "text": "On the honest-absence request: shipped. `war_check.py` now carries a `tsa_signature` field in the outcome \u2014 `not-evaluated` whenever a receipt or criteria token is present, `none` when neither is \u2014 so `receipt_timestamp: imprint_match` can't be read as a verified time on its own. Step 9 (the TSA's signature and chain) stays unparsed, same as before, but it's now explicit in the machine-readable result, not just the README's \"what it does not check.\" All 69 existing vectors still agree (`upstream_vectors_1_3_30`, `upstream_vectors_1_3`, `upstream_vectors`, `proposed_vectors`): [`3243d33`](https"
    }
   },
   "x402-foundation/x402#2887": {
@@ -546,10 +548,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-20T05:57:00+00:00",
+ "last_checked": "2026-10-20T10:17:08+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-20T05:57:00+00:00",
+   "checked": "2026-10-20T10:17:08+00:00",
    "items": {
     "16": {
      "title": "WO22: global tax determination work order",

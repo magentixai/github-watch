@@ -1,0 +1,205 @@
+{
+ "checked_at": "2026-10-20T10:17:08+00:00",
+ "previous_check": "2026-10-20T05:57:00+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "magentixai",
+   "at": "2026-10-20T09:16:31Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6287646588",
+   "text": "> 20\\. phase-one scope item that already meets this charter's bar, with running code from four parties: reserve a **work-acceptance record** type\n\n@maximusrufus, I agree, and believe it should go to the chartering group as a candidate for phase one, as a record type on the shared shape. Three conditions from my side:\n\nFindings, not a ruling. The checker\u2019s signed findings and the counterparty\u2019s accepted / rejected / disputed decision stay two records from two parties, joined by digest. Rules for deciding, and anything that follows a decision (refunds, release of funds), stay in later phases.\nCo"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-10-20T09:53:10Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6288271303",
+   "text": "On the honest-absence request: shipped. `war_check.py` now carries a `tsa_signature` field in the outcome \u2014 `not-evaluated` whenever a receipt or criteria token is present, `none` when neither is \u2014 so `receipt_timestamp: imprint_match` can't be read as a verified time on its own. Step 9 (the TSA's signature and chain) stays unparsed, same as before, but it's now explicit in the machine-readable result, not just the README's \"what it does not check.\" All 69 existing vectors still agree (`upstream_vectors_1_3_30`, `upstream_vectors_1_3`, `upstream_vectors`, `proposed_vectors`): [`3243d33`](https"
+  }
+ ],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 5,
+   "updated_at": "2026-10-01T20:03:02Z",
+   "last_comment": {
+    "author": "giskard09",
+    "at": "2026-10-01T19:38:30Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-5939128229",
+    "text": "@aeoess Thanks for closing the loop directly \u2014 that's exactly the boundary we intended. Noted on pinning to a tag/commit on main rather than a moving branch, and checking CLARIFICATIONS.md for any later correction. Appreciate you, Martin and source-origin working through this with us."
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 205,
+   "updated_at": "2026-10-20T09:53:10Z",
+   "last_comment": {
+    "author": "babyblueviper1",
+    "at": "2026-10-20T09:53:10Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6288271303",
+    "text": "On the honest-absence request: shipped. `war_check.py` now carries a `tsa_signature` field in the outcome \u2014 `not-evaluated` whenever a receipt or criteria token is present, `none` when neither is \u2014 so `receipt_timestamp: imprint_match` can't be read as a verified time on its own. Step 9 (the TSA's signature and chain) stays unparsed, same as before, but it's now explicit in the machine-readable result, not just the README's \"what it does not check.\" All 69 existing vectors still agree (`upstream_vectors_1_3_30`, `upstream_vectors_1_3`, `upstream_vectors`, `proposed_vectors`): [`3243d33`](https"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 130,
+   "updated_at": "2026-10-18T17:55:29Z",
+   "last_comment": {
+    "author": "holistis",
+    "at": "2026-10-18T17:55:29Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6253193861",
+    "text": "Thanks for the merge and for the link in VERIFIER.md. The way you wrote it is the right way: from SPEC.md rather than from your source, with the caveat that nobody audited our code and the reader should run the vectors himself.\n\nWhich is what we did, on the fifth vector you added after our 4 of 4. We failed it, in the worst direction: INFLATED-VALUE came back accepted on our side. The cause is not a missing check but a check that could not fire. Ours read `result.outcome` and `result.status`; this format carries neither, so the expected amount stayed undefined and the comparison was skipped en"
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 63,
+   "updated_at": "2026-10-06T06:34:09Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-06T06:34:09Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6010784398",
+    "text": "We implemented the single-payment part of this draft (\u00a76, \u00a77) in presign-guard, a pre-sign check for agent payments:\n\n- POST /v1/check takes an optional mandate next to an EIP-3009 signature and turns a payment outside it red before the agent signs (wrong payer/asset/recipient, over perPayment or cap, expired, bad issuer signature, nonce \u2260 binding).\n- presign-guard-wallet's mandatePayer() makes x402 payments with the \u00a77 binding as the EIP-3009 nonce.\n- JCS bytes, digest, signature and the EIP-3009/Permit2 binding values match authority-vectors.json byte for byte.\n\nNot covered: cumulative spend"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-10-20T10:17:08+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 10,
+   "pushed_at": "2026-10-15T14:10:18Z",
+   "issues_tracked": 13
+  },
+  "Composable-Evidence-Criteria/.github": {
+   "main_latest": {
+    "sha": "9945f2c",
+    "at": "2026-09-30T08:29:38Z",
+    "msg": "Update name"
+   },
+   "files": {},
+   "open": {},
+   "issues_tracked": 0
+  },
+  "Composable-Evidence-Criteria/governance": {
+   "main_latest": {
+    "sha": "6a2532c",
+    "at": "2026-09-24T10:28:39Z",
+    "msg": "Add maintainers"
+   },
+   "files": {
+    "teams.yaml": "ec2793a"
+   },
+   "open": {
+    "2": {
+     "title": "Update team names add repo",
+     "pr": true,
+     "comments": 0,
+     "author": "ryjones",
+     "url": "https://github.com/Composable-Evidence-Criteria/governance/pull/2"
+    }
+   },
+   "issues_tracked": 2
+  },
+  "Composable-Evidence-Criteria/action-ref-conformance": {
+   "main_latest": {
+    "sha": "3164450",
+    "at": "2026-10-07T15:34:40Z",
+    "msg": "Merge pull request #6: GOVERNANCE correct magentixai conflict-of-interest line"
+   },
+   "files": {
+    "GOVERNANCE.md": "05ab3f1"
+   },
+   "open": {
+    "8": {
+     "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
+     "pr": true,
+     "comments": 1,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8"
+    },
+    "7": {
+     "title": "Heads-up: Rama will offer paid conformance-QA engagements on top of this lab's public corpus",
+     "pr": false,
+     "comments": 3,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/7"
+    },
+    "5": {
+     "title": "Lab communications: LFDT newsletter and meetup proposals, and who speaks for the lab",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/5"
+    },
+    "4": {
+     "title": "APS SDK passes the pinned action-ref v1 Action (verify-impl)",
+     "pr": false,
+     "comments": 0,
+     "author": "aeoess",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/4"
+    },
+    "2": {
+     "title": "Lab name: recomputable-evidence is taken, proposed replacement",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2"
+    }
+   },
+   "issues_tracked": 8
+  },
+  "user:giskard09": {
+   "events_seen": 91,
+   "latest_event": "2026-10-19T19:14:15Z"
+  }
+ },
+ "first_run": false
+}
