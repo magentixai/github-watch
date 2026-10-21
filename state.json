@@ -69,20 +69,21 @@
    "state": "closed",
    "state_reason": "completed",
    "labels": [],
-   "comments": 5,
+   "comments": 6,
    "comment_ids": [
     5812866974,
     5906584459,
     5912769196,
     5936568271,
-    5939128229
+    5939128229,
+    6294062372
    ],
-   "updated_at": "2026-10-01T20:03:02Z",
+   "updated_at": "2026-10-20T15:06:35Z",
    "last_comment": {
-    "author": "giskard09",
-    "at": "2026-10-01T19:38:30Z",
-    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-5939128229",
-    "text": "@aeoess Thanks for closing the loop directly \u2014 that's exactly the boundary we intended. Noted on pinning to a tag/commit on main rather than a moving branch, and checking CLARIFICATIONS.md for any later correction. Appreciate you, Martin and source-origin working through this with us."
+    "author": "source-origin",
+    "at": "2026-10-20T15:06:34Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-6294062372",
+    "text": "Tymofii,\r\n\r\nYou closed the loop on two questions in the same thread, and you gave us a\r\ndistinction we have since used more than anything else from that exchange:\r\n*reference by pin, not host*, with criteria marked as authored judgment rather\r\nthan recomputed fact.\r\n\r\nWe used it and did not tell you. Nineteen days. Sorry.\r\n\r\n**Where it landed.** Our rubric header now carries two separate lines, because\r\nyour distinction made it obvious that one line was a lie:\r\n\r\n- `criteria_version` + `pinned_commit` \u2014 what was applied, and the exact bytes\r\n  it was applied from. If the criteria move, the pin"
    }
   },
   "x402-foundation/tsc#4": {
@@ -92,7 +93,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 205,
+   "comments": 209,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -298,14 +299,18 @@
     6273776268,
     6276446810,
     6287646588,
-    6288271303
+    6288271303,
+    6294582057,
+    6295390438,
+    6303226273,
+    6309030276
    ],
-   "updated_at": "2026-10-20T09:53:10Z",
+   "updated_at": "2026-10-21T05:46:09Z",
    "last_comment": {
-    "author": "babyblueviper1",
-    "at": "2026-10-20T09:53:10Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6288271303",
-    "text": "On the honest-absence request: shipped. `war_check.py` now carries a `tsa_signature` field in the outcome \u2014 `not-evaluated` whenever a receipt or criteria token is present, `none` when neither is \u2014 so `receipt_timestamp: imprint_match` can't be read as a verified time on its own. Step 9 (the TSA's signature and chain) stays unparsed, same as before, but it's now explicit in the machine-readable result, not just the README's \"what it does not check.\" All 69 existing vectors still agree (`upstream_vectors_1_3_30`, `upstream_vectors_1_3`, `upstream_vectors`, `proposed_vectors`): [`3243d33`](https"
+    "author": "robertolocatelli81-dev",
+    "at": "2026-10-21T05:46:09Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6309030276",
+    "text": "@maximusrufus \u2014 a clean-room run of 31\u201336: our verifier at [`4184a47`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/tree/4184a47) (0.3.0) agrees with every `expected` object at `eb0f30b`, 36/36 vectors, and with the live `selftest-pass.json`: 332/332 fields over the 37 documents. It was written from the 1.4 README and the RFCs it names; `verifier/war_verify.py` was not opened. Tetsurohhori's report above was read before writing, so on the order between values (below) we are not independent of it.\n\nTwo readings the text leaves open, each with a case that separates them:"
    }
   },
   "x402-foundation/x402#2887": {
@@ -313,7 +318,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 130,
+   "comments": 131,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -444,14 +449,15 @@
     6237474743,
     6237860774,
     6252911257,
-    6253193861
+    6253193861,
+    6296055689
    ],
-   "updated_at": "2026-10-18T17:55:29Z",
+   "updated_at": "2026-10-20T16:41:51Z",
    "last_comment": {
-    "author": "holistis",
-    "at": "2026-10-18T17:55:29Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6253193861",
-    "text": "Thanks for the merge and for the link in VERIFIER.md. The way you wrote it is the right way: from SPEC.md rather than from your source, with the caveat that nobody audited our code and the reader should run the vectors himself.\n\nWhich is what we did, on the fifth vector you added after our 4 of 4. We failed it, in the worst direction: INFLATED-VALUE came back accepted on our side. The cause is not a missing check but a check that could not fire. Ours read `result.outcome` and `result.status`; this format carries neither, so the expected amount stayed undefined and the comparison was skipped en"
+    "author": "magentixai",
+    "at": "2026-10-20T16:40:39Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6296055689",
+    "text": "@holistis, @hheskihoran - a short note rather than a pitch -\n\nThe part I\u2019d pull out is the INFLATED-VALUE miss. A check that could not fire is not a check that passed, and reporting it as amount-unbound rather than valid is the whole point. It is the \u201cnot evaluated\u201d outcome in my own work, so it is good to see it reached independently. The same goes for saying plainly that the receipt has exactly one independent party.\n\nOn bytes as transmitted versus a canonical re-serialisation: its worth settling up front. Our corpus is checked on the canonical form (JCS), and an independent cross-language h"
    }
   },
   "x402-foundation/x402#3220": {
@@ -548,10 +554,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-20T10:17:08+00:00",
+ "last_checked": "2026-10-21T05:56:59+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-20T10:17:08+00:00",
+   "checked": "2026-10-21T05:56:59+00:00",
    "items": {
     "16": {
      "title": "WO22: global tax determination work order",
@@ -563,7 +569,7 @@
     },
     "15": {
      "title": "Docs: fixes from the gt-v2.1 re-verification; record re-verifications",
-     "state": "open",
+     "state": "closed",
      "pr": true,
      "comments": 0,
      "author": "magentixai",
@@ -720,8 +726,8 @@
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
-   "open_issues_count": 10,
-   "pushed_at": "2026-10-15T14:10:18Z"
+   "open_issues_count": 9,
+   "pushed_at": "2026-10-20T17:27:29Z"
   }
  },
  "cec": {
@@ -888,6 +894,23 @@
  },
  "user_events": {
   "giskard09": [
+   "24677956044",
+   "24664128819",
+   "24657080010",
+   "24653598865",
+   "24640817018",
+   "24637075495",
+   "24630189658",
+   "24629953179",
+   "24629405667",
+   "24629370909",
+   "24628733076",
+   "17709567300",
+   "17706813035",
+   "17706565791",
+   "24620319621",
+   "17706283760",
+   "17703433314",
    "17642371279",
    "17637110829",
    "17630684860",
@@ -968,17 +991,7 @@
    "17322010279",
    "17289114740",
    "24066996214",
-   "24003567264",
-   "17227622154",
-   "23930177944",
-   "17152289459",
-   "17128210745",
-   "17115432040",
-   "17051611551",
-   "17051228168",
-   "17050475902",
-   "17050283791",
-   "17049404258"
+   "24003567264"
   ]
  }
 }

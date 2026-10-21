@@ -1,0 +1,283 @@
+{
+ "checked_at": "2026-10-21T05:56:59+00:00",
+ "previous_check": "2026-10-20T10:17:08+00:00",
+ "changes": [
+  {
+   "item": "Agent-Authority-Conformance/aps-conformance-suite#121",
+   "type": "comment",
+   "author": "source-origin",
+   "at": "2026-10-20T15:06:34Z",
+   "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-6294062372",
+   "text": "Tymofii,\r\n\r\nYou closed the loop on two questions in the same thread, and you gave us a\r\ndistinction we have since used more than anything else from that exchange:\r\n*reference by pin, not host*, with criteria marked as authored judgment rather\r\nthan recomputed fact.\r\n\r\nWe used it and did not tell you. Nineteen days. Sorry.\r\n\r\n**Where it landed.** Our rubric header now carries two separate lines, because\r\nyour distinction made it obvious that one line was a lie:\r\n\r\n- `criteria_version` + `pinned_commit` \u2014 what was applied, and the exact bytes\r\n  it was applied from. If the criteria move, the pin"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-20T15:30:52Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6294582057",
+   "text": "@magentixai thank you. All three conditions are how the profile already reads, and they belong in the charter text as you put them:\n\n- **Findings, not a ruling.** The work-acceptance record carries only the checker's signed findings. The counterparty's accepted / rejected / disputed decision is made separately and cites the record digest, and decision rules and anything that moves funds stay in later phases.\n- **Composition vector first.** Agreed. @babyblueviper1 has offered a real record from their live issuer for it, and @Tetsurohhori an independent run.\n- **Same bar as every other type.** A"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-20T16:08:01Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6295390438",
+   "text": "@magentixai Profile 1.4 adds the authority-signature outcome as committed above: https://github.com/maximusrufus/work-acceptance-record/commit/eb0f30b\n\n- `tsa_signature` is a separate outcome field, one key per token present (`criteria`, and `receipt` for the record's token, matching `receipt_timestamp`). Without relying-party anchors it is `not_evaluated` (an absent field reads the same), so vectors 01-30 are unchanged. With anchors it is `verified`, `failed`, `untrusted`, `unsupported` or `no_signer`. `verified` covers the CMS signature, the ESS signing-certificate binding, `id-kp-timeStampi"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "Tetsurohhori",
+   "at": "2026-10-20T22:30:33Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6303226273",
+   "text": "@maximusrufus \u2014 31\u201336 from a clean-room step 9: **36/36** at `eb0f30b`, no disagreement on any `expected` object. Written from the 1.4 README, RFC 3161 \u00a72.4.2, RFC 5652 \u00a75, RFC 5035 and RFC 5280; `verifier/war_verify.py` was not opened. The CMS walk is its own; `cryptography` does the X.509 parsing and the RSA/ECDSA arithmetic. The `expected` objects were on screen while I read the input shape, so this is a third implementation of step 9, not a blind one.\n\nThe honest version of the number: the first scored run produced no score. Under `python3 -I` the interpreter loads the system `cryptography"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "robertolocatelli81-dev",
+   "at": "2026-10-21T05:46:09Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6309030276",
+   "text": "@maximusrufus \u2014 a clean-room run of 31\u201336: our verifier at [`4184a47`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/tree/4184a47) (0.3.0) agrees with every `expected` object at `eb0f30b`, 36/36 vectors, and with the live `selftest-pass.json`: 332/332 fields over the 37 documents. It was written from the 1.4 README and the RFCs it names; `verifier/war_verify.py` was not opened. Tetsurohhori's report above was read before writing, so on the order between values (below) we are not independent of it.\n\nTwo readings the text leaves open, each with a case that separates them:"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "magentixai",
+   "at": "2026-10-20T16:40:39Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6296055689",
+   "text": "@holistis, @hheskihoran - a short note rather than a pitch -\n\nThe part I\u2019d pull out is the INFLATED-VALUE miss. A check that could not fire is not a check that passed, and reporting it as amount-unbound rather than valid is the whole point. It is the \u201cnot evaluated\u201d outcome in my own work, so it is good to see it reached independently. The same goes for saying plainly that the receipt has exactly one independent party.\n\nOn bytes as transmitted versus a canonical re-serialisation: its worth settling up front. Our corpus is checked on the canonical form (JCS), and an independent cross-language h"
+  },
+  {
+   "item": "magentixai/axes#15",
+   "type": "state",
+   "from": "open",
+   "to": "closed",
+   "url": "https://github.com/magentixai/axes/pull/15"
+  },
+  {
+   "item": "ogasurfproject-jpg/horizon-shield#51",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-20T10:49:56Z",
+   "url": "https://github.com/ogasurfproject-jpg/horizon-shield/issues/51#issuecomment-6289198580",
+   "title": "Pilot on ourselves: one paid audit call, three sets of receipts, frozen inputs (scoping)",
+   "text": "@ogasurfproject-jpg @astrogilda @Poke-nushi @aeoess Witness acknowledgements for the four items named in the replacement set above, signed with the key already published for this role (`cf3fba88\u2026`, `docs/interop/horizon51-witness/public-key.json`, `giskard09/argentum-core`). Non-blocking, as before \u2014 the threshold-2 configuration with @astrogilda and @Poke-nushi needs nothing from us.\n\n**What we checked independently** (not from the report above, from the twelve files on their own): each file's byte length and SHA-256 against the twelve quoted in the replacement comment; `task_sha256` in each ",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#143",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-20T12:31:12Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "ogasurfproject-jpg/horizon-shield#51",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-20T12:37:31Z",
+   "url": "https://github.com/ogasurfproject-jpg/horizon-shield/issues/51#issuecomment-6291006694",
+   "title": "Pilot on ourselves: one paid audit call, three sets of receipts, frozen inputs (scoping)",
+   "text": "@ogasurfproject-jpg Thank you for checking. The four `.ots` files, committed at `giskard09/argentum-core@0aa0a37`:\n\n- [`ack_budget.jcs.ots`](https://github.com/giskard09/argentum-core/blob/0aa0a37/docs/interop/horizon51-witness/ots/ack_budget.jcs.ots)\n- [`ack_criteria_A.jcs.ots`](https://github.com/giskard09/argentum-core/blob/0aa0a37/docs/interop/horizon51-witness/ots/ack_criteria_A.jcs.ots)\n- [`ack_criteria_B.jcs.ots`](https://github.com/giskard09/argentum-core/blob/0aa0a37/docs/interop/horizon51-witness/ots/ack_criteria_B.jcs.ots)\n- [`ack_criteria_C.jcs.ots`](https://github.com/giskard09/ar",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "mirjak/audit-bof-preparation#63",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-20T13:09:59Z",
+   "url": "https://github.com/mirjak/audit-bof-preparation/pull/63#issuecomment-6291618019",
+   "title": "Charter: why transparency logs are needed, and what a record carries (#48)",
+   "text": "@ogasurfproject-jpg's text above describes exactly a shape we've been running in production: \"log consistency that independent witnesses can check,\" plus records created after the fact that the operator doesn't control.\n\nTwo things from implementation, not from this charter:\n\n1. **Independent witnesses, right now.** We just did this, literally today, on @ogasurfproject-jpg's own pilot (ogasurfproject-jpg/horizon-shield#51): signed a set of acknowledgements over published items with a dedicated key, anchored them with OpenTimestamps, as an optional witness alongside the pilot's own threshold-2 ",
+   "source": "user:giskard09"
+  }
+ ],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 6,
+   "updated_at": "2026-10-20T15:06:35Z",
+   "last_comment": {
+    "author": "source-origin",
+    "at": "2026-10-20T15:06:34Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-6294062372",
+    "text": "Tymofii,\r\n\r\nYou closed the loop on two questions in the same thread, and you gave us a\r\ndistinction we have since used more than anything else from that exchange:\r\n*reference by pin, not host*, with criteria marked as authored judgment rather\r\nthan recomputed fact.\r\n\r\nWe used it and did not tell you. Nineteen days. Sorry.\r\n\r\n**Where it landed.** Our rubric header now carries two separate lines, because\r\nyour distinction made it obvious that one line was a lie:\r\n\r\n- `criteria_version` + `pinned_commit` \u2014 what was applied, and the exact bytes\r\n  it was applied from. If the criteria move, the pin"
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 209,
+   "updated_at": "2026-10-21T05:46:09Z",
+   "last_comment": {
+    "author": "robertolocatelli81-dev",
+    "at": "2026-10-21T05:46:09Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6309030276",
+    "text": "@maximusrufus \u2014 a clean-room run of 31\u201336: our verifier at [`4184a47`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/tree/4184a47) (0.3.0) agrees with every `expected` object at `eb0f30b`, 36/36 vectors, and with the live `selftest-pass.json`: 332/332 fields over the 37 documents. It was written from the 1.4 README and the RFCs it names; `verifier/war_verify.py` was not opened. Tetsurohhori's report above was read before writing, so on the order between values (below) we are not independent of it.\n\nTwo readings the text leaves open, each with a case that separates them:"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 131,
+   "updated_at": "2026-10-20T16:41:51Z",
+   "last_comment": {
+    "author": "magentixai",
+    "at": "2026-10-20T16:40:39Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6296055689",
+    "text": "@holistis, @hheskihoran - a short note rather than a pitch -\n\nThe part I\u2019d pull out is the INFLATED-VALUE miss. A check that could not fire is not a check that passed, and reporting it as amount-unbound rather than valid is the whole point. It is the \u201cnot evaluated\u201d outcome in my own work, so it is good to see it reached independently. The same goes for saying plainly that the receipt has exactly one independent party.\n\nOn bytes as transmitted versus a canonical re-serialisation: its worth settling up front. Our corpus is checked on the canonical form (JCS), and an independent cross-language h"
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 63,
+   "updated_at": "2026-10-06T06:34:09Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-06T06:34:09Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6010784398",
+    "text": "We implemented the single-payment part of this draft (\u00a76, \u00a77) in presign-guard, a pre-sign check for agent payments:\n\n- POST /v1/check takes an optional mandate next to an EIP-3009 signature and turns a payment outside it red before the agent signs (wrong payer/asset/recipient, over perPayment or cap, expired, bad issuer signature, nonce \u2260 binding).\n- presign-guard-wallet's mandatePayer() makes x402 payments with the \u00a77 binding as the EIP-3009 nonce.\n- JCS bytes, digest, signature and the EIP-3009/Permit2 binding values match authority-vectors.json byte for byte.\n\nNot covered: cumulative spend"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-10-21T05:56:59+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 9,
+   "pushed_at": "2026-10-20T17:27:29Z",
+   "issues_tracked": 13
+  },
+  "Composable-Evidence-Criteria/.github": {
+   "main_latest": {
+    "sha": "9945f2c",
+    "at": "2026-09-30T08:29:38Z",
+    "msg": "Update name"
+   },
+   "files": {},
+   "open": {},
+   "issues_tracked": 0
+  },
+  "Composable-Evidence-Criteria/governance": {
+   "main_latest": {
+    "sha": "6a2532c",
+    "at": "2026-09-24T10:28:39Z",
+    "msg": "Add maintainers"
+   },
+   "files": {
+    "teams.yaml": "ec2793a"
+   },
+   "open": {
+    "2": {
+     "title": "Update team names add repo",
+     "pr": true,
+     "comments": 0,
+     "author": "ryjones",
+     "url": "https://github.com/Composable-Evidence-Criteria/governance/pull/2"
+    }
+   },
+   "issues_tracked": 2
+  },
+  "Composable-Evidence-Criteria/action-ref-conformance": {
+   "main_latest": {
+    "sha": "3164450",
+    "at": "2026-10-07T15:34:40Z",
+    "msg": "Merge pull request #6: GOVERNANCE correct magentixai conflict-of-interest line"
+   },
+   "files": {
+    "GOVERNANCE.md": "05ab3f1"
+   },
+   "open": {
+    "8": {
+     "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
+     "pr": true,
+     "comments": 1,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8"
+    },
+    "7": {
+     "title": "Heads-up: Rama will offer paid conformance-QA engagements on top of this lab's public corpus",
+     "pr": false,
+     "comments": 3,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/7"
+    },
+    "5": {
+     "title": "Lab communications: LFDT newsletter and meetup proposals, and who speaks for the lab",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/5"
+    },
+    "4": {
+     "title": "APS SDK passes the pinned action-ref v1 Action (verify-impl)",
+     "pr": false,
+     "comments": 0,
+     "author": "aeoess",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/4"
+    },
+    "2": {
+     "title": "Lab name: recomputable-evidence is taken, proposed replacement",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2"
+    }
+   },
+   "issues_tracked": 8
+  },
+  "user:giskard09": {
+   "events_seen": 98,
+   "latest_event": "2026-10-20T13:09:59Z"
+  }
+ },
+ "first_run": false
+}
