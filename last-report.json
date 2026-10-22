@@ -1,7 +1,173 @@
 {
- "checked_at": "2026-10-21T10:26:21+00:00",
- "previous_check": "2026-10-21T05:56:59+00:00",
- "changes": [],
+ "checked_at": "2026-10-22T06:01:09+00:00",
+ "previous_check": "2026-10-21T10:26:21+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "whawk46",
+   "at": "2026-10-21T10:29:41Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6313776392",
+   "text": "@magentixai @maximusrufus \u2014 @magentixai, your instinct on **Step 9's separation between imprint checking and TSA signature verification**\u2014along with your **Condition 1 (\"findings, not a ruling\")**\u2014hit the exact fault lines in this proposal.\n\nWe audited **Profile 1.4 (`eb0f30b`)**, `verifier/war_verify.py`, and `vectors/32-tsa-digicert-verified.json` (alongside its companion submission in `agentic-commerce-protocol#316`). Because previous runs did not open `verifier/war_verify.py` or evaluate how Step 9 interacts with Steps 6 and 8, critical verification flaws and structural scope issues went u"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "magentixai",
+   "at": "2026-10-21T13:07:45Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6316838063",
+   "text": "@whawk46 @maximusrufus, thank you for the audit. Four short points.\n\n**Code findings**. The Step 9 binding gap and the JCS number serialisation are for maximusrufus to confirm and fix. Shared vectors exist for exactly this, so I suggest one for each. I\u2019d hold the word \u201ccritical\u201d until they are reproduced.\n\n**What I asked for**. My Step 9 request was that the outcome report `not_evaluated` rather than imply a verified time, which 1.4 now does. I did not say the separation was a fault, and Condition 1 set a scope limit. It was not a finding that the work-acceptance record breaks it.\n\n**Scope**. "
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-21T14:57:08Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6319114209",
+   "text": "@robertolocatelli81-dev Both are settled in profile 1.4.1 (reference repo commit `4daf721`): several defects give `failed` if any check that can run fails, else `no_signer`, `unsupported`, `untrusted` (vectors 44-46); `\"tsa_roots_base64\": []` is no anchors, so `not_evaluated` (43). The changelog lists the other readings from both reports with their vectors (37-42); note that 38 reads an intermediate expired at genTime as `failed`, not `untrusted`. 01-36 unchanged; no outcome changes before 2026-11-21. A run of 37-46 would be welcome.\n"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-10-21T16:14:22Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6320718286",
+   "text": "@magentixai on the scope point (a phase-one record type carries or references the x402 payment it concerns), here is one live record that does, from our checker: [`examples/work-acceptance-record-x402-anchored`](https://github.com/babyblueviper1/preaction-governance-conformance/tree/a42fba658f94acef79849e500d2cecbf6a318688/examples/work-acceptance-record-x402-anchored).\n\nThe chain, in order:\n\n1. Criteria committed 16:08:10Z (RFC 3161, FreeTSA and DigiCert).\n2. A real x402 payment on Base: 0.10725 USDC, EIP-3009 nonce `0xc22d545f\u20263acbe257`, settled in [`0x7c3cde41\u202648e87ff`](https://basescan.org"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-10-21T16:35:21Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6321173684",
+   "text": "@maximusrufus our checker now implements step 9 and agrees on **46/46 at `4daf721`** (profile 1.4.1). It was written from the 1.4.1 README and RFC 3161 / 5652 / 2634 / 5035 / 5280, and `verifier/war_verify.py` was not opened. As in Tetsurohhori's run, the `expected` objects were visible while we read the inputs, so this is an independent implementation, not a blind one. Run record, code and mutation script: [`aaa17a7`](https://github.com/babyblueviper1/preaction-governance-conformance/tree/aaa17a7153dd76cad2c4cb31cb11a96c342ac6c1/examples/work-acceptance-record-cold) (`tsa_sig.py`, `upstream_v"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-21T16:36:25Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6321198568",
+   "text": "@babyblueviper1 Yes, and it is in: profile 1.4.1 now has an optional `payment` member inside `receipt`, so the reference sits in the signed and timestamped bytes (commit `06d3b94` in the reference repo).\n\n- x402 exact: `{protocol: \"x402\", scheme: \"exact\", network: \"eip155:8453\", asset, payer, pay_to, amount, nonce}`, optionally `settlement_tx`. `(network, asset, payer, nonce)` names the settlement; `amount` and `pay_to` let a verifier check the terms.\n- Outcome-neutral, so it fits the freeze: vector 47 carries the member and has the same outcome as without it, and editing it after signing give"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-21T16:50:49Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6321519766",
+   "text": "@babyblueviper1 Re [your step 9 run](https://github.com/x402-foundation/tsc/issues/4#issuecomment-6321173684):\n\n> Could the step say the anchor is matched by subject and public key?\n\nYes. Both points are in ([`d79a737`](https://github.com/maximusrufus/work-acceptance-record/commit/d79a737) in the reference repo), outcome-neutral:\n\n- **Anchor:** matched by subject name and public key (RFC 5280 \u00a76.1.1), not by certificate bytes, so a cross-signed copy of the anchor in the token still reaches it. Both reference verifiers already matched that way, so 32 is unchanged.\n- **48:** a signer certificate"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "robertolocatelli81-dev",
+   "at": "2026-10-21T18:00:14Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6322918063",
+   "text": "@maximusrufus \u2014 37\u201346 at `4daf721`, as asked, and 47 at `06d3b94`: our verifier at [`f0d86f8`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/tree/f0d86f8) (0.4.0) agrees with every `expected` object, 47/47 vectors, and with the live `selftest-pass.json`: 441/441 fields over the 48 documents. 48 and 49 at `d79a737` agree too, both `failed`, each on the rule its name states; and the anchor is reached by subject name and public key here as well: a cross-signed copy of the anchor inside the token reaches it, the anchor's name with another key does not (in our tests). Versio"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "src4511-ops",
+   "at": "2026-10-21T19:57:23Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6325234018",
+   "text": "Supporting a shared evidence-record format\n\nI maintain Counterroll, a commercial payer-side policy-and-evidence product. I support the direction proposed here:\n\n1. Scope: yes to post-settlement accountability as an evidence record, separate from adjudication and enforcement. A portable format linking payment requirements, authorization and settlement evidence would make later verification more consistent.\n\n2. Phase one: yes to record shape, canonical bytes with declared mechanisms, and shared passing/failing test vectors. I support making signer identity, role, relationship to the transaction "
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "nonlinearity",
+   "at": "2026-10-21T21:01:17Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6326460879",
+   "text": "@TKCollective @magentixai following up my 4 and 6 October notes on acceptance as a separate record: the draft specification and a first list of 25 requirement cases for a counterparty acceptance record carried in x402 are now public.\n\nRepo: https://github.com/CNSLabs/x402-acceptance-record (tag `draft-2026-10-21`), a spec-only companion on the route #3783 took. What it covers that the current corpora do not: an EIP-712 form for wallets beside compact JWS, with one body and one meaning in both; contract-account signers via ERC-1271; and exact-record binding by `evidenceRef` for #3682 execution-"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "Tetsurohhori",
+   "at": "2026-10-21T22:12:28Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6327691458",
+   "text": "@maximusrufus \u2014 37\u201349 at `d79a737`, as asked, and one vector for the step 9 binding claim above, which still separates the reference at `d79a737`.\n\n**1.4.1: 49/49, after one miss of ours.** The unchanged 1.4 verifier gives 44/49: 38, 42 and 49 are the new chain and curve rules, 40 is PSS under a runner that did not read `tsa_signature_accepted`, and 45 is the order between defects, where 1.4.1 took `failed` first rather than the order in my 1.4 report. The step written from the 1.4.1 text was frozen before its first scored run, which gave **48/49**. On 40 it reported `failed` for a valid RSASS"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "robertolocatelli81-dev",
+   "at": "2026-10-22T02:01:06Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6330875448",
+   "text": "@Tetsurohhori \u2014 `probe-status-imprint` at `8c210d1` on our clean-room verifier, which reads the imprint and genTime from the signed TSTInfo:\n\n- 0.4.0 ([`f0d86f8`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/tree/f0d86f8)), unchanged, agrees with the probe's `expected` on every field: `CRITERIA_TIMESTAMP_MISMATCH`, `CRITERIA_COMMITMENT_UNVERIFIED`, `tsa_signature.criteria` `verified`.\n- The same layout on the record token (vector 31's criteria token in the record's place; the receipt's imprint and the record token's genTime inside one `UTF8String` of its `statusString`"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "stillmarcus24",
+   "at": "2026-10-21T22:33:55Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6328035673",
+   "text": "@magentixai \u2014 we'll take the vectors, and the byte-versus-canonical question is the right one to settle before the record shape is fixed, not after.\n\nOur position, stated so it can be checked: StillOS canonicalizes on RFC 8785 JCS \u2014 the same rule our own receipt layer runs in production, reproduced byte-for-byte against an independent cross-language harness. So we can meet the AXES corpus on its own terms rather than argue serialization. Where we'd push: a shared payment-evidence record has to name which bytes it binds. Verify on a canonical re-serialization and the record survives transport, "
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "cv-scvd",
+   "at": "2026-10-22T01:34:57Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6330539908",
+   "text": "@magentixai @stillmarcus24 \u2014 evidence from a different artifact type, since the group is deciding this explicitly rather than inheriting it.\n\nOur idempotency-key dedup layer makes exactly this call, and answers it differently per artifact, not with one global rule. Verified against store-repo HEAD `22fb0fb97babac9f327d86278a62933a73bf9e8e`:\n\n- For JSON request bodies, the dedup digest is the RFC 8785 (JCS) canonical form of the *decoded* fields (`jsonBodyDigest`, `src/lib/idempotency.ts:211-213`, called from `requestBodyDigest:239-244`). Two re-serializations of the same purchase intent \u2014 key "
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-10-22T02:26:01Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6331188644",
+   "text": "@magentixai the README lists four independent verifications, all against gt-v2.0, so we ran the current release, gt-v2.1 (`corpus/2026-10-12-gt-v2.1`), from the published text. We used our own RFC 8785 canonicaliser and no AXES code: [check and output](https://github.com/babyblueviper1/preaction-governance-conformance/tree/4fcce28/examples/axes-gt-v2.1-independent-check).\n\n- Both bundles reproduce: 76/76 envelope hashes, 76/76 previous-hash links, both chain heads, 78/78 files, and both bundle digests (`sha256(JCS(manifest.files))`).\n- One divergence: `docs/09a` \u00a74 lists `recorded_at` as exclu"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "stillmarcus24",
+   "at": "2026-10-22T03:20:39Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6331857735",
+   "text": "@cv-scvd @magentixai \u2014 the canonicalization question is worth settling, but it sits downstream of the gap this issue actually names. x402 specifies offers, receipts, payment identifiers, and settlement schemes; it has no normative spec for the dispute/correctness layer itself \u2014 adjudicating that what was *delivered* was correct, with a neutral party at economic stake. `bond` appears zero times in the repo.\n\nWe run that layer in production, so rather than argue it in the abstract I've drafted it as an extension: bonded verdicts against named resolvers, Ed25519-signed and hash-chained, backed by"
+  },
+  {
+   "item": "magentixai/axes#17",
+   "type": "new_issue",
+   "author": "babyblueviper1",
+   "title": "docs/09a \u00a74 and the gt-v2.1 corpus disagree on whether recorded_at is in the envelope hash",
+   "url": "https://github.com/magentixai/axes/issues/17"
+  },
+  {
+   "item": "x402-foundation/x402#3304",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-21T12:31:02Z",
+   "url": "https://github.com/x402-foundation/x402/pull/3304#issuecomment-6315948916",
+   "title": "spec(extensions): add response-provenance \u2014 receipt attests what was returned, not just that payment settled (#3234)",
+   "text": "Verified `fc0d3ad` independent of the commit message: diffed against `e92dfa0`/`ba8b0ca`, the fixed point, worked vector, and `sha256:81ea1f22...` are byte-identical \u2014 nothing reaches the hash. RFC 8725 \u00a73.1 (\"each key MUST be used with exactly one algorithm\", header must match the operation performed) supports the key-first dispatch rule as written; the citation holds.\n\nOne question on Issuer requirement 4. It binds verifiability to the paid origin staying resolvable \"for the life of its receipts\" \u2014 no stated bound on that life. If the origin itself goes away (domain lapses, service shuts dow",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "aeoess/agent-governance-vocabulary#179",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-21T12:42:12Z",
+   "url": "https://github.com/aeoess/agent-governance-vocabulary/pull/179#issuecomment-6316176128",
+   "title": "docs: add a boundary map from #177",
+   "text": "Confirming on `476b782` for E3 (APS <-> argentum-core `action_ref`): verified against the commit itself, not the text alone. `62930b59` is real and matches the description (reported by @aeoess in #35, fixed by us \u2014 5 timestamp variants + av-003 + av-007). `action-ref-v1-domain-negative` and `action-ref-v2` fixtures exist as named. PR#180 (crosswalk/mycelium-trails.yaml refreshed against action-ref v1.2) is merged. Independently reproduced the crosswalk's 2026-09-29 spot-check digest: `{agent_id: did:example:agent, action_type: read, scope: x, timestamp: 2026-05-15T10:00:00.123Z}` \u2192 104 bytes, ",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "Feeless402/feeless402#3",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-21T12:44:13Z",
+   "url": "https://github.com/Feeless402/feeless402/issues/3#issuecomment-6316225188",
+   "title": "Sent you a private report",
+   "text": "Glad it landed clean and the advisory's public \u2014 appreciate you handling the disclosure the right way.",
+   "source": "user:giskard09"
+  }
+ ],
  "failures": [],
  "summary": {
   "LF-Decentralized-Trust/lab-proposals#2": {
@@ -41,13 +207,13 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 209,
-   "updated_at": "2026-10-21T05:46:09Z",
+   "comments": 221,
+   "updated_at": "2026-10-22T02:01:06Z",
    "last_comment": {
     "author": "robertolocatelli81-dev",
-    "at": "2026-10-21T05:46:09Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6309030276",
-    "text": "@maximusrufus \u2014 a clean-room run of 31\u201336: our verifier at [`4184a47`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/tree/4184a47) (0.3.0) agrees with every `expected` object at `eb0f30b`, 36/36 vectors, and with the live `selftest-pass.json`: 332/332 fields over the 37 documents. It was written from the 1.4 README and the RFCs it names; `verifier/war_verify.py` was not opened. Tetsurohhori's report above was read before writing, so on the order between values (below) we are not independent of it.\n\nTwo readings the text leaves open, each with a case that separates them:"
+    "at": "2026-10-22T02:01:06Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6330875448",
+    "text": "@Tetsurohhori \u2014 `probe-status-imprint` at `8c210d1` on our clean-room verifier, which reads the imprint and genTime from the signed TSTInfo:\n\n- 0.4.0 ([`f0d86f8`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/tree/f0d86f8)), unchanged, agrees with the probe's `expected` on every field: `CRITERIA_TIMESTAMP_MISMATCH`, `CRITERIA_COMMITMENT_UNVERIFIED`, `tsa_signature.criteria` `verified`.\n- The same layout on the record token (vector 31's criteria token in the record's place; the receipt's imprint and the record token's genTime inside one `UTF8String` of its `statusString`"
    }
   },
   "x402-foundation/x402#2887": {
@@ -55,13 +221,13 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 131,
-   "updated_at": "2026-10-20T16:41:51Z",
+   "comments": 134,
+   "updated_at": "2026-10-22T03:20:39Z",
    "last_comment": {
-    "author": "magentixai",
-    "at": "2026-10-20T16:40:39Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6296055689",
-    "text": "@holistis, @hheskihoran - a short note rather than a pitch -\n\nThe part I\u2019d pull out is the INFLATED-VALUE miss. A check that could not fire is not a check that passed, and reporting it as amount-unbound rather than valid is the whole point. It is the \u201cnot evaluated\u201d outcome in my own work, so it is good to see it reached independently. The same goes for saying plainly that the receipt has exactly one independent party.\n\nOn bytes as transmitted versus a canonical re-serialisation: its worth settling up front. Our corpus is checked on the canonical form (JCS), and an independent cross-language h"
+    "author": "stillmarcus24",
+    "at": "2026-10-22T03:20:39Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6331857735",
+    "text": "@cv-scvd @magentixai \u2014 the canonicalization question is worth settling, but it sits downstream of the gap this issue actually names. x402 specifies offers, receipts, payment identifiers, and settlement schemes; it has no normative spec for the dispute/correctness layer itself \u2014 adjudicating that what was *delivered* was correct, with a neutral party at economic stake. `bond` appears zero times in the repo.\n\nWe run that layer in production, so rather than argue it in the abstract I've drafted it as an extension: bonded verdicts against named resolvers, Ed25519-signed and hash-chained, backed by"
    }
   },
   "x402-foundation/x402#3220": {
@@ -93,13 +259,13 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-10-21T10:26:21+00:00",
+   "checked": "2026-10-22T06:01:09+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
-   "open_issues_count": 9,
+   "open_issues_count": 10,
    "pushed_at": "2026-10-20T17:27:29Z",
-   "issues_tracked": 13
+   "issues_tracked": 14
   },
   "Composable-Evidence-Criteria/.github": {
    "main_latest": {
@@ -180,8 +346,8 @@
    "issues_tracked": 8
   },
   "user:giskard09": {
-   "events_seen": 98,
-   "latest_event": "2026-10-20T13:09:59Z"
+   "events_seen": 99,
+   "latest_event": "2026-10-21T12:44:13Z"
   }
  },
  "first_run": false
