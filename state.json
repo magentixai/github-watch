@@ -569,10 +569,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-22T06:01:09+00:00",
+ "last_checked": "2026-10-22T10:25:46+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-22T06:01:09+00:00",
+   "checked": "2026-10-22T10:25:46+00:00",
    "items": {
     "17": {
      "title": "docs/09a \u00a74 and the gt-v2.1 corpus disagree on whether recorded_at is in the envelope hash",
