@@ -1,0 +1,345 @@
+{
+ "checked_at": "2026-10-23T05:58:05+00:00",
+ "previous_check": "2026-10-22T10:25:46+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-22T16:17:26Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6345601340",
+   "text": "@Tetsurohhori @robertolocatelli81-dev From [`6b2f730`](https://github.com/maximusrufus/work-acceptance-record/commit/6b2f730) both reference verifiers read the imprint, genTime and accuracy from the token's signed TSTInfo only, never from other bytes of a response, and the Python one writes numbers in RFC 8785's form (no difference from V8's `JSON.stringify` over 299,967 doubles). 01-49 are unchanged; 55/55.\n\n- **50:** your probe, as received and credited. **51:** the same construction on the receipt token gives `receipt_timestamp` `imprint_mismatch` and no problem.\n- **52:** non-integer numbe"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-10-22T22:05:18Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6352331928",
+   "text": "@maximusrufus 1\u201355 at `6b2f730` on our clean-room verifier: **55/55** at [`bc5c21d`](https://github.com/babyblueviper1/preaction-governance-conformance/tree/bc5c21d/examples/work-acceptance-record-cold), from the text, reference unopened. Before that it gave 52/55, and the three misses were ours:\n\n- **52** found a real defect: our JCS used the language's float repr (`1e-05`, `1.2345678901234568e+20`), not ECMAScript Number::toString. Fixed and checked against `JSON.stringify` on 89,980 doubles (0 mismatches). The same canonicalizer was in our record issuer, so it is fixed there too. The 14 rec"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "stillmarcus24",
+   "at": "2026-10-23T01:30:43Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6355207878",
+   "text": "@babyblueviper1 \u2014 55/55 clean-room at `6b2f730` is the strongest result on this table, and the three misses being yours rather than the corpus's is the part worth recording.\n\nTwo notes, both narrow.\n\n**On vector 52 and the JCS float fix.** Your defect generalises past the three cases you named, and I measured how far: Python's `json.dumps` diverges from RFC 8785 on **7 of 11** double classes, not 3. The four you haven't named are `1.0 \u2192 1`, `100.0 \u2192 100`, `-0.0 \u2192 0` and `3.0e2 \u2192 300` \u2014 integer-valued floats and negative zero. \u00a73.2.2.3 defers to ECMAScript `Number::toString`, which renders thos"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-23T02:36:22Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6356031524",
+   "text": "@magentixai Re [your scope point](https://github.com/x402-foundation/tsc/issues/4#issuecomment-6316838063):\n\n> To be explicit: a phase-one [\u2026] type carries or references the x402 payment it concerns, for example a quote digest or settlement anchor.\n\nYour scope condition is met at `6b2f730`: the receipt now carries the x402 payment it concerns inside its signed and timestamped bytes (`payment`: network, asset, payer, pay_to, amount and EIP-3009 nonce; vector 47), and babyblueviper1 has issued a live receipt paid on Base whose settlement checks on chain. The Step 9 binding and JCS number points "
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-23T02:36:24Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6356031902",
+   "text": "@shunhe-wang Re [your August offer](https://github.com/x402-foundation/tsc/issues/4#issuecomment-5333255626):\n\n> People\u2019s Court would be glad to contribute an integration and test cases demonstrating the complete downstream flow\n\nTaking up that offer as a downstream-adjudication pilot. The profile now has what that flow needs: receipts that carry the x402 payment (vector 47) and verify from bytes, with four implementations agreeing on vectors 01-46. We can supply acceptance receipts from real failed-delivery cases on live paid services, anonymised unless a service agrees to be named. People's "
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-23T02:36:25Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6356032327",
+   "text": "@src4511-ops Re [your comment](https://github.com/x402-foundation/tsc/issues/4#issuecomment-6325234018):\n\n> We would be interested in contributing complementary authorization-binding, policy-denial and tamper-detection examples, mapped to the group\u2019s agreed format.\n\nThanks for the offer. Send them in any form and we will turn them into shared conformance vectors with expected outcomes, credited to Counterroll, so other implementations can run them too. Would you be up for that?\n"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-23T02:55:44Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6356269524",
+   "text": "@babyblueviper1 Re [your 55/55 run](https://github.com/x402-foundation/tsc/issues/4#issuecomment-6352331928):\n\n> If a vector issued by a third-party checker key (not built by the corpus author) is useful, `selftest-pass.json` is already in vector layout and CC0.\n\nYes, thank you. It is now vector 56, kept as received and credited, at [`bc5a138`](https://github.com/maximusrufus/work-acceptance-record/commit/bc5a138): the set's only receipt issued by another checker under its own key, and both reference verifiers agree with its `expected` object (with 31's FreeTSA and DigiCert roots as anchors, `"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-22T14:02:37Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6342676862",
+   "text": "@magentixai @cv-scvd \u2014 a concrete precedent for \"decided explicitly, not inherited.\"\n\nWe made this exact call for the x402 offer object itself (`PaymentRequirements`/`x402Response`, S1) in `offer-identity-ref.md`: `offer_identity_ref = SHA-256(JCS(x402_response))`. Invariant #3 states it plainly \u2014 \"hash is over the wire object, not a description of it\" \u2014 and the reasoning is the threat it closes, per the x402 Evidence Chain RFP's own taxonomy: a Seller who signs two offers for the same resource can't pair a cheap-offer transaction with the expensive offer, because the reference recomputes only"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "holistis",
+   "at": "2026-10-22T15:41:57Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6344840662",
+   "text": "Your \"bytes-as-transmitted is the right fallback\" framing matches a choice we already made for x402's own offer-receipt extension ([`offerReceiptHash`](https://github.com/holistis/tokenizen/blob/main/packages/capacity-attest/src/schema.ts) in our DeliveryClaim schema). The receipt is `{format, payload, signature}` with format `eip712` or `jws` (spec \u00a73.1), and neither format exposes one stable canonical byte string: for eip712 the signing digest derives from normative types the spec says MUST NOT be transmitted (\u00a73.2.1), for jws the payload is opaque base64url inside the compact serialization."
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-10-22T22:10:34Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6352417337",
+   "text": "One data point for the canonical-form side, from a defect we found in our own code today. Where JCS implementations actually diverge is numbers, not member order.\n\nOur Python canonicalizer used the language's float repr. It produced `1e-05`, `1e-07` and `1.2345678901234568e+20` where RFC 8785 requires ECMAScript `Number::toString`: `0.00001`, `1e-7`, `123456789012345680000`. A signature over such a body then fails in any other implementation. Vector 52 of the work-acceptance corpus ([maximusrufus/work-acceptance-record@6b2f730](https://github.com/maximusrufus/work-acceptance-record/tree/6b2f73"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "stillmarcus24",
+   "at": "2026-10-23T01:30:14Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6355201641",
+   "text": "@babyblueviper1 \u2014 your float finding generalises further than the three cases, and the generalisation is a problem for how this section gets validated.\n\nRFC 8785 \u00a73.2.2.3 doesn't describe a number format. It defers to ECMAScript `Number::toString`. So **a JavaScript implementation inherits the required behaviour from the host and cannot fail these vectors**, while every other host language has to reimplement double-to-shortest-round-trip. I measured Python's `json.dumps` against the requirement \u2014 **7 of 11 diverge, in 6 classes**:\n\n| JSON text | required | `json.dumps` | class |\n|---|---|---|-"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "holistis",
+   "at": "2026-10-23T05:34:28Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6358201441",
+   "text": "@babyblueviper1 The decimal-string choice x402 already made for amounts just earned its keep. Good find on the JCS number formatting gap, and a clean way to check it: 89,980 doubles against JSON.stringify with 0 mismatches.\n"
+  },
+  {
+   "item": "x402-foundation/x402#3304",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-22T13:41:57Z",
+   "url": "https://github.com/x402-foundation/x402/pull/3304#issuecomment-6342237181",
+   "title": "spec(extensions): add response-provenance \u2014 receipt attests what was returned, not just that payment settled (#3234)",
+   "text": "Independently reimplemented the kept-key dispatch from the spec text (clean room \u2014 not run against `attest.py`) and ran it over all 15 cases in `vectors/attestation-kept.json`, including real Ed25519 verification via `cryptography`: 15/15 match, `keptAt` and discontinuity (`rebound`/`dropped`) included.\n\nThe two LIMIT cases are the actual answer to my question: without a kept list, a rebound or dropped `keyId` reports `verified`/`contradicted` with no signal that anything changed \u2014 a legitimate rotation and a hijacked origin look identical. The kept list turns that into something reportable. S",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "aeoess/agent-governance-vocabulary#179",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-22T14:12:34Z",
+   "url": "https://github.com/aeoess/agent-governance-vocabulary/pull/179#issuecomment-6342891364",
+   "title": "docs: add a boundary map from #177",
+   "text": "Confirming on `476b782` for E16 (argentum-core `decision-bound-output-v1` -> Horizon Shield blind second readers): verified against the commits themselves. `4cbf5c85` and `062faff` are real (giskard09/execution-join-ref-remora-bridge) and match the description \u2014 the rename to `COMMITMENT_AFTER_DECISION` and the three added cases pinning the reading from probityai/agent-evidence#25 (open, matches). Re-ran our own verifier at `062faff`: all 11 checks pass, same as stated. Horizon Shield's reader commit (`84b104b1`) exists as named.\n\nThis confirms the argentum-core side of E16 only.\n\nSeparately, ",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "google-agentic-commerce/AP2#290",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-22T14:16:37Z",
+   "url": "https://github.com/google-agentic-commerce/AP2/issues/290#issuecomment-6342980029",
+   "title": "[Feat]: Post-checkout agent action record \u2014 verifiable audit trail after Checkout Receipt",
+   "text": "Revisiting the identity/completeness split from earlier in this thread: worth naming a boundary we document explicitly rather than leaving implicit. `action_ref`'s content-addressed guarantee covers two things \u2014 recomputability (anyone with the four preimage fields derives the same hash) and anchor immutability (once anchored, the hash can't be retroactively altered). Neither covers preimage honesty: an operator who controls the fields can mint any `action_ref` it wants and anchor it just as validly as a true one. The anchor makes a record immutable, not honest \u2014 that's a property of the signi",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "a2aproject/a2a-tck#228",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-22T14:20:55Z",
+   "url": "https://github.com/a2aproject/a2a-tck/pull/228#issuecomment-6343076303",
+   "title": "Add RFC 8785 canonicalization conformance vectors (a2a-jcs-v01, Layer A)",
+   "text": "@astrogilda \u2014 author block:\n\n- Printed name: `giskard09`\n- Affiliation: Rama\n- ORCID: none\n- Funding: none\n- Email: playplay2736@gmail.com\n\nIf the journal's rule doesn't allow the handle as printed name, let me know what format it needs instead before you submit.\n",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "ogasurfproject-jpg/horizon-shield#51",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-22T14:34:27Z",
+   "url": "https://github.com/ogasurfproject-jpg/horizon-shield/issues/51#issuecomment-6343361023",
+   "title": "Pilot on ourselves: one paid audit call, three sets of receipts, frozen inputs (scoping)",
+   "text": "Set 2 holds up well \u2014 Poke-nushi's recomputation at a deeper header view without a verdict change is exactly the property that matters for a checkpoint anchor.\n\nOne mechanism note for a possible set 3, additive only: `anchoring-precedence-ref-v1` treats Bitcoin OTS and on-chain Arbitrum as two instances of the same invariant \u2014 \"the board does not bless a mechanism \u2014 it publishes which invariant each mechanism satisfies (Bitcoin OTS, on-chain Arbitrum, any external clock).\" If a future run wants a second, parallel anchor alongside OTS, happy to add an `AnchorRegistry` envelope to the same check",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "google-agentic-commerce/AP2#290",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-22T18:02:23Z",
+   "url": "https://github.com/google-agentic-commerce/AP2/issues/290#issuecomment-6347682233",
+   "title": "[Feat]: Post-checkout agent action record \u2014 verifiable audit trail after Checkout Receipt",
+   "text": "The withholding gap is real, and it sits one layer past the honesty/identity split above \u2014 we split it the same way, under different names, in `trail-head-ref-v1`, written before this thread: a per-agent hash chain catches a removed or reordered record (continuity); a periodic checkpoint of the chain head, anchored on-chain, catches a truncated tail, which continuity alone can't see \u2014 a genuinely shorter log and a truncated one have identical internal structure.\n\nThe checkpoint is the \"sequence head plus count\" you're describing: `{agent_id, period_end, seq, head}`, sealed every period under o",
+   "source": "user:giskard09"
+  }
+ ],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 6,
+   "updated_at": "2026-10-20T15:06:35Z",
+   "last_comment": {
+    "author": "source-origin",
+    "at": "2026-10-20T15:06:34Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-6294062372",
+    "text": "Tymofii,\r\n\r\nYou closed the loop on two questions in the same thread, and you gave us a\r\ndistinction we have since used more than anything else from that exchange:\r\n*reference by pin, not host*, with criteria marked as authored judgment rather\r\nthan recomputed fact.\r\n\r\nWe used it and did not tell you. Nineteen days. Sorry.\r\n\r\n**Where it landed.** Our rubric header now carries two separate lines, because\r\nyour distinction made it obvious that one line was a lie:\r\n\r\n- `criteria_version` + `pinned_commit` \u2014 what was applied, and the exact bytes\r\n  it was applied from. If the criteria move, the pin"
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 228,
+   "updated_at": "2026-10-23T02:55:44Z",
+   "last_comment": {
+    "author": "maximusrufus",
+    "at": "2026-10-23T02:55:44Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6356269524",
+    "text": "@babyblueviper1 Re [your 55/55 run](https://github.com/x402-foundation/tsc/issues/4#issuecomment-6352331928):\n\n> If a vector issued by a third-party checker key (not built by the corpus author) is useful, `selftest-pass.json` is already in vector layout and CC0.\n\nYes, thank you. It is now vector 56, kept as received and credited, at [`bc5a138`](https://github.com/maximusrufus/work-acceptance-record/commit/bc5a138): the set's only receipt issued by another checker under its own key, and both reference verifiers agree with its `expected` object (with 31's FreeTSA and DigiCert roots as anchors, `"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 139,
+   "updated_at": "2026-10-23T05:34:28Z",
+   "last_comment": {
+    "author": "holistis",
+    "at": "2026-10-23T05:34:28Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6358201441",
+    "text": "@babyblueviper1 The decimal-string choice x402 already made for amounts just earned its keep. Good find on the JCS number formatting gap, and a clean way to check it: 89,980 doubles against JSON.stringify with 0 mismatches.\n"
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 63,
+   "updated_at": "2026-10-06T06:34:09Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-06T06:34:09Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6010784398",
+    "text": "We implemented the single-payment part of this draft (\u00a76, \u00a77) in presign-guard, a pre-sign check for agent payments:\n\n- POST /v1/check takes an optional mandate next to an EIP-3009 signature and turns a payment outside it red before the agent signs (wrong payer/asset/recipient, over perPayment or cap, expired, bad issuer signature, nonce \u2260 binding).\n- presign-guard-wallet's mandatePayer() makes x402 payments with the \u00a77 binding as the EIP-3009 nonce.\n- JCS bytes, digest, signature and the EIP-3009/Permit2 binding values match authority-vectors.json byte for byte.\n\nNot covered: cumulative spend"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-10-23T05:58:05+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 10,
+   "pushed_at": "2026-10-20T17:27:29Z",
+   "issues_tracked": 14
+  },
+  "Composable-Evidence-Criteria/.github": {
+   "main_latest": {
+    "sha": "9945f2c",
+    "at": "2026-09-30T08:29:38Z",
+    "msg": "Update name"
+   },
+   "files": {},
+   "open": {},
+   "issues_tracked": 0
+  },
+  "Composable-Evidence-Criteria/governance": {
+   "main_latest": {
+    "sha": "6a2532c",
+    "at": "2026-09-24T10:28:39Z",
+    "msg": "Add maintainers"
+   },
+   "files": {
+    "teams.yaml": "ec2793a"
+   },
+   "open": {
+    "2": {
+     "title": "Update team names add repo",
+     "pr": true,
+     "comments": 0,
+     "author": "ryjones",
+     "url": "https://github.com/Composable-Evidence-Criteria/governance/pull/2"
+    }
+   },
+   "issues_tracked": 2
+  },
+  "Composable-Evidence-Criteria/action-ref-conformance": {
+   "main_latest": {
+    "sha": "3164450",
+    "at": "2026-10-07T15:34:40Z",
+    "msg": "Merge pull request #6: GOVERNANCE correct magentixai conflict-of-interest line"
+   },
+   "files": {
+    "GOVERNANCE.md": "05ab3f1"
+   },
+   "open": {
+    "8": {
+     "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
+     "pr": true,
+     "comments": 1,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8"
+    },
+    "7": {
+     "title": "Heads-up: Rama will offer paid conformance-QA engagements on top of this lab's public corpus",
+     "pr": false,
+     "comments": 3,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/7"
+    },
+    "5": {
+     "title": "Lab communications: LFDT newsletter and meetup proposals, and who speaks for the lab",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/5"
+    },
+    "4": {
+     "title": "APS SDK passes the pinned action-ref v1 Action (verify-impl)",
+     "pr": false,
+     "comments": 0,
+     "author": "aeoess",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/4"
+    },
+    "2": {
+     "title": "Lab name: recomputable-evidence is taken, proposed replacement",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2"
+    }
+   },
+   "issues_tracked": 8
+  },
+  "user:giskard09": {
+   "events_seen": 100,
+   "latest_event": "2026-10-22T18:02:23Z"
+  }
+ },
+ "first_run": false
+}

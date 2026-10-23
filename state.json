@@ -93,7 +93,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 221,
+   "comments": 228,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -315,14 +315,21 @@
     6325234018,
     6326460879,
     6327691458,
-    6330875448
+    6330875448,
+    6345601340,
+    6352331928,
+    6355207878,
+    6356031524,
+    6356031902,
+    6356032327,
+    6356269524
    ],
-   "updated_at": "2026-10-22T02:01:06Z",
+   "updated_at": "2026-10-23T02:55:44Z",
    "last_comment": {
-    "author": "robertolocatelli81-dev",
-    "at": "2026-10-22T02:01:06Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6330875448",
-    "text": "@Tetsurohhori \u2014 `probe-status-imprint` at `8c210d1` on our clean-room verifier, which reads the imprint and genTime from the signed TSTInfo:\n\n- 0.4.0 ([`f0d86f8`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/tree/f0d86f8)), unchanged, agrees with the probe's `expected` on every field: `CRITERIA_TIMESTAMP_MISMATCH`, `CRITERIA_COMMITMENT_UNVERIFIED`, `tsa_signature.criteria` `verified`.\n- The same layout on the record token (vector 31's criteria token in the record's place; the receipt's imprint and the record token's genTime inside one `UTF8String` of its `statusString`"
+    "author": "maximusrufus",
+    "at": "2026-10-23T02:55:44Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6356269524",
+    "text": "@babyblueviper1 Re [your 55/55 run](https://github.com/x402-foundation/tsc/issues/4#issuecomment-6352331928):\n\n> If a vector issued by a third-party checker key (not built by the corpus author) is useful, `selftest-pass.json` is already in vector layout and CC0.\n\nYes, thank you. It is now vector 56, kept as received and credited, at [`bc5a138`](https://github.com/maximusrufus/work-acceptance-record/commit/bc5a138): the set's only receipt issued by another checker under its own key, and both reference verifiers agree with its `expected` object (with 31's FreeTSA and DigiCert roots as anchors, `"
    }
   },
   "x402-foundation/x402#2887": {
@@ -330,7 +337,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 134,
+   "comments": 139,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -465,14 +472,19 @@
     6328035673,
     6330539908,
     6331188644,
-    6331857735
+    6331857735,
+    6342676862,
+    6344840662,
+    6352417337,
+    6355201641,
+    6358201441
    ],
-   "updated_at": "2026-10-22T03:20:39Z",
+   "updated_at": "2026-10-23T05:34:28Z",
    "last_comment": {
-    "author": "stillmarcus24",
-    "at": "2026-10-22T03:20:39Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6331857735",
-    "text": "@cv-scvd @magentixai \u2014 the canonicalization question is worth settling, but it sits downstream of the gap this issue actually names. x402 specifies offers, receipts, payment identifiers, and settlement schemes; it has no normative spec for the dispute/correctness layer itself \u2014 adjudicating that what was *delivered* was correct, with a neutral party at economic stake. `bond` appears zero times in the repo.\n\nWe run that layer in production, so rather than argue it in the abstract I've drafted it as an extension: bonded verdicts against named resolvers, Ed25519-signed and hash-chained, backed by"
+    "author": "holistis",
+    "at": "2026-10-23T05:34:28Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6358201441",
+    "text": "@babyblueviper1 The decimal-string choice x402 already made for amounts just earned its keep. Good find on the JCS number formatting gap, and a clean way to check it: 89,980 doubles against JSON.stringify with 0 mismatches.\n"
    }
   },
   "x402-foundation/x402#3220": {
@@ -569,10 +581,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-22T10:25:46+00:00",
+ "last_checked": "2026-10-23T05:58:05+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-22T10:25:46+00:00",
+   "checked": "2026-10-23T05:58:05+00:00",
    "items": {
     "17": {
      "title": "docs/09a \u00a74 and the gt-v2.1 corpus disagree on whether recorded_at is in the envelope hash",
@@ -917,6 +929,13 @@
  },
  "user_events": {
   "giskard09": [
+   "17970615419",
+   "17965642779",
+   "17964951214",
+   "17961962293",
+   "17941483847",
+   "17922584661",
+   "17918891936",
    "24769880846",
    "24769409237",
    "17813189936",
@@ -1009,13 +1028,7 @@
    "24222429272",
    "17409444479",
    "17407063619",
-   "24216630319",
-   "24196169927",
-   "17354449112",
-   "17350941810",
-   "24132075038",
-   "17334337272",
-   "17322857957"
+   "24216630319"
   ]
  }
 }
