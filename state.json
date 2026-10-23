@@ -581,16 +581,24 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-23T05:58:05+00:00",
+ "last_checked": "2026-10-23T10:22:32+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-23T05:58:05+00:00",
+   "checked": "2026-10-23T10:22:32+00:00",
    "items": {
+    "18": {
+     "title": "Anchoring: first distributed_ledger profile, AnchorRegistry (axes#3)",
+     "state": "open",
+     "pr": true,
+     "comments": 0,
+     "author": "magentixai",
+     "url": "https://github.com/magentixai/axes/pull/18"
+    },
     "17": {
      "title": "docs/09a \u00a74 and the gt-v2.1 corpus disagree on whether recorded_at is in the envelope hash",
-     "state": "open",
+     "state": "closed",
      "pr": false,
-     "comments": 0,
+     "comments": 1,
      "author": "babyblueviper1",
      "url": "https://github.com/magentixai/axes/issues/17"
     },
@@ -756,13 +764,14 @@
     6123679475,
     6126652707,
     6150961475,
-    6169972601
+    6169972601,
+    6359128796
    ],
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
    "open_issues_count": 10,
-   "pushed_at": "2026-10-20T17:27:29Z"
+   "pushed_at": "2026-10-23T07:59:10Z"
   }
  },
  "cec": {
@@ -929,6 +938,8 @@
  },
  "user_events": {
   "giskard09": [
+   "18001284169",
+   "17991768308",
    "17970615419",
    "17965642779",
    "17964951214",
@@ -1026,9 +1037,7 @@
    "17418353222",
    "17414309778",
    "24222429272",
-   "17409444479",
-   "17407063619",
-   "24216630319"
+   "17409444479"
   ]
  }
 }
