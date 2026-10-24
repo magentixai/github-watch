@@ -1,37 +1,258 @@
 {
- "checked_at": "2026-10-23T10:22:32+00:00",
- "previous_check": "2026-10-23T05:58:05+00:00",
+ "checked_at": "2026-10-24T05:58:20+00:00",
+ "previous_check": "2026-10-23T10:22:32+00:00",
  "changes": [
   {
-   "item": "magentixai/axes#18",
-   "type": "new_pr",
-   "author": "magentixai",
-   "title": "Anchoring: first distributed_ledger profile, AnchorRegistry (axes#3)",
-   "url": "https://github.com/magentixai/axes/pull/18"
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "Tetsurohhori",
+   "at": "2026-10-23T12:42:20Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6365127487",
+   "text": "@maximusrufus \u2014 thank you for taking the probe as 50. 1\u201357 at `bc5a138`: **57/57**, after two misses of ours, both now in the record.\n\n- **52 stopped our run.** Our canonicalizer refused non-integer numbers outright instead of writing them in RFC 8785 form. That was fail-closed, but it was not the profile. It now uses ECMAScript `Number::toString`, compared with Node's `JSON.stringify` on 27,048 doubles with 0 mismatches. That covers 57's integer-valued doubles (`1.0` \u2192 `1`, `-0.0` \u2192 `0`) as well as 52's exponent forms. @stillmarcus24's point applies to us as well: we had not been able to fail"
   },
   {
-   "item": "magentixai/axes#17",
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-23T13:45:20Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6366344066",
+   "text": "@Tetsurohhori Re [your 57/57 run](https://github.com/x402-foundation/tsc/issues/4#issuecomment-6365127487):\n\n> A version whose unsigned bytes are valid UTF-8 would separate both kinds, and if you want it as a vector I can build it.\n\nYes, please. It closes the gap @robertolocatelli81-dev found in 50: a verifier that parses `PKIStatusInfo` to its grammar would then also have to read the imprint from the signed TSTInfo. We'll run it through both reference verifiers and add it, credited, in the next batch with the composition vector after 27 October, so outcomes stay frozen until then.\n"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "Tetsurohhori",
+   "at": "2026-10-23T23:12:32Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6376589331",
+   "text": "@maximusrufus Built, as maximusrufus/work-acceptance-record#1 (vectors 58 and 59, on `bc5a138`).\n\nOne change from what I offered: the three values are not in a UTF-8 `statusString` but in an unsigned attribute of the token's SignerInfo. Its value is `ANY`, so a grammar check has nothing to refuse, and nothing signed changes. A verifier that parses `PKIStatusInfo` strictly still has to read the imprint from the signed TSTInfo to get both right. At `bc5a138` both agree with `war_verify.py`; at `d79a737` they fail the way 50 and 51 did.\n\nIf you would rather have the `statusString` form with valid"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-24T02:28:15Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6378753252",
+   "text": "@Tetsurohhori Thank you. 58 and 59 check out here: both reference verifiers agree, and at `d79a737` both fail the way 50 and 51 did. The unsigned-attribute form is the better one, so no `statusString` pair is needed. On the limit you raise, 1.4.1 will clarify, with no change in behaviour, that unsigned attributes are not read for imprint or time and are not grounds to refuse a token (RFC 5652 allows any). The PR goes in with the composition vector after 27 October.\n"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "actaseal",
+   "at": "2026-10-24T03:00:39Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6379046767",
+   "text": "@maximusrufus Another reading of 1.4.1, clean room: written from the README and vectors at `bc5a138` only, no reference verifier or other checker opened. Python stdlib, no network, no clock.\n\n- 57/57 at `bc5a138`, and 59/59 on maximusrufus/work-acceptance-record#1 (58 and 59 included), with no change to the checker.\n- Mutation battery at `bc5a138`: 1,421 single changes, counted only on vectors the unmodified checker agrees with. 1,115 are caught. Of the 306 that survive, 48 are in steps 1-8 and RFC 8785; the rest are in the RFC 3161, DER and signature plumbing.\n\nReadings the vectors don't pin "
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "Tetsurohhori",
+   "at": "2026-10-23T13:46:26Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6366365630",
+   "text": "@babyblueviper1 @stillmarcus24 \u2014 on checking `bc5c21d` against the integer-valued floats and negative zero: done, and it passes.\n\nWe had the same defect in a different form (our canonicalizer raised on any float, so vector 52 could not run), and while fixing it we put the boundary values in a file anyone can run, CC0: [`docs/runs/jcs-number-vectors/`](https://github.com/aos-standard/catalog/tree/40b2129/docs/runs/jcs-number-vectors). It has 1001 doubles. Each row gives the double's bits, a JSON text literal that parses to exactly it (text, not an interpolated value, which avoids the trap you d"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-10-24T00:19:27Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6377422801",
+   "text": "@Tetsurohhori thanks. I ran `jcs-number-vectors` at `40b2129` against the canonicalizer our live issuer signs with (the deployed `jcs`/`es_number` from `dc4e1094`, fed each double from its bits): **1001/1001**. So is the `rfc8785` 0.1.4 package our other production signers import. The production path agrees, not only the checker."
+  },
+  {
+   "item": "magentixai/axes#19",
+   "type": "new_pr",
+   "author": "magentixai",
+   "title": "Decision register: proposed D-043 to D-051, data handling, a binding profile catalogue and a profile authoring guide",
+   "url": "https://github.com/magentixai/axes/pull/19"
+  },
+  {
+   "item": "magentixai/axes#18",
    "type": "state",
    "from": "open",
    "to": "closed",
-   "url": "https://github.com/magentixai/axes/issues/17"
+   "url": "https://github.com/magentixai/axes/pull/18"
+  },
+  {
+   "item": "magentixai/axes#3",
+   "type": "state",
+   "from": "open",
+   "to": "closed",
+   "url": "https://github.com/magentixai/axes/issues/3"
+  },
+  {
+   "item": "magentixai/axes#3",
+   "type": "comment",
+   "author": "magentixai",
+   "at": "2026-10-23T12:47:51Z",
+   "url": "https://github.com/magentixai/axes/issues/3#issuecomment-6365231142",
+   "text": "@giskard09, this lands in #18: AnchorRegistry is now AXES's first `distributed_ledger` profile, `axes:anchor_registry_bytes32@1` (D-042, credited to you). The verifier checks an anchor offline from the block header, the receipt and its Merkle-Patricia proof under `receiptsRoot`; your governance-sdk anchor (Base block 48936665) is the test fixture, 13 two-sided cases, green on Linux, macOS and Windows. Canonical-chain membership stays a single lookup by block hash, as for OpenTimestamps.\n\nOne step remains to close this: anchoring the gt-v2.1 release statement through the registry. Would you be "
+  },
+  {
+   "item": "magentixai/axes#3",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-23T14:12:30Z",
+   "url": "https://github.com/magentixai/axes/issues/3#issuecomment-6366904411",
+   "text": "Sent from our wallet as requested \u2014 `0x4d4b45f7ddb970bf37a640d651f24bc0e26a4acdb2e14285c19a9f3f95c720f7` on Base, block 52987624, timestamp 1792764595. `Anchored(ref=0xd8b6a69f...de88299, anchoredBy=0xDcc8...DBF4)` \u2014 ref matches the calldata exactly. `registry-collect --out anchors/gt-v2.1 --tx 0x4d4b45f7ddb970bf37a640d651f24bc0e26a4acdb2e14285c19a9f3f95c720f7` should close this whenever you run it.\n"
   },
   {
    "item": "magentixai/axes#17",
    "type": "comment",
-   "author": "magentixai",
-   "at": "2026-10-23T06:42:21Z",
-   "url": "https://github.com/magentixai/axes/issues/17#issuecomment-6359128796",
-   "text": "Thank you @babyblueviper1, and for the from-text reproduction. You\u2019re right about the text published with the tag. It was corrected on main after the tag, in f92fad5 (12 Oct): docs/09a \u00a74 now lists two exclusions, integrity.envelope_hash and integrity.envelope_signature, and states that recorded_at is inside the hash in every published corpus; excluding it as recipient_stamped is recorded as proposed, not current. The corpus was the reference, so nothing in gt-v2.1 changes. \nYour 76/76 result with recorded_at in scope is what the corrected text predicts. Any later change (exclusion, or recipie"
+   "author": "babyblueviper1",
+   "at": "2026-10-24T00:11:07Z",
+   "url": "https://github.com/magentixai/axes/issues/17#issuecomment-6377320874",
+   "text": "Yes, please list it. For the entry: gt-v2.1, 76/76 twice with `recorded_at` in scope, heads and bundle digests matching, run from the published text and corpus (preaction-governance-conformance@4fcce28). Thanks for the f92fad5 pointer: the corrected \u00a74 matches what we ran."
+  },
+  {
+   "item": "Composable-Evidence-Criteria/action-ref-conformance#9",
+   "type": "new_issue",
+   "author": "giskard09",
+   "title": "draft-etcheverry-action-ref-04 published \u2014 Implementation Status section names this lab and AXES",
+   "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/9"
+  },
+  {
+   "item": "google-agentic-commerce/AP2#290",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-23T14:26:59Z",
+   "url": "https://github.com/google-agentic-commerce/AP2/issues/290#issuecomment-6367209949",
+   "title": "[Feat]: Post-checkout agent action record \u2014 verifiable audit trail after Checkout Receipt",
+   "text": "Both of these are real, and worth folding into the spec text directly rather than leaving them in this thread.\n\nThe cadence ceiling: the base spec names the period length as \"a deployment parameter\" without constraining it \u2014 a consumer-side check against a declared maximum (`period_exceeds_declared_maximum` on breach) is exactly the shape that gap needed. Added as a new section in trail-head-ref-v1.md. Our reference module doesn't enforce it yet \u2014 the spec text is ahead of the implementation here, not the other way around.\n\nThe uncertified wording point is right and easy to miss: `continuity_o",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#144",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-23T14:33:43Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#145",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-23T14:38:45Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#146",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-23T16:21:45Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
   },
   {
    "item": "giskard09/draft-etcheverry-action-ref#11",
    "type": "comment",
    "author": "giskard09",
-   "at": "2026-10-23T10:07:23Z",
-   "url": "https://github.com/giskard09/draft-etcheverry-action-ref/pull/11#issuecomment-6362479841",
+   "at": "2026-10-23T16:23:10Z",
+   "url": "https://github.com/giskard09/draft-etcheverry-action-ref/pull/11#issuecomment-6369558686",
    "title": "Proposed -04: Implementation Status (RFC 7942), SCITT as RFC 9943/9942, on-chain anchoring subsection",
-   "text": "Thank you \u2014 clean set of fixes. Verified before merging: RFC 9943/9942 are real (SCITT architecture, June 2026; COSE Receipts), the IETF 127 submission cutoff is Monday 2 Nov 23:59 UTC (datatracker important-dates), and each Section 11 entry checks out against the primary record \u2014 flareclaw-verifier run 30819828942 and the APS SDK run 37103514980 both match, the Verified/Declared Provider labels match PROVIDERS.md, and axes#3/axes#18 are real and dated today.\n\n@kenneives \u2014 tagging you for visibility as co-author, since you weren't in this exchange. No objection expected, just want you to see t",
+   "text": "Done, both \u2014 commit `902a2a0`, staged for the next revision (not re-opening -04, which is already filed at the datatracker):\n\n1. AgentOracle \u2192 Tanilo in the three prose references; `examples/conformance/agentoracle-v1/` left as-is.\n2. Split the combined bullet. SafeAgent's line is unchanged. Yours now reads:\n\n   > **Tanilo with AgentTrust (TKCollective).** Listed in argentum-core PROVIDERS.md as a Declared Provider, with a merged conformance set (self-certified by TKCollective; see tanilo.io/trust for disclosure of the verification limits on some historical receipts).\n\n   Dropped \"production t",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "a2aproject/a2a-tck#228",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-23T16:36:24Z",
+   "url": "https://github.com/a2aproject/a2a-tck/pull/228#issuecomment-6369817051",
+   "title": "Add RFC 8785 canonicalization conformance vectors (a2a-jcs-v01, Layer A)",
+   "text": "Buenos Aires, Argentina.",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/draft-etcheverry-action-ref#11",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-23T18:13:33Z",
+   "url": "https://github.com/giskard09/draft-etcheverry-action-ref/pull/11#issuecomment-6371653252",
+   "title": "Proposed -04: Implementation Status (RFC 7942), SCITT as RFC 9943/9942, on-chain anchoring subsection",
+   "text": "Done, all four \u2014 commit `122a9e8`, staged for the next revision (not re-opening -04, which is filed at the datatracker):\n\n1. Merged the Section 11 entries into one: \"AgentAvow (formerly AgentGraph; Kenne Ives)\", both author-sets under it.\n2. [CTEF]: title fixed to \"Composable Trust Evidence Format\"; old target 404s (confirmed), replaced with the two URLs you gave \u2014 A2A#1734 and AgentAvow/docs/standards.\n3. Appendix A.4 / [AgentGraph-EvidenceAnchor]: \"AGT PR #21\" \u2192 \"argentum-core PR #21\" (confirmed merged 2026-06-24); reference target updated to the current AgentAvow conformance path.\n4. Sectio",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "google-agentic-commerce/AP2#290",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-23T22:06:39Z",
+   "url": "https://github.com/google-agentic-commerce/AP2/issues/290#issuecomment-6375687118",
+   "title": "[Feat]: Post-checkout agent action record \u2014 verifiable audit trail after Checkout Receipt",
+   "text": "@nmatt1 \u2014 closing the loop on the cadence-floor point: folded it into `trail-head-ref-v1.md` as a new \"Cadence ceiling\" section (`verify_checkpoint_cadence` / `period_exceeds_declared_maximum` \u2014 a consumer-declared `declared_max_period_s` checked against consecutive `period_end` gaps), credited to this issue, with a test suite covering the boundary cases. Not yet wired into `verify_trail`'s default path \u2014 it's opt-in for now. Commit: https://github.com/giskard09/argentum-core/commit/9e7db3aa5494aea098116cd6ca929bfc77146685",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "google-agentic-commerce/AP2#338",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-23T22:07:11Z",
+   "url": "https://github.com/google-agentic-commerce/AP2/issues/338#issuecomment-6375694774",
+   "title": "Dispute-time evidence: a self-contained storage format for mandates + issuer key material",
+   "text": "@nmatt1 \u2014 on the point you just raised: we have a tested mechanism for exactly this. `trail-head-ref-v1.md` (added today) names a \"Cadence ceiling\" \u2014 a consumer declares `declared_max_period_s`, and `verify_checkpoint_cadence` returns `period_exceeds_declared_maximum` when a gap between consecutive `period_end` values exceeds it, independent of whether the checkpoints on either side are otherwise valid. Tested across the boundary cases (missing checkpoints, malformed input, zero-gap, single checkpoint). The ceiling is consumer-side policy, not a property of the checkpoint itself \u2014 two relying ",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#147",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-23T22:38:08Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "probityai/agent-evidence#26",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-23T23:36:05Z",
+   "url": "https://github.com/probityai/agent-evidence/issues/26#issuecomment-6376881075",
+   "title": "Shared case: a changed call versus a later changed file",
+   "text": "@astrogilda \u2014 both fixed, PR#147, merge commit bc9449bff7efa956f38510504a2c4fed6237e009. 18/18.\n\nGap 1: `effective_call_binding` now reads `decision_id.outcome`; deny/defer no longer authorize the dispatched call (reuses `EFFECTIVE_CALL_REBINDING_FAILED` \u2014 same observable consequence as no covering decision at all). Same fix shape we'd already landed in `execution-join-ref-remora-bridge@2cc79c9` for the same mutant babyblueviper1 found there on 10/10 \u2014 ported, not reinvented.\n\nGap 2: `main()` now confirms that at least one key a FAIL vector's own `checks` declares false is actually computed fa",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "aeoess/agent-governance-vocabulary#217",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-24T00:00:18Z",
+   "url": "https://github.com/aeoess/agent-governance-vocabulary/issues/217#issuecomment-6377185075",
+   "title": "Anchor pointer, draft 0: one form for how a record points at its external anchor (with vectors)",
+   "text": "Two gaps for the EVM-anchored case, found checking draft 0 against `AnchorRegistry` (permissionless, same address across Arbitrum/Base/Ink \u2014 `0x49fEcA52bC634a9Ab773226D16619deC547794aa`, emits `Anchored(ref indexed, anchoredBy indexed, timestamp)`):\n\n- `claimed: {chain, height}` doesn't locate the anchor. The contract is permissionless \u2014 more than one `Anchored` event can land in the same block, so height alone is ambiguous. Needs at least a tx hash; the contract address too, since it's deployed at the same address on three chains.\n- The `proof` model (a pinned locator + its own sha256, upgrad",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#148",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-24T01:27:53Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "aeoess/agent-governance-vocabulary#217",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-24T01:33:32Z",
+   "url": "https://github.com/aeoess/agent-governance-vocabulary/issues/217#issuecomment-6378222007",
+   "title": "Anchor pointer, draft 0: one form for how a record points at its external anchor (with vectors)",
+   "text": "Vectors are up: https://github.com/giskard09/argentum-core/blob/main/examples/conformance/anchor-pointer-evm-log-v1/vectors.json (CC0-1.0, PR #148).\n\n14 vectors (4 positive, 10 negative) adapting your draft-0 shape to the `{chain, contract, tx, log_index, height}` EVM form you proposed \u2014 resolution rule and the `Anchored(bytes32,address,uint256)` event's topic0 are both in the file's `mechanism` block, so your reader shouldn't need anything from us beyond this JSON.\n\nThe positive vector is today's real anchor: tx `0x4d4b45f7\u2026c720f7`, Base block 52987624, log_index 59. Every field in every vect",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "probityai/agent-evidence#26",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-24T03:58:14Z",
+   "url": "https://github.com/probityai/agent-evidence/issues/26#issuecomment-6379575040",
+   "title": "Shared case: a changed call versus a later changed file",
+   "text": "Appreciate the independent rerun \u2014 a bug that only shows up once you've closed a different one first is exactly the kind of thing that's easy to miss without someone re-running the whole suite, not just the new case.",
    "source": "user:giskard09"
   }
  ],
@@ -74,13 +295,13 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 228,
-   "updated_at": "2026-10-23T02:55:44Z",
+   "comments": 233,
+   "updated_at": "2026-10-24T03:00:39Z",
    "last_comment": {
-    "author": "maximusrufus",
-    "at": "2026-10-23T02:55:44Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6356269524",
-    "text": "@babyblueviper1 Re [your 55/55 run](https://github.com/x402-foundation/tsc/issues/4#issuecomment-6352331928):\n\n> If a vector issued by a third-party checker key (not built by the corpus author) is useful, `selftest-pass.json` is already in vector layout and CC0.\n\nYes, thank you. It is now vector 56, kept as received and credited, at [`bc5a138`](https://github.com/maximusrufus/work-acceptance-record/commit/bc5a138): the set's only receipt issued by another checker under its own key, and both reference verifiers agree with its `expected` object (with 31's FreeTSA and DigiCert roots as anchors, `"
+    "author": "actaseal",
+    "at": "2026-10-24T03:00:39Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6379046767",
+    "text": "@maximusrufus Another reading of 1.4.1, clean room: written from the README and vectors at `bc5a138` only, no reference verifier or other checker opened. Python stdlib, no network, no clock.\n\n- 57/57 at `bc5a138`, and 59/59 on maximusrufus/work-acceptance-record#1 (58 and 59 included), with no change to the checker.\n- Mutation battery at `bc5a138`: 1,421 single changes, counted only on vectors the unmodified checker agrees with. 1,115 are caught. Of the 306 that survive, 48 are in steps 1-8 and RFC 8785; the rest are in the RFC 3161, DER and signature plumbing.\n\nReadings the vectors don't pin "
    }
   },
   "x402-foundation/x402#2887": {
@@ -88,13 +309,13 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 139,
-   "updated_at": "2026-10-23T05:34:28Z",
+   "comments": 141,
+   "updated_at": "2026-10-24T00:19:28Z",
    "last_comment": {
-    "author": "holistis",
-    "at": "2026-10-23T05:34:28Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6358201441",
-    "text": "@babyblueviper1 The decimal-string choice x402 already made for amounts just earned its keep. Good find on the JCS number formatting gap, and a clean way to check it: 89,980 doubles against JSON.stringify with 0 mismatches.\n"
+    "author": "babyblueviper1",
+    "at": "2026-10-24T00:19:27Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6377422801",
+    "text": "@Tetsurohhori thanks. I ran `jcs-number-vectors` at `40b2129` against the canonicalizer our live issuer signs with (the deployed `jcs`/`es_number` from `dc4e1094`, fed each double from its bits): **1001/1001**. So is the `rfc8785` 0.1.4 package our other production signers import. The production path agrees, not only the checker."
    }
   },
   "x402-foundation/x402#3220": {
@@ -126,13 +347,13 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-10-23T10:22:32+00:00",
+   "checked": "2026-10-24T05:58:20+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
-   "open_issues_count": 10,
-   "pushed_at": "2026-10-23T07:59:10Z",
-   "issues_tracked": 15
+   "open_issues_count": 9,
+   "pushed_at": "2026-10-23T22:13:07Z",
+   "issues_tracked": 16
   },
   "Composable-Evidence-Criteria/.github": {
    "main_latest": {
@@ -174,6 +395,13 @@
     "GOVERNANCE.md": "05ab3f1"
    },
    "open": {
+    "9": {
+     "title": "draft-etcheverry-action-ref-04 published \u2014 Implementation Status section names this lab and AXES",
+     "pr": false,
+     "comments": 0,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/9"
+    },
     "8": {
      "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
      "pr": true,
@@ -210,11 +438,11 @@
      "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2"
     }
    },
-   "issues_tracked": 8
+   "issues_tracked": 9
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-10-23T10:07:23Z"
+   "latest_event": "2026-10-24T03:58:14Z"
   }
  },
  "first_run": false

@@ -93,7 +93,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 228,
+   "comments": 233,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -322,14 +322,19 @@
     6356031524,
     6356031902,
     6356032327,
-    6356269524
+    6356269524,
+    6365127487,
+    6366344066,
+    6376589331,
+    6378753252,
+    6379046767
    ],
-   "updated_at": "2026-10-23T02:55:44Z",
+   "updated_at": "2026-10-24T03:00:39Z",
    "last_comment": {
-    "author": "maximusrufus",
-    "at": "2026-10-23T02:55:44Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6356269524",
-    "text": "@babyblueviper1 Re [your 55/55 run](https://github.com/x402-foundation/tsc/issues/4#issuecomment-6352331928):\n\n> If a vector issued by a third-party checker key (not built by the corpus author) is useful, `selftest-pass.json` is already in vector layout and CC0.\n\nYes, thank you. It is now vector 56, kept as received and credited, at [`bc5a138`](https://github.com/maximusrufus/work-acceptance-record/commit/bc5a138): the set's only receipt issued by another checker under its own key, and both reference verifiers agree with its `expected` object (with 31's FreeTSA and DigiCert roots as anchors, `"
+    "author": "actaseal",
+    "at": "2026-10-24T03:00:39Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6379046767",
+    "text": "@maximusrufus Another reading of 1.4.1, clean room: written from the README and vectors at `bc5a138` only, no reference verifier or other checker opened. Python stdlib, no network, no clock.\n\n- 57/57 at `bc5a138`, and 59/59 on maximusrufus/work-acceptance-record#1 (58 and 59 included), with no change to the checker.\n- Mutation battery at `bc5a138`: 1,421 single changes, counted only on vectors the unmodified checker agrees with. 1,115 are caught. Of the 306 that survive, 48 are in steps 1-8 and RFC 8785; the rest are in the RFC 3161, DER and signature plumbing.\n\nReadings the vectors don't pin "
    }
   },
   "x402-foundation/x402#2887": {
@@ -337,7 +342,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 139,
+   "comments": 141,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -477,14 +482,16 @@
     6344840662,
     6352417337,
     6355201641,
-    6358201441
+    6358201441,
+    6366365630,
+    6377422801
    ],
-   "updated_at": "2026-10-23T05:34:28Z",
+   "updated_at": "2026-10-24T00:19:28Z",
    "last_comment": {
-    "author": "holistis",
-    "at": "2026-10-23T05:34:28Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6358201441",
-    "text": "@babyblueviper1 The decimal-string choice x402 already made for amounts just earned its keep. Good find on the JCS number formatting gap, and a clean way to check it: 89,980 doubles against JSON.stringify with 0 mismatches.\n"
+    "author": "babyblueviper1",
+    "at": "2026-10-24T00:19:27Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6377422801",
+    "text": "@Tetsurohhori thanks. I ran `jcs-number-vectors` at `40b2129` against the canonicalizer our live issuer signs with (the deployed `jcs`/`es_number` from `dc4e1094`, fed each double from its bits): **1001/1001**. So is the `rfc8785` 0.1.4 package our other production signers import. The production path agrees, not only the checker."
    }
   },
   "x402-foundation/x402#3220": {
@@ -581,14 +588,22 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-23T10:22:32+00:00",
+ "last_checked": "2026-10-24T05:58:20+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-23T10:22:32+00:00",
+   "checked": "2026-10-24T05:58:20+00:00",
    "items": {
+    "19": {
+     "title": "Decision register: proposed D-043 to D-051, data handling, a binding profile catalogue and a profile authoring guide",
+     "state": "open",
+     "pr": true,
+     "comments": 0,
+     "author": "magentixai",
+     "url": "https://github.com/magentixai/axes/pull/19"
+    },
     "18": {
      "title": "Anchoring: first distributed_ledger profile, AnchorRegistry (axes#3)",
-     "state": "open",
+     "state": "closed",
      "pr": true,
      "comments": 0,
      "author": "magentixai",
@@ -598,7 +613,7 @@
      "title": "docs/09a \u00a74 and the gt-v2.1 corpus disagree on whether recorded_at is in the envelope hash",
      "state": "closed",
      "pr": false,
-     "comments": 1,
+     "comments": 2,
      "author": "babyblueviper1",
      "url": "https://github.com/magentixai/axes/issues/17"
     },
@@ -692,9 +707,9 @@
     },
     "3": {
      "title": "[CONFORMANCE] Real anchoring_method: distributed_ledger instance to replace the SIMULATED stub",
-     "state": "open",
+     "state": "closed",
      "pr": false,
-     "comments": 9,
+     "comments": 11,
      "author": "giskard09",
      "url": "https://github.com/magentixai/axes/issues/3"
     },
@@ -765,13 +780,16 @@
     6126652707,
     6150961475,
     6169972601,
-    6359128796
+    6359128796,
+    6365231142,
+    6366904411,
+    6377320874
    ],
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
-   "open_issues_count": 10,
-   "pushed_at": "2026-10-23T07:59:10Z"
+   "open_issues_count": 9,
+   "pushed_at": "2026-10-23T22:13:07Z"
   }
  },
  "cec": {
@@ -820,6 +838,15 @@
   },
   "Composable-Evidence-Criteria/action-ref-conformance": {
    "items": {
+    "9": {
+     "title": "draft-etcheverry-action-ref-04 published \u2014 Implementation Status section names this lab and AXES",
+     "state": "open",
+     "pr": false,
+     "comments": 0,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/9",
+     "updated_at": "2026-10-23T10:48:51Z"
+    },
     "8": {
      "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
      "state": "open",
@@ -938,6 +965,38 @@
  },
  "user_events": {
   "giskard09": [
+   "18081917262",
+   "18081308039",
+   "24980816898",
+   "24976675490",
+   "18074275517",
+   "18074250253",
+   "24975764729",
+   "18073983517",
+   "24970824808",
+   "24970476935",
+   "18069219926",
+   "18067828095",
+   "24964797709",
+   "18064404558",
+   "18064204737",
+   "18062827579",
+   "18061990730",
+   "24959586587",
+   "18057592441",
+   "18046985949",
+   "18046320296",
+   "18042126611",
+   "24945621725",
+   "18038356457",
+   "24941319771",
+   "18026380403",
+   "18025068810",
+   "18024399898",
+   "18018293854",
+   "18018035949",
+   "24934159952",
+   "18015652914",
    "18001284169",
    "17991768308",
    "17970615419",
@@ -1005,39 +1064,7 @@
    "17534426358",
    "17534404078",
    "17534108924",
-   "24433036251",
-   "17533738325",
-   "24430543331",
-   "17532661525",
-   "17532384837",
-   "17532315972",
-   "17532203078",
-   "24421358460",
-   "24412486515",
-   "24406599583",
-   "24360745857",
-   "17500926311",
-   "24341796683",
-   "17486310655",
-   "17485710865",
-   "17485487214",
-   "17485154496",
-   "17482725364",
-   "17482558313",
-   "24320597055",
-   "17481253673",
-   "17454594919",
-   "17449561341",
-   "17447699162",
-   "17446144956",
-   "24248332286",
-   "24240781493",
-   "24237689979",
-   "17419504562",
-   "17418353222",
-   "17414309778",
-   "24222429272",
-   "17409444479"
+   "24433036251"
   ]
  }
 }
