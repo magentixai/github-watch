@@ -588,11 +588,19 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-24T05:58:20+00:00",
+ "last_checked": "2026-10-24T09:43:19+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-24T05:58:20+00:00",
+   "checked": "2026-10-24T09:43:19+00:00",
    "items": {
+    "20": {
+     "title": "RELEASES: list babyblueviper1 as independent reproduction of gt-v2.1",
+     "state": "open",
+     "pr": true,
+     "comments": 0,
+     "author": "magentixai",
+     "url": "https://github.com/magentixai/axes/pull/20"
+    },
     "19": {
      "title": "Decision register: proposed D-043 to D-051, data handling, a binding profile catalogue and a profile authoring guide",
      "state": "open",
@@ -788,8 +796,8 @@
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
-   "open_issues_count": 9,
-   "pushed_at": "2026-10-23T22:13:07Z"
+   "open_issues_count": 10,
+   "pushed_at": "2026-10-24T08:18:31Z"
   }
  },
  "cec": {
@@ -965,6 +973,9 @@
  },
  "user_events": {
   "giskard09": [
+   "25008573983",
+   "25008137933",
+   "18086939137",
    "18081917262",
    "18081308039",
    "24980816898",
@@ -1061,10 +1072,7 @@
    "17537532212",
    "17536270924",
    "17535624507",
-   "17534426358",
-   "17534404078",
-   "17534108924",
-   "24433036251"
+   "17534426358"
   ]
  }
 }
