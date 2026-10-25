@@ -93,7 +93,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 233,
+   "comments": 235,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -327,14 +327,16 @@
     6366344066,
     6376589331,
     6378753252,
-    6379046767
+    6379046767,
+    6385423213,
+    6392160572
    ],
-   "updated_at": "2026-10-24T03:00:39Z",
+   "updated_at": "2026-10-25T01:52:59Z",
    "last_comment": {
     "author": "actaseal",
-    "at": "2026-10-24T03:00:39Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6379046767",
-    "text": "@maximusrufus Another reading of 1.4.1, clean room: written from the README and vectors at `bc5a138` only, no reference verifier or other checker opened. Python stdlib, no network, no clock.\n\n- 57/57 at `bc5a138`, and 59/59 on maximusrufus/work-acceptance-record#1 (58 and 59 included), with no change to the checker.\n- Mutation battery at `bc5a138`: 1,421 single changes, counted only on vectors the unmodified checker agrees with. 1,115 are caught. Of the 306 that survive, 48 are in steps 1-8 and RFC 8785; the rest are in the RFC 3161, DER and signature plumbing.\n\nReadings the vectors don't pin "
+    "at": "2026-10-25T01:52:59Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6392160572",
+    "text": "@maximusrufus Yes, please credit `actaseal`. Thank you.\n\nIn case it saves you time, https://github.com/maximusrufus/work-acceptance-record/pull/2 has four of the eight as vectors in the corpus layout (CC0, test-key seeds included): 62 and 63 are the envelope key_id and one-key-under-two-ids cases from your list, and 60 and 61 cover the two that aren't in it, exponent-form numbers with more than one significant digit and an object key outside the BMP. Take whatever is useful and renumber or close it as you prefer.\n\nWith the rules you list stated beside the new cases, I'll rerun the clean-room c"
    }
   },
   "x402-foundation/x402#2887": {
@@ -588,14 +590,14 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-24T09:43:19+00:00",
+ "last_checked": "2026-10-25T05:55:58+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-24T09:43:19+00:00",
+   "checked": "2026-10-25T05:55:58+00:00",
    "items": {
     "20": {
      "title": "RELEASES: list babyblueviper1 as independent reproduction of gt-v2.1",
-     "state": "open",
+     "state": "closed",
      "pr": true,
      "comments": 0,
      "author": "magentixai",
@@ -796,8 +798,8 @@
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
-   "open_issues_count": 10,
-   "pushed_at": "2026-10-24T08:18:31Z"
+   "open_issues_count": 9,
+   "pushed_at": "2026-10-24T10:22:32Z"
   }
  },
  "cec": {
@@ -973,6 +975,11 @@
  },
  "user_events": {
   "giskard09": [
+   "25082112899",
+   "25036306963",
+   "25036250373",
+   "25018790782",
+   "25011811746",
    "25008573983",
    "25008137933",
    "18086939137",
@@ -1067,12 +1074,7 @@
    "24441836957",
    "17538087321",
    "17538016777",
-   "17537957089",
-   "24439618627",
-   "17537532212",
-   "17536270924",
-   "17535624507",
-   "17534426358"
+   "17537957089"
   ]
  }
 }

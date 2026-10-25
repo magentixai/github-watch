@@ -1,23 +1,29 @@
 {
- "checked_at": "2026-10-24T09:43:19+00:00",
- "previous_check": "2026-10-24T05:58:20+00:00",
+ "checked_at": "2026-10-25T05:55:58+00:00",
+ "previous_check": "2026-10-24T09:43:19+00:00",
  "changes": [
   {
-   "item": "magentixai/axes#20",
-   "type": "new_pr",
-   "author": "magentixai",
-   "title": "RELEASES: list babyblueviper1 as independent reproduction of gt-v2.1",
-   "url": "https://github.com/magentixai/axes/pull/20"
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-24T14:30:47Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6385423213",
+   "text": "@actaseal Thank you for the battery and the eight cases. We'd like to take them up. The next vector batch, after 27 October, will carry cases for an invalid base64 character, an envelope key_id that differs from the signed one, one key under two ids, fractional genTime, and upper-case hex digests, with the spec rules stated beside them (canonical base64, lowercase digests, the DER form of genTime with millisecond comparison). Vectors 01 to 59 and their outcomes stay as they are.\n\nMay we credit you by handle for those cases in the vector table?\n"
   },
   {
-   "item": "aeoess/agent-governance-vocabulary#217",
+   "item": "x402-foundation/tsc#4",
    "type": "comment",
-   "author": "giskard09",
-   "at": "2026-10-24T05:58:37Z",
-   "url": "https://github.com/aeoess/agent-governance-vocabulary/issues/217#issuecomment-6380636853",
-   "title": "Anchor pointer, draft 0: one form for how a record points at its external anchor (with vectors)",
-   "text": "@Tetsurohhori 14/14 independent, clean-room, against live RPC \u2014 that's the result that matters for an artifact meant to be portable. On `destination-001`/`logindex-001`: checked our own resolution rule, and it's true we never checked `to` at all \u2014 only `log.address`/`log_index`/`topics`. Hadn't named the multisig case explicitly before writing it that way; good to have the actual reason on record now, not just the simpler path. And `not_final` landing on your side is exactly the shape we expected when we left finality out of the tuple \u2014 glad it came out clean rather than needing a redesign. Lo",
-   "source": "user:giskard09"
+   "author": "actaseal",
+   "at": "2026-10-25T01:52:59Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6392160572",
+   "text": "@maximusrufus Yes, please credit `actaseal`. Thank you.\n\nIn case it saves you time, https://github.com/maximusrufus/work-acceptance-record/pull/2 has four of the eight as vectors in the corpus layout (CC0, test-key seeds included): 62 and 63 are the envelope key_id and one-key-under-two-ids cases from your list, and 60 and 61 cover the two that aren't in it, exponent-form numbers with more than one significant digit and an object key outside the BMP. Take whatever is useful and renumber or close it as you prefer.\n\nWith the rules you list stated beside the new cases, I'll rerun the clean-room c"
+  },
+  {
+   "item": "magentixai/axes#20",
+   "type": "state",
+   "from": "open",
+   "to": "closed",
+   "url": "https://github.com/magentixai/axes/pull/20"
   }
  ],
  "failures": [],
@@ -59,13 +65,13 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 233,
-   "updated_at": "2026-10-24T03:00:39Z",
+   "comments": 235,
+   "updated_at": "2026-10-25T01:52:59Z",
    "last_comment": {
     "author": "actaseal",
-    "at": "2026-10-24T03:00:39Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6379046767",
-    "text": "@maximusrufus Another reading of 1.4.1, clean room: written from the README and vectors at `bc5a138` only, no reference verifier or other checker opened. Python stdlib, no network, no clock.\n\n- 57/57 at `bc5a138`, and 59/59 on maximusrufus/work-acceptance-record#1 (58 and 59 included), with no change to the checker.\n- Mutation battery at `bc5a138`: 1,421 single changes, counted only on vectors the unmodified checker agrees with. 1,115 are caught. Of the 306 that survive, 48 are in steps 1-8 and RFC 8785; the rest are in the RFC 3161, DER and signature plumbing.\n\nReadings the vectors don't pin "
+    "at": "2026-10-25T01:52:59Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6392160572",
+    "text": "@maximusrufus Yes, please credit `actaseal`. Thank you.\n\nIn case it saves you time, https://github.com/maximusrufus/work-acceptance-record/pull/2 has four of the eight as vectors in the corpus layout (CC0, test-key seeds included): 62 and 63 are the envelope key_id and one-key-under-two-ids cases from your list, and 60 and 61 cover the two that aren't in it, exponent-form numbers with more than one significant digit and an object key outside the BMP. Take whatever is useful and renumber or close it as you prefer.\n\nWith the rules you list stated beside the new cases, I'll rerun the clean-room c"
    }
   },
   "x402-foundation/x402#2887": {
@@ -111,12 +117,12 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-10-24T09:43:19+00:00",
+   "checked": "2026-10-25T05:55:58+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
-   "open_issues_count": 10,
-   "pushed_at": "2026-10-24T08:18:31Z",
+   "open_issues_count": 9,
+   "pushed_at": "2026-10-24T10:22:32Z",
    "issues_tracked": 17
   },
   "Composable-Evidence-Criteria/.github": {
