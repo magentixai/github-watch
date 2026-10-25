@@ -590,10 +590,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-25T05:55:58+00:00",
+ "last_checked": "2026-10-25T09:59:31+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-25T05:55:58+00:00",
+   "checked": "2026-10-25T09:59:31+00:00",
    "items": {
     "20": {
      "title": "RELEASES: list babyblueviper1 as independent reproduction of gt-v2.1",
@@ -975,6 +975,7 @@
  },
  "user_events": {
   "giskard09": [
+   "18148164665",
    "25082112899",
    "25036306963",
    "25036250373",
@@ -1073,8 +1074,7 @@
    "24441912125",
    "24441836957",
    "17538087321",
-   "17538016777",
-   "17537957089"
+   "17538016777"
   ]
  }
 }

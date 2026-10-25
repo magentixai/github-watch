@@ -1,31 +1,7 @@
 {
- "checked_at": "2026-10-25T05:55:58+00:00",
- "previous_check": "2026-10-24T09:43:19+00:00",
- "changes": [
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "maximusrufus",
-   "at": "2026-10-24T14:30:47Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6385423213",
-   "text": "@actaseal Thank you for the battery and the eight cases. We'd like to take them up. The next vector batch, after 27 October, will carry cases for an invalid base64 character, an envelope key_id that differs from the signed one, one key under two ids, fractional genTime, and upper-case hex digests, with the spec rules stated beside them (canonical base64, lowercase digests, the DER form of genTime with millisecond comparison). Vectors 01 to 59 and their outcomes stay as they are.\n\nMay we credit you by handle for those cases in the vector table?\n"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "actaseal",
-   "at": "2026-10-25T01:52:59Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6392160572",
-   "text": "@maximusrufus Yes, please credit `actaseal`. Thank you.\n\nIn case it saves you time, https://github.com/maximusrufus/work-acceptance-record/pull/2 has four of the eight as vectors in the corpus layout (CC0, test-key seeds included): 62 and 63 are the envelope key_id and one-key-under-two-ids cases from your list, and 60 and 61 cover the two that aren't in it, exponent-form numbers with more than one significant digit and an object key outside the BMP. Take whatever is useful and renumber or close it as you prefer.\n\nWith the rules you list stated beside the new cases, I'll rerun the clean-room c"
-  },
-  {
-   "item": "magentixai/axes#20",
-   "type": "state",
-   "from": "open",
-   "to": "closed",
-   "url": "https://github.com/magentixai/axes/pull/20"
-  }
- ],
+ "checked_at": "2026-10-25T09:59:31+00:00",
+ "previous_check": "2026-10-25T05:55:58+00:00",
+ "changes": [],
  "failures": [],
  "summary": {
   "LF-Decentralized-Trust/lab-proposals#2": {
@@ -117,7 +93,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-10-25T05:55:58+00:00",
+   "checked": "2026-10-25T09:59:31+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -212,7 +188,7 @@
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-10-24T05:58:37Z"
+   "latest_event": "2026-10-25T08:54:20Z"
   }
  },
  "first_run": false
