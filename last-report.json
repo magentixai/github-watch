@@ -1,73 +1,7 @@
 {
- "checked_at": "2026-10-26T05:58:02+00:00",
- "previous_check": "2026-10-25T09:59:31+00:00",
- "changes": [
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "babyblueviper1",
-   "at": "2026-10-25T22:47:25Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6404475210",
-   "text": "@maximusrufus thank you for taking it as 56. 1\u201357 at `bc5a138` on our clean-room verifier: **57/57**, with no checker change since the 55/55 run ([`c63208d`](https://github.com/babyblueviper1/preaction-governance-conformance/tree/c63208d/examples/work-acceptance-record-cold)).\n\n@stillmarcus24 your seven double classes were the right measure. Our 52 fix had already replaced the language's float repr with ECMAScript `Number::toString`, so 57 (`1.0`, `100.0`, `-0.0`, `300.0` \u2192 `1`, `100`, `0`, `300`) agrees without a change. The same canonicalizer is in our record issuer.\n"
-  },
-  {
-   "item": "magentixai/axes#6",
-   "type": "comment",
-   "author": "giskard09",
-   "at": "2026-10-25T19:56:48Z",
-   "url": "https://github.com/magentixai/axes/issues/6#issuecomment-6402434842",
-   "text": "Posting the two-sided vector exchange seed from 2026-07-27 (axes#3 comment 5095783301 / axes#7 comment 5095783521), now that there's a public invitation to do so (per your comment on argentum-core#148).\n\nSix vectors in `examples/conformance/axes-exchange/` at giskard09/argentum-core (commit 41a297c):\n- `01-derivation-baseline`, `02-derivation-dual-timestamps`: action_ref derivation vectors (repackaged from `action-ref-v1-baseline.fixture.json`). You confirmed these reproduce on your side (bytes and digest).\n- `03-confirmation-onchain`, `04-confirmation-paypal-rest`, `05-confirmation-turnkey-mp"
-  },
-  {
-   "item": "aeoess/agent-governance-vocabulary#217",
-   "type": "comment",
-   "author": "giskard09",
-   "at": "2026-10-25T15:18:27Z",
-   "url": "https://github.com/aeoess/agent-governance-vocabulary/issues/217#issuecomment-6399412199",
-   "title": "Anchor pointer, draft 0: one form for how a record points at its external anchor (with vectors)",
-   "text": "Confirmed independently: cloned `aos-standard/catalog` at `3c0c12f`, `sha256sum -c` clean on the 14 files in `docs/runs/anchor-pointer-draft1/SHA256SUMS`, and `source_sha256` `632a3c83\u2026` in `run_evm.json` matches our `vectors.json` from PR #148 byte for byte. 14/14, all four positives below the reported finalized height \u2014 same result you got.\n\n`select` and `earliest_height` are the right generalizations for an anchor whose resource is something fetched or re-served, or a proof that can land in more than one block. Neither one has anything to bind to in the `evm-log` case as defined \u2014 a log sit",
-   "source": "user:giskard09"
-  },
-  {
-   "item": "google-agentic-commerce/AP2#338",
-   "type": "comment",
-   "author": "giskard09",
-   "at": "2026-10-25T15:27:46Z",
-   "url": "https://github.com/google-agentic-commerce/AP2/issues/338#issuecomment-6399514883",
-   "title": "Dispute-time evidence: a self-contained storage format for mandates + issuer key material",
-   "text": "Thanks for closing the loop \u2014 checked the diff (`rfc.dispute_resolution.md`, `4c05598`), it's exactly right. Good shape for req 5: declared max as the primary bound, the provider's own stricter ceiling as a secondary one when it has one.",
-   "source": "user:giskard09"
-  },
-  {
-   "item": "giskard09/argentum-core#148",
-   "type": "comment",
-   "author": "giskard09",
-   "at": "2026-10-25T19:56:47Z",
-   "url": "https://github.com/giskard09/argentum-core/pull/148#issuecomment-6402434668",
-   "title": "examples: add anchor-pointer-evm-log-v1 conformance vectors (CC0)",
-   "text": "Martin \u2014 thanks for running this independently. Fixing the README link now (magentixai/axes, not x402-foundation/axes). Posting axes-exchange-v1 to axes#6 right after this.",
-   "source": "user:giskard09"
-  },
-  {
-   "item": "giskard09/argentum-core#149",
-   "type": "new_pr",
-   "author": "giskard09",
-   "at": "2026-10-25T19:58:04Z",
-   "title": null,
-   "url": null,
-   "source": "user:giskard09"
-  },
-  {
-   "item": "agentauditAI/AgentAudit#2",
-   "type": "comment",
-   "author": "giskard09",
-   "at": "2026-10-25T20:13:54Z",
-   "url": "https://github.com/agentauditAI/AgentAudit/issues/2#issuecomment-6402617170",
-   "title": "Cross-trail demo: RunLock pre-execution \u2192 Mycelium post-execution \u2192 Arbitrum anchor",
-   "text": "Piotr \u2014 the links:\n\n- Mycelium/action_ref spec: `docs/spec/action-ref.md` in `giskard09/argentum-core` (public), formalized as an IETF Internet-Draft, `draft-etcheverry-action-ref-04`. Conformance vectors: `examples/conformance/action-ref-v1-baseline.fixture.json`.\n- Pioneer: `giskard09/pioneer-agent` (public).\n- One correction from the June issue: the anchor function isn't `markUsed()` -- that's on GiskardPayments and it's owner-gated (`onlyAuthorized`), no third party can call it directly. The permissionless primitive is `AnchorRegistry.anchor(bytes32)` at `0x49fEcA52bC634a9Ab773226D16619deC",
-   "source": "user:giskard09"
-  }
- ],
+ "checked_at": "2026-10-26T11:22:46+00:00",
+ "previous_check": "2026-10-26T05:58:02+00:00",
+ "changes": [],
  "failures": [],
  "summary": {
   "LF-Decentralized-Trust/lab-proposals#2": {
@@ -159,7 +93,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-10-26T05:58:02+00:00",
+   "checked": "2026-10-26T11:22:46+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
