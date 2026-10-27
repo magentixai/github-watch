@@ -93,7 +93,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 237,
+   "comments": 238,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -331,14 +331,15 @@
     6385423213,
     6392160572,
     6404475210,
-    6427389051
+    6427389051,
+    6436544631
    ],
-   "updated_at": "2026-10-26T21:09:40Z",
+   "updated_at": "2026-10-27T07:51:18Z",
    "last_comment": {
-    "author": "giskard09",
-    "at": "2026-10-26T21:09:39Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6427389051",
-    "text": "Separate from the charter decision: for whoever's building the phase-1 anchor-mechanism comparison \u2014 this thread covers RFC3161/TSA (FreeTSA, DigiCert) and bonded adjudication (StillOS, Base mainnet with a funded bond). A third shape worth having on record: action_ref/AnchorRegistry, a permissionless on-chain anchor \u2014 anyone can call anchor(bytes32) directly, no issuer, no bond, no relationship with us required. Same contract, same address via CREATE2, live right now on Base, Arbitrum One and Ink (verified today via eth_getCode on all three). Putting it on the table as a non-custodial, no-issu"
+    "author": "magentixai",
+    "at": "2026-10-27T07:49:20Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6436544631",
+    "text": "Thanks @giskard09, useful to have the permissionless shape on record.\n\nOne suggestion before the Phase 1 comparison is built: \u201canchor\u201d is currently used in this thread for different things, and separating them would help us avoid talking past each other. I\u2019d propose three layers, each with its own name:\n\n| Layer | Proposed term | Question it answers | Where it lives |\n|---|---|---|---|\n| 1 | **Evidence record** | What happened, who did it, under what authority, and what is absent? | Off the payment path, in whichever record format fits the use case (rich or minimal) |\n| 2 | **Payment binding**"
    }
   },
   "x402-foundation/x402#2887": {
@@ -505,7 +506,7 @@
    "labels": [
     "specs"
    ],
-   "comments": 63,
+   "comments": 64,
    "comment_ids": [
     5363175322,
     5363176865,
@@ -569,14 +570,15 @@
     5982701866,
     5983837191,
     5987199142,
-    6010784398
+    6010784398,
+    6439907600
    ],
-   "updated_at": "2026-10-06T06:34:09Z",
+   "updated_at": "2026-10-27T10:44:15Z",
    "last_comment": {
-    "author": "Fizzl13",
-    "at": "2026-10-06T06:34:09Z",
-    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6010784398",
-    "text": "We implemented the single-payment part of this draft (\u00a76, \u00a77) in presign-guard, a pre-sign check for agent payments:\n\n- POST /v1/check takes an optional mandate next to an EIP-3009 signature and turns a payment outside it red before the agent signs (wrong payer/asset/recipient, over perPayment or cap, expired, bad issuer signature, nonce \u2260 binding).\n- presign-guard-wallet's mandatePayer() makes x402 payments with the \u00a77 binding as the EIP-3009 nonce.\n- JCS bytes, digest, signature and the EIP-3009/Permit2 binding values match authority-vectors.json byte for byte.\n\nNot covered: cumulative spend"
+    "author": "magentixai",
+    "at": "2026-10-27T10:44:15Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6439907600",
+    "text": "@whawk46 the derivation and vectors we discussed on 4 to 5 Oct: [`specs/extensions/nonce-composition.md`](https://github.com/magentixai/x402/blob/magentixai/nonce-composition-x402-nonce-1/specs/extensions/nonce-composition.md) on [magentixai/x402 @ `4c85abb`](https://github.com/magentixai/x402/tree/magentixai/nonce-composition-x402-nonce-1/specs/extensions). It ended up simpler than the flat form I suggested, and \u00a77 doesn't change at all.\n\n**Why not flat.** If B is hashed into the nonce alongside other members, the agent can put one B inside two different compositions, get two fresh EIP-3009 o"
    }
   }
  },
@@ -592,10 +594,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-27T05:56:47+00:00",
+ "last_checked": "2026-10-27T10:46:45+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-27T05:56:47+00:00",
+   "checked": "2026-10-27T10:46:45+00:00",
    "items": {
     "20": {
      "title": "RELEASES: list babyblueviper1 as independent reproduction of gt-v2.1",
@@ -851,6 +853,15 @@
   },
   "Composable-Evidence-Criteria/action-ref-conformance": {
    "items": {
+    "10": {
+     "title": "pairs/0001: x402 authority mandate (#3220 at 72c3704) with an AXES correlation record",
+     "state": "open",
+     "pr": true,
+     "comments": 0,
+     "author": "magentixai",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10",
+     "updated_at": "2026-10-27T08:38:37Z"
+    },
     "9": {
      "title": "draft-etcheverry-action-ref-04 published \u2014 Implementation Status section names this lab and AXES",
      "state": "open",
@@ -918,10 +929,10 @@
      "title": "Lab name: recomputable-evidence is taken, proposed replacement",
      "state": "open",
      "pr": false,
-     "comments": 6,
+     "comments": 7,
      "author": "giskard09",
      "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2",
-     "updated_at": "2026-10-26T21:39:27Z"
+     "updated_at": "2026-10-27T08:47:16Z"
     },
     "1": {
      "title": "GOVERNANCE: update write-access line now that the repository is in the lab org",
@@ -958,6 +969,7 @@
     6237323079,
     6275207045,
     6427979114,
+    6437342809,
     5575147447,
     5576576581,
     5443489549,
@@ -979,6 +991,8 @@
  },
  "user_events": {
   "giskard09": [
+   "25310864162",
+   "25310660196",
    "25297744514",
    "25290355138",
    "18297653425",
@@ -1076,9 +1090,7 @@
    "24657080010",
    "24653598865",
    "24640817018",
-   "24637075495",
-   "24630189658",
-   "24629953179"
+   "24637075495"
   ]
  }
 }

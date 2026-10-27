@@ -1,0 +1,234 @@
+{
+ "checked_at": "2026-10-27T10:46:45+00:00",
+ "previous_check": "2026-10-27T05:56:47+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "magentixai",
+   "at": "2026-10-27T07:49:20Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6436544631",
+   "text": "Thanks @giskard09, useful to have the permissionless shape on record.\n\nOne suggestion before the Phase 1 comparison is built: \u201canchor\u201d is currently used in this thread for different things, and separating them would help us avoid talking past each other. I\u2019d propose three layers, each with its own name:\n\n| Layer | Proposed term | Question it answers | Where it lives |\n|---|---|---|---|\n| 1 | **Evidence record** | What happened, who did it, under what authority, and what is absent? | Off the payment path, in whichever record format fits the use case (rich or minimal) |\n| 2 | **Payment binding**"
+  },
+  {
+   "item": "x402-foundation/x402#3220",
+   "type": "comment",
+   "author": "magentixai",
+   "at": "2026-10-27T10:44:15Z",
+   "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6439907600",
+   "text": "@whawk46 the derivation and vectors we discussed on 4 to 5 Oct: [`specs/extensions/nonce-composition.md`](https://github.com/magentixai/x402/blob/magentixai/nonce-composition-x402-nonce-1/specs/extensions/nonce-composition.md) on [magentixai/x402 @ `4c85abb`](https://github.com/magentixai/x402/tree/magentixai/nonce-composition-x402-nonce-1/specs/extensions). It ended up simpler than the flat form I suggested, and \u00a77 doesn't change at all.\n\n**Why not flat.** If B is hashed into the nonce alongside other members, the agent can put one B inside two different compositions, get two fresh EIP-3009 o"
+  },
+  {
+   "item": "Composable-Evidence-Criteria/action-ref-conformance#10",
+   "type": "new_pr",
+   "author": "magentixai",
+   "title": "pairs/0001: x402 authority mandate (#3220 at 72c3704) with an AXES correlation record",
+   "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10"
+  },
+  {
+   "item": "Composable-Evidence-Criteria/action-ref-conformance#2",
+   "type": "comment",
+   "author": "magentixai",
+   "at": "2026-10-27T08:39:02Z",
+   "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2#issuecomment-6437342809",
+   "text": "The draft is up as #10: `pairs/0001-x402-authority-axes-correlation/`, against x402-foundation/x402#3220 pinned at `72c3704`.\n\n- **Two positive cases.** One uses a mandate built per \u00a73 and \u00a74 for the payment, where the criterion and the \u00a76 authority check both pass. The other uses x402-foundation/x402#3220's own model A vector mandate with the AXES record built against it in October. There the binding recomputes and the criterion holds, but \u00a76 refuses, because that mandate's subject, asset and recipients are abstract identifiers. That case shows a matching binding is not an authorisation, as \u00a7"
+  }
+ ],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 6,
+   "updated_at": "2026-10-20T15:06:35Z",
+   "last_comment": {
+    "author": "source-origin",
+    "at": "2026-10-20T15:06:34Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-6294062372",
+    "text": "Tymofii,\r\n\r\nYou closed the loop on two questions in the same thread, and you gave us a\r\ndistinction we have since used more than anything else from that exchange:\r\n*reference by pin, not host*, with criteria marked as authored judgment rather\r\nthan recomputed fact.\r\n\r\nWe used it and did not tell you. Nineteen days. Sorry.\r\n\r\n**Where it landed.** Our rubric header now carries two separate lines, because\r\nyour distinction made it obvious that one line was a lie:\r\n\r\n- `criteria_version` + `pinned_commit` \u2014 what was applied, and the exact bytes\r\n  it was applied from. If the criteria move, the pin"
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 238,
+   "updated_at": "2026-10-27T07:51:18Z",
+   "last_comment": {
+    "author": "magentixai",
+    "at": "2026-10-27T07:49:20Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6436544631",
+    "text": "Thanks @giskard09, useful to have the permissionless shape on record.\n\nOne suggestion before the Phase 1 comparison is built: \u201canchor\u201d is currently used in this thread for different things, and separating them would help us avoid talking past each other. I\u2019d propose three layers, each with its own name:\n\n| Layer | Proposed term | Question it answers | Where it lives |\n|---|---|---|---|\n| 1 | **Evidence record** | What happened, who did it, under what authority, and what is absent? | Off the payment path, in whichever record format fits the use case (rich or minimal) |\n| 2 | **Payment binding**"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 141,
+   "updated_at": "2026-10-24T00:19:28Z",
+   "last_comment": {
+    "author": "babyblueviper1",
+    "at": "2026-10-24T00:19:27Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6377422801",
+    "text": "@Tetsurohhori thanks. I ran `jcs-number-vectors` at `40b2129` against the canonicalizer our live issuer signs with (the deployed `jcs`/`es_number` from `dc4e1094`, fed each double from its bits): **1001/1001**. So is the `rfc8785` 0.1.4 package our other production signers import. The production path agrees, not only the checker."
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 64,
+   "updated_at": "2026-10-27T10:44:15Z",
+   "last_comment": {
+    "author": "magentixai",
+    "at": "2026-10-27T10:44:15Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6439907600",
+    "text": "@whawk46 the derivation and vectors we discussed on 4 to 5 Oct: [`specs/extensions/nonce-composition.md`](https://github.com/magentixai/x402/blob/magentixai/nonce-composition-x402-nonce-1/specs/extensions/nonce-composition.md) on [magentixai/x402 @ `4c85abb`](https://github.com/magentixai/x402/tree/magentixai/nonce-composition-x402-nonce-1/specs/extensions). It ended up simpler than the flat form I suggested, and \u00a77 doesn't change at all.\n\n**Why not flat.** If B is hashed into the nonce alongside other members, the agent can put one B inside two different compositions, get two fresh EIP-3009 o"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-10-27T10:46:45+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 9,
+   "pushed_at": "2026-10-24T10:22:32Z",
+   "issues_tracked": 17
+  },
+  "Composable-Evidence-Criteria/.github": {
+   "main_latest": {
+    "sha": "9945f2c",
+    "at": "2026-09-30T08:29:38Z",
+    "msg": "Update name"
+   },
+   "files": {},
+   "open": {},
+   "issues_tracked": 0
+  },
+  "Composable-Evidence-Criteria/governance": {
+   "main_latest": {
+    "sha": "6a2532c",
+    "at": "2026-09-24T10:28:39Z",
+    "msg": "Add maintainers"
+   },
+   "files": {
+    "teams.yaml": "ec2793a"
+   },
+   "open": {
+    "2": {
+     "title": "Update team names add repo",
+     "pr": true,
+     "comments": 0,
+     "author": "ryjones",
+     "url": "https://github.com/Composable-Evidence-Criteria/governance/pull/2"
+    }
+   },
+   "issues_tracked": 2
+  },
+  "Composable-Evidence-Criteria/action-ref-conformance": {
+   "main_latest": {
+    "sha": "3164450",
+    "at": "2026-10-07T15:34:40Z",
+    "msg": "Merge pull request #6: GOVERNANCE correct magentixai conflict-of-interest line"
+   },
+   "files": {
+    "GOVERNANCE.md": "05ab3f1"
+   },
+   "open": {
+    "10": {
+     "title": "pairs/0001: x402 authority mandate (#3220 at 72c3704) with an AXES correlation record",
+     "pr": true,
+     "comments": 0,
+     "author": "magentixai",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10"
+    },
+    "9": {
+     "title": "draft-etcheverry-action-ref-04 published \u2014 Implementation Status section names this lab and AXES",
+     "pr": false,
+     "comments": 0,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/9"
+    },
+    "8": {
+     "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
+     "pr": true,
+     "comments": 1,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8"
+    },
+    "7": {
+     "title": "Heads-up: Rama will offer paid conformance-QA engagements on top of this lab's public corpus",
+     "pr": false,
+     "comments": 3,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/7"
+    },
+    "5": {
+     "title": "Lab communications: LFDT newsletter and meetup proposals, and who speaks for the lab",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/5"
+    },
+    "4": {
+     "title": "APS SDK passes the pinned action-ref v1 Action (verify-impl)",
+     "pr": false,
+     "comments": 0,
+     "author": "aeoess",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/4"
+    },
+    "2": {
+     "title": "Lab name: recomputable-evidence is taken, proposed replacement",
+     "pr": false,
+     "comments": 7,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2"
+    }
+   },
+   "issues_tracked": 10
+  },
+  "user:giskard09": {
+   "events_seen": 100,
+   "latest_event": "2026-10-27T01:46:14Z"
+  }
+ },
+ "first_run": false
+}
