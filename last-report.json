@@ -1,7 +1,117 @@
 {
- "checked_at": "2026-10-26T11:22:46+00:00",
- "previous_check": "2026-10-26T05:58:02+00:00",
- "changes": [],
+ "checked_at": "2026-10-27T05:56:47+00:00",
+ "previous_check": "2026-10-26T11:22:46+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-26T21:09:39Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6427389051",
+   "text": "Separate from the charter decision: for whoever's building the phase-1 anchor-mechanism comparison \u2014 this thread covers RFC3161/TSA (FreeTSA, DigiCert) and bonded adjudication (StillOS, Base mainnet with a funded bond). A third shape worth having on record: action_ref/AnchorRegistry, a permissionless on-chain anchor \u2014 anyone can call anchor(bytes32) directly, no issuer, no bond, no relationship with us required. Same contract, same address via CREATE2, live right now on Base, Arbitrum One and Ink (verified today via eth_getCode on all three). Putting it on the table as a non-custodial, no-issu"
+  },
+  {
+   "item": "Composable-Evidence-Criteria/action-ref-conformance#2",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-26T21:39:27Z",
+   "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2#issuecomment-6427979114",
+   "text": "Following up on the condition I added on 5 Oct: I suggested treating the first pair as ready once x402#3220 merged upstream, \"so both sides reference a stable artifact rather than a proposal.\" #3220 hasn't moved since: still open, no reviews, last activity 6 Oct.\n\nWithdrawing it. Pinning gets the stable part: the PR head hasn't changed since 8 Sep (`72c3704`, `specs/extensions/authority.md` + `authority-vectors.json`), and it's the revision saneGuy already verified against in #3220 (571/571 on #3376). It doesn't make #3220 more than a proposal, so under rule 2 the case says so: x402 side = unm"
+  },
+  {
+   "item": "giskard09/giskard-search#11",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-26T12:20:09Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "FG-TIDA/use-cases#42",
+   "type": "new_issue",
+   "author": "giskard09",
+   "at": "2026-10-26T13:49:57Z",
+   "title": "[Use Case] Post-execution evidence gap in metered agent-to-agent settlement: no externally verifiable record of what was committed",
+   "url": "https://github.com/FG-TIDA/use-cases/issues/42",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "FG-TIDA/use-cases#43",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-26T13:57:39Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "solana-foundation/pay#533",
+   "type": "new_issue",
+   "author": "giskard09",
+   "at": "2026-10-26T14:18:52Z",
+   "title": "Post-execution evidence gap: metered completions settle via MeteredSettlement with no independently verifiable record of what was committed",
+   "url": "https://github.com/solana-foundation/pay/issues/533",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "personal-agent-protocol/personal-agent-protocol#37",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-26T16:39:34Z",
+   "url": "https://github.com/personal-agent-protocol/personal-agent-protocol/issues/37#issuecomment-6421590914",
+   "title": "Evidence for the payments discussion: an agent-paid, witnessed receipt, settled Oct 25, 2026",
+   "text": "Read through the full exchange \u2014 the receipt's JWS, the decoded `evidence_scope` booleans, and Violet's \"what this proves / doesn't prove\" breakdown are more rigorous than most things in this space, and @Bhavya's question lands on the one piece that's still open.\n\nDecoding the receipt (`commitment.payload_digest`, `payment_identifier`) and the Base transaction's calldata directly: it's a standard EIP-3009 `transferWithAuthorization` to USDC, and its authorization nonce matches the receipt's `payment_identifier` byte-for-byte. That part is real and checkable by anyone \u2014 no trust in 767-2676.com",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "LF-Decentralized-Trust/governance#410",
+   "type": "new_issue",
+   "author": "giskard09",
+   "at": "2026-10-26T20:13:15Z",
+   "title": "[NOMINATION 2027 TAC]: Pablo Etcheverry",
+   "url": "https://github.com/LF-Decentralized-Trust/governance/issues/410",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#150",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-26T20:37:38Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "google-agentic-commerce/AP2#290",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-26T20:42:39Z",
+   "url": "https://github.com/google-agentic-commerce/AP2/issues/290#issuecomment-6426854665",
+   "title": "[Feat]: Post-checkout agent action record \u2014 verifiable audit trail after Checkout Receipt",
+   "text": "Confirmed \u2014 verify_checkpoint_cadence now rejects mixed agent_id before comparing any gaps: {\"verdict\": \"malformed\", \"reason\": \"agent_mixed\"}, the same verdict verify_trail already uses for this class of input. Went with that over explicit MUST-partition text for the reason you gave \u2014 silent masking should surface as a verdict, not rely on caller discipline. Added a test with your exact repro (A at 00:00/02:00, B at 01:00/03:00, 1h ceiling, presented [A,B,A,B]) \u2014 confirms agent_mixed fires, and separately confirms each agent's own stream breaches the ceiling alone, so it's not a false alarm. C",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "x402-foundation/x402#2332",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-26T20:52:56Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2332#issuecomment-6427060714",
+   "title": "Post-settlement accountability layer: tamper-evident proof of agent action after payment",
+   "text": "Noted \u2014 lines up with our own correction on this thread (10/6): RP-determines-revoked \u2192 MUST, unconditional, no SHOULD left on that half. The \u00a72.4/step 8 vs \u00a77.5 tension (MUST query vs SHOULD NOT dereference) checks out against the posted text. Separately, while checking it: \u00a72.4/step 8 also allow a locally configured fail-open policy, while \u00a75.2 says a relying party that can't perform the lookup rejects fail-closed \u2014 didn't see that one reconciled either, might be worth the same -03 pass.",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#151",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-26T21:43:24Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  }
+ ],
  "failures": [],
  "summary": {
   "LF-Decentralized-Trust/lab-proposals#2": {
@@ -41,13 +151,13 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 236,
-   "updated_at": "2026-10-25T22:47:25Z",
+   "comments": 237,
+   "updated_at": "2026-10-26T21:09:40Z",
    "last_comment": {
-    "author": "babyblueviper1",
-    "at": "2026-10-25T22:47:25Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6404475210",
-    "text": "@maximusrufus thank you for taking it as 56. 1\u201357 at `bc5a138` on our clean-room verifier: **57/57**, with no checker change since the 55/55 run ([`c63208d`](https://github.com/babyblueviper1/preaction-governance-conformance/tree/c63208d/examples/work-acceptance-record-cold)).\n\n@stillmarcus24 your seven double classes were the right measure. Our 52 fix had already replaced the language's float repr with ECMAScript `Number::toString`, so 57 (`1.0`, `100.0`, `-0.0`, `300.0` \u2192 `1`, `100`, `0`, `300`) agrees without a change. The same canonicalizer is in our record issuer.\n"
+    "author": "giskard09",
+    "at": "2026-10-26T21:09:39Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6427389051",
+    "text": "Separate from the charter decision: for whoever's building the phase-1 anchor-mechanism comparison \u2014 this thread covers RFC3161/TSA (FreeTSA, DigiCert) and bonded adjudication (StillOS, Base mainnet with a funded bond). A third shape worth having on record: action_ref/AnchorRegistry, a permissionless on-chain anchor \u2014 anyone can call anchor(bytes32) directly, no issuer, no bond, no relationship with us required. Same contract, same address via CREATE2, live right now on Base, Arbitrum One and Ink (verified today via eth_getCode on all three). Putting it on the table as a non-custodial, no-issu"
    }
   },
   "x402-foundation/x402#2887": {
@@ -93,7 +203,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-10-26T11:22:46+00:00",
+   "checked": "2026-10-27T05:56:47+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -179,7 +289,7 @@
     "2": {
      "title": "Lab name: recomputable-evidence is taken, proposed replacement",
      "pr": false,
-     "comments": 5,
+     "comments": 6,
      "author": "giskard09",
      "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2"
     }
@@ -188,7 +298,7 @@
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-10-25T20:13:54Z"
+   "latest_event": "2026-10-27T01:46:14Z"
   }
  },
  "first_run": false

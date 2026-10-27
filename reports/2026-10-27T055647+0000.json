@@ -1,0 +1,305 @@
+{
+ "checked_at": "2026-10-27T05:56:47+00:00",
+ "previous_check": "2026-10-26T11:22:46+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-26T21:09:39Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6427389051",
+   "text": "Separate from the charter decision: for whoever's building the phase-1 anchor-mechanism comparison \u2014 this thread covers RFC3161/TSA (FreeTSA, DigiCert) and bonded adjudication (StillOS, Base mainnet with a funded bond). A third shape worth having on record: action_ref/AnchorRegistry, a permissionless on-chain anchor \u2014 anyone can call anchor(bytes32) directly, no issuer, no bond, no relationship with us required. Same contract, same address via CREATE2, live right now on Base, Arbitrum One and Ink (verified today via eth_getCode on all three). Putting it on the table as a non-custodial, no-issu"
+  },
+  {
+   "item": "Composable-Evidence-Criteria/action-ref-conformance#2",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-26T21:39:27Z",
+   "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2#issuecomment-6427979114",
+   "text": "Following up on the condition I added on 5 Oct: I suggested treating the first pair as ready once x402#3220 merged upstream, \"so both sides reference a stable artifact rather than a proposal.\" #3220 hasn't moved since: still open, no reviews, last activity 6 Oct.\n\nWithdrawing it. Pinning gets the stable part: the PR head hasn't changed since 8 Sep (`72c3704`, `specs/extensions/authority.md` + `authority-vectors.json`), and it's the revision saneGuy already verified against in #3220 (571/571 on #3376). It doesn't make #3220 more than a proposal, so under rule 2 the case says so: x402 side = unm"
+  },
+  {
+   "item": "giskard09/giskard-search#11",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-26T12:20:09Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "FG-TIDA/use-cases#42",
+   "type": "new_issue",
+   "author": "giskard09",
+   "at": "2026-10-26T13:49:57Z",
+   "title": "[Use Case] Post-execution evidence gap in metered agent-to-agent settlement: no externally verifiable record of what was committed",
+   "url": "https://github.com/FG-TIDA/use-cases/issues/42",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "FG-TIDA/use-cases#43",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-26T13:57:39Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "solana-foundation/pay#533",
+   "type": "new_issue",
+   "author": "giskard09",
+   "at": "2026-10-26T14:18:52Z",
+   "title": "Post-execution evidence gap: metered completions settle via MeteredSettlement with no independently verifiable record of what was committed",
+   "url": "https://github.com/solana-foundation/pay/issues/533",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "personal-agent-protocol/personal-agent-protocol#37",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-26T16:39:34Z",
+   "url": "https://github.com/personal-agent-protocol/personal-agent-protocol/issues/37#issuecomment-6421590914",
+   "title": "Evidence for the payments discussion: an agent-paid, witnessed receipt, settled Oct 25, 2026",
+   "text": "Read through the full exchange \u2014 the receipt's JWS, the decoded `evidence_scope` booleans, and Violet's \"what this proves / doesn't prove\" breakdown are more rigorous than most things in this space, and @Bhavya's question lands on the one piece that's still open.\n\nDecoding the receipt (`commitment.payload_digest`, `payment_identifier`) and the Base transaction's calldata directly: it's a standard EIP-3009 `transferWithAuthorization` to USDC, and its authorization nonce matches the receipt's `payment_identifier` byte-for-byte. That part is real and checkable by anyone \u2014 no trust in 767-2676.com",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "LF-Decentralized-Trust/governance#410",
+   "type": "new_issue",
+   "author": "giskard09",
+   "at": "2026-10-26T20:13:15Z",
+   "title": "[NOMINATION 2027 TAC]: Pablo Etcheverry",
+   "url": "https://github.com/LF-Decentralized-Trust/governance/issues/410",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#150",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-26T20:37:38Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "google-agentic-commerce/AP2#290",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-26T20:42:39Z",
+   "url": "https://github.com/google-agentic-commerce/AP2/issues/290#issuecomment-6426854665",
+   "title": "[Feat]: Post-checkout agent action record \u2014 verifiable audit trail after Checkout Receipt",
+   "text": "Confirmed \u2014 verify_checkpoint_cadence now rejects mixed agent_id before comparing any gaps: {\"verdict\": \"malformed\", \"reason\": \"agent_mixed\"}, the same verdict verify_trail already uses for this class of input. Went with that over explicit MUST-partition text for the reason you gave \u2014 silent masking should surface as a verdict, not rely on caller discipline. Added a test with your exact repro (A at 00:00/02:00, B at 01:00/03:00, 1h ceiling, presented [A,B,A,B]) \u2014 confirms agent_mixed fires, and separately confirms each agent's own stream breaches the ceiling alone, so it's not a false alarm. C",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "x402-foundation/x402#2332",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-26T20:52:56Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2332#issuecomment-6427060714",
+   "title": "Post-settlement accountability layer: tamper-evident proof of agent action after payment",
+   "text": "Noted \u2014 lines up with our own correction on this thread (10/6): RP-determines-revoked \u2192 MUST, unconditional, no SHOULD left on that half. The \u00a72.4/step 8 vs \u00a77.5 tension (MUST query vs SHOULD NOT dereference) checks out against the posted text. Separately, while checking it: \u00a72.4/step 8 also allow a locally configured fail-open policy, while \u00a75.2 says a relying party that can't perform the lookup rejects fail-closed \u2014 didn't see that one reconciled either, might be worth the same -03 pass.",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#151",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-26T21:43:24Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  }
+ ],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 6,
+   "updated_at": "2026-10-20T15:06:35Z",
+   "last_comment": {
+    "author": "source-origin",
+    "at": "2026-10-20T15:06:34Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-6294062372",
+    "text": "Tymofii,\r\n\r\nYou closed the loop on two questions in the same thread, and you gave us a\r\ndistinction we have since used more than anything else from that exchange:\r\n*reference by pin, not host*, with criteria marked as authored judgment rather\r\nthan recomputed fact.\r\n\r\nWe used it and did not tell you. Nineteen days. Sorry.\r\n\r\n**Where it landed.** Our rubric header now carries two separate lines, because\r\nyour distinction made it obvious that one line was a lie:\r\n\r\n- `criteria_version` + `pinned_commit` \u2014 what was applied, and the exact bytes\r\n  it was applied from. If the criteria move, the pin"
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 237,
+   "updated_at": "2026-10-26T21:09:40Z",
+   "last_comment": {
+    "author": "giskard09",
+    "at": "2026-10-26T21:09:39Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6427389051",
+    "text": "Separate from the charter decision: for whoever's building the phase-1 anchor-mechanism comparison \u2014 this thread covers RFC3161/TSA (FreeTSA, DigiCert) and bonded adjudication (StillOS, Base mainnet with a funded bond). A third shape worth having on record: action_ref/AnchorRegistry, a permissionless on-chain anchor \u2014 anyone can call anchor(bytes32) directly, no issuer, no bond, no relationship with us required. Same contract, same address via CREATE2, live right now on Base, Arbitrum One and Ink (verified today via eth_getCode on all three). Putting it on the table as a non-custodial, no-issu"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 141,
+   "updated_at": "2026-10-24T00:19:28Z",
+   "last_comment": {
+    "author": "babyblueviper1",
+    "at": "2026-10-24T00:19:27Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6377422801",
+    "text": "@Tetsurohhori thanks. I ran `jcs-number-vectors` at `40b2129` against the canonicalizer our live issuer signs with (the deployed `jcs`/`es_number` from `dc4e1094`, fed each double from its bits): **1001/1001**. So is the `rfc8785` 0.1.4 package our other production signers import. The production path agrees, not only the checker."
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 63,
+   "updated_at": "2026-10-06T06:34:09Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-06T06:34:09Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6010784398",
+    "text": "We implemented the single-payment part of this draft (\u00a76, \u00a77) in presign-guard, a pre-sign check for agent payments:\n\n- POST /v1/check takes an optional mandate next to an EIP-3009 signature and turns a payment outside it red before the agent signs (wrong payer/asset/recipient, over perPayment or cap, expired, bad issuer signature, nonce \u2260 binding).\n- presign-guard-wallet's mandatePayer() makes x402 payments with the \u00a77 binding as the EIP-3009 nonce.\n- JCS bytes, digest, signature and the EIP-3009/Permit2 binding values match authority-vectors.json byte for byte.\n\nNot covered: cumulative spend"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-10-27T05:56:47+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 9,
+   "pushed_at": "2026-10-24T10:22:32Z",
+   "issues_tracked": 17
+  },
+  "Composable-Evidence-Criteria/.github": {
+   "main_latest": {
+    "sha": "9945f2c",
+    "at": "2026-09-30T08:29:38Z",
+    "msg": "Update name"
+   },
+   "files": {},
+   "open": {},
+   "issues_tracked": 0
+  },
+  "Composable-Evidence-Criteria/governance": {
+   "main_latest": {
+    "sha": "6a2532c",
+    "at": "2026-09-24T10:28:39Z",
+    "msg": "Add maintainers"
+   },
+   "files": {
+    "teams.yaml": "ec2793a"
+   },
+   "open": {
+    "2": {
+     "title": "Update team names add repo",
+     "pr": true,
+     "comments": 0,
+     "author": "ryjones",
+     "url": "https://github.com/Composable-Evidence-Criteria/governance/pull/2"
+    }
+   },
+   "issues_tracked": 2
+  },
+  "Composable-Evidence-Criteria/action-ref-conformance": {
+   "main_latest": {
+    "sha": "3164450",
+    "at": "2026-10-07T15:34:40Z",
+    "msg": "Merge pull request #6: GOVERNANCE correct magentixai conflict-of-interest line"
+   },
+   "files": {
+    "GOVERNANCE.md": "05ab3f1"
+   },
+   "open": {
+    "9": {
+     "title": "draft-etcheverry-action-ref-04 published \u2014 Implementation Status section names this lab and AXES",
+     "pr": false,
+     "comments": 0,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/9"
+    },
+    "8": {
+     "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
+     "pr": true,
+     "comments": 1,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8"
+    },
+    "7": {
+     "title": "Heads-up: Rama will offer paid conformance-QA engagements on top of this lab's public corpus",
+     "pr": false,
+     "comments": 3,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/7"
+    },
+    "5": {
+     "title": "Lab communications: LFDT newsletter and meetup proposals, and who speaks for the lab",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/5"
+    },
+    "4": {
+     "title": "APS SDK passes the pinned action-ref v1 Action (verify-impl)",
+     "pr": false,
+     "comments": 0,
+     "author": "aeoess",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/4"
+    },
+    "2": {
+     "title": "Lab name: recomputable-evidence is taken, proposed replacement",
+     "pr": false,
+     "comments": 6,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2"
+    }
+   },
+   "issues_tracked": 9
+  },
+  "user:giskard09": {
+   "events_seen": 100,
+   "latest_event": "2026-10-27T01:46:14Z"
+  }
+ },
+ "first_run": false
+}

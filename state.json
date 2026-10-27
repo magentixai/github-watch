@@ -93,7 +93,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 236,
+   "comments": 237,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -330,14 +330,15 @@
     6379046767,
     6385423213,
     6392160572,
-    6404475210
+    6404475210,
+    6427389051
    ],
-   "updated_at": "2026-10-25T22:47:25Z",
+   "updated_at": "2026-10-26T21:09:40Z",
    "last_comment": {
-    "author": "babyblueviper1",
-    "at": "2026-10-25T22:47:25Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6404475210",
-    "text": "@maximusrufus thank you for taking it as 56. 1\u201357 at `bc5a138` on our clean-room verifier: **57/57**, with no checker change since the 55/55 run ([`c63208d`](https://github.com/babyblueviper1/preaction-governance-conformance/tree/c63208d/examples/work-acceptance-record-cold)).\n\n@stillmarcus24 your seven double classes were the right measure. Our 52 fix had already replaced the language's float repr with ECMAScript `Number::toString`, so 57 (`1.0`, `100.0`, `-0.0`, `300.0` \u2192 `1`, `100`, `0`, `300`) agrees without a change. The same canonicalizer is in our record issuer.\n"
+    "author": "giskard09",
+    "at": "2026-10-26T21:09:39Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6427389051",
+    "text": "Separate from the charter decision: for whoever's building the phase-1 anchor-mechanism comparison \u2014 this thread covers RFC3161/TSA (FreeTSA, DigiCert) and bonded adjudication (StillOS, Base mainnet with a funded bond). A third shape worth having on record: action_ref/AnchorRegistry, a permissionless on-chain anchor \u2014 anyone can call anchor(bytes32) directly, no issuer, no bond, no relationship with us required. Same contract, same address via CREATE2, live right now on Base, Arbitrum One and Ink (verified today via eth_getCode on all three). Putting it on the table as a non-custodial, no-issu"
    }
   },
   "x402-foundation/x402#2887": {
@@ -591,10 +592,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-26T11:22:46+00:00",
+ "last_checked": "2026-10-27T05:56:47+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-26T11:22:46+00:00",
+   "checked": "2026-10-27T05:56:47+00:00",
    "items": {
     "20": {
      "title": "RELEASES: list babyblueviper1 as independent reproduction of gt-v2.1",
@@ -917,10 +918,10 @@
      "title": "Lab name: recomputable-evidence is taken, proposed replacement",
      "state": "open",
      "pr": false,
-     "comments": 5,
+     "comments": 6,
      "author": "giskard09",
      "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2",
-     "updated_at": "2026-10-05T19:37:03Z"
+     "updated_at": "2026-10-26T21:39:27Z"
     },
     "1": {
      "title": "GOVERNANCE: update write-access line now that the repository is in the lab org",
@@ -956,6 +957,7 @@
     6237290695,
     6237323079,
     6275207045,
+    6427979114,
     5575147447,
     5576576581,
     5443489549,
@@ -977,6 +979,33 @@
  },
  "user_events": {
   "giskard09": [
+   "25297744514",
+   "25290355138",
+   "18297653425",
+   "25276620331",
+   "18281464062",
+   "18281157834",
+   "18278694571",
+   "18277264502",
+   "18276382531",
+   "18276128023",
+   "18275954388",
+   "18273806253",
+   "25256547400",
+   "25252580284",
+   "25248977848",
+   "25248018291",
+   "25246574008",
+   "25245266815",
+   "25244535794",
+   "18255206785",
+   "18241941936",
+   "18241283235",
+   "25234252425",
+   "18239374096",
+   "18239314914",
+   "18238705465",
+   "18231199022",
    "25161885278",
    "18176873629",
    "25159358868",
@@ -1049,34 +1078,7 @@
    "24640817018",
    "24637075495",
    "24630189658",
-   "24629953179",
-   "24629405667",
-   "24629370909",
-   "24628733076",
-   "17709567300",
-   "17706813035",
-   "17706565791",
-   "24620319621",
-   "17706283760",
-   "17703433314",
-   "17642371279",
-   "17637110829",
-   "17630684860",
-   "17609855661",
-   "24528959881",
-   "24513679362",
-   "24510957133",
-   "24499754274",
-   "24495606154",
-   "24494030420",
-   "24493616140",
-   "24486006499",
-   "17557291312",
-   "17556796374",
-   "17556122659",
-   "17554900394",
-   "24468857728",
-   "17554877539"
+   "24629953179"
   ]
  }
 }
