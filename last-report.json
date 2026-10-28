@@ -1,37 +1,154 @@
 {
- "checked_at": "2026-10-27T10:46:45+00:00",
- "previous_check": "2026-10-27T05:56:47+00:00",
+ "checked_at": "2026-10-28T05:59:07+00:00",
+ "previous_check": "2026-10-27T10:46:45+00:00",
  "changes": [
   {
    "item": "x402-foundation/tsc#4",
    "type": "comment",
-   "author": "magentixai",
-   "at": "2026-10-27T07:49:20Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6436544631",
-   "text": "Thanks @giskard09, useful to have the permissionless shape on record.\n\nOne suggestion before the Phase 1 comparison is built: \u201canchor\u201d is currently used in this thread for different things, and separating them would help us avoid talking past each other. I\u2019d propose three layers, each with its own name:\n\n| Layer | Proposed term | Question it answers | Where it lives |\n|---|---|---|---|\n| 1 | **Evidence record** | What happened, who did it, under what authority, and what is absent? | Off the payment path, in whichever record format fits the use case (rich or minimal) |\n| 2 | **Payment binding**"
+   "author": "nonlinearity",
+   "at": "2026-10-27T15:29:48Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6446127424",
+   "text": "Following up on [our October 21 commitment](https://github.com/x402-foundation/tsc/issues/4#issuecomment-6326460879): the acceptance-record vectors and checkers are now published at [`draft-2026-10-27`](https://github.com/CNSLabs/x402-acceptance-record/tree/draft-2026-10-27). There are **127 exact-input/output vectors covering the 25 published requirement cases and their specified EIP-712 and JWS forms**, with a reproducible generator, run instructions and recorded results.\n\nThree checkers are included, each described as it was built:\n\n- The authors' TypeScript checker, developed with expected"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-27T18:01:40Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6449737803",
+   "text": "Work-acceptance record, profile 1.4.2: vectors 58 to 87 and the rules they exercise\n\nVectors 58 to 87 are published at https://github.com/maximusrufus/work-acceptance-record (vectors/). 58 and 59 were contributed by Tetsurohhori; 84 to 87 by actaseal, who also proposed the cases in 60 and 64 to 68. The vectors exercise rules stated in profile 1.4.2: canonical base64 only, lowercase digests, the form of genTime and strict comparison, RFC 3339 stated times, independence by key, the signed key_id for the checker comparison, and ignoring unsigned attributes. Vectors 01 to 57 and their outcomes are"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "Tetsurohhori",
+   "at": "2026-10-27T23:06:45Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6455792222",
+   "text": "@maximusrufus thank you for taking 58 and 59. A rerun of the 87 at `85a310d`, two steps, the first of which is against us:\n\n1. **The verifier frozen for 1.4.1 (v141.3, the 57/57 one), unchanged: 68/87.** 01\u201359 all agree. The 18 disagreements are each on a rule 1.4.2 introduces (canonical base64, `genTime` form and rounding, independence by key, repeated `key_id`, RFC 3339 stated times). And **76 crashes it**: `committed_at` `2026-13-01T00:00:00Z` reached an unguarded time parse. A verifier that raises on a stranger's input is our defect, whatever the profile says about that input, and it is re"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-27T23:47:14Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6456424622",
+   "text": "@Tetsurohhori thank you for the rerun, and for scoring the 1.4.1 verifier first and saying so. Your 87/87 is now listed under Implementations, with the disclosure from your addendum.\n\nYour readings 1, 2 and 4 agree with the reference verifier. Reading 3 agrees on `RECEIPT_TIME_UNREADABLE`: step 5 always uses `issued_utc`, and uses `committed_at` only when no usable criteria token supplies the time. One part differs. Your addendum says an unreadable `committed_at` beside a usable token \"is not a problem\". Step 5 says a `criteria.committed_at` that disagrees with the token's `genTime` is `CRITER"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-10-28T02:28:42Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6459005403",
+   "text": "@maximusrufus we reran 01-90 at `cb7e8f1` with our clean-room checker.\n\n**The checker frozen for 1.4.1 (`c63208d`), unchanged: 68/90, with 17 disagreements and 5 crashes.** 01-59 all agree. Each disagreement falls on a rule 1.4.2 introduces: canonical base64 (60-62, 69, 89, 90), keys compared as decoded bytes (65, 87), a repeated `key_id` (75, 79), the form of `genTime` (70, 72-74), millisecond rounding (68), and the stated key on an independence claim (80, 81). The crashes were defects in our checker: a missing padding (63) and month 13 (71, 76, 78) raised instead of being reported, and 77 fa"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-28T03:57:30Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6460276466",
+   "text": "@babyblueviper1 thank you for the rerun, and for reporting both runs.\n\nBoth readings marked ASSUMED agree with the reference verifier:\n- A criteria token that is not canonical base64 decodes to no bytes. Without anchors, `tsa_signature` is `not_evaluated`; with anchors it is `failed`, as for any malformed token.\n- If the covering record token gives no usable `genTime`, there is no token time, and `issued_utc` is the reference time in step 5.\n\nOn war/1.2, both notes are taken. \u00a71 and the references now cite profile 1.4.2, which \u00a73.2 already follows. \u00a73.2 item 4 now says that only the `deliveryI"
   },
   {
    "item": "x402-foundation/x402#3220",
    "type": "comment",
-   "author": "magentixai",
-   "at": "2026-10-27T10:44:15Z",
-   "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6439907600",
-   "text": "@whawk46 the derivation and vectors we discussed on 4 to 5 Oct: [`specs/extensions/nonce-composition.md`](https://github.com/magentixai/x402/blob/magentixai/nonce-composition-x402-nonce-1/specs/extensions/nonce-composition.md) on [magentixai/x402 @ `4c85abb`](https://github.com/magentixai/x402/tree/magentixai/nonce-composition-x402-nonce-1/specs/extensions). It ended up simpler than the flat form I suggested, and \u00a77 doesn't change at all.\n\n**Why not flat.** If B is hashed into the nonce alongside other members, the agent can put one B inside two different compositions, get two fresh EIP-3009 o"
+   "author": "whawk46",
+   "at": "2026-10-27T20:23:14Z",
+   "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6452673523",
+   "text": "Good catch on the flat-composition replay vector (nc-08)\u2014that confirms why \u00a77 keeps the rail nonce slot strictly equal to B and pushes any multi-extension composition upstream into paymentId before B is derived. Agreed on adding that explicit single-sentence invariant in \u00a77 and aligning \u00a76's paymentId length floor to 16 characters (16..64) to match payment-identifier."
+  },
+  {
+   "item": "x402-foundation/x402#3220",
+   "type": "comment",
+   "author": "Fizzl13",
+   "at": "2026-10-27T21:02:29Z",
+   "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6453477294",
+   "text": "For reference: presign-guard's mandate check already refuses any payment whose nonce isn't exactly B (MANDATE_BINDING_MISMATCH), so composed slots are rejected today. We'll move our paymentId check to the 16..64 floor once the \u00a76 change lands.\n"
   },
   {
    "item": "Composable-Evidence-Criteria/action-ref-conformance#10",
-   "type": "new_pr",
-   "author": "magentixai",
-   "title": "pairs/0001: x402 authority mandate (#3220 at 72c3704) with an AXES correlation record",
-   "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10"
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-27T12:15:35Z",
+   "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10#issuecomment-6441634084",
+   "text": "Independent rerun, GOVERNANCE rule 1 (author \u2260 verifier \u2014 giskard09, not magentixai).\n\n**Environment:** Linux, Python 3.12.3. `gh pr checkout 10` from this PR's head (`2aba46b`), `python3 verify.py` against the published `inputs/`, `vectors/` and `MANIFEST.json` as committed \u2014 **`generate.py` was not run first.**\n\n```\nok   pos_0001-coherent-mandate.json                   PASS                              authority=accept\nok   pos_0002-x402-vector-mandate.json                PASS                              authority=refuse\nok   neg_0003-record-reasserts-cap-and-scope.json     REJECT reasserts"
   },
   {
-   "item": "Composable-Evidence-Criteria/action-ref-conformance#2",
+   "item": "Composable-Evidence-Criteria/action-ref-conformance#10",
    "type": "comment",
-   "author": "magentixai",
-   "at": "2026-10-27T08:39:02Z",
-   "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2#issuecomment-6437342809",
-   "text": "The draft is up as #10: `pairs/0001-x402-authority-axes-correlation/`, against x402-foundation/x402#3220 pinned at `72c3704`.\n\n- **Two positive cases.** One uses a mandate built per \u00a73 and \u00a74 for the payment, where the criterion and the \u00a76 authority check both pass. The other uses x402-foundation/x402#3220's own model A vector mandate with the AXES record built against it in October. There the binding recomputes and the criterion holds, but \u00a76 refuses, because that mandate's subject, asset and recipients are abstract identifiers. That case shows a matching binding is not an authorisation, as \u00a7"
+   "author": "kenneives",
+   "at": "2026-10-27T17:25:33Z",
+   "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10#issuecomment-6448783917",
+   "text": "Second committer run, from the published bytes (not the author, not giskard09's environment): `2aba46b`, clean checkout, `python3 -I verify.py` without running `generate.py` first. macOS 27.0.1 arm64, Python 3.9.6.\n\n10/10 vectors match MANIFEST.json; both verdicts seen; all 6 reasons exercised. Same table as the README and giskard09's run.\n\nMANIFEST.json sha256 `e1bda24879ec5355f02657d62a504082465bd287e3a62dfd0a62546e73d4f3a7`. The vendored `vendor/x402-pr3220-72c3704/authority-vectors.json` (sha256 `3400298752208280fd84e5941c6fd2b20df6d3603903c418902b0b6030974e00`) is byte-identical to `specs"
+  },
+  {
+   "item": "personal-agent-protocol/personal-agent-protocol#37",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-27T12:04:32Z",
+   "url": "https://github.com/personal-agent-protocol/personal-agent-protocol/issues/37#issuecomment-6441423123",
+   "title": "Evidence for the payments discussion: an agent-paid, witnessed receipt, settled Oct 25, 2026",
+   "text": "Took you up on it \u2014 paid, and verified independently against your published keys (decoded the JWS myself, reconstructed the EC public key from `/.well-known/popcorn-keys.json`, verified ES256 directly \u2014 not relying on the tool's own response). `receipt_id: pwr_c2e122b2...`, tied byte-for-byte to the tx (`0xc8599161...`) and the exact digest we sent.\n\nWe don't have a record of ever paying a third party via x402 before \u2014 always been on the building/anchoring side. First time we have on record being on the paying side instead.\n\nAnchored the same digest (`0xcef0c185...`) on AnchorRegistry, Base ma",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "aeoess/agent-governance-vocabulary#177",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-27T12:35:09Z",
+   "url": "https://github.com/aeoess/agent-governance-vocabulary/issues/177#issuecomment-6442009335",
+   "title": "Proposal: a federation for neutral open-source AI infrastructure",
+   "text": "Opting in \u2014 representative: @giskard09. Maintainer record: [giskard09/argentum-core](https://github.com/giskard09/argentum-core) (repo owner, `action_ref` spec at `docs/spec/action-ref.md` \u2014 already in the boundary-map as E16).\n\nSame scope Alex Chernysh/Bernstein set above: this covers PRINCIPLES.md, boundary-map.md and SHARED-DECISIONS.md only. It doesn't enroll us in #193 or any economic agreement \u2014 any concrete piece of that would need its own agreed scope.\n",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "lightninglabs/L402#28",
+   "type": "new_issue",
+   "author": "giskard09",
+   "at": "2026-10-27T14:07:52Z",
+   "title": "macaroon-spec.md: sig_0 formula omits the key-derivation step pymacaroons/libmacaroons actually use",
+   "url": "https://github.com/lightninglabs/L402/issues/28",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "aeoess/agent-governance-vocabulary#177",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-27T17:44:10Z",
+   "url": "https://github.com/aeoess/agent-governance-vocabulary/issues/177#issuecomment-6449340122",
+   "title": "Proposal: a federation for neutral open-source AI infrastructure",
+   "text": "Ran the reference verifier (`adapter.py`) clean-room against the sealed `federation/fixtures/v1` set at `4b9f6ec7` \u2014 independent of altru.dev's run, same revision. 18/18 match the manifest's expected verdicts: all six negative cases `CONTRADICTED` under the right `claim_id`, all twelve positives `ESTABLISHED`.\n\nOne boundary worth naming, since `evidence_digest_integrity` is the claim closest to what we usually look at: the check (`evidence_sha256 == canonical_sha256(remora_evidence)`) proves the digest matches the evidence's own content \u2014 internal consistency. Every timestamp inside `remora_ev",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "darklordVirtual/autonomous-ot-control#25",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-10-27T20:17:35Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "aeoess/agent-governance-vocabulary#177",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-27T20:24:08Z",
+   "url": "https://github.com/aeoess/agent-governance-vocabulary/issues/177#issuecomment-6452691583",
+   "title": "Proposal: a federation for neutral open-source AI infrastructure",
+   "text": "Sketch of the seventh claim, shape only \u2014 nothing built, matching the format of the existing six in `federation/fixtures/v1/manifest.json`:\n\n| Field | Value |\n|---|---|\n| `claim_id` | `evidence_existence_witness` |\n| Statement | `evidence_sha256` was recorded by a witness independent of REMORA's own clock and custody, at or before a time that witness itself attests \u2014 not REMORA's `exported_at`/`verified_at`. |\n| Seeded fault | `witness_digest_mismatch` \u2014 the independent witness's recorded value doesn't match this case's `evidence_sha256`. |\n| Claim ceiling (draft) | ESTABLISHED means only that",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "agentauditAI/AgentAudit#2",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-27T21:34:00Z",
+   "url": "https://github.com/agentauditAI/AgentAudit/issues/2#issuecomment-6454137156",
+   "title": "Cross-trail demo: RunLock pre-execution \u2192 Mycelium post-execution \u2192 Arbitrum anchor",
+   "text": "Thanks \u2014 verified independently on our side too: the four action_ref values, the 0002 envelope hash, and the inline `action-ref.md` example all match what you reported.\n\nThe date note is a real bug, confirmed: `1748001600000` is `2025-05-23T12:00:00.000Z`, not `2026`. You're right that it's unhashed (doesn't touch any of the four digests), but it's wrong in our own docs \u2014 fixing it.\n\nAppreciate the clean disclosure on the profile divergence too.\n",
+   "source": "user:giskard09"
   }
  ],
  "failures": [],
@@ -73,13 +190,13 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 238,
-   "updated_at": "2026-10-27T07:51:18Z",
+   "comments": 244,
+   "updated_at": "2026-10-28T03:57:30Z",
    "last_comment": {
-    "author": "magentixai",
-    "at": "2026-10-27T07:49:20Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6436544631",
-    "text": "Thanks @giskard09, useful to have the permissionless shape on record.\n\nOne suggestion before the Phase 1 comparison is built: \u201canchor\u201d is currently used in this thread for different things, and separating them would help us avoid talking past each other. I\u2019d propose three layers, each with its own name:\n\n| Layer | Proposed term | Question it answers | Where it lives |\n|---|---|---|---|\n| 1 | **Evidence record** | What happened, who did it, under what authority, and what is absent? | Off the payment path, in whichever record format fits the use case (rich or minimal) |\n| 2 | **Payment binding**"
+    "author": "maximusrufus",
+    "at": "2026-10-28T03:57:30Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6460276466",
+    "text": "@babyblueviper1 thank you for the rerun, and for reporting both runs.\n\nBoth readings marked ASSUMED agree with the reference verifier:\n- A criteria token that is not canonical base64 decodes to no bytes. Without anchors, `tsa_signature` is `not_evaluated`; with anchors it is `failed`, as for any malformed token.\n- If the covering record token gives no usable `genTime`, there is no token time, and `issued_utc` is the reference time in step 5.\n\nOn war/1.2, both notes are taken. \u00a71 and the references now cite profile 1.4.2, which \u00a73.2 already follows. \u00a73.2 item 4 now says that only the `deliveryI"
    }
   },
   "x402-foundation/x402#2887": {
@@ -103,13 +220,13 @@
    "labels": [
     "specs"
    ],
-   "comments": 64,
-   "updated_at": "2026-10-27T10:44:15Z",
+   "comments": 66,
+   "updated_at": "2026-10-27T21:02:29Z",
    "last_comment": {
-    "author": "magentixai",
-    "at": "2026-10-27T10:44:15Z",
-    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6439907600",
-    "text": "@whawk46 the derivation and vectors we discussed on 4 to 5 Oct: [`specs/extensions/nonce-composition.md`](https://github.com/magentixai/x402/blob/magentixai/nonce-composition-x402-nonce-1/specs/extensions/nonce-composition.md) on [magentixai/x402 @ `4c85abb`](https://github.com/magentixai/x402/tree/magentixai/nonce-composition-x402-nonce-1/specs/extensions). It ended up simpler than the flat form I suggested, and \u00a77 doesn't change at all.\n\n**Why not flat.** If B is hashed into the nonce alongside other members, the agent can put one B inside two different compositions, get two fresh EIP-3009 o"
+    "author": "Fizzl13",
+    "at": "2026-10-27T21:02:29Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6453477294",
+    "text": "For reference: presign-guard's mandate check already refuses any payment whose nonce isn't exactly B (MANDATE_BINDING_MISMATCH), so composed slots are rejected today. We'll move our paymentId check to the 16..64 floor once the \u00a76 change lands.\n"
    }
   },
   "giskard09/action-ref-conformance": {
@@ -125,7 +242,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-10-27T10:46:45+00:00",
+   "checked": "2026-10-28T05:59:07+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -176,7 +293,7 @@
     "10": {
      "title": "pairs/0001: x402 authority mandate (#3220 at 72c3704) with an AXES correlation record",
      "pr": true,
-     "comments": 0,
+     "comments": 2,
      "author": "magentixai",
      "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10"
     },
@@ -227,7 +344,7 @@
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-10-27T01:46:14Z"
+   "latest_event": "2026-10-27T21:34:00Z"
   }
  },
  "first_run": false

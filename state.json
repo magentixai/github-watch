@@ -93,7 +93,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 238,
+   "comments": 244,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -332,14 +332,20 @@
     6392160572,
     6404475210,
     6427389051,
-    6436544631
+    6436544631,
+    6446127424,
+    6449737803,
+    6455792222,
+    6456424622,
+    6459005403,
+    6460276466
    ],
-   "updated_at": "2026-10-27T07:51:18Z",
+   "updated_at": "2026-10-28T03:57:30Z",
    "last_comment": {
-    "author": "magentixai",
-    "at": "2026-10-27T07:49:20Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6436544631",
-    "text": "Thanks @giskard09, useful to have the permissionless shape on record.\n\nOne suggestion before the Phase 1 comparison is built: \u201canchor\u201d is currently used in this thread for different things, and separating them would help us avoid talking past each other. I\u2019d propose three layers, each with its own name:\n\n| Layer | Proposed term | Question it answers | Where it lives |\n|---|---|---|---|\n| 1 | **Evidence record** | What happened, who did it, under what authority, and what is absent? | Off the payment path, in whichever record format fits the use case (rich or minimal) |\n| 2 | **Payment binding**"
+    "author": "maximusrufus",
+    "at": "2026-10-28T03:57:30Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6460276466",
+    "text": "@babyblueviper1 thank you for the rerun, and for reporting both runs.\n\nBoth readings marked ASSUMED agree with the reference verifier:\n- A criteria token that is not canonical base64 decodes to no bytes. Without anchors, `tsa_signature` is `not_evaluated`; with anchors it is `failed`, as for any malformed token.\n- If the covering record token gives no usable `genTime`, there is no token time, and `issued_utc` is the reference time in step 5.\n\nOn war/1.2, both notes are taken. \u00a71 and the references now cite profile 1.4.2, which \u00a73.2 already follows. \u00a73.2 item 4 now says that only the `deliveryI"
    }
   },
   "x402-foundation/x402#2887": {
@@ -506,7 +512,7 @@
    "labels": [
     "specs"
    ],
-   "comments": 64,
+   "comments": 66,
    "comment_ids": [
     5363175322,
     5363176865,
@@ -571,14 +577,16 @@
     5983837191,
     5987199142,
     6010784398,
-    6439907600
+    6439907600,
+    6452673523,
+    6453477294
    ],
-   "updated_at": "2026-10-27T10:44:15Z",
+   "updated_at": "2026-10-27T21:02:29Z",
    "last_comment": {
-    "author": "magentixai",
-    "at": "2026-10-27T10:44:15Z",
-    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6439907600",
-    "text": "@whawk46 the derivation and vectors we discussed on 4 to 5 Oct: [`specs/extensions/nonce-composition.md`](https://github.com/magentixai/x402/blob/magentixai/nonce-composition-x402-nonce-1/specs/extensions/nonce-composition.md) on [magentixai/x402 @ `4c85abb`](https://github.com/magentixai/x402/tree/magentixai/nonce-composition-x402-nonce-1/specs/extensions). It ended up simpler than the flat form I suggested, and \u00a77 doesn't change at all.\n\n**Why not flat.** If B is hashed into the nonce alongside other members, the agent can put one B inside two different compositions, get two fresh EIP-3009 o"
+    "author": "Fizzl13",
+    "at": "2026-10-27T21:02:29Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6453477294",
+    "text": "For reference: presign-guard's mandate check already refuses any payment whose nonce isn't exactly B (MANDATE_BINDING_MISMATCH), so composed slots are rejected today. We'll move our paymentId check to the 16..64 floor once the \u00a76 change lands.\n"
    }
   }
  },
@@ -594,10 +602,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-27T10:46:45+00:00",
+ "last_checked": "2026-10-28T05:59:07+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-27T10:46:45+00:00",
+   "checked": "2026-10-28T05:59:07+00:00",
    "items": {
     "20": {
      "title": "RELEASES: list babyblueviper1 as independent reproduction of gt-v2.1",
@@ -857,10 +865,10 @@
      "title": "pairs/0001: x402 authority mandate (#3220 at 72c3704) with an AXES correlation record",
      "state": "open",
      "pr": true,
-     "comments": 0,
+     "comments": 2,
      "author": "magentixai",
      "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10",
-     "updated_at": "2026-10-27T08:38:37Z"
+     "updated_at": "2026-10-27T17:25:33Z"
     },
     "9": {
      "title": "draft-etcheverry-action-ref-04 published \u2014 Implementation Status section names this lab and AXES",
@@ -970,6 +978,8 @@
     6275207045,
     6427979114,
     6437342809,
+    6441634084,
+    6448783917,
     5575147447,
     5576576581,
     5443489549,
@@ -991,6 +1001,17 @@
  },
  "user_events": {
   "giskard09": [
+   "25385402769",
+   "18389657040",
+   "18383797671",
+   "18383236531",
+   "18383150184",
+   "18369593831",
+   "18348385870",
+   "18340667413",
+   "18339113996",
+   "18338267291",
+   "25323308779",
    "25310864162",
    "25310660196",
    "25297744514",
@@ -1079,18 +1100,7 @@
    "17961962293",
    "17941483847",
    "17922584661",
-   "17918891936",
-   "24769880846",
-   "24769409237",
-   "17813189936",
-   "17813012407",
-   "17812045678",
-   "24677956044",
-   "24664128819",
-   "24657080010",
-   "24653598865",
-   "24640817018",
-   "24637075495"
+   "17918891936"
   ]
  }
 }
