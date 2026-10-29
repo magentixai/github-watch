@@ -1,7 +1,70 @@
 {
- "checked_at": "2026-10-28T11:29:19+00:00",
- "previous_check": "2026-10-28T05:59:07+00:00",
- "changes": [],
+ "checked_at": "2026-10-29T05:56:28+00:00",
+ "previous_check": "2026-10-28T11:29:19+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "Tetsurohhori",
+   "at": "2026-10-28T12:23:35Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6468881305",
+   "text": "@maximusrufus thank you for the listing and for 88. You are right, and the sentence was wrong.\n\nv142.1, unchanged since it was frozen, on the 90 at `cb7e8f1`: **90/90**. On 88 it reports `CRITERIA_TIME_MISMATCH` with `criteria_committed_before_check` yes; 89 and 90 as expected, neither refused. So the addendum's \"is not a problem\" never described our own verifier, which compares `committed_at` with the token's `genTime` whenever a usable token supplies the time, and treats an unreadable value as a mismatch. It was written from the rule text, no vector exercised the case at `85a310d`, and I did"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-28T14:14:12Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6471341346",
+   "text": "@Tetsurohhori thank you for running v142.1 on all 90 and for the correction note. Your 90/90 at `cb7e8f1` is now listed under Implementations, with a link to the correction. Commit: 7cd4546.\n"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "robertolocatelli81-dev",
+   "at": "2026-10-28T19:49:04Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6478986452",
+   "text": "@maximusrufus \u2014 war-verify 0.6.0 ([`c51ff40`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/tree/c51ff40)), our clean-room verifier, on profile 1.4.2:\n\n- 01-90 at `cb7e8f1`: 90/90 documents, 821/821 fields, and the live record 9/9 (01-87 and the live record in [`results/score_default.txt`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/blob/c51ff40/results/score_default.txt), 88-90 in `tests/test_profile142.py`).\n- The older sets are unchanged: 01-57 at `bc5a138` and 01-59 at `48ab8c9`, every document and field.\n\nHow it was written: from the 1.4.2"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-28T20:15:45Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6479574489",
+   "text": "@robertolocatelli81-dev thank you for the 0.6.0 run and for the full account of what was read. The Implementations row now shows 01-90 at `cb7e8f1` (90/90, 821/821 fields), with that disclosure.\n\nThe open readings in your Q1-Q15 are noted for the next vector batch. Where a vector can fix a reading it will be fixed there, rather than answered one by one in this thread.\n"
+  },
+  {
+   "item": "darklordVirtual/autonomous-ot-control#26",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-28T14:41:52Z",
+   "url": "https://github.com/darklordVirtual/autonomous-ot-control/issues/26#issuecomment-6472029994",
+   "title": "Claim 7: evidence_existence_witness (a witness independent of REMORA's clock and custody)",
+   "text": "Thanks for merging #25 and crediting the run in RESULTS.md.\n\nAgreed on Q3 \u2014 same reading: the witness is the chain or TSA, not the submitter, so a producer-submitted anchor still counts.\n\nOn Q1/Q2 and the worked-example piece on our side (anchoring the twelve `evidence_sha256` values, the proof-blob shape, the ordering semantics): we're not picking that up right now \u2014 OT/building automation is a new domain for us without a concrete reason to prioritize it today. A half-built claim staying a draft row works fine on our end too, happy to revisit if that changes.",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "nevermined-io/payments#374",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-28T14:46:54Z",
+   "url": "https://github.com/nevermined-io/payments/issues/374#issuecomment-6472154850",
+   "title": "Potential settlement-ordering issue: paid responses/tools can be released when credit settlement fails",
+   "text": "igor-vii's NV-F1 in #503 is a concrete instance of what's described above: no idempotency key, no settlement-query API, and the only reconciliation artifact (the receipt header) is attached to exactly the response that got lost \u2014 so a retry re-settles instead of resolving to the same outcome.\n\nThe construction proposed above would address that directly: binding the idempotency key to `action_ref` means a retry resolves to the same record instead of minting a new billable attempt, and anchoring that record gives a third party something to check reconciliation against without trusting either sid",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "x402-foundation/wg-domain-discovery#11",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-28T23:46:19Z",
+   "url": "https://github.com/x402-foundation/wg-domain-discovery/issues/11#issuecomment-6483716599",
+   "title": "Well-known entry at /.well-known/x402: shape and alignment with x402",
+   "text": "One data point that hasn't come up yet in this thread: whatever shape the `/.well-known/x402` entry ends up taking (pointer vs. document), if it's ever hashed, anchored or used to detect drift between hosts, canonical encoding needs to be nailed down from day one \u2014 key ordering and whitespace alone can produce divergent hashes for byte-identical semantic content.\n\nWe hit this for a related manifest (`.well-known/agent.json` / `.well-known/mcp.json`) and serve both JCS-canonicalized (RFC 8785 \u2014 sorted keys, no whitespace, UTF-8) since July. Verified `raw_sha256 == canonical_sha256` in productio",
+   "source": "user:giskard09"
+  }
+ ],
  "failures": [],
  "summary": {
   "LF-Decentralized-Trust/lab-proposals#2": {
@@ -41,13 +104,13 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 244,
-   "updated_at": "2026-10-28T03:57:30Z",
+   "comments": 248,
+   "updated_at": "2026-10-28T20:15:45Z",
    "last_comment": {
     "author": "maximusrufus",
-    "at": "2026-10-28T03:57:30Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6460276466",
-    "text": "@babyblueviper1 thank you for the rerun, and for reporting both runs.\n\nBoth readings marked ASSUMED agree with the reference verifier:\n- A criteria token that is not canonical base64 decodes to no bytes. Without anchors, `tsa_signature` is `not_evaluated`; with anchors it is `failed`, as for any malformed token.\n- If the covering record token gives no usable `genTime`, there is no token time, and `issued_utc` is the reference time in step 5.\n\nOn war/1.2, both notes are taken. \u00a71 and the references now cite profile 1.4.2, which \u00a73.2 already follows. \u00a73.2 item 4 now says that only the `deliveryI"
+    "at": "2026-10-28T20:15:45Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6479574489",
+    "text": "@robertolocatelli81-dev thank you for the 0.6.0 run and for the full account of what was read. The Implementations row now shows 01-90 at `cb7e8f1` (90/90, 821/821 fields), with that disclosure.\n\nThe open readings in your Q1-Q15 are noted for the next vector batch. Where a vector can fix a reading it will be fixed there, rather than answered one by one in this thread.\n"
    }
   },
   "x402-foundation/x402#2887": {
@@ -93,7 +156,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-10-28T11:29:19+00:00",
+   "checked": "2026-10-29T05:56:28+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -195,7 +258,7 @@
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-10-27T21:34:00Z"
+   "latest_event": "2026-10-28T23:46:19Z"
   }
  },
  "first_run": false

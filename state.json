@@ -93,7 +93,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 244,
+   "comments": 248,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -338,14 +338,18 @@
     6455792222,
     6456424622,
     6459005403,
-    6460276466
+    6460276466,
+    6468881305,
+    6471341346,
+    6478986452,
+    6479574489
    ],
-   "updated_at": "2026-10-28T03:57:30Z",
+   "updated_at": "2026-10-28T20:15:45Z",
    "last_comment": {
     "author": "maximusrufus",
-    "at": "2026-10-28T03:57:30Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6460276466",
-    "text": "@babyblueviper1 thank you for the rerun, and for reporting both runs.\n\nBoth readings marked ASSUMED agree with the reference verifier:\n- A criteria token that is not canonical base64 decodes to no bytes. Without anchors, `tsa_signature` is `not_evaluated`; with anchors it is `failed`, as for any malformed token.\n- If the covering record token gives no usable `genTime`, there is no token time, and `issued_utc` is the reference time in step 5.\n\nOn war/1.2, both notes are taken. \u00a71 and the references now cite profile 1.4.2, which \u00a73.2 already follows. \u00a73.2 item 4 now says that only the `deliveryI"
+    "at": "2026-10-28T20:15:45Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6479574489",
+    "text": "@robertolocatelli81-dev thank you for the 0.6.0 run and for the full account of what was read. The Implementations row now shows 01-90 at `cb7e8f1` (90/90, 821/821 fields), with that disclosure.\n\nThe open readings in your Q1-Q15 are noted for the next vector batch. Where a vector can fix a reading it will be fixed there, rather than answered one by one in this thread.\n"
    }
   },
   "x402-foundation/x402#2887": {
@@ -602,10 +606,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-28T11:29:19+00:00",
+ "last_checked": "2026-10-29T05:56:28+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-28T11:29:19+00:00",
+   "checked": "2026-10-29T05:56:28+00:00",
    "items": {
     "20": {
      "title": "RELEASES: list babyblueviper1 as independent reproduction of gt-v2.1",
@@ -1001,6 +1005,10 @@
  },
  "user_events": {
   "giskard09": [
+   "18505360487",
+   "25466536370",
+   "18471029870",
+   "18462032863",
    "25420815120",
    "25417936186",
    "25411814538",
@@ -1096,11 +1104,7 @@
    "24934159952",
    "18015652914",
    "18001284169",
-   "17991768308",
-   "17970615419",
-   "17965642779",
-   "17964951214",
-   "17961962293"
+   "17991768308"
   ]
  }
 }
