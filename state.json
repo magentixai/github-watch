@@ -93,7 +93,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 248,
+   "comments": 249,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -342,14 +342,15 @@
     6468881305,
     6471341346,
     6478986452,
-    6479574489
+    6479574489,
+    6489582400
    ],
-   "updated_at": "2026-10-28T20:15:45Z",
+   "updated_at": "2026-10-29T06:24:00Z",
    "last_comment": {
-    "author": "maximusrufus",
-    "at": "2026-10-28T20:15:45Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6479574489",
-    "text": "@robertolocatelli81-dev thank you for the 0.6.0 run and for the full account of what was read. The Implementations row now shows 01-90 at `cb7e8f1` (90/90, 821/821 fields), with that disclosure.\n\nThe open readings in your Q1-Q15 are noted for the next vector batch. Where a vector can fix a reading it will be fixed there, rather than answered one by one in this thread.\n"
+    "author": "actaseal",
+    "at": "2026-10-29T06:24:00Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6489582400",
+    "text": "@maximusrufus thank you for taking 84-87 and for the credit. Two runs of 01-90 at cb7e8f1:\n\nOur clean-room checker frozen for 1.4.1 (written from the text and vectors at bc5a138, reference verifier not opened), unchanged: 72/90, no crashes. The 18 disagreements each fall on a rule 1.4.2 introduces: canonical base64 (62, 69, 89, 90), genTime form and rounding (66, 68, 70-74, 78), an unreadable committed_at (76), a repeated key_id (75, 79), the stated key on an independence claim (80, 81), and a wrongly typed result id (77).\nUpdated from the step 10 text only, reference verifier not opened: 90/9"
    }
   },
   "x402-foundation/x402#2887": {
@@ -606,10 +607,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-29T05:56:28+00:00",
+ "last_checked": "2026-10-29T11:39:51+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-29T05:56:28+00:00",
+   "checked": "2026-10-29T11:39:51+00:00",
    "items": {
     "20": {
      "title": "RELEASES: list babyblueviper1 as independent reproduction of gt-v2.1",
