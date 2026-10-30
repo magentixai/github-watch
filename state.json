@@ -609,10 +609,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-30T05:56:42+00:00",
+ "last_checked": "2026-10-30T11:31:30+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-30T05:56:42+00:00",
+   "checked": "2026-10-30T11:31:30+00:00",
    "items": {
     "20": {
      "title": "RELEASES: list babyblueviper1 as independent reproduction of gt-v2.1",
