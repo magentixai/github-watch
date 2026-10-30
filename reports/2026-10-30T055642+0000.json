@@ -1,0 +1,277 @@
+{
+ "checked_at": "2026-10-30T05:56:42+00:00",
+ "previous_check": "2026-10-29T11:39:51+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-10-29T14:46:18Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6499864995",
+   "text": "@actaseal thank you for both runs, and for reporting the frozen one beside the update.\n\nYour fixed reading agrees with the reference verifier: an absent or null `key_id` is not a stated key, so an independence claim rests on the names; an empty string is a stated key, and a stated key must be non-empty and listed exactly once (01, 80).\n\nYour 90/90 at `d8242ac` is now listed under Implementations, with the frozen 72/90 run and the exposure you described.\n"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "Pray4Love1",
+   "at": "2026-10-30T02:43:03Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6513656090",
+   "text": "## FORMAL NOTICE \u2014 COPYRIGHTED AND UNLICENSED PRIOR WORK, ATTRIBUTION, CROSS-PROJECT COORDINATION, AND EVIDENCE-RECORD PROVENANCE\n\n**Submitted by:** @Jsand-187 \u2014 Kin / SolaraKin / AgentChain\n\nI am placing the x402 TSC and relevant evidence-record contributors on formal public notice concerning my earlier COPYRIGHTED and UNLICENSED work, my documented August 2025 implementations, and subsequent cross-project development of corresponding identity, proof, payment, settlement, and verification mechanisms.\n\n### 1. Original implementation priority\n\nMy public records establish implementation and disc"
+  },
+  {
+   "item": "Composable-Evidence-Criteria/action-ref-conformance#7",
+   "type": "comment",
+   "author": "Pray4Love1",
+   "at": "2026-10-30T02:43:48Z",
+   "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/7#issuecomment-6513665626",
+   "text": "<head></head><h1 style=\"font-style: normal; font-variant-caps: normal; letter-spacing: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: none; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0);\"><span>FORMAL E2E NOTICE \u2014 COPYRIGHTED AND UNLICENSED PRIOR WORK, CROSS-PROJECT PROVENANCE, ATTRIBUTION CONTROL, COMMERCIAL COORDINATION, AND FEDERATION GOVERNANCE</span></h1><p style=\"font-style: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; "
+  },
+  {
+   "item": "darklordVirtual/autonomous-ot-control#39",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-29T17:11:21Z",
+   "url": "https://github.com/darklordVirtual/autonomous-ot-control/pull/39#issuecomment-6503365820",
+   "title": "docs: joint review of first federation APS \u00d7 REMORA post and contributor credits",
+   "text": "Credit confirmed accurate \u2014 PR #25 was exactly an L1_REPRODUCTION run of REMORA's reference effect-evidence verifier (`run-edge.sh --local`, matches the PR title itself), not an independently implemented APS verifier. No corrections needed on our line.\n\nPreferred representation: Pablo Etcheverry \u2014 Founder & CEO, Rama (building Mycelium Trails). LinkedIn: https://www.linkedin.com/in/pablo-etcheverry-5924119/ \u2014 happy to be tagged there, and/or credited as Mycelium Trails / @giskard09 if that fits the layout better. Either or both work for us.",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "crewAIInc/crewAI#7449",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-29T18:11:35Z",
+   "url": "https://github.com/crewAIInc/crewAI/issues/7449#issuecomment-6504676912",
+   "title": "ToolUsage retries a failed tool call twice per outer attempt, not once (schema-args-filter fallback in _use/_ause)",
+   "text": "+1 to reopening \u2014 this is still open (confirmed against examples/conformance/crewai-unguarded-retry), not resolved by any of #7452/#7454/#7458/#7590, none of which appear validated against a shared regression yet. Happy to help validate: a fixture asserting at most one tool-body invocation per outer attempt, across sync and async paths, would settle which PR (if any) actually closes the gap.",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "aeoess/agent-governance-vocabulary#177",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-29T18:22:10Z",
+   "url": "https://github.com/aeoess/agent-governance-vocabulary/issues/177#issuecomment-6504906704",
+   "title": "Proposal: a federation for neutral open-source AI infrastructure",
+   "text": "Count Rama/Mycelium Trails in \u2014 happy to tag, share, and be tagged. Checkable thing from our side: AnchorRegistry (Base/Arbitrum One, permissionless \u2014 anyone can independently recompute the action_ref, no API key or operator trust required), with real production trails settling today. Happy to point to a specific tx when it's our turn. Attribution preference already left on #39.",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "aaif/wg-observability-and-traceability#37",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-30T00:42:56Z",
+   "url": "https://github.com/aaif/wg-observability-and-traceability/issues/37#issuecomment-6512050468",
+   "title": "Proposal: Evidence Record Spec, a testable data model for the E4 tamper-evident evidence gap",
+   "text": "Took the evidence record format for a spin against a real, non-synthetic case \u2014 no fixture, no contact with anyone, just a public already-settled event.\n\nBuilt `er-rama-agent-bounties-001`: cites a real `BountySettled` event from `NSPG13/agent-bounties` (production, Base mainnet, OpenAI Build Week 2026 collab) \u2014 independently re-verified against `mainnet.base.org` directly, not trusted from their API. We didn't create, claim, or settle the bounty; we didn't contact NSPG13. Full provenance: [giskard09/agent-bounties-action-ref-anchor](https://github.com/giskard09/agent-bounties-action-ref-ancho",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "aeoess/agent-governance-vocabulary#177",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-30T00:51:18Z",
+   "url": "https://github.com/aeoess/agent-governance-vocabulary/issues/177#issuecomment-6512164703",
+   "title": "Proposal: a federation for neutral open-source AI infrastructure",
+   "text": "@aeoess We don't run a Discord or Slack either \u2014 a new one works fine for us. Agreed: GitHub stays canonical for anything touching a spec, fixture, or crosswalk; chat for pace on the post-planning side makes sense.\n",
+   "source": "user:giskard09"
+  }
+ ],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 6,
+   "updated_at": "2026-10-20T15:06:35Z",
+   "last_comment": {
+    "author": "source-origin",
+    "at": "2026-10-20T15:06:34Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-6294062372",
+    "text": "Tymofii,\r\n\r\nYou closed the loop on two questions in the same thread, and you gave us a\r\ndistinction we have since used more than anything else from that exchange:\r\n*reference by pin, not host*, with criteria marked as authored judgment rather\r\nthan recomputed fact.\r\n\r\nWe used it and did not tell you. Nineteen days. Sorry.\r\n\r\n**Where it landed.** Our rubric header now carries two separate lines, because\r\nyour distinction made it obvious that one line was a lie:\r\n\r\n- `criteria_version` + `pinned_commit` \u2014 what was applied, and the exact bytes\r\n  it was applied from. If the criteria move, the pin"
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 251,
+   "updated_at": "2026-10-30T02:46:09Z",
+   "last_comment": {
+    "author": "Pray4Love1",
+    "at": "2026-10-30T02:43:03Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6513656090",
+    "text": "## FORMAL NOTICE \u2014 COPYRIGHTED AND UNLICENSED PRIOR WORK, ATTRIBUTION, CROSS-PROJECT COORDINATION, AND EVIDENCE-RECORD PROVENANCE\n\n**Submitted by:** @Jsand-187 \u2014 Kin / SolaraKin / AgentChain\n\nI am placing the x402 TSC and relevant evidence-record contributors on formal public notice concerning my earlier COPYRIGHTED and UNLICENSED work, my documented August 2025 implementations, and subsequent cross-project development of corresponding identity, proof, payment, settlement, and verification mechanisms.\n\n### 1. Original implementation priority\n\nMy public records establish implementation and disc"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 141,
+   "updated_at": "2026-10-24T00:19:28Z",
+   "last_comment": {
+    "author": "babyblueviper1",
+    "at": "2026-10-24T00:19:27Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6377422801",
+    "text": "@Tetsurohhori thanks. I ran `jcs-number-vectors` at `40b2129` against the canonicalizer our live issuer signs with (the deployed `jcs`/`es_number` from `dc4e1094`, fed each double from its bits): **1001/1001**. So is the `rfc8785` 0.1.4 package our other production signers import. The production path agrees, not only the checker."
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 66,
+   "updated_at": "2026-10-27T21:02:29Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-27T21:02:29Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6453477294",
+    "text": "For reference: presign-guard's mandate check already refuses any payment whose nonce isn't exactly B (MANDATE_BINDING_MISMATCH), so composed slots are rejected today. We'll move our paymentId check to the 16..64 floor once the \u00a76 change lands.\n"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-10-30T05:56:42+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 9,
+   "pushed_at": "2026-10-24T10:22:32Z",
+   "issues_tracked": 17
+  },
+  "Composable-Evidence-Criteria/.github": {
+   "main_latest": {
+    "sha": "9945f2c",
+    "at": "2026-09-30T08:29:38Z",
+    "msg": "Update name"
+   },
+   "files": {},
+   "open": {},
+   "issues_tracked": 0
+  },
+  "Composable-Evidence-Criteria/governance": {
+   "main_latest": {
+    "sha": "6a2532c",
+    "at": "2026-09-24T10:28:39Z",
+    "msg": "Add maintainers"
+   },
+   "files": {
+    "teams.yaml": "ec2793a"
+   },
+   "open": {
+    "2": {
+     "title": "Update team names add repo",
+     "pr": true,
+     "comments": 0,
+     "author": "ryjones",
+     "url": "https://github.com/Composable-Evidence-Criteria/governance/pull/2"
+    }
+   },
+   "issues_tracked": 2
+  },
+  "Composable-Evidence-Criteria/action-ref-conformance": {
+   "main_latest": {
+    "sha": "3164450",
+    "at": "2026-10-07T15:34:40Z",
+    "msg": "Merge pull request #6: GOVERNANCE correct magentixai conflict-of-interest line"
+   },
+   "files": {
+    "GOVERNANCE.md": "05ab3f1"
+   },
+   "open": {
+    "10": {
+     "title": "pairs/0001: x402 authority mandate (#3220 at 72c3704) with an AXES correlation record",
+     "pr": true,
+     "comments": 2,
+     "author": "magentixai",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10"
+    },
+    "9": {
+     "title": "draft-etcheverry-action-ref-04 published \u2014 Implementation Status section names this lab and AXES",
+     "pr": false,
+     "comments": 0,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/9"
+    },
+    "8": {
+     "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
+     "pr": true,
+     "comments": 1,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8"
+    },
+    "7": {
+     "title": "Heads-up: Rama will offer paid conformance-QA engagements on top of this lab's public corpus",
+     "pr": false,
+     "comments": 4,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/7"
+    },
+    "5": {
+     "title": "Lab communications: LFDT newsletter and meetup proposals, and who speaks for the lab",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/5"
+    },
+    "4": {
+     "title": "APS SDK passes the pinned action-ref v1 Action (verify-impl)",
+     "pr": false,
+     "comments": 0,
+     "author": "aeoess",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/4"
+    },
+    "2": {
+     "title": "Lab name: recomputable-evidence is taken, proposed replacement",
+     "pr": false,
+     "comments": 7,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2"
+    }
+   },
+   "issues_tracked": 10
+  },
+  "user:giskard09": {
+   "events_seen": 100,
+   "latest_event": "2026-10-30T00:51:18Z"
+  }
+ },
+ "first_run": false
+}
