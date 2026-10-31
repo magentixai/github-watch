@@ -1,0 +1,313 @@
+{
+ "checked_at": "2026-10-31T05:57:03+00:00",
+ "previous_check": "2026-10-30T11:31:30+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-30T16:39:09Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6528070823",
+   "text": "@magentixai Taking up the layer-3 properties request for AnchorRegistry, verified against the deployed contract and a live receipt rather than the README:\n\n- Trust model: no owner, no roles, no payable functions, no custody (full source: a single `anchor(bytes32 ref)` function, MIT). The submitter is recorded (`anchoredBy` is an indexed event topic) but holds no privilege \u2014 anyone can anchor, anyone can re-anchor the same ref, nothing is gated.\n- Offline verification: yes. Verifying an anchor means proving the `Anchored` event's inclusion in the transaction receipt via a Merkle-Patricia proof "
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-10-30T21:37:55Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6533994136",
+   "text": "@magentixai the layer-3 properties for the two mechanisms we run in production, in the same shape as @giskard09's. Both examples below can be fetched and re-verified.\n\n**OpenTimestamps (Bitcoin)**\n- Trust model: calendars aggregate submitted digests into a Merkle tree and commit its root in a Bitcoin transaction. A calendar can delay or withhold an anchor but cannot forge one, because the proof is checked against the Bitcoin header, not against the calendar. We submit each digest to three public calendars (alice and bob at opentimestamps.org, finney at eternitywall.com), so one failing calenda"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-30T22:31:33Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6534882630",
+   "text": "@babyblueviper1 Good complement \u2014 between the three (AnchorRegistry, OpenTimestamps, RFC 3161), Phase 1 now has a real menu of layer-3 trust models instead of one default: a rollup's own consensus (no named party, cheap, no batching), Bitcoin PoW (trust-minimized, delayed until the proof is upgraded, no submitter recorded), and a named TSA (immediate, precise, trust concentrated in the TSA's key).\n\nYour composition point is the one worth keeping for the schema: a record carrying more than one existence bound should report each separately, and a disagreement between them is a signal, not noise "
+  },
+  {
+   "item": "magentixai/axes#21",
+   "type": "new_pr",
+   "author": "magentixai",
+   "title": "IETF: draft-sansone-axes-evidence-envelope-00 source, appendices and checks",
+   "url": "https://github.com/magentixai/axes/pull/21"
+  },
+  {
+   "item": "coinbase/payments-mcp#33",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-30T23:25:26Z",
+   "url": "https://github.com/coinbase/payments-mcp/issues/33#issuecomment-6535644962",
+   "title": "Real-world data point: a settlement from a client identifying as payments-mcp-proxy \u2014 and 6 questions on spend governance",
+   "text": "Disclosure: I build Mycelium/action_ref (Rama) \u2014 complementary to send21, not competing.\n\nsend21's prepare/pay split solves *who can spend* \u2014 real control, but by their own description it needs a person to sign every payment, so it covers approval-threshold spending, not the fully autonomous settlement your issue opened with (the payments-mcp-proxy client that discovered and paid a route on its own).\n\nFor that autonomous case, question 5 is really asking: once the agent acts, who can confirm the record of what it did wasn't altered after the fact, without trusting the operator's own webhooks/l",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "x402-foundation/x402#2853",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-30T23:55:20Z",
+   "url": "https://github.com/x402-foundation/x402/pull/2853#issuecomment-6536080012",
+   "title": "specs: add compliance-fields extension \u2014 tax/audit record + verifier disqualification rules (#2848)",
+   "text": "Disclosure: I build Mycelium/action_ref (Rama) \u2014 this is about the anchoring mechanism only, not the tax content above it.\n\nOn \"under the extension an anchor publishes the recordDigest only, never the record\" \u2014 we run exactly this in production: AnchorRegistry, a single permissionless `anchor(bytes32 ref)` function on Base/Arbitrum One/Ink (same CREATE2 address on all three), emitting `Anchored(bytes32,address,uint256)`. It's digest-agnostic \u2014 the contract doesn't care whether the bytes32 came from keccak256, SHA-256, or anything else, so it composes with this extension's recordDigest without ",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "coinbase/agentkit#1141",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-31T00:18:09Z",
+   "url": "https://github.com/coinbase/agentkit/issues/1141#issuecomment-6536369517",
+   "title": "RFC: Opt-in policy hook for AgentKit action execution (budget / risk providers like Cycles)",
+   "text": "Disclosure: I build Mycelium/action_ref (Rama). The content-addressed pattern here (`action_context_hash`, `decision_ref`) is the same shape @rpelevin and I have worked through elsewhere (`action_ref`, `execution-join-ref`) \u2014 and @osr21's BasePay work already builds on that spec, so this isn't unfamiliar ground, just a different thread.\n\nOn the merged append-only log example (@domondi1's inferrail#124, `examples/agent_economy`) that @LumenFromTheFuture recomputed with 0 failures across 16 events/8 refs: that recompute confirms the log is internally consistent against its own invariants as give",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "tetherto/wdk-cli#52",
+   "type": "new_issue",
+   "author": "giskard09",
+   "at": "2026-10-31T00:40:15Z",
+   "title": "feature request: optional `action_ref` field in send_token's result",
+   "url": "https://github.com/tetherto/wdk-cli/issues/52",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "coinbase/agentkit#1141",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-31T01:26:52Z",
+   "url": "https://github.com/coinbase/agentkit/issues/1141#issuecomment-6537155628",
+   "title": "RFC: Opt-in policy hook for AgentKit action execution (budget / risk providers like Cycles)",
+   "text": "@osr21 exactly right on the limit \u2014 that's the same scope we document on our own side (PR#1459's README: \"Does not verify that a declared action actually happened as described\"). Anchoring is a tamper-evidence/existence-bound primitive, not a truth oracle.\n\nYour checkpoint design (per-event hash binding sequence number + previous-event hash, periodic anchor of {canonicalization version, first/last seq, event count, log root, previous checkpoint root}) maps directly onto `anchor(bytes32 ref)` \u2014 `ref` would just be the hash of that checkpoint tuple. The contract doesn't interpret it; it only com",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "coinbase/agentkit#1141",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-31T01:42:36Z",
+   "url": "https://github.com/coinbase/agentkit/issues/1141#issuecomment-6537326150",
+   "title": "RFC: Opt-in policy hook for AgentKit action execution (budget / risk providers like Cycles)",
+   "text": "@osr21 breaking these down by what they actually are, not treating them as one category:\n\n1. **Address/chain pinning + code hash**: the reference verifier already pins `chainId`/registry address (hardcoded `ANCHOR_REGISTRY`, Base-specific RPC) \u2014 but never checks the runtime code hash at that address. That's a real gap in the verifier, cheap to close, worth fixing regardless of this thread.\n2. **Finality as a chain-specific policy**: fair correction \u2014 but it's a gap in what I told you, not in the verifier. The reference verifier doesn't model finality at all today (it just checks the log exists",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "probityai/agent-evidence-vectors#352",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-31T01:57:01Z",
+   "url": "https://github.com/probityai/agent-evidence-vectors/issues/352#issuecomment-6537477996",
+   "title": "Open Evidence Lab: shared tests for what agents actually do",
+   "text": "@astrogilda did a broader read of the lab today (not prompted by this issue specifically) \u2014 found that `vectors-receipt-signature` (README/MANIFEST.json) and `action-tuple-framed-v1/PROFILE.md` both cite and correctly scope our work (`argentum-core action-ref-v1`, the farley-receipt-signature corpus) without us knowing until today. Attribution's accurate on both \u2014 thank you for that, and for the care in PROFILE.md distinguishing the new profile from reinterpreting the existing one. Good to see the receipt-signature corpus pulling from three independent sources (yours, tomjwxf's, ours) byte-for",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "coinbase/agentkit#1141",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-31T02:25:49Z",
+   "url": "https://github.com/coinbase/agentkit/issues/1141#issuecomment-6537769257",
+   "title": "RFC: Opt-in policy hook for AgentKit action execution (budget / risk providers like Cycles)",
+   "text": "@osr21 built this out in real code against your exact design: https://github.com/giskard09/checkpoint-producer-binding-ref-anchor\n\nCheckpoint over a 12-event hash-chained log, canonical preimage (domain-separated, versioned) with `log_root`/`first_seq`/`last_seq`/`previous_checkpoint_root` + `signer_type`/`signer_id`, detached Ed25519 signature outside the preimage, `anchor_submitter` tracked separately from `signer_id`. Tx: https://basescan.org/tx/0x1dbff7b7b183b9cf3496646fa4aac52b3267bcfd3982f40847e268ec05f8fbb4 (Base mainnet, block 53311834).\n\nOne thing worth naming: most of point 3 \u2014 signe",
+   "source": "user:giskard09"
+  }
+ ],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 6,
+   "updated_at": "2026-10-20T15:06:35Z",
+   "last_comment": {
+    "author": "source-origin",
+    "at": "2026-10-20T15:06:34Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-6294062372",
+    "text": "Tymofii,\r\n\r\nYou closed the loop on two questions in the same thread, and you gave us a\r\ndistinction we have since used more than anything else from that exchange:\r\n*reference by pin, not host*, with criteria marked as authored judgment rather\r\nthan recomputed fact.\r\n\r\nWe used it and did not tell you. Nineteen days. Sorry.\r\n\r\n**Where it landed.** Our rubric header now carries two separate lines, because\r\nyour distinction made it obvious that one line was a lie:\r\n\r\n- `criteria_version` + `pinned_commit` \u2014 what was applied, and the exact bytes\r\n  it was applied from. If the criteria move, the pin"
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 254,
+   "updated_at": "2026-10-30T22:31:33Z",
+   "last_comment": {
+    "author": "giskard09",
+    "at": "2026-10-30T22:31:33Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6534882630",
+    "text": "@babyblueviper1 Good complement \u2014 between the three (AnchorRegistry, OpenTimestamps, RFC 3161), Phase 1 now has a real menu of layer-3 trust models instead of one default: a rollup's own consensus (no named party, cheap, no batching), Bitcoin PoW (trust-minimized, delayed until the proof is upgraded, no submitter recorded), and a named TSA (immediate, precise, trust concentrated in the TSA's key).\n\nYour composition point is the one worth keeping for the schema: a record carrying more than one existence bound should report each separately, and a disagreement between them is a signal, not noise "
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 141,
+   "updated_at": "2026-10-24T00:19:28Z",
+   "last_comment": {
+    "author": "babyblueviper1",
+    "at": "2026-10-24T00:19:27Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6377422801",
+    "text": "@Tetsurohhori thanks. I ran `jcs-number-vectors` at `40b2129` against the canonicalizer our live issuer signs with (the deployed `jcs`/`es_number` from `dc4e1094`, fed each double from its bits): **1001/1001**. So is the `rfc8785` 0.1.4 package our other production signers import. The production path agrees, not only the checker."
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 66,
+   "updated_at": "2026-10-27T21:02:29Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-27T21:02:29Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6453477294",
+    "text": "For reference: presign-guard's mandate check already refuses any payment whose nonce isn't exactly B (MANDATE_BINDING_MISMATCH), so composed slots are rejected today. We'll move our paymentId check to the 16..64 floor once the \u00a76 change lands.\n"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-10-31T05:57:03+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 10,
+   "pushed_at": "2026-10-30T17:10:37Z",
+   "issues_tracked": 18
+  },
+  "Composable-Evidence-Criteria/.github": {
+   "main_latest": {
+    "sha": "9945f2c",
+    "at": "2026-09-30T08:29:38Z",
+    "msg": "Update name"
+   },
+   "files": {},
+   "open": {},
+   "issues_tracked": 0
+  },
+  "Composable-Evidence-Criteria/governance": {
+   "main_latest": {
+    "sha": "6a2532c",
+    "at": "2026-09-24T10:28:39Z",
+    "msg": "Add maintainers"
+   },
+   "files": {
+    "teams.yaml": "ec2793a"
+   },
+   "open": {
+    "2": {
+     "title": "Update team names add repo",
+     "pr": true,
+     "comments": 0,
+     "author": "ryjones",
+     "url": "https://github.com/Composable-Evidence-Criteria/governance/pull/2"
+    }
+   },
+   "issues_tracked": 2
+  },
+  "Composable-Evidence-Criteria/action-ref-conformance": {
+   "main_latest": {
+    "sha": "3164450",
+    "at": "2026-10-07T15:34:40Z",
+    "msg": "Merge pull request #6: GOVERNANCE correct magentixai conflict-of-interest line"
+   },
+   "files": {
+    "GOVERNANCE.md": "05ab3f1"
+   },
+   "open": {
+    "10": {
+     "title": "pairs/0001: x402 authority mandate (#3220 at 72c3704) with an AXES correlation record",
+     "pr": true,
+     "comments": 2,
+     "author": "magentixai",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10"
+    },
+    "9": {
+     "title": "draft-etcheverry-action-ref-04 published \u2014 Implementation Status section names this lab and AXES",
+     "pr": false,
+     "comments": 0,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/9"
+    },
+    "8": {
+     "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
+     "pr": true,
+     "comments": 1,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8"
+    },
+    "7": {
+     "title": "Heads-up: Rama will offer paid conformance-QA engagements on top of this lab's public corpus",
+     "pr": false,
+     "comments": 4,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/7"
+    },
+    "5": {
+     "title": "Lab communications: LFDT newsletter and meetup proposals, and who speaks for the lab",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/5"
+    },
+    "4": {
+     "title": "APS SDK passes the pinned action-ref v1 Action (verify-impl)",
+     "pr": false,
+     "comments": 0,
+     "author": "aeoess",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/4"
+    },
+    "2": {
+     "title": "Lab name: recomputable-evidence is taken, proposed replacement",
+     "pr": false,
+     "comments": 7,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2"
+    }
+   },
+   "issues_tracked": 10
+  },
+  "user:giskard09": {
+   "events_seen": 98,
+   "latest_event": "2026-10-31T02:25:49Z"
+  }
+ },
+ "first_run": false
+}

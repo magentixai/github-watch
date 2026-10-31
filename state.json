@@ -93,7 +93,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 251,
+   "comments": 254,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -345,14 +345,17 @@
     6479574489,
     6489582400,
     6499864995,
-    6513656090
+    6513656090,
+    6528070823,
+    6533994136,
+    6534882630
    ],
-   "updated_at": "2026-10-30T02:46:09Z",
+   "updated_at": "2026-10-30T22:31:33Z",
    "last_comment": {
-    "author": "Pray4Love1",
-    "at": "2026-10-30T02:43:03Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6513656090",
-    "text": "## FORMAL NOTICE \u2014 COPYRIGHTED AND UNLICENSED PRIOR WORK, ATTRIBUTION, CROSS-PROJECT COORDINATION, AND EVIDENCE-RECORD PROVENANCE\n\n**Submitted by:** @Jsand-187 \u2014 Kin / SolaraKin / AgentChain\n\nI am placing the x402 TSC and relevant evidence-record contributors on formal public notice concerning my earlier COPYRIGHTED and UNLICENSED work, my documented August 2025 implementations, and subsequent cross-project development of corresponding identity, proof, payment, settlement, and verification mechanisms.\n\n### 1. Original implementation priority\n\nMy public records establish implementation and disc"
+    "author": "giskard09",
+    "at": "2026-10-30T22:31:33Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6534882630",
+    "text": "@babyblueviper1 Good complement \u2014 between the three (AnchorRegistry, OpenTimestamps, RFC 3161), Phase 1 now has a real menu of layer-3 trust models instead of one default: a rollup's own consensus (no named party, cheap, no batching), Bitcoin PoW (trust-minimized, delayed until the proof is upgraded, no submitter recorded), and a named TSA (immediate, precise, trust concentrated in the TSA's key).\n\nYour composition point is the one worth keeping for the schema: a record carrying more than one existence bound should report each separately, and a disagreement between them is a signal, not noise "
    }
   },
   "x402-foundation/x402#2887": {
@@ -609,11 +612,19 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-30T11:31:30+00:00",
+ "last_checked": "2026-10-31T05:57:03+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-30T11:31:30+00:00",
+   "checked": "2026-10-31T05:57:03+00:00",
    "items": {
+    "21": {
+     "title": "IETF: draft-sansone-axes-evidence-envelope-00 source, appendices and checks",
+     "state": "open",
+     "pr": true,
+     "comments": 0,
+     "author": "magentixai",
+     "url": "https://github.com/magentixai/axes/pull/21"
+    },
     "20": {
      "title": "RELEASES: list babyblueviper1 as independent reproduction of gt-v2.1",
      "state": "closed",
@@ -818,8 +829,8 @@
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
-   "open_issues_count": 9,
-   "pushed_at": "2026-10-24T10:22:32Z"
+   "open_issues_count": 10,
+   "pushed_at": "2026-10-30T17:10:37Z"
   }
  },
  "cec": {
@@ -1009,6 +1020,16 @@
  },
  "user_events": {
   "giskard09": [
+   "18726740121",
+   "18725410262",
+   "18724750369",
+   "18724006565",
+   "18721677643",
+   "18720419342",
+   "18720028112",
+   "18717252486",
+   "18713849023",
+   "18686131802",
    "18619736323",
    "18619188383",
    "18607259250",
@@ -1081,7 +1102,6 @@
    "25008137933",
    "18086939137",
    "18081917262",
-   "18081308039",
    "24980816898",
    "24976675490",
    "18074275517",
@@ -1091,24 +1111,13 @@
    "24970824808",
    "24970476935",
    "18069219926",
-   "18067828095",
    "24964797709",
    "18064404558",
    "18064204737",
    "18062827579",
    "18061990730",
    "24959586587",
-   "18057592441",
-   "18046985949",
-   "18046320296",
-   "18042126611",
-   "24945621725",
-   "18038356457",
-   "24941319771",
-   "18026380403",
-   "18025068810",
-   "18024399898",
-   "18018293854"
+   "18057592441"
   ]
  }
 }
