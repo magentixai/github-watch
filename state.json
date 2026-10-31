@@ -612,10 +612,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-10-31T05:57:03+00:00",
+ "last_checked": "2026-10-31T11:02:27+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-31T05:57:03+00:00",
+   "checked": "2026-10-31T11:02:27+00:00",
    "items": {
     "21": {
      "title": "IETF: draft-sansone-axes-evidence-envelope-00 source, appendices and checks",
@@ -830,7 +830,7 @@
    "forks_count": 1,
    "subscribers_count": 0,
    "open_issues_count": 10,
-   "pushed_at": "2026-10-30T17:10:37Z"
+   "pushed_at": "2026-10-31T10:10:19Z"
   }
  },
  "cec": {
