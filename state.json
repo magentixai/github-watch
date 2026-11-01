@@ -93,7 +93,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 254,
+   "comments": 242,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -115,23 +115,15 @@
     5413134076,
     5418703290,
     5420578180,
-    5539711120,
     5546673945,
-    5549803975,
     5646876128,
-    5673343148,
-    5673384579,
     5675217779,
     5680248416,
     5684888406,
     5687007231,
-    5690566691,
     5690879955,
-    5703478059,
     5705775300,
     5707338873,
-    5739051231,
-    5739096454,
     5743052574,
     5744829856,
     5746124830,
@@ -183,7 +175,6 @@
     5884076766,
     5890594710,
     5893359872,
-    5899485577,
     5900584287,
     5901082971,
     5901161665,
@@ -213,7 +204,6 @@
     6016872855,
     6018007147,
     6018192818,
-    6020395829,
     6021997316,
     6022315103,
     6022787726,
@@ -223,8 +213,6 @@
     6024083056,
     6024104057,
     6025142483,
-    6025440780,
-    6025484424,
     6027722937,
     6030823657,
     6031574405,
@@ -234,7 +222,6 @@
     6039179117,
     6039263779,
     6041133434,
-    6051110438,
     6060232003,
     6105811577,
     6113338510,
@@ -304,7 +291,6 @@
     6295390438,
     6303226273,
     6309030276,
-    6313776392,
     6316838063,
     6319114209,
     6320718286,
@@ -348,14 +334,16 @@
     6513656090,
     6528070823,
     6533994136,
-    6534882630
+    6534882630,
+    6542804524,
+    6544157292
    ],
-   "updated_at": "2026-10-30T22:31:33Z",
+   "updated_at": "2026-10-31T13:44:14Z",
    "last_comment": {
     "author": "giskard09",
-    "at": "2026-10-30T22:31:33Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6534882630",
-    "text": "@babyblueviper1 Good complement \u2014 between the three (AnchorRegistry, OpenTimestamps, RFC 3161), Phase 1 now has a real menu of layer-3 trust models instead of one default: a rollup's own consensus (no named party, cheap, no batching), Bitcoin PoW (trust-minimized, delayed until the proof is upgraded, no submitter recorded), and a named TSA (immediate, precise, trust concentrated in the TSA's key).\n\nYour composition point is the one worth keeping for the schema: a record carrying more than one existence bound should report each separately, and a disagreement between them is a signal, not noise "
+    "at": "2026-10-31T13:44:13Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6544157292",
+    "text": "@stillmarcus24 Good instinct to name this as its own value instead of folding it into disagreement.\n\nWe hit the same discipline on a different axis (log completeness, not a layer-3 existence bound): `trail-head-ref-v1`'s `continuity_only` / `window_anchor: \"uncertified\"` is exactly \"neither path can answer this specific claim,\" reported as its own state, never folded into pass or fail. We only spelled that out as an explicit warning after a third party (nmatt1, google-agentic-commerce/AP2#290, 2026-10-23) flagged that the verdict string alone could read as a pass to a consumer that only patter"
    }
   },
   "x402-foundation/x402#2887": {
@@ -615,11 +603,19 @@
  "last_checked": "2026-10-31T11:02:27+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-10-31T11:02:27+00:00",
+   "checked": "2026-11-01T06:01:58+00:00",
    "items": {
+    "22": {
+     "title": "Second independent review of PR #21: fixes and SDK 0.1.1",
+     "state": "closed",
+     "pr": true,
+     "comments": 1,
+     "author": "magentixai",
+     "url": "https://github.com/magentixai/axes/pull/22"
+    },
     "21": {
-     "title": "IETF: draft-sansone-axes-evidence-envelope-00 source, appendices and checks",
-     "state": "open",
+     "title": "IETF -00 source, validation fixes and Python SDK 0.1.0",
+     "state": "closed",
      "pr": true,
      "comments": 0,
      "author": "magentixai",
@@ -635,7 +631,7 @@
     },
     "19": {
      "title": "Decision register: proposed D-043 to D-051, data handling, a binding profile catalogue and a profile authoring guide",
-     "state": "open",
+     "state": "closed",
      "pr": true,
      "comments": 0,
      "author": "magentixai",
@@ -824,13 +820,14 @@
     6365231142,
     6366904411,
     6377320874,
-    6402434842
+    6402434842,
+    6548715949
    ],
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
-   "open_issues_count": 10,
-   "pushed_at": "2026-10-31T10:10:19Z"
+   "open_issues_count": 8,
+   "pushed_at": "2026-10-31T20:27:17Z"
   }
  },
  "cec": {
@@ -1020,6 +1017,7 @@
  },
  "user_events": {
   "giskard09": [
+   "18753098126",
    "18726740121",
    "18725410262",
    "18724750369",
@@ -1116,8 +1114,7 @@
    "18064204737",
    "18062827579",
    "18061990730",
-   "24959586587",
-   "18057592441"
+   "24959586587"
   ]
  }
 }

@@ -1,0 +1,237 @@
+{
+ "checked_at": "2026-11-01T06:01:58+00:00",
+ "previous_check": "2026-10-31T11:02:27+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "stillmarcus24",
+   "at": "2026-10-31T11:30:42Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6542804524",
+   "text": "@giskard09 @babyblueviper1 one state Phase 1 should reserve now rather than retrofit: a claim that no layer-3 bound can ever settle. Ours are `past_dated`, a claim about state at a time the cited source does not retain. Two bounds disagreeing is a disagreement; this is neither bound being able to answer, and it needs its own verdict value with a reason code, or a verifier that cannot settle a claim ends up asserting one.\n\nStill OS runs this live on Base: resolution goes to a source named in the receipt that neither party controls, UNRESOLVABLE returns as a first-class outcome rather than a fai"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-10-31T13:44:13Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6544157292",
+   "text": "@stillmarcus24 Good instinct to name this as its own value instead of folding it into disagreement.\n\nWe hit the same discipline on a different axis (log completeness, not a layer-3 existence bound): `trail-head-ref-v1`'s `continuity_only` / `window_anchor: \"uncertified\"` is exactly \"neither path can answer this specific claim,\" reported as its own state, never folded into pass or fail. We only spelled that out as an explicit warning after a third party (nmatt1, google-agentic-commerce/AP2#290, 2026-10-23) flagged that the verdict string alone could read as a pass to a consumer that only patter"
+  },
+  {
+   "item": "magentixai/axes#22",
+   "type": "new_pr",
+   "author": "magentixai",
+   "title": "Second independent review of PR #21: fixes and SDK 0.1.1",
+   "url": "https://github.com/magentixai/axes/pull/22"
+  },
+  {
+   "item": "magentixai/axes#21",
+   "type": "state",
+   "from": "open",
+   "to": "closed",
+   "url": "https://github.com/magentixai/axes/pull/21"
+  },
+  {
+   "item": "magentixai/axes#19",
+   "type": "state",
+   "from": "open",
+   "to": "closed",
+   "url": "https://github.com/magentixai/axes/pull/19"
+  },
+  {
+   "item": "magentixai/axes#22",
+   "type": "comment",
+   "author": "magentixai",
+   "at": "2026-10-31T20:26:47Z",
+   "url": "https://github.com/magentixai/axes/pull/22#issuecomment-6548715949",
+   "text": "Now comfortable at this stage with the review fixes."
+  }
+ ],
+ "failures": [
+  {
+   "item": "x402-foundation/x402#3220",
+   "error": "<HTTPError 404: 'Not Found'>"
+  }
+ ],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 6,
+   "updated_at": "2026-10-20T15:06:35Z",
+   "last_comment": {
+    "author": "source-origin",
+    "at": "2026-10-20T15:06:34Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-6294062372",
+    "text": "Tymofii,\r\n\r\nYou closed the loop on two questions in the same thread, and you gave us a\r\ndistinction we have since used more than anything else from that exchange:\r\n*reference by pin, not host*, with criteria marked as authored judgment rather\r\nthan recomputed fact.\r\n\r\nWe used it and did not tell you. Nineteen days. Sorry.\r\n\r\n**Where it landed.** Our rubric header now carries two separate lines, because\r\nyour distinction made it obvious that one line was a lie:\r\n\r\n- `criteria_version` + `pinned_commit` \u2014 what was applied, and the exact bytes\r\n  it was applied from. If the criteria move, the pin"
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 242,
+   "updated_at": "2026-10-31T13:44:14Z",
+   "last_comment": {
+    "author": "giskard09",
+    "at": "2026-10-31T13:44:13Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6544157292",
+    "text": "@stillmarcus24 Good instinct to name this as its own value instead of folding it into disagreement.\n\nWe hit the same discipline on a different axis (log completeness, not a layer-3 existence bound): `trail-head-ref-v1`'s `continuity_only` / `window_anchor: \"uncertified\"` is exactly \"neither path can answer this specific claim,\" reported as its own state, never folded into pass or fail. We only spelled that out as an explicit warning after a third party (nmatt1, google-agentic-commerce/AP2#290, 2026-10-23) flagged that the verdict string alone could read as a pass to a consumer that only patter"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 141,
+   "updated_at": "2026-10-24T00:19:28Z",
+   "last_comment": {
+    "author": "babyblueviper1",
+    "at": "2026-10-24T00:19:27Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6377422801",
+    "text": "@Tetsurohhori thanks. I ran `jcs-number-vectors` at `40b2129` against the canonicalizer our live issuer signs with (the deployed `jcs`/`es_number` from `dc4e1094`, fed each double from its bits): **1001/1001**. So is the `rfc8785` 0.1.4 package our other production signers import. The production path agrees, not only the checker."
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-11-01T06:01:58+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 8,
+   "pushed_at": "2026-10-31T20:27:17Z",
+   "issues_tracked": 19
+  },
+  "Composable-Evidence-Criteria/.github": {
+   "main_latest": {
+    "sha": "9945f2c",
+    "at": "2026-09-30T08:29:38Z",
+    "msg": "Update name"
+   },
+   "files": {},
+   "open": {},
+   "issues_tracked": 0
+  },
+  "Composable-Evidence-Criteria/governance": {
+   "main_latest": {
+    "sha": "6a2532c",
+    "at": "2026-09-24T10:28:39Z",
+    "msg": "Add maintainers"
+   },
+   "files": {
+    "teams.yaml": "ec2793a"
+   },
+   "open": {
+    "2": {
+     "title": "Update team names add repo",
+     "pr": true,
+     "comments": 0,
+     "author": "ryjones",
+     "url": "https://github.com/Composable-Evidence-Criteria/governance/pull/2"
+    }
+   },
+   "issues_tracked": 2
+  },
+  "Composable-Evidence-Criteria/action-ref-conformance": {
+   "main_latest": {
+    "sha": "3164450",
+    "at": "2026-10-07T15:34:40Z",
+    "msg": "Merge pull request #6: GOVERNANCE correct magentixai conflict-of-interest line"
+   },
+   "files": {
+    "GOVERNANCE.md": "05ab3f1"
+   },
+   "open": {
+    "10": {
+     "title": "pairs/0001: x402 authority mandate (#3220 at 72c3704) with an AXES correlation record",
+     "pr": true,
+     "comments": 2,
+     "author": "magentixai",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10"
+    },
+    "9": {
+     "title": "draft-etcheverry-action-ref-04 published \u2014 Implementation Status section names this lab and AXES",
+     "pr": false,
+     "comments": 0,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/9"
+    },
+    "8": {
+     "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
+     "pr": true,
+     "comments": 1,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8"
+    },
+    "7": {
+     "title": "Heads-up: Rama will offer paid conformance-QA engagements on top of this lab's public corpus",
+     "pr": false,
+     "comments": 4,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/7"
+    },
+    "5": {
+     "title": "Lab communications: LFDT newsletter and meetup proposals, and who speaks for the lab",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/5"
+    },
+    "4": {
+     "title": "APS SDK passes the pinned action-ref v1 Action (verify-impl)",
+     "pr": false,
+     "comments": 0,
+     "author": "aeoess",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/4"
+    },
+    "2": {
+     "title": "Lab name: recomputable-evidence is taken, proposed replacement",
+     "pr": false,
+     "comments": 7,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2"
+    }
+   },
+   "issues_tracked": 10
+  },
+  "user:giskard09": {
+   "events_seen": 98,
+   "latest_event": "2026-10-31T13:44:13Z"
+  }
+ },
+ "first_run": false
+}
