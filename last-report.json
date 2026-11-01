@@ -1,51 +1,20 @@
 {
- "checked_at": "2026-11-01T06:01:58+00:00",
+ "checked_at": "2026-11-01T11:56:58+00:00",
  "previous_check": "2026-10-31T11:02:27+00:00",
  "changes": [
   {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "stillmarcus24",
-   "at": "2026-10-31T11:30:42Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6542804524",
-   "text": "@giskard09 @babyblueviper1 one state Phase 1 should reserve now rather than retrofit: a claim that no layer-3 bound can ever settle. Ours are `past_dated`, a claim about state at a time the cited source does not retain. Two bounds disagreeing is a disagreement; this is neither bound being able to answer, and it needs its own verdict value with a reason code, or a verifier that cannot settle a claim ends up asserting one.\n\nStill OS runs this live on Base: resolution goes to a source named in the receipt that neither party controls, UNRESOLVABLE returns as a first-class outcome rather than a fai"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "giskard09",
-   "at": "2026-10-31T13:44:13Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6544157292",
-   "text": "@stillmarcus24 Good instinct to name this as its own value instead of folding it into disagreement.\n\nWe hit the same discipline on a different axis (log completeness, not a layer-3 existence bound): `trail-head-ref-v1`'s `continuity_only` / `window_anchor: \"uncertified\"` is exactly \"neither path can answer this specific claim,\" reported as its own state, never folded into pass or fail. We only spelled that out as an explicit warning after a third party (nmatt1, google-agentic-commerce/AP2#290, 2026-10-23) flagged that the verdict string alone could read as a pass to a consumer that only patter"
-  },
-  {
-   "item": "magentixai/axes#22",
+   "item": "magentixai/axes#23",
    "type": "new_pr",
    "author": "magentixai",
-   "title": "Second independent review of PR #21: fixes and SDK 0.1.1",
-   "url": "https://github.com/magentixai/axes/pull/22"
+   "title": "Publish the -00 build in ietf/ and explain it in the READMEs",
+   "url": "https://github.com/magentixai/axes/pull/23"
   },
   {
-   "item": "magentixai/axes#21",
-   "type": "state",
-   "from": "open",
-   "to": "closed",
-   "url": "https://github.com/magentixai/axes/pull/21"
-  },
-  {
-   "item": "magentixai/axes#19",
-   "type": "state",
-   "from": "open",
-   "to": "closed",
-   "url": "https://github.com/magentixai/axes/pull/19"
-  },
-  {
-   "item": "magentixai/axes#22",
-   "type": "comment",
+   "item": "magentixai/axes#24",
+   "type": "new_pr",
    "author": "magentixai",
-   "at": "2026-10-31T20:26:47Z",
-   "url": "https://github.com/magentixai/axes/pull/22#issuecomment-6548715949",
-   "text": "Now comfortable at this stage with the review fixes."
+   "title": "draft-00: state the author's country so the Datatracker needs no edits",
+   "url": "https://github.com/magentixai/axes/pull/24"
   }
  ],
  "failures": [
@@ -128,13 +97,13 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-01T06:01:58+00:00",
+   "checked": "2026-11-01T11:56:58+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
    "open_issues_count": 8,
-   "pushed_at": "2026-10-31T20:27:17Z",
-   "issues_tracked": 19
+   "pushed_at": "2026-11-01T09:58:43Z",
+   "issues_tracked": 21
   },
   "Composable-Evidence-Criteria/.github": {
    "main_latest": {

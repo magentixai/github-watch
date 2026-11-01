@@ -603,8 +603,24 @@
  "last_checked": "2026-10-31T11:02:27+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-01T06:01:58+00:00",
+   "checked": "2026-11-01T11:56:58+00:00",
    "items": {
+    "23": {
+     "title": "Publish the -00 build in ietf/ and explain it in the READMEs",
+     "state": "closed",
+     "pr": true,
+     "comments": 0,
+     "author": "magentixai",
+     "url": "https://github.com/magentixai/axes/pull/23"
+    },
+    "24": {
+     "title": "draft-00: state the author's country so the Datatracker needs no edits",
+     "state": "closed",
+     "pr": true,
+     "comments": 0,
+     "author": "magentixai",
+     "url": "https://github.com/magentixai/axes/pull/24"
+    },
     "22": {
      "title": "Second independent review of PR #21: fixes and SDK 0.1.1",
      "state": "closed",
@@ -827,7 +843,7 @@
    "forks_count": 1,
    "subscribers_count": 0,
    "open_issues_count": 8,
-   "pushed_at": "2026-10-31T20:27:17Z"
+   "pushed_at": "2026-11-01T09:58:43Z"
   }
  },
  "cec": {
