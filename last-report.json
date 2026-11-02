@@ -1,20 +1,55 @@
 {
- "checked_at": "2026-11-01T11:56:58+00:00",
+ "checked_at": "2026-11-02T05:57:03+00:00",
  "previous_check": "2026-10-31T11:02:27+00:00",
  "changes": [
   {
-   "item": "magentixai/axes#23",
-   "type": "new_pr",
-   "author": "magentixai",
-   "title": "Publish the -00 build in ietf/ and explain it in the READMEs",
-   "url": "https://github.com/magentixai/axes/pull/23"
+   "item": "giskard09/argentum-core#152",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-01T21:32:28Z",
+   "url": "https://github.com/giskard09/argentum-core/pull/152#issuecomment-6564184898",
+   "title": "conformance(recompute-drift-v1): remove 0003-empty-scope per the action-ref-v1.0 erratum",
+   "text": "Merged \u2014 thanks for catching this, the erratum alignment is correct.\n\nOne follow-up on the open question you flagged. This set now follows `main`'s erratum reading for `0003` (empty scope), not the tag's original one. By the same logic, `0002-unicode-fields` is out of profile under `main`'s `av-003` ASCII-only domain rule \u2014 keeping it as a positive here would apply the tag's reading to one vector and `main`'s reading to another within the same set.\n\nWould you rather drop `0002` too, or mark it explicitly as tag-only / out-of-profile-on-main in the README? Either keeps the set internally consis",
+   "source": "user:giskard09"
   },
   {
-   "item": "magentixai/axes#24",
+   "item": "OWASP/www-project-agent-memory-guard#200",
    "type": "new_pr",
-   "author": "magentixai",
-   "title": "draft-00: state the author's country so the Datatracker needs no edits",
-   "url": "https://github.com/magentixai/axes/pull/24"
+   "author": "giskard09",
+   "at": "2026-11-01T22:03:34Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "coinbase/agentkit#1141",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-01T22:59:53Z",
+   "url": "https://github.com/coinbase/agentkit/issues/1141#issuecomment-6565176881",
+   "title": "RFC: Opt-in policy hook for AgentKit action execution (budget / risk providers like Cycles)",
+   "text": "@osr21 Both points land. Taking them in order.\n\nOn separating signature validity from identity binding \u2014 already true by design, not something I added for this: `verification_result_recomputed` in `verify.py` is the raw Ed25519 check, kept independent of any authority claim. The verifier prints this explicitly for `key_source='embedded'`:\n\n> Recomputable: yes \u2014 public key ships inside this record, no external fetch.\n> Anchored: NO \u2014 this key was chosen by whoever produced this checkpoint.\n> Per verifier-key-source-ref-v1.md's own invariant 6 (recomputable_not_anchored): recomputability must ne",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "coinbase/agentkit#1141",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-02T00:44:50Z",
+   "url": "https://github.com/coinbase/agentkit/issues/1141#issuecomment-6566379156",
+   "title": "RFC: Opt-in policy hook for AgentKit action execution (budget / risk providers like Cycles)",
+   "text": "@osr21 Built this one too: [`f23fb6c`](https://github.com/giskard09/checkpoint-producer-binding-ref-anchor/commit/f23fb6c98f4393698fa082c7cccfa54f828dafd0).\n\nConfirms the three-way split you asked about:\n\n- **`key_source='embedded'`, self-consistent substitution**: all five local checks pass \u2014 crypto signature valid, `public_key_hash` matches, `signer_identity_bound` holds, because nothing local distinguishes a legitimate key from a coordinated replacement. Identity stays unauthenticated, as documented.\n- **Fingerprint committed in the anchored preimage**: breaks it. The swapped checkpoint's h",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "aaif/wg-observability-and-traceability#37",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-02T00:45:31Z",
+   "url": "https://github.com/aaif/wg-observability-and-traceability/issues/37#issuecomment-6566387421",
+   "title": "Proposal: Evidence Record Spec, a testable data model for the E4 tamper-evident evidence gap",
+   "text": "@narko4u You're right, and the search returning nothing was correct, not weak evidence of absence \u2014 the record wasn't there. We ran it, anchored the digest, and reported the result, but never published the preimage. That's a real gap on our side, not a smaller one than it looks.\n\nIt's up now: `evidence-records/rama-agent-bounties-001.json` in that repo, commit [`2c7beec`](https://github.com/giskard09/agent-bounties-action-ref-anchor/commit/2c7beec555dfd5d38e50b7ae275191f20e3d9db3). The `record` field, canonicalized (RFC 8785 JCS, sorted keys) and SHA-256'd, is `ccee67f9648e03b5a5ce912000c54886",
+   "source": "user:giskard09"
   }
  ],
  "failures": [
@@ -97,7 +132,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-01T11:56:58+00:00",
+   "checked": "2026-11-02T05:57:03+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -199,7 +234,7 @@
   },
   "user:giskard09": {
    "events_seen": 98,
-   "latest_event": "2026-10-31T13:44:13Z"
+   "latest_event": "2026-11-02T00:45:31Z"
   }
  },
  "first_run": false
