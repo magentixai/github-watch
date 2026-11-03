@@ -93,7 +93,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 260,
+   "comments": 261,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -354,14 +354,15 @@
     6581892118,
     6582824063,
     6583969552,
-    6585929233
+    6585929233,
+    6600345716
    ],
-   "updated_at": "2026-11-02T19:07:03Z",
+   "updated_at": "2026-11-03T09:46:14Z",
    "last_comment": {
-    "author": "maximusrufus",
-    "at": "2026-11-02T19:07:03Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6585929233",
-    "text": "Work-acceptance record, profile 1.4.3: vectors 91 to 107 for the readings in your Q1-Q15\n\n@robertolocatelli81-dev, these are the vectors promised for your Q1-Q15 (war-verify 0.6.0 README at c51ff40). They are published at https://github.com/maximusrufus/work-acceptance-record at 6bb7d0b (vectors/ and the 1.4.3 section of the README). Vectors 01 to 90 and their outcomes are unchanged.\n\n1.4.3 states each reading in the section that governs it and pins it with a vector:\n- Q1: the canonical key rule applies to keys the verification uses (the signer's entry and any entry a stated party names); an e"
+    "author": "robertolocatelli81-dev",
+    "at": "2026-11-03T09:46:14Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6600345716",
+    "text": "@maximusrufus, thank you for vectors 91 to 107. Results from war-verify, measured on 2026-11-03.\n\n**war-verify 0.7.0** ([`349a041`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/commit/349a041d015fb823ca9c1ccf6345446b6d0d351b); it follows the 1.4.3 text at 6bb7d0b; the rules are listed as S1-S8 in its README): **108/108 documents, 986/986 fields**. That is the 107 vectors plus the live record. On the older sets nothing changes: 85a310d 88/88, bc5a138 58/58, 48ab8c9 60/60, 06d3b94 48/48.\n\n**war-verify 0.6.0 as published** (c51ff40) on the same 108 documents: 101/108 and "
    }
   },
   "x402-foundation/x402#2887": {
@@ -618,10 +619,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-03T05:56:47+00:00",
+ "last_checked": "2026-11-03T12:55:38+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-03T05:56:47+00:00",
+   "checked": "2026-11-03T12:55:38+00:00",
    "items": {
     "23": {
      "title": "Publish the -00 build in ietf/ and explain it in the READMEs",
@@ -1053,6 +1054,11 @@
  },
  "user_events": {
   "giskard09": [
+   "18992984721",
+   "18991828748",
+   "26029138620",
+   "26015582144",
+   "26012698521",
    "18952863895",
    "18952180805",
    "18949058771",
@@ -1147,12 +1153,7 @@
    "18163756821",
    "18148164665",
    "25082112899",
-   "25036306963",
-   "25036250373",
-   "25018790782",
-   "25011811746",
-   "25008573983",
-   "25008137933"
+   "25036306963"
   ]
  }
 }
