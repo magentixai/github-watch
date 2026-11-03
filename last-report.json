@@ -1,143 +1,124 @@
 {
- "checked_at": "2026-11-02T13:43:48+00:00",
- "previous_check": "2026-10-31T11:02:27+00:00",
+ "checked_at": "2026-11-03T05:56:47+00:00",
+ "previous_check": "2026-11-02T13:43:48+00:00",
  "changes": [
   {
    "item": "x402-foundation/tsc#4",
    "type": "comment",
-   "author": "whawk46",
-   "at": "2026-09-04T11:21:26Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-5539711120",
-   "text": "### Expression of Interest & Leadership Nomination: Evidence-Record Working Group (Phase 1)\n\nAs an active contributor across the x402 specification layers\u2014specifically authoring canonical evidence referencing (`x402ev/1`), RFC 8785 (JCS) deterministic serialization suites, and the normative receiver hold and settlement conformance invariants on PR #3325 (\u00a75.3.5 / \u00a75.3.6)\u2014I strongly endorse chartering the **Evidence-Record Working Group** under the focused, two-phase mandate outlined by @magentixai.\n\nTo support the TSC in launching this group without administrative drag, **I formally offer to s"
+   "author": "robertolocatelli81-dev",
+   "at": "2026-11-02T16:06:10Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6581892118",
+   "text": "@stillmarcus24 @giskard09, on reserving a state for a claim that no bound can settle: here is a data point from a verifier of the record after settlement, and one proposal for Phase 1.\n\nIn [`agent-payment-chain`](https://github.com/robertolocatelli81-dev/agent-payment-chain) at `314ac9a` (an offline verifier of an x402 payment payload against the on-chain settlement, and of the AP2 mandate when there is one; rules in `SPEC.md`), each check ends in one of three kinds of outcome: `verified`, `failed:<reason>`, or a non-verdict with its reason (`not_evaluated:`, `not_applicable:`, `pending:`). Tw"
   },
   {
    "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "whawk46",
-   "at": "2026-09-05T05:54:06Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-5549803975",
-   "text": "@TKCollective Excellent observation, and the clean boundary (reference by\r\ndigest, not schema merge) fits Phase 1 perfectly.\r\n\r\nAllowing `x402ev/1` to optionally carry a digest reference to pre-action\r\nverification state (such as `draft-krausz-verification-state`) avoids\r\nuncoordinated downstream retrofits while keeping pre-condition verification\r\nstrictly decoupled from post-settlement outcome evidence.\r\n\r\nI will incorporate an optional pre-action verification digest reference\r\ninto the Phase 1 charter scope text. Appreciate the sharp contribution.\r\n\r\nOn Fri, Sep 4, 2026 at 4:31\u202fPM AgentOracl"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "whawk46",
-   "at": "2026-09-15T01:36:29Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-5673343148",
-   "text": "Support chartering Phase 1 as scoped by @magentixai.\r\n\r\nTwo structural boundaries are critical for the Phase 1 charter:\r\n\r\n1. **Strict Separation of Evidence from Settlement Mechanics**: Phase 1\r\nmust deliver a purely cryptographic, machine-verifiable evidence record\r\nprimitive (RFC 9162 / SCITT-verifiable receipts). Any dispute mechanics,\r\nbonded collateral, or escrow logic belong strictly in Phase 2.\r\n2. **Universal Protocol Neutrality**: The evidence format must remain\r\ncompletely rail-agnostic and runtime-agnostic\u2014expressible across both\r\naccount and state-proof models, as well as hardware"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "whawk46",
-   "at": "2026-09-15T01:41:55Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-5673384579",
-   "text": "To ensure Phase 1 starts from a minimal, rail-agnostic baseline rather than abstract debate, we contribute the reference schema for the portable evidence primitive (`x402ev/1`), currently running in production:\n\n### Phase 1 Core Evidence Record (`x402ev/1`)\n\nA compliant Phase 1 evidence reference is a self-contained, machine-verifiable tuple that proves settlement and execution truth across any settlement model:\n\n```json\n{\n  \"version\": \"x402ev/1\",\n  \"payloadDigest\": \"sha256:d5cf1c2abf4d86ec807b68ffdd3b0d30f7afbb308f8ae61016608df1d810f44c\",\n  \"settlement\": {\n    \"rail\": \"eip155:8453\",\n    \"anch"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "whawk46",
-   "at": "2026-09-16T01:19:18Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-5690566691",
-   "text": "Martin,\r\n\r\nGlad to co-chair Phase 1 alongside you. A chair pairing focused strictly on\r\nprotocol neutrality, portable canonicalization, and clean architectural\r\nseams is exactly what ensures this record shape succeeds as an unencumbered\r\nstandard.\r\n\r\nOn the version identifier: agreed completely. Bumping to `x402ev/2` for the\r\nstructured JSON profile cleanly separates it from the September 4 grammar,\r\npreventing parser collision in the conformance harness before baselines\r\nfreeze.\r\n\r\nOn the four attachment points: fully endorsed.\r\n1. The verdict vocabulary (`verified`, `contradicted`, `indeterm"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "whawk46",
-   "at": "2026-09-16T19:41:22Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-5703478059",
-   "text": "@meloliva14 The distinction between single-record shape conformance and\r\nmulti-vantage time-series observation is well taken, and belongs explicitly\r\nin the charter\u2019s boundary notes so the WG doesn't overclaim what a static\r\nschema proves.\r\n\r\nEndorsed on the concrete ask: an optional `supersedes: { digest, reason }`\r\nslot fits cleanly into the `x402ev/2` baseline as a 5th attachment point\r\nwith zero adjudication or state machinery required.\r\n\r\nOn Tue, Sep 15, 2026 at 9:00\u202fPM Melchiorre Oliva ***@***.***>\r\nwrote:\r\n\r\n> *meloliva14* left a comment (x402-foundation/tsc#4)\r\n> <https://github.com/x4"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "whawk46",
-   "at": "2026-09-19T03:37:26Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-5739051231",
-   "text": "Completely agreed, @meloliva14 \u2014 that is a vital distinction to preserve in\r\nthe boundary notes.\r\n\r\nSplitting them into two explicit limits makes the scope much clearer: (1) a\r\nsingle-vantage time series provides valid local temporal drift detection\r\nthat an implementer should absolutely rely on, and (2) multi-vantage\r\nobservation serves the distinct purpose of disambiguating observer skew\r\nfrom global network state. Separating them prevents single-vantage\r\nimplementers from erroneously discounting their own telemetry.\r\n\r\nHappy to see them hardened as two separate items in the text.\r\n\r\nOn Wed,"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "whawk46",
-   "at": "2026-09-19T03:44:12Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-5739096454",
-   "text": "Appreciate the open release and the rigor, @stillmarcus24.\r\n\r\nThe discrimination control is the critical insight here \u2014 \"a corpus that\r\ncannot fail proves nothing\" is exactly right. In adversarial and\r\npost-settlement evaluation, negative vectors that trip an overly permissive\r\nharness are just as load-bearing as positive ones. Having zero-dependency\r\nreference code with explicit indeterminate/not_evaluated states gives the\r\nworking group a grounded baseline to work from.\r\n\r\nOn Wed, Sep 16, 2026 at 9:06\u202fPM Marcus Still ***@***.***>\r\nwrote:\r\n\r\n> *stillmarcus24* left a comment (x402-foundation/t"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "whawk46",
-   "at": "2026-09-29T21:39:25Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-5899485577",
-   "text": "Satisfying Criterion 3 via independent Node and Python reproductions across\r\nall 69 vectors is a major milestone for the suite. The neutral\r\nposture\u2014treating the vectors and schema as authoritative rather than\r\nprivileging any single runner\u2014is exactly right.\r\n\r\nWith multi-language structural reproducibility established, the path is\r\nclear for the TSC to formalize the Evidence Record Working Group charter.\r\nLooking forward to tackling the crypto profile and counter-signature\r\nrejecting twins as the group's first standing milestone.\r\n\r\n\r\n\r\nOn Tue, Sep 29, 2026 at 10:33\u202fAM Kevin Zhang ***@***.***"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "whawk46",
-   "at": "2026-10-06T16:09:06Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6020395829",
-   "text": "@magentixai @TKCollective @nonlinearity This three-way consensus on claim separation is exactly where the boundary belongs.\n\nMartin\u2019s \"Trust Lane\" framing provides the clean protocol slotting, while TKCollective and nonlinearity capture the vital claim ceiling:\n1. **The Payment Fingerprint** correlates that two records refer to the same authorization.\n2. **The Delivery Record** binds what bytes were delivered and who signed them.\n3. **The Acceptance Record** binds the counterparty\u2019s evaluation against the terms.\n\nWe just codified this exact four-tier hierarchy into [PR #3682](https://github.co"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "whawk46",
-   "at": "2026-10-06T21:05:43Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6025440780",
-   "text": "@TKCollective Fully aligned. That is why PR #3682 establishes the explicit claim ceiling:\n\n`VALID_x402ev != CORRECT_DELIVERY != PROVEN_EXECUTION != AUTHORIZED_TRANSITION`\n\nThe receipt format only binds settlement to delivered bytes and counterparty signature; it does not mandate hardware enclaves or dictate dispute logic. Downstream evaluation and whether evidence authorizes a state transition remain strictly within the relying party's declared policy."
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "whawk46",
-   "at": "2026-10-06T21:08:30Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6025484424",
-   "text": "@magentixai Fully agreed. The #3220 \u00a77 binding (`B = SHA-256(\"x402-mandate-binding/1\\n\" || mandateDigest || \"\\n\" || paymentId)`) is strictly domain-separated and deterministic.\n\nBecause `paymentId` is payer-chosen grammar, any lane context or salt can be namespaced inside `paymentId` when operating under an authority mandate (or via an orthogonal `\"x402-lane-binding/1\\n\"` tag when operating standalone). In either case, a verifier evaluating a \u00a77 mandate recomputes `B` byte-for-byte against the published vectors without divergence."
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "whawk46",
-   "at": "2026-10-08T02:45:01Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6051110438",
-   "text": "@magentixai Agreed. Overloading `paymentId` with lane metadata breaks its\r\nidempotency and join semantics across payment rails. A separate\r\n`x402-lane-binding/1` tag preserves clean orthogonality between the primary\r\nkey and lane attribution.\r\n\r\n\r\n\r\nOn Wed, Oct 7, 2026 at 8:39\u202fAM Magentix.AI ***@***.***> wrote:\r\n\r\n> *magentixai* left a comment (x402-foundation/tsc#4)\r\n> <https://github.com/x402-foundation/tsc/issues/4#issuecomment-6039179117>\r\n>\r\n> @babyblueviper1 <https://github.com/babyblueviper1> fair call on the\r\n> alias table, and the closed append-only form addresses No\u00fbs's point well.\r\n"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "whawk46",
-   "at": "2026-10-21T10:29:41Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6313776392",
-   "text": "@magentixai @maximusrufus \u2014 @magentixai, your instinct on **Step 9's separation between imprint checking and TSA signature verification**\u2014along with your **Condition 1 (\"findings, not a ruling\")**\u2014hit the exact fault lines in this proposal.\n\nWe audited **Profile 1.4 (`eb0f30b`)**, `verifier/war_verify.py`, and `vectors/32-tsa-digicert-verified.json` (alongside its companion submission in `agentic-commerce-protocol#316`). Because previous runs did not open `verifier/war_verify.py` or evaluate how Step 9 interacts with Steps 6 and 8, critical verification flaws and structural scope issues went u"
-  },
-  {
-   "item": "Composable-Evidence-Criteria/action-ref-conformance#9",
-   "type": "comment",
-   "author": "magentixai",
-   "at": "2026-11-02T08:06:45Z",
-   "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/9#issuecomment-6572183531",
-   "text": "Pablo - thanks for the Implementation Status entry in -04. I confirm the AXES paragraph as written: the 13 v1 and 6 v2 vectors were recomputed on 23 October, and the AnchorRegistry verifier checks the Base block 48936665 anchor."
-  },
-  {
-   "item": "Composable-Evidence-Criteria/action-ref-conformance#9",
    "type": "comment",
    "author": "giskard09",
-   "at": "2026-11-02T10:03:15Z",
-   "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/9#issuecomment-6574347181",
-   "text": "Thanks for confirming, Martin \u2014 appreciate you checking the numbers against your own recompute."
+   "at": "2026-11-02T16:47:44Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6582824063",
+   "text": "@robertolocatelli81-dev \u2014 the three-class reservation matches something we already require at a narrower layer, worth naming exactly because it doesn't fully match yours and the gap is useful.\n\n`verifier-key-source-ref-v1.md`'s `verification_result` enum is `pass` / `fail` / `unverifiable` / `out_of_scope`, and invariant 6 (`recomputable_not_anchored`) exists for the same reason your proposal does: a leg that's merely recomputable (self-consistent) must never be reported as an authenticated signer, because that's exactly \"not shown\" read as \"shown.\" The spec requires a `verification_note` when"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "robertolocatelli81-dev",
+   "at": "2026-11-02T17:38:54Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6583969552",
+   "text": "\n@giskard09, thanks \u2014 yes, please open it as an issue on agent-payment-chain. To build the bundle we need the network, the settlement transaction hash, and the payment payload the client sent (the `PAYMENT-SIGNATURE` header in x402 v2, `X-PAYMENT` in v1, or its decoded JSON). For v1 we also need the `accepts` of the 402 response, because a v1 payload does not name the requirement it pays. The facilitator's reply is optional: it is reported apart (`facilitator_reply`) and never raises the level. We will publish the outcome in the issue whatever it is, including a disagreement or a failure on ou"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-11-02T19:07:03Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6585929233",
+   "text": "Work-acceptance record, profile 1.4.3: vectors 91 to 107 for the readings in your Q1-Q15\n\n@robertolocatelli81-dev, these are the vectors promised for your Q1-Q15 (war-verify 0.6.0 README at c51ff40). They are published at https://github.com/maximusrufus/work-acceptance-record at 6bb7d0b (vectors/ and the 1.4.3 section of the README). Vectors 01 to 90 and their outcomes are unchanged.\n\n1.4.3 states each reading in the section that governs it and pins it with a vector:\n- Q1: the canonical key rule applies to keys the verification uses (the signer's entry and any entry a stated party names); an e"
+  },
+  {
+   "item": "probityai/agent-evidence-vectors#412",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-02T14:02:33Z",
+   "url": "https://github.com/probityai/agent-evidence-vectors/issues/412#issuecomment-6579092921",
+   "title": "AAR -03: the PS1 record for principal-standing-source, and a case exactly on the maxAge boundary",
+   "text": "@wjatx -05 Section 5's \"Key bootstrapping across boundaries\" names this an open issue and splits it into three separable questions: how candidate key material is obtained, how it's bound to the organization it's claimed for, and whether the relying party trusts that binding -- left to the working group. We've had to answer exactly that split concretely in a different corpus (`verifier-key-source-ref-v1`, used for multi-signer admission in argentum-core):\n\n- Question 1 (how key material is obtained) -> a `key_source` enum: `embedded` / `published_jwks` / `pinned_registry` / `cached_prior`.\n- Qu",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "trustless-ai/wyriwe-signing#2",
+   "type": "new_issue",
+   "author": "giskard09",
+   "at": "2026-11-02T14:36:58Z",
+   "title": "Open question 3: AnchorRegistry as the 'registry' option (deployed, permissionless, 23,903 gas)",
+   "url": "https://github.com/trustless-ai/wyriwe-signing/issues/2",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "robertolocatelli81-dev/agent-payment-chain#1",
+   "type": "new_issue",
+   "author": "giskard09",
+   "at": "2026-11-02T18:12:38Z",
+   "title": "Test case: real x402 v2 payment (POPCORN witness service, Base mainnet)",
+   "url": "https://github.com/robertolocatelli81-dev/agent-payment-chain/issues/1",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "microsoft/agent-governance-toolkit#3805",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-02T18:55:49Z",
+   "url": "https://github.com/microsoft/agent-governance-toolkit/issues/3805#issuecomment-6585608982",
+   "title": "verifiable-compliance-receipts: does the signer key need to be independent of the acting agent?",
+   "text": "@Aliipou @babyblueviper1 \u2014 owed you both the composition-note draft from this side; it slipped past the fixture work and the thread closing.\n\nSequence, our side of it: schema marker names the call \u2192 PEP decides whether the effect runs \u2192 signed receipt (`execution_binding: external`) records what was decided, never that it ran. `action_ref` is the content-addressed anchor for the receipt's subject \u2014 it doesn't observe execution either, same honesty rule as the AAC verdict. No shared ownership, no merged repo \u2014 three independent, checkable pieces of the same sequence, already demonstrated end to",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "robertolocatelli81-dev/agent-payment-chain#1",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-02T23:17:52Z",
+   "url": "https://github.com/robertolocatelli81-dev/agent-payment-chain/issues/1#issuecomment-6590955624",
+   "title": "Test case: real x402 v2 payment (POPCORN witness service, Base mainnet)",
+   "text": "@robertolocatelli81-dev \u2014 thank you, especially for the positive/negative control (9/9 refused is a real test, not just an assertion).\n\n**(a) The real `accepts`, not derived from the tx.** This is the relevant part of POPCORN's actual 402 response, captured live with `curl -i` before paying \u2014 not reconstructed from on-chain data:\n\n```json\n{\"x402Version\":2,\"resource\":{\"url\":\"https://767-2676.com/v2/receipt\",\"description\":\"Signed time-bounded witness of an agent-carried payload digest; the payload stays with the agent\",\"mimeType\":\"application/json\",\"serviceName\":\"767-2676.com\",\"tags\":[\"agents\",\"",
+   "source": "user:giskard09"
   },
   {
    "item": "coinbase/agentkit#1141",
    "type": "comment",
    "author": "giskard09",
-   "at": "2026-11-02T13:32:33Z",
-   "url": "https://github.com/coinbase/agentkit/issues/1141#issuecomment-6578478409",
+   "at": "2026-11-03T00:41:45Z",
+   "url": "https://github.com/coinbase/agentkit/issues/1141#issuecomment-6592282568",
    "title": "RFC: Opt-in policy hook for AgentKit action execution (budget / risk providers like Cycles)",
-   "text": "@osr21 Agreed on the phrasing, and that's a real gap in the output, not just the prose. Implemented: `ac6f1ac` adds `classify_outcomes()` exposing exactly your four names (`checkpoint_key_bound` instead of `key_fingerprint_committed` -- same idea, matches the existing `signer_identity_bound`/`signature_input_bound` naming already in the file).\n\nRan it against the real anchor (tx `0x1dbff7b7...`, block 53311834):\n\n```\nsignature_valid: True\ncheckpoint_key_bound: True\nanchor_inclusion_verified: True\nidentity_authenticated: False\n```\n\n`identity_authenticated` is hardcoded `False` for every `key_so",
+   "text": "@osr21 Right, and it's a real gap \u2014 `anchor_inclusion_verified=True` was only ever \"found a success receipt,\" never finality, but nothing said so.\n\nAdded `anchor_finality` as a separate string state (`unseen` / `included`), commit [`6ba9f1b`](https://github.com/giskard09/checkpoint-producer-binding-ref-anchor/commit/6ba9f1b191b5d5c6c66f3d0b035d47595809f604). It deliberately never returns `finalized`: Base's real finality is the L1 fault-proof/dispute-game window, not confirmation count, and this verifier doesn't check that window. Returning a confirmation-count heuristic as \"finalized\" would'v",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "coinbase/agents#14",
+   "type": "new_issue",
+   "author": "giskard09",
+   "at": "2026-11-03T00:59:30Z",
+   "title": "Approval controls confirm who authorized an action, not whether what executed matches it",
+   "url": "https://github.com/coinbase/agents/issues/14",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "coinbase/agentkit#1141",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-03T01:45:30Z",
+   "url": "https://github.com/coinbase/agentkit/issues/1141#issuecomment-6593250115",
+   "title": "RFC: Opt-in policy hook for AgentKit action execution (budget / risk providers like Cycles)",
+   "text": "@osr21 Good call, and recorded for when it's needed: commit [`5f08da4`](https://github.com/giskard09/checkpoint-producer-binding-ref-anchor/commit/5f08da4c78ccec97dbad6200d69475ff780ab7a8) adds a `PROVENANCE.md` note with the staged design (explicit assurance stages, policy/version recorded, `included` \u2192 `reorged` on reorg) for whenever this verifier adds more than a single L2 receipt check. Not building it now \u2014 didn't want it lost before then.\n",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "coinbase/agentkit#1141",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-03T01:56:11Z",
+   "url": "https://github.com/coinbase/agentkit/issues/1141#issuecomment-6593413890",
+   "title": "RFC: Opt-in policy hook for AgentKit action execution (budget / risk providers like Cycles)",
+   "text": "@osr21 Built both pieces, commit [`e933fb3`](https://github.com/giskard09/checkpoint-producer-binding-ref-anchor/commit/e933fb34d8aa20a66e16ae8860771bd575eb69b4):\n\n- `verify_anchor()` now records `chain_id`, `tx_hash`, and `block_hash` alongside the block number.\n- `recheck_inclusion(block_number, recorded_block_hash)` re-queries the current canonical block hash at that height and reports `included` / `reorged` / `unknown`. It doesn't run automatically \u2014 a caller invokes it later to find out whether a prior `included` result still holds.\n\nCouldn't force a real reorg on Base mainnet to test the",
    "source": "user:giskard09"
   }
  ],
@@ -180,13 +161,13 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 256,
-   "updated_at": "2026-10-31T13:44:14Z",
+   "comments": 260,
+   "updated_at": "2026-11-02T19:07:03Z",
    "last_comment": {
-    "author": "giskard09",
-    "at": "2026-10-31T13:44:13Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6544157292",
-    "text": "@stillmarcus24 Good instinct to name this as its own value instead of folding it into disagreement.\n\nWe hit the same discipline on a different axis (log completeness, not a layer-3 existence bound): `trail-head-ref-v1`'s `continuity_only` / `window_anchor: \"uncertified\"` is exactly \"neither path can answer this specific claim,\" reported as its own state, never folded into pass or fail. We only spelled that out as an explicit warning after a third party (nmatt1, google-agentic-commerce/AP2#290, 2026-10-23) flagged that the verdict string alone could read as a pass to a consumer that only patter"
+    "author": "maximusrufus",
+    "at": "2026-11-02T19:07:03Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6585929233",
+    "text": "Work-acceptance record, profile 1.4.3: vectors 91 to 107 for the readings in your Q1-Q15\n\n@robertolocatelli81-dev, these are the vectors promised for your Q1-Q15 (war-verify 0.6.0 README at c51ff40). They are published at https://github.com/maximusrufus/work-acceptance-record at 6bb7d0b (vectors/ and the 1.4.3 section of the README). Vectors 01 to 90 and their outcomes are unchanged.\n\n1.4.3 states each reading in the section that governs it and pins it with a vector:\n- Q1: the canonical key rule applies to keys the verification uses (the signer's entry and any entry a stated party names); an e"
    }
   },
   "x402-foundation/x402#2887": {
@@ -232,7 +213,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-02T13:43:48+00:00",
+   "checked": "2026-11-03T05:56:47+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -333,8 +314,8 @@
    "issues_tracked": 10
   },
   "user:giskard09": {
-   "events_seen": 99,
-   "latest_event": "2026-11-02T13:32:33Z"
+   "events_seen": 100,
+   "latest_event": "2026-11-03T01:56:11Z"
   }
  },
  "first_run": false

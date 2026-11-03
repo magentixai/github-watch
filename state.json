@@ -93,7 +93,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 256,
+   "comments": 260,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -350,14 +350,18 @@
     6533994136,
     6534882630,
     6542804524,
-    6544157292
+    6544157292,
+    6581892118,
+    6582824063,
+    6583969552,
+    6585929233
    ],
-   "updated_at": "2026-10-31T13:44:14Z",
+   "updated_at": "2026-11-02T19:07:03Z",
    "last_comment": {
-    "author": "giskard09",
-    "at": "2026-10-31T13:44:13Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6544157292",
-    "text": "@stillmarcus24 Good instinct to name this as its own value instead of folding it into disagreement.\n\nWe hit the same discipline on a different axis (log completeness, not a layer-3 existence bound): `trail-head-ref-v1`'s `continuity_only` / `window_anchor: \"uncertified\"` is exactly \"neither path can answer this specific claim,\" reported as its own state, never folded into pass or fail. We only spelled that out as an explicit warning after a third party (nmatt1, google-agentic-commerce/AP2#290, 2026-10-23) flagged that the verdict string alone could read as a pass to a consumer that only patter"
+    "author": "maximusrufus",
+    "at": "2026-11-02T19:07:03Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6585929233",
+    "text": "Work-acceptance record, profile 1.4.3: vectors 91 to 107 for the readings in your Q1-Q15\n\n@robertolocatelli81-dev, these are the vectors promised for your Q1-Q15 (war-verify 0.6.0 README at c51ff40). They are published at https://github.com/maximusrufus/work-acceptance-record at 6bb7d0b (vectors/ and the 1.4.3 section of the README). Vectors 01 to 90 and their outcomes are unchanged.\n\n1.4.3 states each reading in the section that governs it and pins it with a vector:\n- Q1: the canonical key rule applies to keys the verification uses (the signer's entry and any entry a stated party names); an e"
    }
   },
   "x402-foundation/x402#2887": {
@@ -614,10 +618,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-02T13:43:48+00:00",
+ "last_checked": "2026-11-03T05:56:47+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-02T13:43:48+00:00",
+   "checked": "2026-11-03T05:56:47+00:00",
    "items": {
     "23": {
      "title": "Publish the -00 build in ietf/ and explain it in the READMEs",
@@ -1049,6 +1053,16 @@
  },
  "user_events": {
   "giskard09": [
+   "18952863895",
+   "18952180805",
+   "18949058771",
+   "18947852484",
+   "18941977205",
+   "18919786270",
+   "18915853916",
+   "18908212561",
+   "18896012162",
+   "18893307221",
    "18890861151",
    "18873753171",
    "25925247942",
@@ -1138,16 +1152,7 @@
    "25018790782",
    "25011811746",
    "25008573983",
-   "25008137933",
-   "18086939137",
-   "18081917262",
-   "24980816898",
-   "24976675490",
-   "18074275517",
-   "18074250253",
-   "24975764729",
-   "18073983517",
-   "24970824808"
+   "25008137933"
   ]
  }
 }
