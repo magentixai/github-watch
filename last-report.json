@@ -1,50 +1,45 @@
 {
- "checked_at": "2026-11-04T06:00:29+00:00",
- "previous_check": "2026-11-03T12:55:38+00:00",
+ "checked_at": "2026-11-04T13:10:51+00:00",
+ "previous_check": "2026-11-04T06:00:29+00:00",
  "changes": [
   {
-   "item": "x402-foundation/tsc#4",
+   "item": "personal-agent-protocol/personal-agent-protocol#44",
    "type": "comment",
-   "author": "ogasurfproject-jpg",
-   "at": "2026-11-04T00:16:18Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6618906442",
-   "text": "Two clean-room runs from The HORIZONs Co., Ltd., for the phase-one corpus question. Each checker is one Python file, standard library only, with the cryptography written in the file; neither imports or opens a reference checker or another implementer's code.\n\n| Corpus | Commit | Frozen verdicts agree | Verdict file SHA-256 |\n|---|---|---|---|\n| CNSLabs/x402-acceptance-record, tag draft-2026-10-27 | 428fa21f | 127 of 127 (result, conditions, disposition, reason, policy_refusal); statementId 89 of 89 | `c20595de13969a113dbf8e25ac58c450e17f0a376741d2fe808f6e7dcff41f53` |\n| maximusrufus/work-accep"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "maximusrufus",
-   "at": "2026-11-04T02:57:56Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6621308754",
-   "text": "Thank you for both runs and for the disclosure of what was seen before the freeze.\n\nProfile 1.4.4 (`1b81ec9`) states both readings in step 8: a record claiming `independent` with no producer named is `INDEPENDENCE_INCONSISTENT` with warning `PRODUCER_UNDECLARED` (20); the outcome `independence` and `SELF_CHECKED` follow the stated value, a differing derived value being reported as `INDEPENDENCE_INCONSISTENT` (13). Vectors 108-109 pin both readings; no outcome of 01-107 changes. Your run is listed at 88/90 at `6bb7d0b`.\n\nWe would welcome the full write-up, and a run of 91-109 when convenient.\n"
-  },
-  {
-   "item": "anthropics/FlashProve#1",
-   "type": "new_issue",
    "author": "giskard09",
-   "at": "2026-11-03T14:55:15Z",
-   "title": "A complementary worked example: provenance proof + on-chain action record",
-   "url": "https://github.com/anthropics/FlashProve/issues/1",
+   "at": "2026-11-04T12:24:11Z",
+   "url": "https://github.com/personal-agent-protocol/personal-agent-protocol/issues/44#issuecomment-6630514740",
+   "title": "Evidence update to #37: one reported outside payment",
+   "text": "Fair point \u2014 the abbreviations in my #37 comment were a real gap, not deliberate. Full values, re-verified independently just now (fresh key fetch and fresh chain read, not the Oct 27 report):\n\n| Field | Full value |\n|---|---|\n| Receipt ID | `pwr_c2e122b2ae6cbdcfd76d6fee50172680` |\n| TAIN | `tain_01M5YF1R59PVG0MG7R31K1V1E1` |\n| Payment transaction | `0xc8599161b6a9a7ffaa66fde11f0ac2971a813148b071ca66da4b9a69d41c8425` |\n| Signed digest (`commitment.payload_digest`) | `0xcef0c1853c3deca9f5ed06fb3d8c7e157d430b1cb65c0c8435a2d27445ccf893` |\n| AnchorRegistry transaction (Base mainnet) | `0x406631812",
    "source": "user:giskard09"
   },
   {
-   "item": "anthropics/FlashProve#1",
+   "item": "personal-agent-protocol/personal-agent-protocol#37",
    "type": "comment",
    "author": "giskard09",
-   "at": "2026-11-03T16:27:06Z",
-   "url": "https://github.com/anthropics/FlashProve/issues/1#issuecomment-6609517467",
-   "title": "A complementary worked example: provenance proof + on-chain action record",
-   "text": "Update: the action_ref anchor is now on-chain. Tx `0x297f3cf03d1cb2db543caf29bd848723b69537df287d9bba46a7b08ad91fcaff`, block 53466718 (Base mainnet), status success \u2014 the event topic matches the digest (`fe612672c2351364e4769a79ef9333094fec0fb6001c78fda4c9f2cdba34cf22`) byte for byte, verified against public RPC. Full record (both layers' real output + the anchor tx) is in `PROVENANCE.md`.",
+   "at": "2026-11-04T12:24:12Z",
+   "url": "https://github.com/personal-agent-protocol/personal-agent-protocol/issues/37#issuecomment-6630515171",
+   "title": "Evidence for the payments discussion: an agent-paid, witnessed receipt, settled Oct 25, 2026",
+   "text": "Accepting the invitation \u2014 read the frozen spec, the Phase 1 findings, and the current checker (v2, the E2 dedup repair) before proposing anything.\n\nOne case, in the same family as the trust-point finding (A4/D2/E1) but testing the fix proposed for it, not just the original gap:\n\n**F1. The same-hand witness.** A fixture member operates (or controls) a service that speaks the POPCORN-WITNESS protocol under its own key \u2014 publishes its own JWK set at an address it controls, issues itself a receipt for an out-of-scope act, with a `witnessed_at_utc` of its choosing. A reviewer who does exactly what",
    "source": "user:giskard09"
   },
   {
-   "item": "robertolocatelli81-dev/agent-payment-chain#1",
+   "item": "coinbase/agentkit#1141",
    "type": "comment",
    "author": "giskard09",
-   "at": "2026-11-03T16:34:14Z",
-   "url": "https://github.com/robertolocatelli81-dev/agent-payment-chain/issues/1#issuecomment-6609684972",
-   "title": "Test case: real x402 v2 payment (POPCORN witness service, Base mainnet)",
-   "text": "Thanks \u2014 glad 0.21.5 lands on ignore-and-report for members the spec doesn't define; refusing on one would make it unable to read what servers actually send. Both answers match what I'd assumed about `error` and the bazaar example \u2014 good to have it confirmed rather than assumed. Nothing further from our side on this bundle.",
+   "at": "2026-11-04T12:34:29Z",
+   "url": "https://github.com/coinbase/agentkit/issues/1141#issuecomment-6630721855",
+   "title": "RFC: Opt-in policy hook for AgentKit action execution (budget / risk providers like Cycles)",
+   "text": "@osr21 All three addressed, commit [`8f492fe`](https://github.com/giskard09/checkpoint-producer-binding-ref-anchor/commit/8f492fef322bed9f66a574aff4435cc8b2fa1f89):\n\n- `recheck_inclusion()` now returns `{status, checked_at, chain_id, block, block_hash}` instead of a bare string.\n- New guard, checked before any block_hash comparison: if the RPC's current `chain_id` doesn't match the `recorded_chain_id` the caller passes in, the result is `unknown` with an explicit reason. Nothing confirms the endpoint speaks for the recorded chain at all in that case, so no `included`/`reorged` verdict comes fr",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "ogasurfproject-jpg/horizon-shield#51",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-04T12:53:48Z",
+   "url": "https://github.com/ogasurfproject-jpg/horizon-shield/issues/51#issuecomment-6631118447",
+   "title": "Pilot on ourselves: one paid audit call, three sets of receipts, frozen inputs (scoping)",
+   "text": "Returning to this thread (Case E, 18/10) \u2014 the constraint babyblueviper1 just added (\"the producer's key should come from the producer, never from us: a checker that listed a producer key itself could name a key it holds and certify its own independence\") is the exact caveat `verifier-key-source-ref-v1.md` attaches to its `pinned_registry` key_source: \"Only if the verifier accepts the registry itself as a trust source. The pin proves content, not authority.\" An acceptance-set README pinning a key is recomputable either way \u2014 the open question the spec forces apart is whether the registry itsel",
    "source": "user:giskard09"
   }
  ],
@@ -139,7 +134,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-04T06:00:29+00:00",
+   "checked": "2026-11-04T13:10:51+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -241,7 +236,7 @@
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-11-03T16:34:14Z"
+   "latest_event": "2026-11-04T12:53:48Z"
   }
  },
  "first_run": false
