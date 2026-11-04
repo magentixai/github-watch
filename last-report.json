@@ -1,33 +1,50 @@
 {
- "checked_at": "2026-11-03T12:55:38+00:00",
- "previous_check": "2026-11-03T05:56:47+00:00",
+ "checked_at": "2026-11-04T06:00:29+00:00",
+ "previous_check": "2026-11-03T12:55:38+00:00",
  "changes": [
   {
    "item": "x402-foundation/tsc#4",
    "type": "comment",
-   "author": "robertolocatelli81-dev",
-   "at": "2026-11-03T09:46:14Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6600345716",
-   "text": "@maximusrufus, thank you for vectors 91 to 107. Results from war-verify, measured on 2026-11-03.\n\n**war-verify 0.7.0** ([`349a041`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/commit/349a041d015fb823ca9c1ccf6345446b6d0d351b); it follows the 1.4.3 text at 6bb7d0b; the rules are listed as S1-S8 in its README): **108/108 documents, 986/986 fields**. That is the 107 vectors plus the live record. On the older sets nothing changes: 85a310d 88/88, bc5a138 58/58, 48ab8c9 60/60, 06d3b94 48/48.\n\n**war-verify 0.6.0 as published** (c51ff40) on the same 108 documents: 101/108 and "
+   "author": "ogasurfproject-jpg",
+   "at": "2026-11-04T00:16:18Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6618906442",
+   "text": "Two clean-room runs from The HORIZONs Co., Ltd., for the phase-one corpus question. Each checker is one Python file, standard library only, with the cryptography written in the file; neither imports or opens a reference checker or another implementer's code.\n\n| Corpus | Commit | Frozen verdicts agree | Verdict file SHA-256 |\n|---|---|---|---|\n| CNSLabs/x402-acceptance-record, tag draft-2026-10-27 | 428fa21f | 127 of 127 (result, conditions, disposition, reason, policy_refusal); statementId 89 of 89 | `c20595de13969a113dbf8e25ac58c450e17f0a376741d2fe808f6e7dcff41f53` |\n| maximusrufus/work-accep"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-11-04T02:57:56Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6621308754",
+   "text": "Thank you for both runs and for the disclosure of what was seen before the freeze.\n\nProfile 1.4.4 (`1b81ec9`) states both readings in step 8: a record claiming `independent` with no producer named is `INDEPENDENCE_INCONSISTENT` with warning `PRODUCER_UNDECLARED` (20); the outcome `independence` and `SELF_CHECKED` follow the stated value, a differing derived value being reported as `INDEPENDENCE_INCONSISTENT` (13). Vectors 108-109 pin both readings; no outcome of 01-107 changes. Your run is listed at 88/90 at `6bb7d0b`.\n\nWe would welcome the full write-up, and a run of 91-109 when convenient.\n"
+  },
+  {
+   "item": "anthropics/FlashProve#1",
+   "type": "new_issue",
+   "author": "giskard09",
+   "at": "2026-11-03T14:55:15Z",
+   "title": "A complementary worked example: provenance proof + on-chain action record",
+   "url": "https://github.com/anthropics/FlashProve/issues/1",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "anthropics/FlashProve#1",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-03T16:27:06Z",
+   "url": "https://github.com/anthropics/FlashProve/issues/1#issuecomment-6609517467",
+   "title": "A complementary worked example: provenance proof + on-chain action record",
+   "text": "Update: the action_ref anchor is now on-chain. Tx `0x297f3cf03d1cb2db543caf29bd848723b69537df287d9bba46a7b08ad91fcaff`, block 53466718 (Base mainnet), status success \u2014 the event topic matches the digest (`fe612672c2351364e4769a79ef9333094fec0fb6001c78fda4c9f2cdba34cf22`) byte for byte, verified against public RPC. Full record (both layers' real output + the anchor tx) is in `PROVENANCE.md`.",
+   "source": "user:giskard09"
   },
   {
    "item": "robertolocatelli81-dev/agent-payment-chain#1",
    "type": "comment",
    "author": "giskard09",
-   "at": "2026-11-03T11:41:40Z",
-   "url": "https://github.com/robertolocatelli81-dev/agent-payment-chain/issues/1#issuecomment-6602866824",
+   "at": "2026-11-03T16:34:14Z",
+   "url": "https://github.com/robertolocatelli81-dev/agent-payment-chain/issues/1#issuecomment-6609684972",
    "title": "Test case: real x402 v2 payment (POPCORN witness service, Base mainnet)",
-   "text": "@robertolocatelli81-dev \u2014 here's the full response, unmodified:\n\n```json\n{\"x402Version\":2,\"error\":\"invalid_payment_requirements\",\"resource\":{\"url\":\"https://767-2676.com/v2/receipt\",\"description\":\"Signed time-bounded witness of an agent-carried payload digest; the payload stays with the agent\",\"mimeType\":\"application/json\",\"serviceName\":\"767-2676.com\",\"tags\":[\"agents\",\"payload-commitment\",\"schedule-checkpoint\",\"portable-evidence\",\"time\"],\"iconUrl\":\"https://767-2676.com/favicon-32x32.png\"},\"accepts\":[{\"scheme\":\"exact\",\"network\":\"eip155:8453\",\"amount\":\"1000\",\"asset\":\"0x833589fCD6eDb6E08f4c7C32D4f",
-   "source": "user:giskard09"
-  },
-  {
-   "item": "WasmAgent/wasmagent-protocol#265",
-   "type": "comment",
-   "author": "giskard09",
-   "at": "2026-11-03T11:55:38Z",
-   "url": "https://github.com/WasmAgent/wasmagent-protocol/issues/265#issuecomment-6603141004",
-   "title": "Clarify current AEP subject-digest canonicalization: RFC 8785 vs JS canonicalBytes",
-   "text": "@Poke-nushi \u2014 new here, found this via the #177 thread. Ran your two minimal examples plus `unsigned-v05.json` with the `diagnostic_extension` addition against a third independent implementation, to get a cross-check that doesn't depend on either your tooling or the helper's:\n\n- `{\"\ue000\":0,\"\ud800\udc00\":0}` \u2192 key order `[U+10000, U+E000]` under RFC 8785 (UTF-16 code-unit sort) \u2014 matches your reported RFC 8785/VATE order.\n- `{\"2\":\"two\",\"10\":\"ten\"}` \u2192 key order `[\"10\",\"2\"]` under RFC 8785 \u2014 matches your reported order too.\n- `unsigned-v05.json` + `diagnostic_extension:{\"2\":\"two\",\"10\":\"ten\"}` \u2192 SHA-256 of the",
+   "text": "Thanks \u2014 glad 0.21.5 lands on ignore-and-report for members the spec doesn't define; refusing on one would make it unable to read what servers actually send. Both answers match what I'd assumed about `error` and the bazaar example \u2014 good to have it confirmed rather than assumed. Nothing further from our side on this bundle.",
    "source": "user:giskard09"
   }
  ],
@@ -70,13 +87,13 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 261,
-   "updated_at": "2026-11-03T09:46:14Z",
+   "comments": 263,
+   "updated_at": "2026-11-04T02:57:56Z",
    "last_comment": {
-    "author": "robertolocatelli81-dev",
-    "at": "2026-11-03T09:46:14Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6600345716",
-    "text": "@maximusrufus, thank you for vectors 91 to 107. Results from war-verify, measured on 2026-11-03.\n\n**war-verify 0.7.0** ([`349a041`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/commit/349a041d015fb823ca9c1ccf6345446b6d0d351b); it follows the 1.4.3 text at 6bb7d0b; the rules are listed as S1-S8 in its README): **108/108 documents, 986/986 fields**. That is the 107 vectors plus the live record. On the older sets nothing changes: 85a310d 88/88, bc5a138 58/58, 48ab8c9 60/60, 06d3b94 48/48.\n\n**war-verify 0.6.0 as published** (c51ff40) on the same 108 documents: 101/108 and "
+    "author": "maximusrufus",
+    "at": "2026-11-04T02:57:56Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6621308754",
+    "text": "Thank you for both runs and for the disclosure of what was seen before the freeze.\n\nProfile 1.4.4 (`1b81ec9`) states both readings in step 8: a record claiming `independent` with no producer named is `INDEPENDENCE_INCONSISTENT` with warning `PRODUCER_UNDECLARED` (20); the outcome `independence` and `SELF_CHECKED` follow the stated value, a differing derived value being reported as `INDEPENDENCE_INCONSISTENT` (13). Vectors 108-109 pin both readings; no outcome of 01-107 changes. Your run is listed at 88/90 at `6bb7d0b`.\n\nWe would welcome the full write-up, and a run of 91-109 when convenient.\n"
    }
   },
   "x402-foundation/x402#2887": {
@@ -122,7 +139,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-03T12:55:38+00:00",
+   "checked": "2026-11-04T06:00:29+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -224,7 +241,7 @@
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-11-03T11:55:38Z"
+   "latest_event": "2026-11-03T16:34:14Z"
   }
  },
  "first_run": false

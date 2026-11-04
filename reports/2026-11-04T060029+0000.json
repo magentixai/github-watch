@@ -1,0 +1,248 @@
+{
+ "checked_at": "2026-11-04T06:00:29+00:00",
+ "previous_check": "2026-11-03T12:55:38+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "ogasurfproject-jpg",
+   "at": "2026-11-04T00:16:18Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6618906442",
+   "text": "Two clean-room runs from The HORIZONs Co., Ltd., for the phase-one corpus question. Each checker is one Python file, standard library only, with the cryptography written in the file; neither imports or opens a reference checker or another implementer's code.\n\n| Corpus | Commit | Frozen verdicts agree | Verdict file SHA-256 |\n|---|---|---|---|\n| CNSLabs/x402-acceptance-record, tag draft-2026-10-27 | 428fa21f | 127 of 127 (result, conditions, disposition, reason, policy_refusal); statementId 89 of 89 | `c20595de13969a113dbf8e25ac58c450e17f0a376741d2fe808f6e7dcff41f53` |\n| maximusrufus/work-accep"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-11-04T02:57:56Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6621308754",
+   "text": "Thank you for both runs and for the disclosure of what was seen before the freeze.\n\nProfile 1.4.4 (`1b81ec9`) states both readings in step 8: a record claiming `independent` with no producer named is `INDEPENDENCE_INCONSISTENT` with warning `PRODUCER_UNDECLARED` (20); the outcome `independence` and `SELF_CHECKED` follow the stated value, a differing derived value being reported as `INDEPENDENCE_INCONSISTENT` (13). Vectors 108-109 pin both readings; no outcome of 01-107 changes. Your run is listed at 88/90 at `6bb7d0b`.\n\nWe would welcome the full write-up, and a run of 91-109 when convenient.\n"
+  },
+  {
+   "item": "anthropics/FlashProve#1",
+   "type": "new_issue",
+   "author": "giskard09",
+   "at": "2026-11-03T14:55:15Z",
+   "title": "A complementary worked example: provenance proof + on-chain action record",
+   "url": "https://github.com/anthropics/FlashProve/issues/1",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "anthropics/FlashProve#1",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-03T16:27:06Z",
+   "url": "https://github.com/anthropics/FlashProve/issues/1#issuecomment-6609517467",
+   "title": "A complementary worked example: provenance proof + on-chain action record",
+   "text": "Update: the action_ref anchor is now on-chain. Tx `0x297f3cf03d1cb2db543caf29bd848723b69537df287d9bba46a7b08ad91fcaff`, block 53466718 (Base mainnet), status success \u2014 the event topic matches the digest (`fe612672c2351364e4769a79ef9333094fec0fb6001c78fda4c9f2cdba34cf22`) byte for byte, verified against public RPC. Full record (both layers' real output + the anchor tx) is in `PROVENANCE.md`.",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "robertolocatelli81-dev/agent-payment-chain#1",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-03T16:34:14Z",
+   "url": "https://github.com/robertolocatelli81-dev/agent-payment-chain/issues/1#issuecomment-6609684972",
+   "title": "Test case: real x402 v2 payment (POPCORN witness service, Base mainnet)",
+   "text": "Thanks \u2014 glad 0.21.5 lands on ignore-and-report for members the spec doesn't define; refusing on one would make it unable to read what servers actually send. Both answers match what I'd assumed about `error` and the bazaar example \u2014 good to have it confirmed rather than assumed. Nothing further from our side on this bundle.",
+   "source": "user:giskard09"
+  }
+ ],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 6,
+   "updated_at": "2026-10-20T15:06:35Z",
+   "last_comment": {
+    "author": "source-origin",
+    "at": "2026-10-20T15:06:34Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-6294062372",
+    "text": "Tymofii,\r\n\r\nYou closed the loop on two questions in the same thread, and you gave us a\r\ndistinction we have since used more than anything else from that exchange:\r\n*reference by pin, not host*, with criteria marked as authored judgment rather\r\nthan recomputed fact.\r\n\r\nWe used it and did not tell you. Nineteen days. Sorry.\r\n\r\n**Where it landed.** Our rubric header now carries two separate lines, because\r\nyour distinction made it obvious that one line was a lie:\r\n\r\n- `criteria_version` + `pinned_commit` \u2014 what was applied, and the exact bytes\r\n  it was applied from. If the criteria move, the pin"
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 263,
+   "updated_at": "2026-11-04T02:57:56Z",
+   "last_comment": {
+    "author": "maximusrufus",
+    "at": "2026-11-04T02:57:56Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6621308754",
+    "text": "Thank you for both runs and for the disclosure of what was seen before the freeze.\n\nProfile 1.4.4 (`1b81ec9`) states both readings in step 8: a record claiming `independent` with no producer named is `INDEPENDENCE_INCONSISTENT` with warning `PRODUCER_UNDECLARED` (20); the outcome `independence` and `SELF_CHECKED` follow the stated value, a differing derived value being reported as `INDEPENDENCE_INCONSISTENT` (13). Vectors 108-109 pin both readings; no outcome of 01-107 changes. Your run is listed at 88/90 at `6bb7d0b`.\n\nWe would welcome the full write-up, and a run of 91-109 when convenient.\n"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 141,
+   "updated_at": "2026-10-24T00:19:28Z",
+   "last_comment": {
+    "author": "babyblueviper1",
+    "at": "2026-10-24T00:19:27Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6377422801",
+    "text": "@Tetsurohhori thanks. I ran `jcs-number-vectors` at `40b2129` against the canonicalizer our live issuer signs with (the deployed `jcs`/`es_number` from `dc4e1094`, fed each double from its bits): **1001/1001**. So is the `rfc8785` 0.1.4 package our other production signers import. The production path agrees, not only the checker."
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 66,
+   "updated_at": "2026-10-27T21:02:29Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-27T21:02:29Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6453477294",
+    "text": "For reference: presign-guard's mandate check already refuses any payment whose nonce isn't exactly B (MANDATE_BINDING_MISMATCH), so composed slots are rejected today. We'll move our paymentId check to the 16..64 floor once the \u00a76 change lands.\n"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-11-04T06:00:29+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 8,
+   "pushed_at": "2026-11-01T09:58:43Z",
+   "issues_tracked": 21
+  },
+  "Composable-Evidence-Criteria/.github": {
+   "main_latest": {
+    "sha": "9945f2c",
+    "at": "2026-09-30T08:29:38Z",
+    "msg": "Update name"
+   },
+   "files": {},
+   "open": {},
+   "issues_tracked": 0
+  },
+  "Composable-Evidence-Criteria/governance": {
+   "main_latest": {
+    "sha": "6a2532c",
+    "at": "2026-09-24T10:28:39Z",
+    "msg": "Add maintainers"
+   },
+   "files": {
+    "teams.yaml": "ec2793a"
+   },
+   "open": {
+    "2": {
+     "title": "Update team names add repo",
+     "pr": true,
+     "comments": 0,
+     "author": "ryjones",
+     "url": "https://github.com/Composable-Evidence-Criteria/governance/pull/2"
+    }
+   },
+   "issues_tracked": 2
+  },
+  "Composable-Evidence-Criteria/action-ref-conformance": {
+   "main_latest": {
+    "sha": "3164450",
+    "at": "2026-10-07T15:34:40Z",
+    "msg": "Merge pull request #6: GOVERNANCE correct magentixai conflict-of-interest line"
+   },
+   "files": {
+    "GOVERNANCE.md": "05ab3f1"
+   },
+   "open": {
+    "10": {
+     "title": "pairs/0001: x402 authority mandate (#3220 at 72c3704) with an AXES correlation record",
+     "pr": true,
+     "comments": 2,
+     "author": "magentixai",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10"
+    },
+    "9": {
+     "title": "draft-etcheverry-action-ref-04 published \u2014 Implementation Status section names this lab and AXES",
+     "pr": false,
+     "comments": 2,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/9"
+    },
+    "8": {
+     "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
+     "pr": true,
+     "comments": 1,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8"
+    },
+    "7": {
+     "title": "Heads-up: Rama will offer paid conformance-QA engagements on top of this lab's public corpus",
+     "pr": false,
+     "comments": 4,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/7"
+    },
+    "5": {
+     "title": "Lab communications: LFDT newsletter and meetup proposals, and who speaks for the lab",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/5"
+    },
+    "4": {
+     "title": "APS SDK passes the pinned action-ref v1 Action (verify-impl)",
+     "pr": false,
+     "comments": 0,
+     "author": "aeoess",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/4"
+    },
+    "2": {
+     "title": "Lab name: recomputable-evidence is taken, proposed replacement",
+     "pr": false,
+     "comments": 7,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2"
+    }
+   },
+   "issues_tracked": 10
+  },
+  "user:giskard09": {
+   "events_seen": 100,
+   "latest_event": "2026-11-03T16:34:14Z"
+  }
+ },
+ "first_run": false
+}
