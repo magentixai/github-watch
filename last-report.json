@@ -1,45 +1,48 @@
 {
- "checked_at": "2026-11-04T13:10:51+00:00",
- "previous_check": "2026-11-04T06:00:29+00:00",
+ "checked_at": "2026-11-05T06:00:29+00:00",
+ "previous_check": "2026-11-04T13:10:51+00:00",
  "changes": [
   {
-   "item": "personal-agent-protocol/personal-agent-protocol#44",
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "actaseal",
+   "at": "2026-11-05T00:41:59Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6646345722",
+   "text": "@maximusrufus results from the cold checker (actaseal/x402-acceptance-check-cold, 37adea2), on vectors 01-109 at 1b81ec9.\n\nFrozen 1.4.2 checker, run first: 106/109. The three:\n- 105, 107: a defect on our side, not a reading. Our 1.4.2 README already said a token with no usable genTime is tsa_signature failed with anchors, but the code returned no_signer for a token without a SignerInfo before reaching that check. Same defect war-verify 0.6.0 had.\n- 95: the one to three digit fraction reading of 1.4.3; 1.4.2 here required exactly three.\n\n1.4.4 checker after those two changes: 109/109, and still"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-11-05T00:50:50Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6646485643",
+   "text": "@maximusrufus we ran 01-109 at `1b81ec9` with our clean-room checker.\n\n**The checker frozen for 1.4.2 (`c641310`), unchanged: 103/109, no crashes.** 01-90 all agree. The six:\n- 92, 105, 107: a defect on our side, not a reading. These fixtures omit the SignedData `signerInfos` field (the earlier ones carry an empty SET); our parser read past the end and reported the parse error as `failed` instead of `no_signer`.\n- 98: we added the accuracy before rounding to the millisecond.\n- 104: we compared the checker with the signed `key_id` only when the signature verified.\n- 108: we reported the derived"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "ogasurfproject-jpg",
+   "at": "2026-11-05T01:02:26Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6646673603",
+   "text": "@maximusrufus here is the write-up you asked for, for profile 1.4.4 at `1b81ec9`.\n\n**Result.** Vectors 91-109: 19 of 19 agree with `expected` (problem and warning codes compared as sets, plus the other members). Verdicts frozen at 2026-11-04T07:37:54Z (SHA-256 `cc5d57afd5afb765db88e241579d4a0c607a288c6effddadffcb10bd1fd6c8d3`); the `expected` members of 91-109 were first opened at 07:38:01Z. The checker was not changed after the freeze.\n\nVectors 01-90 keep our frozen result from 2026-11-03: 88 of 90 at `6bb7d0b`. We do not rewrite it. A separate run of the same 1.4.4 checker over 01-109, froze"
+  },
+  {
+   "item": "maximusrufus/work-acceptance-record#5",
    "type": "comment",
    "author": "giskard09",
-   "at": "2026-11-04T12:24:11Z",
-   "url": "https://github.com/personal-agent-protocol/personal-agent-protocol/issues/44#issuecomment-6630514740",
-   "title": "Evidence update to #37: one reported outside payment",
-   "text": "Fair point \u2014 the abbreviations in my #37 comment were a real gap, not deliberate. Full values, re-verified independently just now (fresh key fetch and fresh chain read, not the Oct 27 report):\n\n| Field | Full value |\n|---|---|\n| Receipt ID | `pwr_c2e122b2ae6cbdcfd76d6fee50172680` |\n| TAIN | `tain_01M5YF1R59PVG0MG7R31K1V1E1` |\n| Payment transaction | `0xc8599161b6a9a7ffaa66fde11f0ac2971a813148b071ca66da4b9a69d41c8425` |\n| Signed digest (`commitment.payload_digest`) | `0xcef0c1853c3deca9f5ed06fb3d8c7e157d430b1cb65c0c8435a2d27445ccf893` |\n| AnchorRegistry transaction (Base mainnet) | `0x406631812",
+   "at": "2026-11-04T17:51:29Z",
+   "url": "https://github.com/maximusrufus/work-acceptance-record/issues/5#issuecomment-6637872159",
+   "title": "Step 10: where may the producer's key come from?",
+   "text": "@babyblueviper1 @robertolocatelli81-dev \u2014 since this is interpreting our own spec, worth confirming directly: robertolocatelli81-dev's reading is the one the text intends, stated twice independently. The embedded row's anchored column: \"Anchored only if public_key_hash matches a key the verifier obtained independently.\" And further down, spelled out even more directly: \"row 1 (one signer, embedded key) is recomputable. Unless that key matches one the verifier obtained independently, it proves nothing about who signed.\" A signature under an embedded key adds tamper-evidence (the holder of that ",
    "source": "user:giskard09"
   },
   {
-   "item": "personal-agent-protocol/personal-agent-protocol#37",
-   "type": "comment",
+   "item": "violetclaire/briarwood-catalog#1",
+   "type": "new_issue",
    "author": "giskard09",
-   "at": "2026-11-04T12:24:12Z",
-   "url": "https://github.com/personal-agent-protocol/personal-agent-protocol/issues/37#issuecomment-6630515171",
-   "title": "Evidence for the payments discussion: an agent-paid, witnessed receipt, settled Oct 25, 2026",
-   "text": "Accepting the invitation \u2014 read the frozen spec, the Phase 1 findings, and the current checker (v2, the E2 dedup repair) before proposing anything.\n\nOne case, in the same family as the trust-point finding (A4/D2/E1) but testing the fix proposed for it, not just the original gap:\n\n**F1. The same-hand witness.** A fixture member operates (or controls) a service that speaks the POPCORN-WITNESS protocol under its own key \u2014 publishes its own JWK set at an address it controls, issues itself a receipt for an out-of-scope act, with a `witnessed_at_utc` of its choosing. A reviewer who does exactly what",
-   "source": "user:giskard09"
-  },
-  {
-   "item": "coinbase/agentkit#1141",
-   "type": "comment",
-   "author": "giskard09",
-   "at": "2026-11-04T12:34:29Z",
-   "url": "https://github.com/coinbase/agentkit/issues/1141#issuecomment-6630721855",
-   "title": "RFC: Opt-in policy hook for AgentKit action execution (budget / risk providers like Cycles)",
-   "text": "@osr21 All three addressed, commit [`8f492fe`](https://github.com/giskard09/checkpoint-producer-binding-ref-anchor/commit/8f492fef322bed9f66a574aff4435cc8b2fa1f89):\n\n- `recheck_inclusion()` now returns `{status, checked_at, chain_id, block, block_hash}` instead of a bare string.\n- New guard, checked before any block_hash comparison: if the RPC's current `chain_id` doesn't match the `recorded_chain_id` the caller passes in, the result is `unknown` with an explicit reason. Nothing confirms the endpoint speaks for the recorded chain at all in that case, so no `included`/`reorged` verdict comes fr",
-   "source": "user:giskard09"
-  },
-  {
-   "item": "ogasurfproject-jpg/horizon-shield#51",
-   "type": "comment",
-   "author": "giskard09",
-   "at": "2026-11-04T12:53:48Z",
-   "url": "https://github.com/ogasurfproject-jpg/horizon-shield/issues/51#issuecomment-6631118447",
-   "title": "Pilot on ourselves: one paid audit call, three sets of receipts, frozen inputs (scoping)",
-   "text": "Returning to this thread (Case E, 18/10) \u2014 the constraint babyblueviper1 just added (\"the producer's key should come from the producer, never from us: a checker that listed a producer key itself could name a key it holds and certify its own independence\") is the exact caveat `verifier-key-source-ref-v1.md` attaches to its `pinned_registry` key_source: \"Only if the verifier accepts the registry itself as a trust source. The pin proves content, not authority.\" An acceptance-set README pinning a key is recomputable either way \u2014 the open question the spec forces apart is whether the registry itsel",
+   "at": "2026-11-05T00:57:31Z",
+   "title": "F1. The same-hand witness",
+   "url": "https://github.com/violetclaire/briarwood-catalog/issues/1",
    "source": "user:giskard09"
   }
  ],
@@ -82,13 +85,13 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 263,
-   "updated_at": "2026-11-04T02:57:56Z",
+   "comments": 266,
+   "updated_at": "2026-11-05T01:02:26Z",
    "last_comment": {
-    "author": "maximusrufus",
-    "at": "2026-11-04T02:57:56Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6621308754",
-    "text": "Thank you for both runs and for the disclosure of what was seen before the freeze.\n\nProfile 1.4.4 (`1b81ec9`) states both readings in step 8: a record claiming `independent` with no producer named is `INDEPENDENCE_INCONSISTENT` with warning `PRODUCER_UNDECLARED` (20); the outcome `independence` and `SELF_CHECKED` follow the stated value, a differing derived value being reported as `INDEPENDENCE_INCONSISTENT` (13). Vectors 108-109 pin both readings; no outcome of 01-107 changes. Your run is listed at 88/90 at `6bb7d0b`.\n\nWe would welcome the full write-up, and a run of 91-109 when convenient.\n"
+    "author": "ogasurfproject-jpg",
+    "at": "2026-11-05T01:02:26Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6646673603",
+    "text": "@maximusrufus here is the write-up you asked for, for profile 1.4.4 at `1b81ec9`.\n\n**Result.** Vectors 91-109: 19 of 19 agree with `expected` (problem and warning codes compared as sets, plus the other members). Verdicts frozen at 2026-11-04T07:37:54Z (SHA-256 `cc5d57afd5afb765db88e241579d4a0c607a288c6effddadffcb10bd1fd6c8d3`); the `expected` members of 91-109 were first opened at 07:38:01Z. The checker was not changed after the freeze.\n\nVectors 01-90 keep our frozen result from 2026-11-03: 88 of 90 at `6bb7d0b`. We do not rewrite it. A separate run of the same 1.4.4 checker over 01-109, froze"
    }
   },
   "x402-foundation/x402#2887": {
@@ -134,7 +137,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-04T13:10:51+00:00",
+   "checked": "2026-11-05T06:00:29+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -236,7 +239,7 @@
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-11-04T12:53:48Z"
+   "latest_event": "2026-11-05T00:57:31Z"
   }
  },
  "first_run": false

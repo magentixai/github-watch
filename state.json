@@ -93,7 +93,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 263,
+   "comments": 266,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -357,14 +357,17 @@
     6585929233,
     6600345716,
     6618906442,
-    6621308754
+    6621308754,
+    6646345722,
+    6646485643,
+    6646673603
    ],
-   "updated_at": "2026-11-04T02:57:56Z",
+   "updated_at": "2026-11-05T01:02:26Z",
    "last_comment": {
-    "author": "maximusrufus",
-    "at": "2026-11-04T02:57:56Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6621308754",
-    "text": "Thank you for both runs and for the disclosure of what was seen before the freeze.\n\nProfile 1.4.4 (`1b81ec9`) states both readings in step 8: a record claiming `independent` with no producer named is `INDEPENDENCE_INCONSISTENT` with warning `PRODUCER_UNDECLARED` (20); the outcome `independence` and `SELF_CHECKED` follow the stated value, a differing derived value being reported as `INDEPENDENCE_INCONSISTENT` (13). Vectors 108-109 pin both readings; no outcome of 01-107 changes. Your run is listed at 88/90 at `6bb7d0b`.\n\nWe would welcome the full write-up, and a run of 91-109 when convenient.\n"
+    "author": "ogasurfproject-jpg",
+    "at": "2026-11-05T01:02:26Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6646673603",
+    "text": "@maximusrufus here is the write-up you asked for, for profile 1.4.4 at `1b81ec9`.\n\n**Result.** Vectors 91-109: 19 of 19 agree with `expected` (problem and warning codes compared as sets, plus the other members). Verdicts frozen at 2026-11-04T07:37:54Z (SHA-256 `cc5d57afd5afb765db88e241579d4a0c607a288c6effddadffcb10bd1fd6c8d3`); the `expected` members of 91-109 were first opened at 07:38:01Z. The checker was not changed after the freeze.\n\nVectors 01-90 keep our frozen result from 2026-11-03: 88 of 90 at `6bb7d0b`. We do not rewrite it. A separate run of the same 1.4.4 checker over 01-109, froze"
    }
   },
   "x402-foundation/x402#2887": {
@@ -621,10 +624,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-04T13:10:51+00:00",
+ "last_checked": "2026-11-05T06:00:29+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-04T13:10:51+00:00",
+   "checked": "2026-11-05T06:00:29+00:00",
    "items": {
     "23": {
      "title": "Publish the -00 build in ietf/ and explain it in the READMEs",
@@ -1056,6 +1059,11 @@
  },
  "user_events": {
   "giskard09": [
+   "26193897521",
+   "26191117983",
+   "19175512658",
+   "26172705053",
+   "19139773163",
    "19111755594",
    "19110075756",
    "19109254808",
@@ -1150,12 +1158,7 @@
    "18241941936",
    "18241283235",
    "25234252425",
-   "18239374096",
-   "18239314914",
-   "18238705465",
-   "18231199022",
-   "25161885278",
-   "18176873629"
+   "18239374096"
   ]
  }
 }

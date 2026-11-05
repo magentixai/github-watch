@@ -1,0 +1,246 @@
+{
+ "checked_at": "2026-11-05T06:00:29+00:00",
+ "previous_check": "2026-11-04T13:10:51+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "actaseal",
+   "at": "2026-11-05T00:41:59Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6646345722",
+   "text": "@maximusrufus results from the cold checker (actaseal/x402-acceptance-check-cold, 37adea2), on vectors 01-109 at 1b81ec9.\n\nFrozen 1.4.2 checker, run first: 106/109. The three:\n- 105, 107: a defect on our side, not a reading. Our 1.4.2 README already said a token with no usable genTime is tsa_signature failed with anchors, but the code returned no_signer for a token without a SignerInfo before reaching that check. Same defect war-verify 0.6.0 had.\n- 95: the one to three digit fraction reading of 1.4.3; 1.4.2 here required exactly three.\n\n1.4.4 checker after those two changes: 109/109, and still"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-11-05T00:50:50Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6646485643",
+   "text": "@maximusrufus we ran 01-109 at `1b81ec9` with our clean-room checker.\n\n**The checker frozen for 1.4.2 (`c641310`), unchanged: 103/109, no crashes.** 01-90 all agree. The six:\n- 92, 105, 107: a defect on our side, not a reading. These fixtures omit the SignedData `signerInfos` field (the earlier ones carry an empty SET); our parser read past the end and reported the parse error as `failed` instead of `no_signer`.\n- 98: we added the accuracy before rounding to the millisecond.\n- 104: we compared the checker with the signed `key_id` only when the signature verified.\n- 108: we reported the derived"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "ogasurfproject-jpg",
+   "at": "2026-11-05T01:02:26Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6646673603",
+   "text": "@maximusrufus here is the write-up you asked for, for profile 1.4.4 at `1b81ec9`.\n\n**Result.** Vectors 91-109: 19 of 19 agree with `expected` (problem and warning codes compared as sets, plus the other members). Verdicts frozen at 2026-11-04T07:37:54Z (SHA-256 `cc5d57afd5afb765db88e241579d4a0c607a288c6effddadffcb10bd1fd6c8d3`); the `expected` members of 91-109 were first opened at 07:38:01Z. The checker was not changed after the freeze.\n\nVectors 01-90 keep our frozen result from 2026-11-03: 88 of 90 at `6bb7d0b`. We do not rewrite it. A separate run of the same 1.4.4 checker over 01-109, froze"
+  },
+  {
+   "item": "maximusrufus/work-acceptance-record#5",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-04T17:51:29Z",
+   "url": "https://github.com/maximusrufus/work-acceptance-record/issues/5#issuecomment-6637872159",
+   "title": "Step 10: where may the producer's key come from?",
+   "text": "@babyblueviper1 @robertolocatelli81-dev \u2014 since this is interpreting our own spec, worth confirming directly: robertolocatelli81-dev's reading is the one the text intends, stated twice independently. The embedded row's anchored column: \"Anchored only if public_key_hash matches a key the verifier obtained independently.\" And further down, spelled out even more directly: \"row 1 (one signer, embedded key) is recomputable. Unless that key matches one the verifier obtained independently, it proves nothing about who signed.\" A signature under an embedded key adds tamper-evidence (the holder of that ",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "violetclaire/briarwood-catalog#1",
+   "type": "new_issue",
+   "author": "giskard09",
+   "at": "2026-11-05T00:57:31Z",
+   "title": "F1. The same-hand witness",
+   "url": "https://github.com/violetclaire/briarwood-catalog/issues/1",
+   "source": "user:giskard09"
+  }
+ ],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 6,
+   "updated_at": "2026-10-20T15:06:35Z",
+   "last_comment": {
+    "author": "source-origin",
+    "at": "2026-10-20T15:06:34Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-6294062372",
+    "text": "Tymofii,\r\n\r\nYou closed the loop on two questions in the same thread, and you gave us a\r\ndistinction we have since used more than anything else from that exchange:\r\n*reference by pin, not host*, with criteria marked as authored judgment rather\r\nthan recomputed fact.\r\n\r\nWe used it and did not tell you. Nineteen days. Sorry.\r\n\r\n**Where it landed.** Our rubric header now carries two separate lines, because\r\nyour distinction made it obvious that one line was a lie:\r\n\r\n- `criteria_version` + `pinned_commit` \u2014 what was applied, and the exact bytes\r\n  it was applied from. If the criteria move, the pin"
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 266,
+   "updated_at": "2026-11-05T01:02:26Z",
+   "last_comment": {
+    "author": "ogasurfproject-jpg",
+    "at": "2026-11-05T01:02:26Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6646673603",
+    "text": "@maximusrufus here is the write-up you asked for, for profile 1.4.4 at `1b81ec9`.\n\n**Result.** Vectors 91-109: 19 of 19 agree with `expected` (problem and warning codes compared as sets, plus the other members). Verdicts frozen at 2026-11-04T07:37:54Z (SHA-256 `cc5d57afd5afb765db88e241579d4a0c607a288c6effddadffcb10bd1fd6c8d3`); the `expected` members of 91-109 were first opened at 07:38:01Z. The checker was not changed after the freeze.\n\nVectors 01-90 keep our frozen result from 2026-11-03: 88 of 90 at `6bb7d0b`. We do not rewrite it. A separate run of the same 1.4.4 checker over 01-109, froze"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 141,
+   "updated_at": "2026-10-24T00:19:28Z",
+   "last_comment": {
+    "author": "babyblueviper1",
+    "at": "2026-10-24T00:19:27Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6377422801",
+    "text": "@Tetsurohhori thanks. I ran `jcs-number-vectors` at `40b2129` against the canonicalizer our live issuer signs with (the deployed `jcs`/`es_number` from `dc4e1094`, fed each double from its bits): **1001/1001**. So is the `rfc8785` 0.1.4 package our other production signers import. The production path agrees, not only the checker."
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 66,
+   "updated_at": "2026-10-27T21:02:29Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-27T21:02:29Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6453477294",
+    "text": "For reference: presign-guard's mandate check already refuses any payment whose nonce isn't exactly B (MANDATE_BINDING_MISMATCH), so composed slots are rejected today. We'll move our paymentId check to the 16..64 floor once the \u00a76 change lands.\n"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-11-05T06:00:29+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 8,
+   "pushed_at": "2026-11-01T09:58:43Z",
+   "issues_tracked": 21
+  },
+  "Composable-Evidence-Criteria/.github": {
+   "main_latest": {
+    "sha": "9945f2c",
+    "at": "2026-09-30T08:29:38Z",
+    "msg": "Update name"
+   },
+   "files": {},
+   "open": {},
+   "issues_tracked": 0
+  },
+  "Composable-Evidence-Criteria/governance": {
+   "main_latest": {
+    "sha": "6a2532c",
+    "at": "2026-09-24T10:28:39Z",
+    "msg": "Add maintainers"
+   },
+   "files": {
+    "teams.yaml": "ec2793a"
+   },
+   "open": {
+    "2": {
+     "title": "Update team names add repo",
+     "pr": true,
+     "comments": 0,
+     "author": "ryjones",
+     "url": "https://github.com/Composable-Evidence-Criteria/governance/pull/2"
+    }
+   },
+   "issues_tracked": 2
+  },
+  "Composable-Evidence-Criteria/action-ref-conformance": {
+   "main_latest": {
+    "sha": "3164450",
+    "at": "2026-10-07T15:34:40Z",
+    "msg": "Merge pull request #6: GOVERNANCE correct magentixai conflict-of-interest line"
+   },
+   "files": {
+    "GOVERNANCE.md": "05ab3f1"
+   },
+   "open": {
+    "10": {
+     "title": "pairs/0001: x402 authority mandate (#3220 at 72c3704) with an AXES correlation record",
+     "pr": true,
+     "comments": 2,
+     "author": "magentixai",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10"
+    },
+    "9": {
+     "title": "draft-etcheverry-action-ref-04 published \u2014 Implementation Status section names this lab and AXES",
+     "pr": false,
+     "comments": 2,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/9"
+    },
+    "8": {
+     "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
+     "pr": true,
+     "comments": 1,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8"
+    },
+    "7": {
+     "title": "Heads-up: Rama will offer paid conformance-QA engagements on top of this lab's public corpus",
+     "pr": false,
+     "comments": 4,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/7"
+    },
+    "5": {
+     "title": "Lab communications: LFDT newsletter and meetup proposals, and who speaks for the lab",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/5"
+    },
+    "4": {
+     "title": "APS SDK passes the pinned action-ref v1 Action (verify-impl)",
+     "pr": false,
+     "comments": 0,
+     "author": "aeoess",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/4"
+    },
+    "2": {
+     "title": "Lab name: recomputable-evidence is taken, proposed replacement",
+     "pr": false,
+     "comments": 7,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2"
+    }
+   },
+   "issues_tracked": 10
+  },
+  "user:giskard09": {
+   "events_seen": 100,
+   "latest_event": "2026-11-05T00:57:31Z"
+  }
+ },
+ "first_run": false
+}
