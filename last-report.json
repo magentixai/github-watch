@@ -1,25 +1,41 @@
 {
- "checked_at": "2026-11-06T05:56:15+00:00",
- "previous_check": "2026-11-05T13:25:00+00:00",
+ "checked_at": "2026-11-06T13:07:52+00:00",
+ "previous_check": "2026-11-06T05:56:15+00:00",
  "changes": [
   {
-   "item": "WasmAgent/wasmagent-protocol#265",
+   "item": "x402-foundation/tsc#4",
    "type": "comment",
+   "author": "robertolocatelli81-dev",
+   "at": "2026-11-06T12:15:04Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6684578096",
+   "text": "@maximusrufus, results for profile 1.4.5 from war-verify: vectors 01-111 at `c4b4bd4`, measured on 2026-11-06.\n\n**war-verify 0.9.0** ([`20837ca`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/commit/20837cab75642e679a5dab1995e0b09bc0ecf25c); it follows step 12 at `c4b4bd4`; the rules are listed as U1-U9 in its README; run file [`results/score_default.txt`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/blob/20837cab75642e679a5dab1995e0b09bc0ecf25c/results/score_default.txt)): **112/112 documents, 1022/1022 fields**. That is the 111 vectors plus th"
+  },
+  {
+   "item": "Dr-PampersMuffin/continuum-verifier#1",
+   "type": "new_issue",
    "author": "giskard09",
-   "at": "2026-11-05T13:35:17Z",
-   "url": "https://github.com/WasmAgent/wasmagent-protocol/issues/265#issuecomment-6659350936",
-   "title": "Clarify current AEP subject-digest canonicalization: RFC 8785 vs JS canonicalBytes",
-   "text": "Good to see it land clean across all three, Takao \u2014 thanks for closing the loop with the re-run.\n",
+   "at": "2026-11-06T12:44:53Z",
+   "title": "Convergence note: SELF_CONSISTENT-until-pinned-key matches verifier-key-source-ref-v1",
+   "url": "https://github.com/Dr-PampersMuffin/continuum-verifier/issues/1",
    "source": "user:giskard09"
   },
   {
-   "item": "coinbase/agentkit#1141",
+   "item": "actaseal/actaseal-verify#7",
+   "type": "new_issue",
+   "author": "giskard09",
+   "at": "2026-11-06T12:44:53Z",
+   "title": "Re: \u00a77 Security Considerations, draft-xg-payment-dispute-profile-01 \u2014 fourth anchor option",
+   "url": "https://github.com/actaseal/actaseal-verify/issues/7",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "x402-foundation/x402#2833",
    "type": "comment",
    "author": "giskard09",
-   "at": "2026-11-05T14:02:21Z",
-   "url": "https://github.com/coinbase/agentkit/issues/1141#issuecomment-6659927341",
-   "title": "RFC: Opt-in policy hook for AgentKit action execution (budget / risk providers like Cycles)",
-   "text": "@osr21 Both pieces addressed, commit [`b776dfd`](https://github.com/giskard09/checkpoint-producer-binding-ref-anchor/commit/b776dfdf88880b8bdbc7a31733cc5adc16824a58) (`7d4ee22` + a docstring count fix):\n\n- Labeled the on-chain check and `recheck_inclusion()` explicitly as trusted-RPC verification, in both the docstrings and the CLI output \u2014 the single-endpoint mode proves what that one configured endpoint reports, nothing stronger.\n- `recheck_inclusion_multi_rpc()`: corroborates the same chain_id/block_hash comparison across several independently-operated endpoints (default `min_endpoints=2`, ",
+   "at": "2026-11-06T12:58:59Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2833#issuecomment-6685369179",
+   "title": "Extension proposal: delivery-receipt attestation (proof-of-delivery for x402 responses)",
+   "text": "@imokokok \u2014 both points here map onto pieces we already have shipped, worth naming for the receipt schema discussion.\n\nOn (1), claim-status separate from signature: `revocation-ref` (argentum-core) splits exactly this for delegated authority \u2014 `revocation_check_at_ms` proves \"checked when,\" `revocation_authority_ref` (enum `permissionless-registry` | `private-endpoint` | `third-party-oracle`) proves \"checked against what.\" A COMMITTED record with a later-revoked delegation stays a valid historical record; the revocation only governs future use, not the past action. Same shape as your STALE mar",
    "source": "user:giskard09"
   }
  ],
@@ -62,13 +78,13 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 266,
-   "updated_at": "2026-11-05T01:02:26Z",
+   "comments": 267,
+   "updated_at": "2026-11-06T12:15:04Z",
    "last_comment": {
-    "author": "ogasurfproject-jpg",
-    "at": "2026-11-05T01:02:26Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6646673603",
-    "text": "@maximusrufus here is the write-up you asked for, for profile 1.4.4 at `1b81ec9`.\n\n**Result.** Vectors 91-109: 19 of 19 agree with `expected` (problem and warning codes compared as sets, plus the other members). Verdicts frozen at 2026-11-04T07:37:54Z (SHA-256 `cc5d57afd5afb765db88e241579d4a0c607a288c6effddadffcb10bd1fd6c8d3`); the `expected` members of 91-109 were first opened at 07:38:01Z. The checker was not changed after the freeze.\n\nVectors 01-90 keep our frozen result from 2026-11-03: 88 of 90 at `6bb7d0b`. We do not rewrite it. A separate run of the same 1.4.4 checker over 01-109, froze"
+    "author": "robertolocatelli81-dev",
+    "at": "2026-11-06T12:15:04Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6684578096",
+    "text": "@maximusrufus, results for profile 1.4.5 from war-verify: vectors 01-111 at `c4b4bd4`, measured on 2026-11-06.\n\n**war-verify 0.9.0** ([`20837ca`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/commit/20837cab75642e679a5dab1995e0b09bc0ecf25c); it follows step 12 at `c4b4bd4`; the rules are listed as U1-U9 in its README; run file [`results/score_default.txt`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/blob/20837cab75642e679a5dab1995e0b09bc0ecf25c/results/score_default.txt)): **112/112 documents, 1022/1022 fields**. That is the 111 vectors plus th"
    }
   },
   "x402-foundation/x402#2887": {
@@ -114,7 +130,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-06T05:56:15+00:00",
+   "checked": "2026-11-06T13:07:52+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -216,7 +232,7 @@
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-11-05T14:02:21Z"
+   "latest_event": "2026-11-06T12:58:59Z"
   }
  },
  "first_run": false

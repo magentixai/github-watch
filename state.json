@@ -93,7 +93,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 266,
+   "comments": 267,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -360,14 +360,15 @@
     6621308754,
     6646345722,
     6646485643,
-    6646673603
+    6646673603,
+    6684578096
    ],
-   "updated_at": "2026-11-05T01:02:26Z",
+   "updated_at": "2026-11-06T12:15:04Z",
    "last_comment": {
-    "author": "ogasurfproject-jpg",
-    "at": "2026-11-05T01:02:26Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6646673603",
-    "text": "@maximusrufus here is the write-up you asked for, for profile 1.4.4 at `1b81ec9`.\n\n**Result.** Vectors 91-109: 19 of 19 agree with `expected` (problem and warning codes compared as sets, plus the other members). Verdicts frozen at 2026-11-04T07:37:54Z (SHA-256 `cc5d57afd5afb765db88e241579d4a0c607a288c6effddadffcb10bd1fd6c8d3`); the `expected` members of 91-109 were first opened at 07:38:01Z. The checker was not changed after the freeze.\n\nVectors 01-90 keep our frozen result from 2026-11-03: 88 of 90 at `6bb7d0b`. We do not rewrite it. A separate run of the same 1.4.4 checker over 01-109, froze"
+    "author": "robertolocatelli81-dev",
+    "at": "2026-11-06T12:15:04Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6684578096",
+    "text": "@maximusrufus, results for profile 1.4.5 from war-verify: vectors 01-111 at `c4b4bd4`, measured on 2026-11-06.\n\n**war-verify 0.9.0** ([`20837ca`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/commit/20837cab75642e679a5dab1995e0b09bc0ecf25c); it follows step 12 at `c4b4bd4`; the rules are listed as U1-U9 in its README; run file [`results/score_default.txt`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/blob/20837cab75642e679a5dab1995e0b09bc0ecf25c/results/score_default.txt)): **112/112 documents, 1022/1022 fields**. That is the 111 vectors plus th"
    }
   },
   "x402-foundation/x402#2887": {
@@ -624,10 +625,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-06T05:56:15+00:00",
+ "last_checked": "2026-11-06T13:07:52+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-06T05:56:15+00:00",
+   "checked": "2026-11-06T13:07:52+00:00",
    "items": {
     "23": {
      "title": "Publish the -00 build in ietf/ and explain it in the READMEs",
@@ -1059,6 +1060,9 @@
  },
  "user_events": {
   "giskard09": [
+   "19335538581",
+   "19334464864",
+   "19334463779",
    "26245582269",
    "26242222019",
    "26241715659",
@@ -1155,10 +1159,7 @@
    "18275954388",
    "18273806253",
    "25256547400",
-   "25252580284",
-   "25248977848",
-   "25248018291",
-   "25246574008"
+   "25252580284"
   ]
  }
 }
