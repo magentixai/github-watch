@@ -1,15 +1,25 @@
 {
- "checked_at": "2026-11-05T13:25:00+00:00",
- "previous_check": "2026-11-05T06:00:29+00:00",
+ "checked_at": "2026-11-06T05:56:15+00:00",
+ "previous_check": "2026-11-05T13:25:00+00:00",
  "changes": [
   {
-   "item": "violetclaire/briarwood-catalog#1",
+   "item": "WasmAgent/wasmagent-protocol#265",
    "type": "comment",
    "author": "giskard09",
-   "at": "2026-11-05T10:07:06Z",
-   "url": "https://github.com/violetclaire/briarwood-catalog/issues/1#issuecomment-6655240050",
-   "title": "F1. The same-hand witness",
-   "text": "Thank you \u2014 glad the fixture held, and that the condition becomes part of the rule by witnessed amendment. The distinction matters: a witness that stands apart, holds nothing, and judges no one is a different kind of thing than a checker \u2014 one a reader can test without asking it anything. Good that the live build already held up to that test twice, before any of this was load-bearing.\n",
+   "at": "2026-11-05T13:35:17Z",
+   "url": "https://github.com/WasmAgent/wasmagent-protocol/issues/265#issuecomment-6659350936",
+   "title": "Clarify current AEP subject-digest canonicalization: RFC 8785 vs JS canonicalBytes",
+   "text": "Good to see it land clean across all three, Takao \u2014 thanks for closing the loop with the re-run.\n",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "coinbase/agentkit#1141",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-05T14:02:21Z",
+   "url": "https://github.com/coinbase/agentkit/issues/1141#issuecomment-6659927341",
+   "title": "RFC: Opt-in policy hook for AgentKit action execution (budget / risk providers like Cycles)",
+   "text": "@osr21 Both pieces addressed, commit [`b776dfd`](https://github.com/giskard09/checkpoint-producer-binding-ref-anchor/commit/b776dfdf88880b8bdbc7a31733cc5adc16824a58) (`7d4ee22` + a docstring count fix):\n\n- Labeled the on-chain check and `recheck_inclusion()` explicitly as trusted-RPC verification, in both the docstrings and the CLI output \u2014 the single-endpoint mode proves what that one configured endpoint reports, nothing stronger.\n- `recheck_inclusion_multi_rpc()`: corroborates the same chain_id/block_hash comparison across several independently-operated endpoints (default `min_endpoints=2`, ",
    "source": "user:giskard09"
   }
  ],
@@ -104,7 +114,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-05T13:25:00+00:00",
+   "checked": "2026-11-06T05:56:15+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -206,7 +216,7 @@
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-11-05T10:07:06Z"
+   "latest_event": "2026-11-05T14:02:21Z"
   }
  },
  "first_run": false
