@@ -1,41 +1,217 @@
 {
- "checked_at": "2026-11-06T13:07:52+00:00",
- "previous_check": "2026-11-06T05:56:15+00:00",
+ "checked_at": "2026-11-07T05:59:59+00:00",
+ "previous_check": "2026-11-06T13:07:52+00:00",
  "changes": [
   {
    "item": "x402-foundation/tsc#4",
    "type": "comment",
-   "author": "robertolocatelli81-dev",
-   "at": "2026-11-06T12:15:04Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6684578096",
-   "text": "@maximusrufus, results for profile 1.4.5 from war-verify: vectors 01-111 at `c4b4bd4`, measured on 2026-11-06.\n\n**war-verify 0.9.0** ([`20837ca`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/commit/20837cab75642e679a5dab1995e0b09bc0ecf25c); it follows step 12 at `c4b4bd4`; the rules are listed as U1-U9 in its README; run file [`results/score_default.txt`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/blob/20837cab75642e679a5dab1995e0b09bc0ecf25c/results/score_default.txt)): **112/112 documents, 1022/1022 fields**. That is the 111 vectors plus th"
+   "author": "maximusrufus",
+   "at": "2026-11-06T14:24:46Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6687104305",
+   "text": "@robertolocatelli81-dev thank you for the 1.4.5 results. Vector 112, added for issue #5, pins that `relying_party_keys` entries are decoded under the canonical-base64 rule (a non-canonical entry matches nothing)."
   },
   {
-   "item": "Dr-PampersMuffin/continuum-verifier#1",
-   "type": "new_issue",
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-11-06T15:30:32Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6688544913",
+   "text": "A proposal for the evidence-record work in this thread: vectors 01-112 of work-acceptance-record (profile 1.4.5, tag `v1.4.5`) are offered as one conformance suite for it, so an implementation can state which vectors it agrees with rather than describing its reading in prose.\n\nTwo implementations have reported their own results on 1.4.5 here and on issue #5: war-verify 0.9.0, vectors 01-111 at `c4b4bd4` plus one live record, 112/112 documents; preaction-governance-conformance, 111/111 on vectors 01-111 at `c4b4bd4`. Readings raised on issue #5 were settled by new vectors (110-112), and the sam"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "robertolocatelli81-dev",
+   "at": "2026-11-06T17:37:35Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6691305578",
+   "text": "@maximusrufus, war-verify 0.9.0, code unchanged ([`20837ca`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/tree/20837cab75642e679a5dab1995e0b09bc0ecf25c)), on vectors 01-112 at `v1.4.5` (`066315f`): 112/112, 1022/1022 fields. The totals equal our earlier ones because the live record of that count is out of this one and vector 112 is in, nine fields each. The vector set was checked by git blob against the tree of `066315f`; for this run `verifier/`, `interop/` and `composition/` were not opened. The commit `0fed63f` (tag `v1.4.6`) changes no vector.\n\nControl: with the pr"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-11-06T20:49:44Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6695172320",
+   "text": "@robertolocatelli81-dev thank you for the run and the control. The first of the two readings you list as open under Q27 now has a vector, in `e404bc9`:\n\n- 113: the producer's `key_id` appears twice in `relying_party_keys`, first with another key, then with the producer's key. Entries are matched by key, not by `key_id`, so the claim stands; a repeated `key_id` there is not `KEY_REJECTED` (the repeated-identifier rule of 75 and 79 reads the issuer's `keys` only).\n\nStep 12 now states this; no outcome of 01-112 changes. The reference verifier agrees with all 113.\n\nThe second reading (neutral poin"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-11-06T21:19:36Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6695884111",
+   "text": "Step 12 now requires the producer key to pass step 2's point rule; vectors 114\u2013115 pin it.\n\nhttps://github.com/maximusrufus/work-acceptance-record/releases/tag/v1.4.7 (`6f7a075`)"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "Tetsurohhori",
+   "at": "2026-11-07T01:57:13Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6700674426",
+   "text": "@maximusrufus on offering the vectors as one conformance suite: a data point on whether results stay comparable as the profile moves.\n\nThe reader this catalog froze for profile 1.4.2 on 2026-10-27 (v142.1, 90/90 at `cb7e8f1`), run unchanged against `v1.4.7` (`6f7a075`): **108/115**.\n\n- Vectors 01-90 are byte-identical between `cb7e8f1` and `v1.4.7`. All 25 changes since are additions, and the reader agrees with all 90 again.\n- Each of the seven it misses is a rule added or made explicit after 1.4.2: 95, 105 and 107 (1.4.3, the stated-time and genTime forms), 110 and 112 (1.4.5, `relying_party_"
+  },
+  {
+   "item": "deepset-ai/haystack#11039",
+   "type": "comment",
    "author": "giskard09",
-   "at": "2026-11-06T12:44:53Z",
-   "title": "Convergence note: SELF_CONSISTENT-until-pinned-key matches verifier-key-source-ref-v1",
-   "url": "https://github.com/Dr-PampersMuffin/continuum-verifier/issues/1",
+   "at": "2026-11-06T13:08:50Z",
+   "url": "https://github.com/deepset-ai/haystack/issues/11039#issuecomment-6685557756",
+   "title": "RFC: Signed receipts for Haystack pipeline component calls",
+   "text": "Point 3 is one we've been building toward in this exact thread \u2014 back in June, replying to @arian-gogani's point here: \"each receipt carries the hash of the previous one in the run, so retriever chunk \u2192 ranker \u2192 generator output verifies as an ordered whole, not as disconnected signatures.\" What's shipped since then is `trail-head-ref-v1` (argentum-core): head/prev_head chaining with named failure modes for exactly the removal case \u2014 `seq_gap` (a removed record leaves a gap), `head_mismatch` (a record's own hash doesn't recompute), `link_mismatch` (the next record's prev_head doesn't match). A",
    "source": "user:giskard09"
   },
   {
-   "item": "actaseal/actaseal-verify#7",
-   "type": "new_issue",
+   "item": "giskard09/argentum-core#154",
+   "type": "new_pr",
    "author": "giskard09",
-   "at": "2026-11-06T12:44:53Z",
-   "title": "Re: \u00a77 Security Considerations, draft-xg-payment-dispute-profile-01 \u2014 fourth anchor option",
-   "url": "https://github.com/actaseal/actaseal-verify/issues/7",
+   "at": "2026-11-06T13:17:35Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "aeoess/agent-governance-vocabulary#177",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-06T13:28:12Z",
+   "url": "https://github.com/aeoess/agent-governance-vocabulary/issues/177#issuecomment-6685945341",
+   "title": "Proposal: a federation for neutral open-source AI infrastructure",
+   "text": "@MoltyCel \u2014 real bug, thanks for catching it. `check_matches_offer()`'s `dict | None` annotation needed `from __future__ import annotations` at the top of the file to not break module load on 3.9 \u2014 fixed and merged: `75f3fb1a96f4cfc3c27e29771be2d2feb3119027`. Re-ran the same four vectors on a fresh clone after the fix: still 4/4 on 3.12. Didn't have 3.9 locally to confirm the failure mode directly either, but it's not a 3.9-specific patch \u2014 `from __future__ import annotations` makes every annotation a lazy string, never evaluated unless something calls `get_type_hints()`, which this file doesn",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "tetherto/wdk-cli#52",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-06T14:00:28Z",
+   "url": "https://github.com/tetherto/wdk-cli/issues/52#issuecomment-6686588238",
+   "title": "feature request: optional `action_ref` field in send_token's result",
+   "text": "Understood, thanks for discussing it with the team. One clarification for anyone finding this later: `action_ref` isn't about uniqueness \u2014 txHash already covers that. It's a content-addressed hash of the *declared* request fields (network/to/amount/token/timestamp), computable by anyone from those same fields \u2014 so if the result is later re-stated by someone other than the CLI, a verifier can confirm the restated fields are exactly the ones originally declared, without trusting whoever is now reporting them. It doesn't replace txHash (which proves settlement happened) \u2014 it's a tamper-evidence c",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "personal-agent-protocol/personal-agent-protocol#70",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-06T14:15:06Z",
+   "url": "https://github.com/personal-agent-protocol/personal-agent-protocol/issues/70#issuecomment-6686906392",
+   "title": "Payments extension spec: witness reference binding a settled payment to an approved operation revision",
+   "text": "Thanks, Arya \u2014 following up here per your pointer.\n\nOn the optional permissionless anchor for `pair_digest`: `AnchorRegistry` (`anchor(bytes32)`, no owner/allowlist, same address on Base/Arbitrum/Ink) already carries this role, built on the worked example with Violet in [#37](https://github.com/personal-agent-protocol/personal-agent-protocol/issues/37#issuecomment-6441423123):\n\n- `payment_transaction`: `0xc8599161b6a9a7ffaa66fde11f0ac2971a813148b071ca66da4b9a69d41c8425`\n- `payment_identifier` (the EIP-3009 `AuthorizationUsed` nonce from that transaction's own event log): `0xb44292df23f1e5c257a",
    "source": "user:giskard09"
   },
   {
    "item": "x402-foundation/x402#2833",
    "type": "comment",
    "author": "giskard09",
-   "at": "2026-11-06T12:58:59Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2833#issuecomment-6685369179",
+   "at": "2026-11-06T14:20:21Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2833#issuecomment-6687013112",
    "title": "Extension proposal: delivery-receipt attestation (proof-of-delivery for x402 responses)",
-   "text": "@imokokok \u2014 both points here map onto pieces we already have shipped, worth naming for the receipt schema discussion.\n\nOn (1), claim-status separate from signature: `revocation-ref` (argentum-core) splits exactly this for delegated authority \u2014 `revocation_check_at_ms` proves \"checked when,\" `revocation_authority_ref` (enum `permissionless-registry` | `private-endpoint` | `third-party-oracle`) proves \"checked against what.\" A COMMITTED record with a later-revoked delegation stays a valid historical record; the revocation only governs future use, not the past action. Same shape as your STALE mar",
+   "text": "Good distinctions \u2014 \"blocks a new decision, doesn't rewrite history\" and keeping the status reference inspectable and separate from the signed bytes are exactly the right framing. Appreciate the convergence on the multi-RPC discipline too.\n",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "microsoft/autogen#7353",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-06T14:33:19Z",
+   "url": "https://github.com/microsoft/autogen/issues/7353#issuecomment-6687292667",
+   "title": "Feature: Cryptographic action receipts for enterprise agent governance (AAR)",
+   "text": "This is the two-layer split `trail-head-ref-v1` (argentum-core) ships: `continuity` is the hash chain \u2014 removes/reorders break the link, same test you named here, Daniel. `completeness` is a periodic checkpoint anchored outside the log owner's control, catching exactly what Klenio's Case 3 just confirmed by construction: tail truncation, which continuity alone can't see (a shorter log and a truncated one look identical internally). The spec traces this split to your distinction between \"the records included\" and \"every action recorded\" in this same thread, and the tail-truncation test to babyb",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "deepset-ai/haystack#11039",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-06T14:39:00Z",
+   "url": "https://github.com/deepset-ai/haystack/issues/11039#issuecomment-6687416167",
+   "title": "RFC: Signed receipts for Haystack pipeline component calls",
+   "text": "This closes exactly the gap we said we didn't have an answer to \u2014 and the `corpus_digest` move (claim becomes derivation, not assertion) is the same principle our own specs run on, just applied one layer down from where we work. Good, honest write-up of the costs too (latency, the encoder-quality caveat) \u2014 appreciate it.\n",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "finos/ai-governance-framework#340",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-06T14:43:38Z",
+   "url": "https://github.com/finos/ai-governance-framework/issues/340#issuecomment-6687515702",
+   "title": "[Idea]: Runtime policy and evidence reference implementation for selected agentic mitigations",
+   "text": "This is the exact property `trail-head-ref-v1` (argentum-core, draft/reference-implementation status \u2014 not yet live in our own pipeline) is built for, same shape as `decision_window`, with one difference worth naming: ours checkpoints `seq`+`head` once per period and anchors the period's Merkle root on-chain (`AnchorRegistry.anchor(bytes32)`), rather than self-signing a window. The reason: a `window_signature` signed by the same PEP that emits the log doesn't establish independence \u2014 if it can sign a window, it can sign a shorter one after truncating. That's the exact point babyblueviper1 rais",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "personal-agent-protocol/personal-agent-protocol#70",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-06T16:16:32Z",
+   "url": "https://github.com/personal-agent-protocol/personal-agent-protocol/issues/70#issuecomment-6689595520",
+   "title": "Payments extension spec: witness reference binding a settled payment to an approved operation revision",
+   "text": "@violetclaire \u2014 you're right, and thanks for being plain about it.\n\nRecomputed under the encoding you just gave (`payment_identifier : payload_digest`, each as printed text with its `0x` prefix, joined by a single colon):\n\n`SHA-256(\"0xb44292df23f1e5c257aa85ceae84b0cc15613f9cb6c9757151709e60258b22d2:0xcef0c1853c3deca9f5ed06fb3d8c7e157d430b1cb65c0c8435a2d27445ccf893\")` = `4c0d3374f85ce2babcb6d4a61ce6b4ddaf7007baf2684fd108a4f54a39556b35` \u2014 matches the value you reported, byte for byte.\n\nThe value I anchored above (`0x296f2b2b2...`, tx `0x73bae50e...`) was JCS over the pair \u2014 my own encoding choic",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "aave/skills#11",
+   "type": "new_issue",
+   "author": "giskard09",
+   "at": "2026-11-06T20:56:23Z",
+   "title": "prepare_action returns a real unsigned transaction \u2014 it's anchorable as-is",
+   "url": "https://github.com/aave/skills/issues/11",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "morpho-org/morpho-skills#45",
+   "type": "new_issue",
+   "author": "giskard09",
+   "at": "2026-11-06T21:19:06Z",
+   "title": "The 53 prepare_* tools are unsigned by design \u2014 and nothing after them is checkable",
+   "url": "https://github.com/morpho-org/morpho-skills/issues/45",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "circlefin/arc-usdc-borrowing#21",
+   "type": "new_issue",
+   "author": "giskard09",
+   "at": "2026-11-06T21:24:22Z",
+   "title": "activityLog's fire-and-forget persistence is the same gap morpho-action-ref-anchor closes upstream",
+   "url": "https://github.com/circlefin/arc-usdc-borrowing/issues/21",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "aeoess/agent-governance-vocabulary#244",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-06T21:58:54Z",
+   "url": "https://github.com/aeoess/agent-governance-vocabulary/issues/244#issuecomment-6696917365",
+   "title": "Proposal: move this repository to a shared GitHub organization",
+   "text": "Support the move \u2014 a federation that no single project owns shouldn't live on one project's personal account, same logic we build toward in our own work (AnchorRegistry is permissionless for the same reason).\n\nNo strong opinion on the name \u2014 `nosai-federation` reads fine.\n\nOn maintenance: not as an active PR/issue maintainer for now \u2014 same posture as @kenneives above, we'll keep our own crosswalk entries current and vote as a participating project. If that changes as our bandwidth does, we'll say so then.\n",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#155",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-06T22:55:44Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "probityai/agent-evidence-vectors#349",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-06T22:56:10Z",
+   "url": "https://github.com/probityai/agent-evidence-vectors/issues/349#issuecomment-6697854013",
+   "title": "Open cells: take one (policy decision point x effect, canonical JSON signature x occurrence)",
+   "text": "@astrogilda posted both.\n\n**File-domain run (`decision_bound.py`, `giskard09/execution-join-ref-remora-bridge`):** added the third write. `AR-00-REAL-AS-OBSERVED` and `AR-00-REAL-DECISION-BOUND` (2026-10-14) already covered \"embeds the covering decision_ref\" and \"no ref\". The missing one needed a second real decision, not a placeholder: AR-04 is a second real case from the same pinned run (its own dispatch was refused at the config-check stage \u2014 `nativeWriteEvents=0` \u2014 so it never produced a write of its own, but its grant/attempt are real retained artifacts with a real, independently-computed",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "moonpay/skills#99",
+   "type": "new_issue",
+   "author": "giskard09",
+   "at": "2026-11-07T01:50:48Z",
+   "title": "transaction_register's own output is {success: boolean} \u2014 nothing binds the registered hash back to what was quoted",
+   "url": "https://github.com/moonpay/skills/issues/99",
    "source": "user:giskard09"
   }
  ],
@@ -78,13 +254,13 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 267,
-   "updated_at": "2026-11-06T12:15:04Z",
+   "comments": 273,
+   "updated_at": "2026-11-07T01:57:13Z",
    "last_comment": {
-    "author": "robertolocatelli81-dev",
-    "at": "2026-11-06T12:15:04Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6684578096",
-    "text": "@maximusrufus, results for profile 1.4.5 from war-verify: vectors 01-111 at `c4b4bd4`, measured on 2026-11-06.\n\n**war-verify 0.9.0** ([`20837ca`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/commit/20837cab75642e679a5dab1995e0b09bc0ecf25c); it follows step 12 at `c4b4bd4`; the rules are listed as U1-U9 in its README; run file [`results/score_default.txt`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/blob/20837cab75642e679a5dab1995e0b09bc0ecf25c/results/score_default.txt)): **112/112 documents, 1022/1022 fields**. That is the 111 vectors plus th"
+    "author": "Tetsurohhori",
+    "at": "2026-11-07T01:57:13Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6700674426",
+    "text": "@maximusrufus on offering the vectors as one conformance suite: a data point on whether results stay comparable as the profile moves.\n\nThe reader this catalog froze for profile 1.4.2 on 2026-10-27 (v142.1, 90/90 at `cb7e8f1`), run unchanged against `v1.4.7` (`6f7a075`): **108/115**.\n\n- Vectors 01-90 are byte-identical between `cb7e8f1` and `v1.4.7`. All 25 changes since are additions, and the reader agrees with all 90 again.\n- Each of the seven it misses is a rule added or made explicit after 1.4.2: 95, 105 and 107 (1.4.3, the stated-time and genTime forms), 110 and 112 (1.4.5, `relying_party_"
    }
   },
   "x402-foundation/x402#2887": {
@@ -130,7 +306,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-06T13:07:52+00:00",
+   "checked": "2026-11-07T05:59:59+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -232,7 +408,7 @@
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-11-06T12:58:59Z"
+   "latest_event": "2026-11-07T01:50:48Z"
   }
  },
  "first_run": false
