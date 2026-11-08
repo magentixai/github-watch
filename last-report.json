@@ -1,7 +1,83 @@
 {
- "checked_at": "2026-11-07T11:51:39+00:00",
- "previous_check": "2026-11-07T05:59:59+00:00",
- "changes": [],
+ "checked_at": "2026-11-08T05:56:15+00:00",
+ "previous_check": "2026-11-07T11:51:39+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "robertolocatelli81-dev",
+   "at": "2026-11-07T16:20:45Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6709734788",
+   "text": "@maximusrufus, war-verify 0.11.0 ([`7d9f528`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/tree/7d9f5288e830140e1ce7beb130ffdf3d260debbb)) on vectors 01-118 at `v1.4.8` (`3e53aac`), with the live record: 119/119 documents, 1085/1085 fields. Vectors 01-115 were checked by git blob against the tree of `3e53aac`. It covers 1.4.7 and 1.4.8 together; a 0.10.0 for 1.4.7 was prepared and not published. The agents that wrote these versions, and the coordinator while working on them, opened no file of `verifier/`, `interop/` or `composition/`. The `compare` API calls behind the"
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "maximusrufus",
+   "at": "2026-11-07T20:15:27Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6712482059",
+   "text": "@robertolocatelli81-dev, thank you for the 0.11.0 report. Profile 1.4.9 (`aab64ff`) takes up the four text points; the vector files keep their bytes.\nwhawk46 ([comment](https://github.com/x402-foundation/tsc/issues/4#issuecomment-5673384579)) placed escrow release in Phase 2, consuming a Phase 1 receipt. One concrete rule for that step, using a work-acceptance record: with `auth-capture` in `escrow` and `CaptureMode: deferred`, the receiver authorizer captures only when the record gives `signature_valid` true, `criteria_hash` match, `criteria_committed_before_check` yes, `independence` indepen"
+  },
+  {
+   "item": "personal-agent-protocol/personal-agent-protocol#70",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-07T13:42:45Z",
+   "url": "https://github.com/personal-agent-protocol/personal-agent-protocol/issues/70#issuecomment-6707697755",
+   "title": "Payments extension spec: witness reference binding a settled payment to an approved operation revision",
+   "text": "@violetclaire \u2014 that's exactly the field we used: `payment_identifier` above is the EIP-3009 `AuthorizationUsed` nonce from the payment's own event log, not the transaction hash or a settlement reference. Good to have it stated explicitly in the proposal.\n",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "probityai/agent-evidence-vectors#349",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-07T15:43:23Z",
+   "url": "https://github.com/probityai/agent-evidence-vectors/issues/349#issuecomment-6709218738",
+   "title": "Open cells: take one (policy decision point x effect, canonical JSON signature x occurrence)",
+   "text": "@astrogilda \u2014 thanks for catching that, you were right. Fixed: verified by unzipping both pinned wheels (0.35.0, 0.36.3) directly, no installed code run \u2014 `ROOT`'s primary path resolves fine in both, with `cases/` and `MANIFEST.json` right there. The vendoring justification was wrong. `map_authority_at_dispatch.py` now reads the deny cases straight from `authoritydispatch.ROOT` at runtime instead of vendoring copies, which is also the better design here \u2014 a Dependabot bump now re-tests against whatever cases a release actually ships, not a frozen snapshot of today's 10. Vendored fixtures direc",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "x402-foundation/x402#2833",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-07T15:56:55Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2833#issuecomment-6709411444",
+   "title": "Extension proposal: delivery-receipt attestation (proof-of-delivery for x402 responses)",
+   "text": "@imokokok \u2014 verified byte-for-byte (sha256 of claims/status/expected against manifest.json match, evaluate.mjs's logic traced by hand against both expected outputs). Good discipline, matches what you and @NSPG13 described.\n\nOn the specific gap you flag \u2014 `sourceIndependenceEstablished: false`, `statusEvidence.authority` as an opaque string \u2014 this is close to the shape `revocation_authority_ref` (action-ref.md, the field we named here on 11/6) is built for. It wouldn't make your authority independent on its own; it's a hashed pointer naming which category was consulted (`permissionless-registry",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "aeoess/agent-governance-vocabulary#177",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-07T16:12:32Z",
+   "url": "https://github.com/aeoess/agent-governance-vocabulary/issues/177#issuecomment-6709619417",
+   "title": "Proposal: a federation for neutral open-source AI infrastructure",
+   "text": "@abisheakp197 \u2014 could you point to what specifically I contributed, tested, or audited? I don't have a record of looking at any of NTI's artifacts before this thread. Separately, same principle Tymofii already set for the joint statement: I'd sign exact wording I reviewed myself, not a pre-written line.\n",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#156",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-07T18:40:55Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "probityai/agent-evidence-vectors#349",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-07T18:45:00Z",
+   "url": "https://github.com/probityai/agent-evidence-vectors/issues/349#issuecomment-6711518560",
+   "title": "Open cells: take one (policy decision point x effect, canonical JSON signature x occurrence)",
+   "text": "@astrogilda \u2014 PR 155 merged. On the 7 NOT_MODELED lines: giskard09/argentum-core#156 (open, not yet merged), v1.3, four optional fields added to decision_id's preimage (authority_verified_at_ms/revocation_check_at_ms/revocation_authority_ref reused from action-ref.md, delegation_chain_ref from delegation-chain-ref.md) plus a new invariant, authority_check_order.\n\nRe-ran map_authority_at_dispatch.py against the real installed corpus, not asserted:\n\n- grant_revoked, authority_evidence_stale, evidence_age_inconsistent \u2192 AUDITABLE_VIA_NAMED_AUTHORITY. Not resolved \u2014 this verifier still can't tell ",
+   "source": "user:giskard09"
+  }
+ ],
  "failures": [],
  "summary": {
   "LF-Decentralized-Trust/lab-proposals#2": {
@@ -41,13 +117,13 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 273,
-   "updated_at": "2026-11-07T01:57:13Z",
+   "comments": 275,
+   "updated_at": "2026-11-07T20:15:27Z",
    "last_comment": {
-    "author": "Tetsurohhori",
-    "at": "2026-11-07T01:57:13Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6700674426",
-    "text": "@maximusrufus on offering the vectors as one conformance suite: a data point on whether results stay comparable as the profile moves.\n\nThe reader this catalog froze for profile 1.4.2 on 2026-10-27 (v142.1, 90/90 at `cb7e8f1`), run unchanged against `v1.4.7` (`6f7a075`): **108/115**.\n\n- Vectors 01-90 are byte-identical between `cb7e8f1` and `v1.4.7`. All 25 changes since are additions, and the reader agrees with all 90 again.\n- Each of the seven it misses is a rule added or made explicit after 1.4.2: 95, 105 and 107 (1.4.3, the stated-time and genTime forms), 110 and 112 (1.4.5, `relying_party_"
+    "author": "maximusrufus",
+    "at": "2026-11-07T20:15:27Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6712482059",
+    "text": "@robertolocatelli81-dev, thank you for the 0.11.0 report. Profile 1.4.9 (`aab64ff`) takes up the four text points; the vector files keep their bytes.\nwhawk46 ([comment](https://github.com/x402-foundation/tsc/issues/4#issuecomment-5673384579)) placed escrow release in Phase 2, consuming a Phase 1 receipt. One concrete rule for that step, using a work-acceptance record: with `auth-capture` in `escrow` and `CaptureMode: deferred`, the receiver authorizer captures only when the record gives `signature_valid` true, `criteria_hash` match, `criteria_committed_before_check` yes, `independence` indepen"
    }
   },
   "x402-foundation/x402#2887": {
@@ -93,7 +169,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-07T11:51:39+00:00",
+   "checked": "2026-11-08T05:56:15+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -195,7 +271,7 @@
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-11-07T01:50:48Z"
+   "latest_event": "2026-11-07T18:45:00Z"
   }
  },
  "first_run": false
