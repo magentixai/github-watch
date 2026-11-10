@@ -1,7 +1,54 @@
 {
- "checked_at": "2026-11-09T14:10:40+00:00",
- "previous_check": "2026-11-09T05:59:35+00:00",
- "changes": [],
+ "checked_at": "2026-11-10T05:57:53+00:00",
+ "previous_check": "2026-11-09T14:10:40+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "nonlinearity",
+   "at": "2026-11-09T16:28:48Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6745350461",
+   "text": "@maximusrufus thank you for the clean-room run of our package, the 39 mutations, and the nineteen readings in AMBIGUITIES.md. With the eleven in your composition NOTES.md they are the list we work from. We'll post which become sentences in the next revision and which were already open differences between our three checkers; the `kid` rule and unknown offer members are two.\n\nOn war/1.2: the shape works. It is what the subject-profile slot was built for: the work record is the subject under its own profile, its signer is the issuer, the criteria digest is the terms evidence, and no result token "
+  },
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "nonlinearity",
+   "at": "2026-11-09T16:29:14Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6745360253",
+   "text": "@ogasurfproject-jpg thank you for the run and for saying what was read before the freeze. Your two readings match the vectors: a malformed contract-account signature is `signature_invalid` with no call, because AR-14's format rule needs no chain state, so it runs before any call lookup; and `policy_refusal` is true for `signer_mismatch` when `trust.complete` is true, because AR-18's reasons are key-resolution failures. Both get a sentence in the next revision, since two readers asked. The AR-20 order check being decisive on AR-C16-h is why it is there. The full write-up is welcome, and your ru"
+  },
+  {
+   "item": "coinbase/agentkit#1141",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-09T14:56:45Z",
+   "url": "https://github.com/coinbase/agentkit/issues/1141#issuecomment-6743176723",
+   "title": "RFC: Opt-in policy hook for AgentKit action execution (budget / risk providers like Cycles)",
+   "text": "giskard09/checkpoint-producer-binding-ref-anchor#1 merged: https://github.com/giskard09/checkpoint-producer-binding-ref-anchor/commit/d74174afec4469c90c19facd9b4f17c8dd667035\n\nThanks for the correction, and for running it offline before flagging it. Credit for the fix is yours \u2014 you caught it on your own branch and pushed the one-line reservation 86 seconds after your comment here.\n\nRe-verified independently before merging: ran your exact table (operator IDs `None`, `unknown`, `UNKNOWN`, each paired with `provider-1`, `min_endpoints=2`) against the merged code.\n\n```\nNone, provider-1    -> stat",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "a2aproject/A2A#2439",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-09T23:21:47Z",
+   "url": "https://github.com/a2aproject/A2A/issues/2439#issuecomment-6754162269",
+   "title": "Proposal: registered extension for physical-validity verification (Agent Card capability declaration)",
+   "text": "Strong proposal \u2014 the verdict model (PASS/FLAG/VETO) plus audit-log availability gives counterparties something concrete to require, not just a self-declared capability flag.\n\nOne structural question worth baking into the schema from day one: when a counterparty filters for `physics-validation/v1`, they're trusting that the declaring agent actually ran the versioned rule table against that specific action \u2014 nothing in the extension today lets a third party confirm that independently of the declaring agent's own audit log. Same distinction we've been generalizing as `action_ref` across other ac",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "probityai/agent-evidence-vectors#349",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-09T23:41:35Z",
+   "url": "https://github.com/probityai/agent-evidence-vectors/issues/349#issuecomment-6754503151",
+   "title": "Open cells: take one (policy decision point x effect, canonical JSON signature x occurrence)",
+   "text": "@astrogilda \u2014 #156 merged: argentum-core@369dc33 (merge commit; feature commit 40fb383).\n\nRan `map_authority_at_dispatch.py` against the merged main, pinned `agent-evidence-vectors==0.35.0`, fresh venv:\n\n```\n  [OK] revoked-before-dispatch: grant_revoked -> authority_check_order=True (AUDITABLE_VIA_NAMED_AUTHORITY)\n  [OK] dispatched-bytes-differ: dispatch_not_approved -> effective_call_binding=False (EFFECTIVE_CALL_REBINDING_FAILED)\n  [OK] dispatched-object-differs: dispatch_not_approved -> effective_call_binding=False (EFFECTIVE_CALL_REBINDING_FAILED)\n  [OK] dispatched-action-differs: dispatch",
+   "source": "user:giskard09"
+  }
+ ],
  "failures": [],
  "summary": {
   "LF-Decentralized-Trust/lab-proposals#2": {
@@ -41,13 +88,13 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 275,
-   "updated_at": "2026-11-07T20:15:27Z",
+   "comments": 277,
+   "updated_at": "2026-11-09T16:29:14Z",
    "last_comment": {
-    "author": "maximusrufus",
-    "at": "2026-11-07T20:15:27Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6712482059",
-    "text": "@robertolocatelli81-dev, thank you for the 0.11.0 report. Profile 1.4.9 (`aab64ff`) takes up the four text points; the vector files keep their bytes.\nwhawk46 ([comment](https://github.com/x402-foundation/tsc/issues/4#issuecomment-5673384579)) placed escrow release in Phase 2, consuming a Phase 1 receipt. One concrete rule for that step, using a work-acceptance record: with `auth-capture` in `escrow` and `CaptureMode: deferred`, the receiver authorizer captures only when the record gives `signature_valid` true, `criteria_hash` match, `criteria_committed_before_check` yes, `independence` indepen"
+    "author": "nonlinearity",
+    "at": "2026-11-09T16:29:14Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6745360253",
+    "text": "@ogasurfproject-jpg thank you for the run and for saying what was read before the freeze. Your two readings match the vectors: a malformed contract-account signature is `signature_invalid` with no call, because AR-14's format rule needs no chain state, so it runs before any call lookup; and `policy_refusal` is true for `signer_mismatch` when `trust.complete` is true, because AR-18's reasons are key-resolution failures. Both get a sentence in the next revision, since two readers asked. The AR-20 order check being decisive on AR-C16-h is why it is there. The full write-up is welcome, and your ru"
    }
   },
   "x402-foundation/x402#2887": {
@@ -93,7 +140,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-09T14:10:40+00:00",
+   "checked": "2026-11-10T05:57:53+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -195,7 +242,7 @@
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-11-09T13:37:16Z"
+   "latest_event": "2026-11-09T23:41:35Z"
   }
  },
  "first_run": false

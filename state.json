@@ -93,7 +93,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 275,
+   "comments": 277,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -369,14 +369,16 @@
     6695884111,
     6700674426,
     6709734788,
-    6712482059
+    6712482059,
+    6745350461,
+    6745360253
    ],
-   "updated_at": "2026-11-07T20:15:27Z",
+   "updated_at": "2026-11-09T16:29:14Z",
    "last_comment": {
-    "author": "maximusrufus",
-    "at": "2026-11-07T20:15:27Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6712482059",
-    "text": "@robertolocatelli81-dev, thank you for the 0.11.0 report. Profile 1.4.9 (`aab64ff`) takes up the four text points; the vector files keep their bytes.\nwhawk46 ([comment](https://github.com/x402-foundation/tsc/issues/4#issuecomment-5673384579)) placed escrow release in Phase 2, consuming a Phase 1 receipt. One concrete rule for that step, using a work-acceptance record: with `auth-capture` in `escrow` and `CaptureMode: deferred`, the receiver authorizer captures only when the record gives `signature_valid` true, `criteria_hash` match, `criteria_committed_before_check` yes, `independence` indepen"
+    "author": "nonlinearity",
+    "at": "2026-11-09T16:29:14Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6745360253",
+    "text": "@ogasurfproject-jpg thank you for the run and for saying what was read before the freeze. Your two readings match the vectors: a malformed contract-account signature is `signature_invalid` with no call, because AR-14's format rule needs no chain state, so it runs before any call lookup; and `policy_refusal` is true for `signer_mismatch` when `trust.complete` is true, because AR-18's reasons are key-resolution failures. Both get a sentence in the next revision, since two readers asked. The AR-20 order check being decisive on AR-C16-h is why it is there. The full write-up is welcome, and your ru"
    }
   },
   "x402-foundation/x402#2887": {
@@ -633,10 +635,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-09T14:10:40+00:00",
+ "last_checked": "2026-11-10T05:57:53+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-09T14:10:40+00:00",
+   "checked": "2026-11-10T05:57:53+00:00",
    "items": {
     "23": {
      "title": "Publish the -00 build in ietf/ and explain it in the READMEs",
@@ -1068,6 +1070,13 @@
  },
  "user_events": {
   "giskard09": [
+   "26711091784",
+   "26695064945",
+   "19610160904",
+   "19608650610",
+   "19581411391",
+   "19575919544",
+   "19574648405",
    "19556996583",
    "26642408030",
    "26621024908",
@@ -1160,14 +1169,7 @@
    "18833185097",
    "18831810208",
    "18753098126",
-   "18726740121",
-   "18725410262",
-   "18724750369",
-   "18724006565",
-   "18721677643",
-   "18720419342",
-   "18720028112",
-   "18717252486"
+   "18726740121"
   ]
  }
 }
