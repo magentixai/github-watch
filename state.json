@@ -93,7 +93,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 277,
+   "comments": 281,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -371,14 +371,18 @@
     6709734788,
     6712482059,
     6745350461,
-    6745360253
+    6745360253,
+    6763469305,
+    6764598244,
+    6765044198,
+    6767950559
    ],
-   "updated_at": "2026-11-09T16:29:14Z",
+   "updated_at": "2026-11-10T12:58:48Z",
    "last_comment": {
-    "author": "nonlinearity",
-    "at": "2026-11-09T16:29:14Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6745360253",
-    "text": "@ogasurfproject-jpg thank you for the run and for saying what was read before the freeze. Your two readings match the vectors: a malformed contract-account signature is `signature_invalid` with no call, because AR-14's format rule needs no chain state, so it runs before any call lookup; and `policy_refusal` is true for `signer_mismatch` when `trust.complete` is true, because AR-18's reasons are key-resolution failures. Both get a sentence in the next revision, since two readers asked. The AR-20 order check being decisive on AR-C16-h is why it is there. The full write-up is welcome, and your ru"
+    "author": "babyblueviper1",
+    "at": "2026-11-10T12:58:48Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6767950559",
+    "text": "@maximusrufus for CONFORMANCE.md, if it helps, our row could read:\n\n| invinoveritas clean-room checker (babyblueviper1), written from the README only | `8f7bc22` | 1.4.11 | 01-126, and a live record | 126/126 agree; live record: capture at `8c100e6` and `8ce7f42` | x402-foundation/tsc#4, comment 6764598244 |\n\nThe run output is `upstream_vectors_8ce7f42_126_run.txt` in the linked tree. The live record was also checked with war-verify 0.12.0 (`--tokens pkix`, exit 0).\n"
    }
   },
   "x402-foundation/x402#2887": {
@@ -635,10 +639,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-10T05:57:53+00:00",
+ "last_checked": "2026-11-10T13:40:36+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-10T05:57:53+00:00",
+   "checked": "2026-11-10T13:40:36+00:00",
    "items": {
     "23": {
      "title": "Publish the -00 build in ietf/ and explain it in the READMEs",
