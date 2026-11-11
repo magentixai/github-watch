@@ -1,112 +1,7 @@
 {
- "checked_at": "2026-11-11T05:57:50+00:00",
- "previous_check": "2026-11-10T13:40:36+00:00",
- "changes": [
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "RayR-audit",
-   "at": "2026-11-10T15:14:27Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6771090510",
-   "text": "One measurement that sits next to the vector results rather than competing with them:\n\n20,999 of 84,753 settlement logs carry a registry entry (24.78%), over 145 payee\naddresses (130 with data) drawn from a 105-address registry, probe frozen 2026-10-12\n(sha256 61374cb7\u20263309a2), upstream registry archived 2026-04-14.\n\nSo while a reader scores \"agrees with 127 of 127 at v1.4.11\" for the reading rule,\nthe supply side reads 24.78% \u2014 a LOWER BOUND, not a coverage rate: the probe is not\nrotation-aware and the sample is not the x402 universe. The two numbers answer\ndifferent questions and should not "
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "maximusrufus",
-   "at": "2026-11-10T15:46:13Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6771892453",
-   "text": "@robertolocatelli81-dev thank you for war-verify 0.12.0 and for the three readings. The CONFORMANCE row is added as you wrote it, and the Implementations table lists the run.\n\nQ36: the list is the intended reading. The four cases are the profile's I-JSON checks, and the list is closed: a criteria file that is otherwise readable and holds a noncharacter in a member name or a string value is read. Your default matches, and `X_CRITERIA_NOT_I_JSON` as a note outside the outcome fields is consistent with it. Profile 1.4.12 states this in step 4, and vectors 127 (U+FFFE in a string value) and 128 (U"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "babyblueviper1",
-   "at": "2026-11-10T17:12:41Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6773980930",
-   "text": "Profile 1.4.12 (5f7517a): our clean-room checker, unchanged since 1.4.11, agrees with all 128 vectors, including 127 and 128. Run and inputs: https://github.com/babyblueviper1/preaction-governance-conformance/blob/e9e2787f3c3499424e312e2933e1ebc83f80fa8c/examples/work-acceptance-record-cold/upstream_vectors_5f7517a_128_run.txt"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "robertolocatelli81-dev",
-   "at": "2026-11-10T21:11:47Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6779379335",
-   "text": "@maximusrufus, thank you for settling Q36-Q38 and for adding the row. war-verify 0.12.0, unchanged ([`6df465c`](https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/tree/6df465c4fca4889178a949f8194d340651a1f314), `war_verify.py` byte-identical to `ba53b5d`), on vectors 01-128 at `5f7517a` with the live record: 129/129 documents, 1175/1175 fields under the default options. 127 and 128 are read with no problem and carry the note `X_CRITERIA_NOT_I_JSON` outside the outcome fields; `--criteria-noncharacters unreadable` makes both `CRITERIA_UNREADABLE` (127/129), as a check that th"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "nonlinearity",
-   "at": "2026-11-10T22:43:20Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6781333569",
-   "text": "@maximusrufus the war/1.2 result, as promised. Our TypeScript checker now runs war/1.2 as a second subject profile, implemented from your COMPOSITION.md at `8ce7f42`: [conformance/composition/war-1.2](https://github.com/CNSLabs/x402-acceptance-record/tree/491bd6b9e858993aa4f7d58188d324a67eb77991/conformance/composition/war-1.2).\n\n- **C01 to C16:** 15 of 16 agree with your `expect`, and your `check.py` passes 16 of 16 on the same files. The one difference is C05, the case your vector note and section 5.1 predict: a work record named under `x402ev/1` is `profile_unavailable` from your checker, w"
-  },
-  {
-   "item": "Composable-Evidence-Criteria/action-ref-conformance#10",
-   "type": "comment",
-   "author": "kenneives",
-   "at": "2026-11-10T23:52:38Z",
-   "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10#issuecomment-6782600274",
-   "text": "Hi, I'm listed as a CEC committer but don't have write access on this repo yet. Could you add me (kenneives)? Then I can help move #10 along. Thanks!"
-  },
-  {
-   "item": "crewAIInc/crewAI#5802",
-   "type": "comment",
-   "author": "giskard09",
-   "at": "2026-11-10T15:05:24Z",
-   "url": "https://github.com/crewAIInc/crewAI/issues/5802#issuecomment-6770856822",
-   "title": "Tool re-execution on task retry has no idempotency guard \u2014 duplicate payments, emails, trades possible",
-   "text": "@zambodotdev Ran it against the chained form. Results below, all from the public URLs only.\n\nWhat recomputes:\n- Claim receipt `00e7981d`: SHA-256 of the decoded `canonical_bytes` equals `output_hash` (`f52c18db\u20263f86`).\n- Second receipt `bbda9076`: same check passes (`bf4f0984\u20264a85`).\n- Workflow `9fb1b760`: `merkle_root` recomputes under `seq-output-v1` per your \u00a78.1, leaves `sha256(\"<seq>:<output_hash>\")` with seq from 1 (`3704a838\u2026f854`).\n\nWhat I could not confirm:\n\n1. The claim text is not under any commitment I can recompute. The canonical bytes of `00e7981d` are a `prompt_shield` output (`",
-   "source": "user:giskard09"
-  },
-  {
-   "item": "giskard09/argentum-core#157",
-   "type": "new_pr",
-   "author": "giskard09",
-   "at": "2026-11-10T15:15:00Z",
-   "title": null,
-   "url": null,
-   "source": "user:giskard09"
-  },
-  {
-   "item": "giskard09/checkpoint-producer-binding-ref-anchor#3",
-   "type": "new_pr",
-   "author": "giskard09",
-   "at": "2026-11-10T15:19:33Z",
-   "title": null,
-   "url": null,
-   "source": "user:giskard09"
-  },
-  {
-   "item": "coinbase/agentkit#1141",
-   "type": "comment",
-   "author": "giskard09",
-   "at": "2026-11-10T15:31:07Z",
-   "url": "https://github.com/coinbase/agentkit/issues/1141#issuecomment-6771500291",
-   "title": "RFC: Opt-in policy hook for AgentKit action execution (budget / risk providers like Cycles)",
-   "text": "@osr21 Reproduced and fixed, merged in giskard09/checkpoint-producer-binding-ref-anchor#3 (https://github.com/giskard09/checkpoint-producer-binding-ref-anchor/commit/960fc8569cae1822d40a0db0a9c576aa6a4147c3). Credit is yours for the observation and for checking ASCII before case normalization.\n\nWhat changed: `_operator_id` now trims only ASCII space/tab, rejects non-ASCII input, then lowercases. A non-ASCII ID contributes zero operator votes. One side effect of the narrower trim: an ID with a trailing newline was accepted before and is now invalid.\n\nYour cases, run against `d74174a` and agains",
-   "source": "user:giskard09"
-  },
-  {
-   "item": "yzhao062/awesome-auditable-ai#56",
-   "type": "new_pr",
-   "author": "giskard09",
-   "at": "2026-11-10T15:43:31Z",
-   "title": null,
-   "url": null,
-   "source": "user:giskard09"
-  },
-  {
-   "item": "giskard09/checkpoint-producer-binding-ref-anchor#4",
-   "type": "new_issue",
-   "author": "giskard09",
-   "at": "2026-11-10T16:45:43Z",
-   "title": "Versioned operator-ID format (slug rules, explicit aliases, format version in output)",
-   "url": "https://github.com/giskard09/checkpoint-producer-binding-ref-anchor/issues/4",
-   "source": "user:giskard09"
-  }
- ],
+ "checked_at": "2026-11-11T12:52:41+00:00",
+ "previous_check": "2026-11-11T05:57:50+00:00",
+ "changes": [],
  "failures": [],
  "summary": {
   "LF-Decentralized-Trust/lab-proposals#2": {
@@ -198,7 +93,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-11T05:57:50+00:00",
+   "checked": "2026-11-11T12:52:41+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
