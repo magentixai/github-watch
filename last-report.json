@@ -1,7 +1,136 @@
 {
- "checked_at": "2026-11-11T12:52:41+00:00",
- "previous_check": "2026-11-11T05:57:50+00:00",
- "changes": [],
+ "checked_at": "2026-11-12T05:55:54+00:00",
+ "previous_check": "2026-11-11T12:52:41+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "XFuel-Lab",
+   "at": "2026-11-11T14:29:38Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6798531098",
+   "text": "+1 to answering the scope question with a yes and starting phase one as scoped, whether as its own group or inside the Identity WG charter: record shape, canonical bytes, shared vectors, with adjudication and enforcement downstream.\n\nTwo things from running an append-only receipt log we'd want the WG to pin down early:\n\n1. Completeness needs an existence bound the issuer doesn't control. An inclusion proof under a root anchored somewhere public shows a record existed by that point. It does not show the key wasn't already compromised. #4199 draws that line well (`issuedAt` is signer-stated, evi"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-12T04:38:13Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6814688704",
+   "text": "A second data point for the dispute layer, from the escrow side rather than the notary side. We run a testnet reference (Base Sepolia only, test USDC, early) where payment doesn't go to the seller at settlement: it goes into an escrow contract and is released on a staked evaluator's verdict. If the verdict is \"not delivered\", or nobody rules before the deadline, the buyer is refunded; a challenged verdict that gets overturned slashes the evaluator's stake. The seller is paid only after a third party says it was delivered.\n\nEach order ends in a signed receipt any party can check offline. Live e"
+  },
+  {
+   "item": "Composable-Evidence-Criteria/governance#2",
+   "type": "state",
+   "from": "open",
+   "to": "merged",
+   "url": "https://github.com/Composable-Evidence-Criteria/governance/pull/2"
+  },
+  {
+   "item": "Composable-Evidence-Criteria/governance#2",
+   "type": "comment",
+   "author": "clowarden[bot]",
+   "at": "2026-11-11T13:54:37Z",
+   "url": "https://github.com/Composable-Evidence-Criteria/governance/pull/2#issuecomment-6797711861",
+   "text": "## Validation succeeded\n\n#### \u2705 The proposed configuration changes are valid!\n\n## Configuration changes\n\n### Directory\n    \n- team **re-maintainers** has been *removed*\n- team **cec-maintainers** has been *added*\n\t- Maintainers\n\t\t- **giskard09**\n\t- Members\n\t\t- **azender1**\n\t\t- **kenneives**\n\t\t- **magentixai**\n  \n### Github\n      \n- repository **action-ref-conformance** has been *added* (visibility: **public**)\n\t- Teams\n\t\t- **cec-maintainers**: *maintain*\n\t\t- **lfdt-staff**: *maintain*\n- team **re-maintainers** has been *removed* from repository **.github**\n- team **cec-maintainers** has been *"
+  },
+  {
+   "item": "Composable-Evidence-Criteria/governance#2",
+   "type": "comment",
+   "author": "clowarden[bot]",
+   "at": "2026-11-11T13:56:08Z",
+   "url": "https://github.com/Composable-Evidence-Criteria/governance/pull/2#issuecomment-6797746573",
+   "text": "## Reconciliation completed\n\n#### \u2705 The reconciliation completed successfully and all changes have been applied across the services!\n\n## Changes applied\n    \n### Github\n\n- team **re-maintainers** has been *removed*\n- team **cec-maintainers** has been *added*\n\t- Maintainers\n\t\t- **giskard09**\n\t- Members\n\t\t- **azender1**\n\t\t- **kenneives**\n\t\t- **magentixai**\n- team **cec-maintainers** has been *added* to repository **.github** (role: **maintain**)\n- team **lfdt-staff** has been *added* to repository **action-ref-conformance** (role: **maintain**)\n- team **cec-maintainers** has been *added* to repo"
+  },
+  {
+   "item": "Composable-Evidence-Criteria/governance",
+   "type": "ref_moved",
+   "ref": "refs/heads/main",
+   "from": "6a2532c",
+   "to": "709573d",
+   "commits": [
+    {
+     "sha": "709573d",
+     "author": "ryjones",
+     "at": "2026-09-30T08:31:12Z",
+     "msg": "Update team names add repo"
+    }
+   ],
+   "files": [
+    {
+     "file": "teams.yaml",
+     "status": "modified"
+    }
+   ],
+   "url": "https://github.com/Composable-Evidence-Criteria/governance/compare/6a2532c25997ce9fbcb677ff92614bbaa39ddf2b...709573d0f30d822e7f272d602033e58f32950e1b"
+  },
+  {
+   "item": "Composable-Evidence-Criteria/governance:teams.yaml",
+   "type": "file_changed",
+   "from": "ec2793a",
+   "to": "7d9961c",
+   "url": "https://github.com/Composable-Evidence-Criteria/governance/blob/709573d/teams.yaml",
+   "diff": {
+    "added": 14,
+    "removed": 6,
+    "lines": [
+     "+  - name: cec-maintainers",
+     "+    maintainers:",
+     "+      - giskard09",
+     "+    members:",
+     "+      - azender1",
+     "+      - kenneives",
+     "+      - magentixai",
+     "-  - name: re-maintainers",
+     "-    maintainers:",
+     "-      - giskard09",
+     "-    members: []",
+     "-      re-maintainers: maintain",
+     "+      cec-maintainers: maintain",
+     "+    visibility: public",
+     "+  - name: action-ref-conformance",
+     "+    teams:",
+     "+      lfdt-staff: maintain",
+     "+      cec-maintainers: maintain",
+     "-      re-maintainers: maintain",
+     "+      cec-maintainers: maintain"
+    ]
+   }
+  },
+  {
+   "item": "Composable-Evidence-Criteria/action-ref-conformance#10",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-11T13:44:36Z",
+   "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10#issuecomment-6797481064",
+   "text": "@kenneives thanks for asking. You're listed as an initial committer in GOVERNANCE.md, and write access here is administered by LFDT, so we can't grant it from our side. The path I can see is governance#2 (ryjones, draft since Sept 30), which adds you to `cec-maintainers` with maintain on this repo.\n\n@ryjones, is governance#2 ready to move out of draft? It looks like it would cover this.\n"
+  },
+  {
+   "item": "Composable-Evidence-Criteria/action-ref-conformance#10",
+   "type": "comment",
+   "author": "kenneives",
+   "at": "2026-11-11T17:13:07Z",
+   "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10#issuecomment-6802331914",
+   "text": "Thanks @giskard09. governance#2 merged today, so I have maintain here now. #10 has two committer reruns from the published bytes at 2aba46b (yours and mine, both 27 October, both 10/10). @magentixai, before it merges, could you update the pair README's status line and Runs table to record those two runs? Rule 2 asks each case to say which runs were independent, and the table still reads \"pending\". Once that's pushed, and the only change is the README, I'll merge it unless anyone objects.\n"
+  },
+  {
+   "item": "Composable-Evidence-Criteria/action-ref-conformance#10",
+   "type": "comment",
+   "author": "ryjones",
+   "at": "2026-11-11T19:50:20Z",
+   "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10#issuecomment-6805731924",
+   "text": "> @kenneives thanks for asking. You're listed as an initial committer in GOVERNANCE.md, and write access here is administered by LFDT, so we can't grant it from our side. The path I can see is governance#2 (ryjones, draft since Sept 30), which adds you to `cec-maintainers` with maintain on this repo.\r\n> \r\n> @ryjones, is governance#2 ready to move out of draft? It looks like it would cover this.\r\n\r\nmerged!"
+  },
+  {
+   "item": "coinbase/agentkit#1141",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-11T14:14:34Z",
+   "url": "https://github.com/coinbase/agentkit/issues/1141#issuecomment-6798168522",
+   "title": "RFC: Opt-in policy hook for AgentKit action execution (budget / risk providers like Cycles)",
+   "text": "@osr21 Fixtures for the newline cases are in giskard09/checkpoint-producer-binding-ref-anchor@43643cb (tests only; `rpc_quorum.py` is byte-identical to 960fc85).\n\nRun against 960fc85: IDs with a trailing LF, CRLF or CR, a leading LF, embedded LF/CRLF, a doubled terminator, VT, FF, NUL, U+0085 and U+2028 all give no operator ID, zero votes and the existing reason `operator_identity_unknown`. `_operator_id` still trims only ASCII space and tab, so nothing was loosened. The non-ASCII cases (Stra\u00dfe, Kelvin sign, \u00e1, fullwidth p, NBSP, dotless \u0131, zero-width space) behave the same, and provider.a + p",
+   "source": "user:giskard09"
+  }
+ ],
  "failures": [],
  "summary": {
   "LF-Decentralized-Trust/lab-proposals#2": {
@@ -41,13 +170,13 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 286,
-   "updated_at": "2026-11-10T22:43:20Z",
+   "comments": 287,
+   "updated_at": "2026-11-11T14:29:38Z",
    "last_comment": {
-    "author": "nonlinearity",
-    "at": "2026-11-10T22:43:20Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6781333569",
-    "text": "@maximusrufus the war/1.2 result, as promised. Our TypeScript checker now runs war/1.2 as a second subject profile, implemented from your COMPOSITION.md at `8ce7f42`: [conformance/composition/war-1.2](https://github.com/CNSLabs/x402-acceptance-record/tree/491bd6b9e858993aa4f7d58188d324a67eb77991/conformance/composition/war-1.2).\n\n- **C01 to C16:** 15 of 16 agree with your `expect`, and your `check.py` passes 16 of 16 on the same files. The one difference is C05, the case your vector note and section 5.1 predict: a work record named under `x402ev/1` is `profile_unavailable` from your checker, w"
+    "author": "XFuel-Lab",
+    "at": "2026-11-11T14:29:38Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6798531098",
+    "text": "+1 to answering the scope question with a yes and starting phase one as scoped, whether as its own group or inside the Identity WG charter: record shape, canonical bytes, shared vectors, with adjudication and enforcement downstream.\n\nTwo things from running an append-only receipt log we'd want the WG to pin down early:\n\n1. Completeness needs an existence bound the issuer doesn't control. An inclusion proof under a root anchored somewhere public shows a record existed by that point. It does not show the key wasn't already compromised. #4199 draws that line well (`issuedAt` is signer-stated, evi"
    }
   },
   "x402-foundation/x402#2887": {
@@ -55,13 +184,13 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 141,
-   "updated_at": "2026-10-24T00:19:28Z",
+   "comments": 142,
+   "updated_at": "2026-11-12T04:38:13Z",
    "last_comment": {
-    "author": "babyblueviper1",
-    "at": "2026-10-24T00:19:27Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6377422801",
-    "text": "@Tetsurohhori thanks. I ran `jcs-number-vectors` at `40b2129` against the canonicalizer our live issuer signs with (the deployed `jcs`/`es_number` from `dc4e1094`, fed each double from its bits): **1001/1001**. So is the `rfc8785` 0.1.4 package our other production signers import. The production path agrees, not only the checker."
+    "author": "kemppelinvestments-del",
+    "at": "2026-11-12T04:38:13Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6814688704",
+    "text": "A second data point for the dispute layer, from the escrow side rather than the notary side. We run a testnet reference (Base Sepolia only, test USDC, early) where payment doesn't go to the seller at settlement: it goes into an escrow contract and is released on a staked evaluator's verdict. If the verdict is \"not delivered\", or nobody rules before the deadline, the buyer is refunded; a challenged verdict that gets overturned slashes the evaluator's stake. The seller is paid only after a third party says it was delivered.\n\nEach order ends in a signed receipt any party can check offline. Live e"
    }
   },
   "x402-foundation/x402#3220": {
@@ -93,7 +222,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-11T12:52:41+00:00",
+   "checked": "2026-11-12T05:55:54+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -113,22 +242,14 @@
   },
   "Composable-Evidence-Criteria/governance": {
    "main_latest": {
-    "sha": "6a2532c",
-    "at": "2026-09-24T10:28:39Z",
-    "msg": "Add maintainers"
+    "sha": "709573d",
+    "at": "2026-09-30T08:31:12Z",
+    "msg": "Update team names add repo"
    },
    "files": {
-    "teams.yaml": "ec2793a"
+    "teams.yaml": "7d9961c"
    },
-   "open": {
-    "2": {
-     "title": "Update team names add repo",
-     "pr": true,
-     "comments": 0,
-     "author": "ryjones",
-     "url": "https://github.com/Composable-Evidence-Criteria/governance/pull/2"
-    }
-   },
+   "open": {},
    "issues_tracked": 2
   },
   "Composable-Evidence-Criteria/action-ref-conformance": {
@@ -144,7 +265,7 @@
     "10": {
      "title": "pairs/0001: x402 authority mandate (#3220 at 72c3704) with an AXES correlation record",
      "pr": true,
-     "comments": 3,
+     "comments": 6,
      "author": "magentixai",
      "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10"
     },
@@ -195,7 +316,7 @@
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-11-10T16:45:43Z"
+   "latest_event": "2026-11-11T14:14:34Z"
   }
  },
  "first_run": false
