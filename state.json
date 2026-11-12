@@ -646,10 +646,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-12T05:55:54+00:00",
+ "last_checked": "2026-11-12T13:55:05+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-12T05:55:54+00:00",
+   "checked": "2026-11-12T13:55:05+00:00",
    "items": {
     "23": {
      "title": "Publish the -00 build in ietf/ and explain it in the READMEs",
