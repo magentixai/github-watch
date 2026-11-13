@@ -93,7 +93,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 287,
+   "comments": 288,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -381,14 +381,15 @@
     6773980930,
     6779379335,
     6781333569,
-    6798531098
+    6798531098,
+    6853868251
    ],
-   "updated_at": "2026-11-11T14:29:38Z",
+   "updated_at": "2026-11-13T13:08:39Z",
    "last_comment": {
-    "author": "XFuel-Lab",
-    "at": "2026-11-11T14:29:38Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6798531098",
-    "text": "+1 to answering the scope question with a yes and starting phase one as scoped, whether as its own group or inside the Identity WG charter: record shape, canonical bytes, shared vectors, with adjudication and enforcement downstream.\n\nTwo things from running an append-only receipt log we'd want the WG to pin down early:\n\n1. Completeness needs an existence bound the issuer doesn't control. An inclusion proof under a root anchored somewhere public shows a record existed by that point. It does not show the key wasn't already compromised. #4199 draws that line well (`issuedAt` is signer-stated, evi"
+    "author": "actaseal",
+    "at": "2026-11-13T13:08:39Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6853868251",
+    "text": "@maximusrufus a rerun of the clean-room checker on profile 1.4.12, vectors 01-130 at b56d959. Written from README steps 2, 4, 8 and 12 only; the reference verifier, interop/, composition/ and other checkers were not opened. Python stdlib, no network.\n\nThe checker frozen for 1.4.4 (37adea2), unchanged: 117/130. The 13 that differ are each a rule added after 1.4.4: R as a prime-order point (116), CRITERIA_UNREADABLE (117, 118, 121-124, 126, 130), and relying-party keys (110, 112, 114, 115). 130 (a raw control character) came out as CRITERIA_RESULTS_MISMATCH instead of unreadable.\nUpdated from th"
    }
   },
   "x402-foundation/x402#2887": {
@@ -646,10 +647,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-13T05:57:42+00:00",
+ "last_checked": "2026-11-13T13:19:25+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-13T05:57:42+00:00",
+   "checked": "2026-11-13T13:19:25+00:00",
    "items": {
     "23": {
      "title": "Publish the -00 build in ietf/ and explain it in the READMEs",

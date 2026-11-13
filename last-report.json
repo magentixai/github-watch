@@ -1,26 +1,14 @@
 {
- "checked_at": "2026-11-13T05:57:42+00:00",
- "previous_check": "2026-11-12T13:55:05+00:00",
+ "checked_at": "2026-11-13T13:19:25+00:00",
+ "previous_check": "2026-11-13T05:57:42+00:00",
  "changes": [
   {
-   "item": "circlefin/arc-usdc-borrowing#21",
+   "item": "x402-foundation/tsc#4",
    "type": "comment",
-   "author": "giskard09",
-   "at": "2026-11-12T23:18:17Z",
-   "url": "https://github.com/circlefin/arc-usdc-borrowing/issues/21#issuecomment-6838743343",
-   "title": "activityLog's fire-and-forget persistence is the same gap morpho-action-ref-anchor closes upstream",
-   "text": "Thanks @feafel. Going by the diff, #22 fixes the half of this issue that matters most to the person using the app: a failed insert is now marked \"Not saved\" in the panel with a retry action, and the page warns that those calls will be lost on reload.\n\nWhat #22 doesn't add, as its description says, is any external scheme: the record still lives only in the app's own Supabase table, so a third party has nothing to check it against. That doesn't need to be solved here, and #22 is the right size for what it fixes.\n\nNothing to change on our side, and we're not asking for anything.\n",
-   "source": "user:giskard09"
-  },
-  {
-   "item": "dogrucanemek-alt/cedulon#11",
-   "type": "comment",
-   "author": "giskard09",
-   "at": "2026-11-12T23:30:31Z",
-   "url": "https://github.com/dogrucanemek-alt/cedulon/issues/11#issuecomment-6839029984",
-   "title": "Checkpoint chain validates presentation order; window coverage validates epoch order \u2014 neither cross-checks the other",
-   "text": "Thanks, Emek, and for rebuilding it from the description. You're right that nothing was attached: the issue says \"script + fixtures attached\" and I never uploaded them, my mistake. The scenario you used (epochs 3, 1, 2 with links following presentation order) is the one I meant.\n\nI installed 0.17.0 and 0.18.0 in clean folders and built the scenario myself. Presented 3, 1, 2 with presentation-order links: `ok: true` on 0.17.0, `checkpoint-total-mismatch` (`checkpoint-chain-1`, broken-link at 1) on 0.18.0. Links in epoch order, presented 2, 1, 3: broken-link at 0 on 0.17.0, clean on 0.18.0. Same",
-   "source": "user:giskard09"
+   "author": "actaseal",
+   "at": "2026-11-13T13:08:39Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6853868251",
+   "text": "@maximusrufus a rerun of the clean-room checker on profile 1.4.12, vectors 01-130 at b56d959. Written from README steps 2, 4, 8 and 12 only; the reference verifier, interop/, composition/ and other checkers were not opened. Python stdlib, no network.\n\nThe checker frozen for 1.4.4 (37adea2), unchanged: 117/130. The 13 that differ are each a rule added after 1.4.4: R as a prime-order point (116), CRITERIA_UNREADABLE (117, 118, 121-124, 126, 130), and relying-party keys (110, 112, 114, 115). 130 (a raw control character) came out as CRITERIA_RESULTS_MISMATCH instead of unreadable.\nUpdated from th"
   }
  ],
  "failures": [],
@@ -62,13 +50,13 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 287,
-   "updated_at": "2026-11-11T14:29:38Z",
+   "comments": 288,
+   "updated_at": "2026-11-13T13:08:39Z",
    "last_comment": {
-    "author": "XFuel-Lab",
-    "at": "2026-11-11T14:29:38Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6798531098",
-    "text": "+1 to answering the scope question with a yes and starting phase one as scoped, whether as its own group or inside the Identity WG charter: record shape, canonical bytes, shared vectors, with adjudication and enforcement downstream.\n\nTwo things from running an append-only receipt log we'd want the WG to pin down early:\n\n1. Completeness needs an existence bound the issuer doesn't control. An inclusion proof under a root anchored somewhere public shows a record existed by that point. It does not show the key wasn't already compromised. #4199 draws that line well (`issuedAt` is signer-stated, evi"
+    "author": "actaseal",
+    "at": "2026-11-13T13:08:39Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6853868251",
+    "text": "@maximusrufus a rerun of the clean-room checker on profile 1.4.12, vectors 01-130 at b56d959. Written from README steps 2, 4, 8 and 12 only; the reference verifier, interop/, composition/ and other checkers were not opened. Python stdlib, no network.\n\nThe checker frozen for 1.4.4 (37adea2), unchanged: 117/130. The 13 that differ are each a rule added after 1.4.4: R as a prime-order point (116), CRITERIA_UNREADABLE (117, 118, 121-124, 126, 130), and relying-party keys (110, 112, 114, 115). 130 (a raw control character) came out as CRITERIA_RESULTS_MISMATCH instead of unreadable.\nUpdated from th"
    }
   },
   "x402-foundation/x402#2887": {
@@ -114,7 +102,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-13T05:57:42+00:00",
+   "checked": "2026-11-13T13:19:25+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
