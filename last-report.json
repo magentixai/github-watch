@@ -1,7 +1,28 @@
 {
- "checked_at": "2026-11-12T13:55:05+00:00",
- "previous_check": "2026-11-12T05:55:54+00:00",
- "changes": [],
+ "checked_at": "2026-11-13T05:57:42+00:00",
+ "previous_check": "2026-11-12T13:55:05+00:00",
+ "changes": [
+  {
+   "item": "circlefin/arc-usdc-borrowing#21",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-12T23:18:17Z",
+   "url": "https://github.com/circlefin/arc-usdc-borrowing/issues/21#issuecomment-6838743343",
+   "title": "activityLog's fire-and-forget persistence is the same gap morpho-action-ref-anchor closes upstream",
+   "text": "Thanks @feafel. Going by the diff, #22 fixes the half of this issue that matters most to the person using the app: a failed insert is now marked \"Not saved\" in the panel with a retry action, and the page warns that those calls will be lost on reload.\n\nWhat #22 doesn't add, as its description says, is any external scheme: the record still lives only in the app's own Supabase table, so a third party has nothing to check it against. That doesn't need to be solved here, and #22 is the right size for what it fixes.\n\nNothing to change on our side, and we're not asking for anything.\n",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "dogrucanemek-alt/cedulon#11",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-12T23:30:31Z",
+   "url": "https://github.com/dogrucanemek-alt/cedulon/issues/11#issuecomment-6839029984",
+   "title": "Checkpoint chain validates presentation order; window coverage validates epoch order \u2014 neither cross-checks the other",
+   "text": "Thanks, Emek, and for rebuilding it from the description. You're right that nothing was attached: the issue says \"script + fixtures attached\" and I never uploaded them, my mistake. The scenario you used (epochs 3, 1, 2 with links following presentation order) is the one I meant.\n\nI installed 0.17.0 and 0.18.0 in clean folders and built the scenario myself. Presented 3, 1, 2 with presentation-order links: `ok: true` on 0.17.0, `checkpoint-total-mismatch` (`checkpoint-chain-1`, broken-link at 1) on 0.18.0. Links in epoch order, presented 2, 1, 3: broken-link at 0 on 0.17.0, clean on 0.18.0. Same",
+   "source": "user:giskard09"
+  }
+ ],
  "failures": [],
  "summary": {
   "LF-Decentralized-Trust/lab-proposals#2": {
@@ -93,7 +114,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-12T13:55:05+00:00",
+   "checked": "2026-11-13T05:57:42+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -187,7 +208,7 @@
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-11-11T14:14:34Z"
+   "latest_event": "2026-11-12T23:30:31Z"
   }
  },
  "first_run": false
