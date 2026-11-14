@@ -1,16 +1,7 @@
 {
- "checked_at": "2026-11-13T13:19:25+00:00",
- "previous_check": "2026-11-13T05:57:42+00:00",
- "changes": [
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "actaseal",
-   "at": "2026-11-13T13:08:39Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6853868251",
-   "text": "@maximusrufus a rerun of the clean-room checker on profile 1.4.12, vectors 01-130 at b56d959. Written from README steps 2, 4, 8 and 12 only; the reference verifier, interop/, composition/ and other checkers were not opened. Python stdlib, no network.\n\nThe checker frozen for 1.4.4 (37adea2), unchanged: 117/130. The 13 that differ are each a rule added after 1.4.4: R as a prime-order point (116), CRITERIA_UNREADABLE (117, 118, 121-124, 126, 130), and relying-party keys (110, 112, 114, 115). 130 (a raw control character) came out as CRITERIA_RESULTS_MISMATCH instead of unreadable.\nUpdated from th"
-  }
- ],
+ "checked_at": "2026-11-14T05:58:24+00:00",
+ "previous_check": "2026-11-13T13:19:25+00:00",
+ "changes": [],
  "failures": [],
  "summary": {
   "LF-Decentralized-Trust/lab-proposals#2": {
@@ -102,7 +93,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-13T13:19:25+00:00",
+   "checked": "2026-11-14T05:58:24+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
