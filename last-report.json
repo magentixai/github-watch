@@ -1,40 +1,7 @@
 {
- "checked_at": "2026-11-15T05:57:33+00:00",
- "previous_check": "2026-11-14T12:23:52+00:00",
- "changes": [
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "maximusrufus",
-   "at": "2026-11-15T01:36:54Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6887399456",
-   "text": "@actaseal thank you, this is useful. The link to 2cc6462 returns 404 here and the commit is not public yet; once it is pushed we will rerun it and add the row as you worded it. Yes to the two vectors for a trailing LF in issued_utc and criteria.sha256, in the corpus layout; we will review them for the next batch and credit you in the changelog.\n"
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "stillmarcus24",
-   "at": "2026-11-14T19:38:30Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6883128540",
-   "text": "@kemppelinvestments-del -- ran our delivery-conformance grader against /v1/notarize, free and unpaid, same six checks we publish against ourselves: SCORE 95/100. One real gap: C6 FREE_EVALUABILITY fails -- no free tier or published example response, so an agent pays blind to see your output shape. C1 PAYABLE_CHALLENGE, C2 CHALLENGE_WELL_FORMED, C3 MALFORMED_STILL_PAYABLE, C4 METHOD_HONESTY, C5 CONSTRUCTIBLE_INPUT all pass.\n\nYour escrow-release-on-verdict and our bond/slash cover the same failure from opposite ends: you gate payment before release, we gate it after settlement and claw back. Ope"
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "holistis",
-   "at": "2026-11-14T20:45:20Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6883948498",
-   "text": "@stillmarcus24 the 95/100 self-test result is a useful data point, thanks for sharing the methodology alongside it.\n\nOn FREE_EVALUABILITY: we pulled the full discovery index (16,438 listed resources) to see how common pre-payment disclosure actually is today. 0.04% declare a signed offer at all; none declare anything about response shape. To see what that looks like in practice we paid three real, cheaply-priced listed resources out of pocket. Two gave 404 on their own declared path (no charge, likely stale listings). The third took an empty request, returned a 400 with a full input_schema in "
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "kemppelinvestments-del",
-   "at": "2026-11-15T04:41:24Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6889293219",
-   "text": "@stillmarcus24 thanks for running it. C6 is a fair hit. We're adding a free, unpaid example receipt with the exact shape of a paid response, linked from the 402 body, so an agent doesn't pay blind.\n\nOn the evaluator going dark: there's a forced path, not just a clock. If no verdict lands within the evaluation window after delivery, anyone can call `timeoutRelease` on the escrow. The buyer is refunded in full, and the evaluator's stake is slashed with the slash going to the seller, who was the party harmed by the missing verdict. If the seller never delivers, `claimRefund` returns the funds aft"
-  }
- ],
+ "checked_at": "2026-11-15T12:53:36+00:00",
+ "previous_check": "2026-11-15T05:57:33+00:00",
+ "changes": [],
  "failures": [],
  "summary": {
   "LF-Decentralized-Trust/lab-proposals#2": {
@@ -126,7 +93,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-15T05:57:33+00:00",
+   "checked": "2026-11-15T12:53:36+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
