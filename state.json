@@ -398,7 +398,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 145,
+   "comments": 154,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -544,14 +544,23 @@
     6814688704,
     6883128540,
     6883948498,
-    6889293219
+    6889293219,
+    6896812678,
+    6898092741,
+    6898239173,
+    6898349892,
+    6899220878,
+    6899839870,
+    6900336033,
+    6900408291,
+    6904596245
    ],
-   "updated_at": "2026-11-15T04:41:24Z",
+   "updated_at": "2026-11-16T01:13:39Z",
    "last_comment": {
-    "author": "kemppelinvestments-del",
-    "at": "2026-11-15T04:41:24Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6889293219",
-    "text": "@stillmarcus24 thanks for running it. C6 is a fair hit. We're adding a free, unpaid example receipt with the exact shape of a paid response, linked from the 402 body, so an agent doesn't pay blind.\n\nOn the evaluator going dark: there's a forced path, not just a clock. If no verdict lands within the evaluation window after delivery, anyone can call `timeoutRelease` on the escrow. The buyer is refunded in full, and the evaluator's stake is slashed with the slash going to the seller, who was the party harmed by the missing verdict. If the seller never delivers, `claimRefund` returns the funds aft"
+    "author": "babyblueviper1",
+    "at": "2026-11-16T01:13:39Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6904596245",
+    "text": "@kemppelinvestments-del the evaluator address is live: `0xB87b0d6AD3B17A8a1795d6640317c7997140d140`, under `evaluators` in [`/.well-known/invinoveritas-checker-keys.json`](https://api.babyblueviper.com/.well-known/invinoveritas-checker-keys.json).\n\nThe entry carries a binding statement signed by both keys: Ed25519 with the checker key that signs the acceptance records, and EIP-191 with the evaluator address. Anyone can confirm offline that the address posting a verdict and the key signing the record are the same checker. Each `verdict` will set `reasonHash` to the record's `receipt_sha256`.\n\nF"
    }
   },
   "x402-foundation/x402#3220": {
@@ -651,10 +660,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-15T12:53:36+00:00",
+ "last_checked": "2026-11-16T05:56:48+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-15T12:53:36+00:00",
+   "checked": "2026-11-16T05:56:48+00:00",
    "items": {
     "23": {
      "title": "Publish the -00 build in ietf/ and explain it in the READMEs",
@@ -950,10 +959,10 @@
      "title": "pairs/0001: x402 authority mandate (#3220 at 72c3704) with an AXES correlation record",
      "state": "open",
      "pr": true,
-     "comments": 6,
+     "comments": 8,
      "author": "magentixai",
      "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10",
-     "updated_at": "2026-11-11T19:50:20Z"
+     "updated_at": "2026-11-16T04:48:05Z"
     },
     "9": {
      "title": "draft-etcheverry-action-ref-04 published \u2014 Implementation Status section names this lab and AXES",
@@ -1072,6 +1081,9 @@
     6797481064,
     6802331914,
     6805731924,
+    6897101964,
+    6897152078,
+    5912385778,
     5575147447,
     5576576581,
     5443489549,
@@ -1093,6 +1105,21 @@
  },
  "user_events": {
   "giskard09": [
+   "27310345341",
+   "27298905969",
+   "20218923160",
+   "20218821435",
+   "20218514319",
+   "20218340610",
+   "20214058997",
+   "20202936829",
+   "27264549847",
+   "27264422447",
+   "20188458952",
+   "20188307199",
+   "20188060706",
+   "20186357987",
+   "20183913920",
    "19956858054",
    "19955902111",
    "19914787875",
@@ -1177,22 +1204,7 @@
    "26172705053",
    "19139773163",
    "19111755594",
-   "19110075756",
-   "19109254808",
-   "19109239864",
-   "26122775545",
-   "26059840956",
-   "26055289161",
-   "19019047675",
-   "19018318226",
-   "19009115391",
-   "26043195065",
-   "18992984721",
-   "18991828748",
-   "26029138620",
-   "26015582144",
-   "26012698521",
-   "18952863895"
+   "19110075756"
   ]
  }
 }
