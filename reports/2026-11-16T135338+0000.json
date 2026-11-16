@@ -1,0 +1,236 @@
+{
+ "checked_at": "2026-11-16T13:53:38+00:00",
+ "previous_check": "2026-11-16T05:56:48+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-11-16T10:04:03Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6913338085",
+   "text": "@kemppelinvestments-del thanks for the test funds. The evaluator is now staked at the registry minimum (2.00 USDC on Base Sepolia, [tx](https://sepolia.basescan.org/tx/0x45d2d0ea9779861f21d846359cd98877457679b94a636cc0df1ed57e52274fca)), so it can take job 1. Post the job and its acceptance criteria, and the verdict will go on-chain with the `receipt_sha256` of the signed acceptance record it is based on, so anyone can check the verdict against the record offline."
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "payload-tools",
+   "at": "2026-11-16T12:05:41Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6915922637",
+   "text": "The verdict function makes the gap concrete. On a Partial outcome, payoutBps sets how much is released and reasonHash can point back to the acceptance record, but neither checks the percentage against the entitlement it is supposed to reflect. If the percentage were tied to an entitlement record fixed before payment, the escrow would have something to verify the number against, not just somewhere to store it."
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-16T12:27:14Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6916396885",
+   "text": "@payload-tools agreed, that's a real gap. Today `payoutBps` on a Partial outcome is trusted as the evaluator's number, and `reasonHash` only lets anyone check it afterwards against the signed acceptance record. The escrow doesn't check it on-chain.\n\nThe fix we're looking at is committing a payout schedule at funding time: a hash of the criteria plus the allowed `payoutBps` for each outcome, stored on the job. `verdict` would then reject any percentage that doesn't match the schedule for the outcome the record gives. It fits with what @babyblueviper1 is already doing (criteria committed before "
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-16T12:41:34Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6916707384",
+   "text": "@babyblueviper1 job 1 is set up on Base Sepolia, in your order:\n\n1. Criteria committed first: `d2443e89c9b17a10111f68c6c649698bc41e65c67798e0de7d03cdc3502c4dec` ([fetch](https://api.babyblueviper.com/work-acceptance/criteria/d2443e89c9b17a10111f68c6c649698bc41e65c67798e0de7d03cdc3502c4dec)). The job's on-chain `specHash` is the same value.\n2. Then funded: **jobId 29** on JobEscrow `0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D`, 1 test USDC, evaluator `0xB87b0d6AD3B17A8a1795d6640317c7997140d140`, deadline 2026-11-23 12:37 UTC ([tx](https://sepolia.basescan.org/tx/0xe11fa7544fdba18c994f101c8f6a152"
+  },
+  {
+   "item": "giskard09/argentum-core#164",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-16T13:47:31Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  }
+ ],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 6,
+   "updated_at": "2026-10-20T15:06:35Z",
+   "last_comment": {
+    "author": "source-origin",
+    "at": "2026-10-20T15:06:34Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-6294062372",
+    "text": "Tymofii,\r\n\r\nYou closed the loop on two questions in the same thread, and you gave us a\r\ndistinction we have since used more than anything else from that exchange:\r\n*reference by pin, not host*, with criteria marked as authored judgment rather\r\nthan recomputed fact.\r\n\r\nWe used it and did not tell you. Nineteen days. Sorry.\r\n\r\n**Where it landed.** Our rubric header now carries two separate lines, because\r\nyour distinction made it obvious that one line was a lie:\r\n\r\n- `criteria_version` + `pinned_commit` \u2014 what was applied, and the exact bytes\r\n  it was applied from. If the criteria move, the pin"
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 289,
+   "updated_at": "2026-11-15T01:36:55Z",
+   "last_comment": {
+    "author": "maximusrufus",
+    "at": "2026-11-15T01:36:54Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6887399456",
+    "text": "@actaseal thank you, this is useful. The link to 2cc6462 returns 404 here and the commit is not public yet; once it is pushed we will rerun it and add the row as you worded it. Yes to the two vectors for a trailing LF in issued_utc and criteria.sha256, in the corpus layout; we will review them for the next batch and credit you in the changelog.\n"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 158,
+   "updated_at": "2026-11-16T12:41:34Z",
+   "last_comment": {
+    "author": "kemppelinvestments-del",
+    "at": "2026-11-16T12:41:34Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6916707384",
+    "text": "@babyblueviper1 job 1 is set up on Base Sepolia, in your order:\n\n1. Criteria committed first: `d2443e89c9b17a10111f68c6c649698bc41e65c67798e0de7d03cdc3502c4dec` ([fetch](https://api.babyblueviper.com/work-acceptance/criteria/d2443e89c9b17a10111f68c6c649698bc41e65c67798e0de7d03cdc3502c4dec)). The job's on-chain `specHash` is the same value.\n2. Then funded: **jobId 29** on JobEscrow `0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D`, 1 test USDC, evaluator `0xB87b0d6AD3B17A8a1795d6640317c7997140d140`, deadline 2026-11-23 12:37 UTC ([tx](https://sepolia.basescan.org/tx/0xe11fa7544fdba18c994f101c8f6a152"
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 66,
+   "updated_at": "2026-10-27T21:02:29Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-27T21:02:29Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6453477294",
+    "text": "For reference: presign-guard's mandate check already refuses any payment whose nonce isn't exactly B (MANDATE_BINDING_MISMATCH), so composed slots are rejected today. We'll move our paymentId check to the 16..64 floor once the \u00a76 change lands.\n"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-11-16T13:53:38+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 8,
+   "pushed_at": "2026-11-01T09:58:43Z",
+   "issues_tracked": 21
+  },
+  "Composable-Evidence-Criteria/.github": {
+   "main_latest": {
+    "sha": "9945f2c",
+    "at": "2026-09-30T08:29:38Z",
+    "msg": "Update name"
+   },
+   "files": {},
+   "open": {},
+   "issues_tracked": 0
+  },
+  "Composable-Evidence-Criteria/governance": {
+   "main_latest": {
+    "sha": "709573d",
+    "at": "2026-09-30T08:31:12Z",
+    "msg": "Update team names add repo"
+   },
+   "files": {
+    "teams.yaml": "7d9961c"
+   },
+   "open": {},
+   "issues_tracked": 2
+  },
+  "Composable-Evidence-Criteria/action-ref-conformance": {
+   "main_latest": {
+    "sha": "3164450",
+    "at": "2026-10-07T15:34:40Z",
+    "msg": "Merge pull request #6: GOVERNANCE correct magentixai conflict-of-interest line"
+   },
+   "files": {
+    "GOVERNANCE.md": "05ab3f1"
+   },
+   "open": {
+    "10": {
+     "title": "pairs/0001: x402 authority mandate (#3220 at 72c3704) with an AXES correlation record",
+     "pr": true,
+     "comments": 8,
+     "author": "magentixai",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10"
+    },
+    "9": {
+     "title": "draft-etcheverry-action-ref-04 published \u2014 Implementation Status section names this lab and AXES",
+     "pr": false,
+     "comments": 2,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/9"
+    },
+    "8": {
+     "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
+     "pr": true,
+     "comments": 1,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8"
+    },
+    "7": {
+     "title": "Heads-up: Rama will offer paid conformance-QA engagements on top of this lab's public corpus",
+     "pr": false,
+     "comments": 4,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/7"
+    },
+    "5": {
+     "title": "Lab communications: LFDT newsletter and meetup proposals, and who speaks for the lab",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/5"
+    },
+    "4": {
+     "title": "APS SDK passes the pinned action-ref v1 Action (verify-impl)",
+     "pr": false,
+     "comments": 0,
+     "author": "aeoess",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/4"
+    },
+    "2": {
+     "title": "Lab name: recomputable-evidence is taken, proposed replacement",
+     "pr": false,
+     "comments": 7,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2"
+    }
+   },
+   "issues_tracked": 10
+  },
+  "user:giskard09": {
+   "events_seen": 100,
+   "latest_event": "2026-11-16T13:47:31Z"
+  }
+ },
+ "first_run": false
+}
