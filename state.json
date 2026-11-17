@@ -661,7 +661,7 @@
     6452673523,
     6453477294
    ],
-   "updated_at": "2026-10-27T21:02:29Z",
+   "updated_at": "2026-11-17T12:25:50Z",
    "last_comment": {
     "author": "Fizzl13",
     "at": "2026-10-27T21:02:29Z",
@@ -682,10 +682,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-17T06:01:29+00:00",
+ "last_checked": "2026-11-17T14:45:30+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-17T06:01:29+00:00",
+   "checked": "2026-11-17T14:45:30+00:00",
    "items": {
     "23": {
      "title": "Publish the -00 build in ietf/ and explain it in the READMEs",
