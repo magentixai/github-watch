@@ -398,7 +398,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 158,
+   "comments": 176,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -557,14 +557,32 @@
     6913338085,
     6915922637,
     6916396885,
-    6916707384
+    6916707384,
+    6923526017,
+    6923589058,
+    6923683650,
+    6923702879,
+    6926075787,
+    6926345343,
+    6927660512,
+    6927751604,
+    6927828381,
+    6927934676,
+    6928069893,
+    6928305549,
+    6928469214,
+    6928914178,
+    6929632540,
+    6934182901,
+    6934775996,
+    6935775924
    ],
-   "updated_at": "2026-11-16T12:41:34Z",
+   "updated_at": "2026-11-17T02:10:47Z",
    "last_comment": {
-    "author": "kemppelinvestments-del",
-    "at": "2026-11-16T12:41:34Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6916707384",
-    "text": "@babyblueviper1 job 1 is set up on Base Sepolia, in your order:\n\n1. Criteria committed first: `d2443e89c9b17a10111f68c6c649698bc41e65c67798e0de7d03cdc3502c4dec` ([fetch](https://api.babyblueviper.com/work-acceptance/criteria/d2443e89c9b17a10111f68c6c649698bc41e65c67798e0de7d03cdc3502c4dec)). The job's on-chain `specHash` is the same value.\n2. Then funded: **jobId 29** on JobEscrow `0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D`, 1 test USDC, evaluator `0xB87b0d6AD3B17A8a1795d6640317c7997140d140`, deadline 2026-11-23 12:37 UTC ([tx](https://sepolia.basescan.org/tx/0xe11fa7544fdba18c994f101c8f6a152"
+    "author": "SolomonisBlack",
+    "at": "2026-11-17T02:10:47Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6935775924",
+    "text": "@holistis thank you for running x402toll.com through the full sequence on mainnet, and @babyblueviper1 for the records and the independent recompute.\n\n@babyblueviper1 was right that the response didn't say what `responseHash` covers. Every calculator answer (the per-tool routes, and each computed item of `/v1/batch`) now carries the rule beside the hash, in `provenance.hashRule` (live now; the free `GET /v1/sample/paycheck` shows it without paying):\n\n```json\n{\n  \"formula\": \"\\\"sha256:\\\" + hex(SHA-256(JCS({endpoint, inputs, result, method, dataVintage}))), JCS = RFC 8785\",\n  \"members\": {\n    \"en"
    }
   },
   "x402-foundation/x402#3220": {
@@ -664,10 +682,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-16T13:53:38+00:00",
+ "last_checked": "2026-11-17T06:01:29+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-16T13:53:38+00:00",
+   "checked": "2026-11-17T06:01:29+00:00",
    "items": {
     "23": {
      "title": "Publish the -00 build in ietf/ and explain it in the READMEs",
@@ -961,12 +979,12 @@
    "items": {
     "10": {
      "title": "pairs/0001: x402 authority mandate (#3220 at 72c3704) with an AXES correlation record",
-     "state": "open",
+     "state": "merged",
      "pr": true,
-     "comments": 8,
+     "comments": 9,
      "author": "magentixai",
      "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10",
-     "updated_at": "2026-11-16T04:48:05Z"
+     "updated_at": "2026-11-16T16:43:05Z"
     },
     "9": {
      "title": "draft-etcheverry-action-ref-04 published \u2014 Implementation Status section names this lab and AXES",
@@ -1087,6 +1105,7 @@
     6805731924,
     6897101964,
     6897152078,
+    6922761351,
     5912385778,
     5575147447,
     5576576581,
@@ -1096,11 +1115,11 @@
     5386327852,
     5392631283
    ],
-   "main_sha": "31644500900cc4afbd15f09f7e96c624d7c56921",
+   "main_sha": "b4a70b89963ddc79dd665be56c47be088ba1a64b",
    "main_latest": {
-    "sha": "3164450",
-    "at": "2026-10-07T15:34:40Z",
-    "msg": "Merge pull request #6: GOVERNANCE correct magentixai conflict-of-interest line"
+    "sha": "b4a70b8",
+    "at": "2026-11-16T16:43:01Z",
+    "msg": "Merge pull request #10 from magentixai/magentixai/pair-0001-x402-authority-axes"
    },
    "files": {
     "GOVERNANCE.md": "05ab3f1a3bff355ef9bcebda91dad201afb06593"
@@ -1109,6 +1128,11 @@
  },
  "user_events": {
   "giskard09": [
+   "27384505079",
+   "20305780439",
+   "20301116558",
+   "27356043220",
+   "27346908562",
    "20272343662",
    "27310345341",
    "27298905969",
@@ -1203,12 +1227,7 @@
    "19231291458",
    "19229081012",
    "19211980184",
-   "26193897521",
-   "26191117983",
-   "19175512658",
-   "26172705053",
-   "19139773163",
-   "19111755594"
+   "26193897521"
   ]
  }
 }

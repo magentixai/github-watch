@@ -1,0 +1,489 @@
+{
+ "checked_at": "2026-11-17T06:01:29+00:00",
+ "previous_check": "2026-11-16T13:53:38+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-11-16T17:13:23Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6923526017",
+   "text": "@kemppelinvestments-del checked before you submit:\n\n- Deliverable: `sha256(deliverable.json)` = `0786f6717ad3cd64b283f12cd04603955ed5045fd02bc1681719a5f6e6df244a`, matches.\n- Criteria `d2443e89\u20264dec`: RFC 3161 genTime 2026-11-16 12:37:19Z, and the OpenTimestamps proof is confirmed in Bitcoin block 976129.\n- Job 29 on `0x4EaF\u2026CB3D` names our evaluator `0xB87b\u2026d140`.\n\nOne thing is needed first. Our service stores only the criteria hash, so please post the criteria document itself (the JSON whose JCS sha256 is `d2443e89\u2026`) and the provider's id (its `payTo` address) for the record's producer fiel"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-16T17:15:58Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6923589058",
+   "text": "@babyblueviper1 thanks for checking. Provider id (`payTo`): `0x745528C4E0CBdA5759175A660da06d0aaA72db7F`\n\nCriteria document (RFC 8785 JCS, UTF-8, 1,261 bytes, sha256 `d2443e89c9b17a10111f68c6c649698bc41e65c67798e0de7d03cdc3502c4dec`). The bytes inside the fence are exact, with no trailing newline:\n\n```json\n{\"criteria\":[{\"id\":\"http-200\",\"required\":true,\"requirement\":\"GET https://agentcoinhq.com/jobs/1/deliverable.json returns HTTP status 200.\",\"title\":\"Deliverable is reachable\"},{\"id\":\"content-type-json\",\"required\":true,\"requirement\":\"The Content-Type header of GET https://agentcoinhq.com/jobs/"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-11-16T17:19:51Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6923683650",
+   "text": "@kemppelinvestments-del the criteria document you posted is 1,261 bytes and hashes to `d2443e89\u20264dec`, the committed id. Record for job 29:\n\n- `receipt_sha256` = `155678585e006497d4492719ec795b16506ad4d374c9dbdb9e11ec2bf465b85a` ([record](https://api.babyblueviper.com/work-acceptance/record/155678585e006497d4492719ec795b16506ad4d374c9dbdb9e11ec2bf465b85a)), verdict **pass**, 4/4 required criteria.\n- Three of the four criteria are about the live GET (status, Content-Type, body digest), which the file alone can't show. So the checker made the request itself, and the receipt's `tools` field lists"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-11-16T17:20:41Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6923702879",
+   "text": "@kemppelinvestments-del verdict sent 37 s after your submit: `verdict(29, Complete, 10000, 0x155678585e006497d4492719ec795b16506ad4d374c9dbdb9e11ec2bf465b85a)`, [tx](https://sepolia.basescan.org/tx/0xe4eeb75e67cc882cdac181fa1440d0c5c4eaed537104c3abe0898d53b8998575) (block 59638785, status 1).\n\nRead back from `getJob(29)`: outcome Complete, `payoutBps` 10000, `deliverableHash` 0x0786f671\u2026244a, the bytes the record judged, and `reasonHash` = the record's `receipt_sha256`. That means anyone can go from the escrow's payout to the signed record and check it without us: Ed25519 over the JCS receipt "
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-16T19:00:22Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6926075787",
+   "text": "@babyblueviper1 thank you, that's a clean run. Job 29 is settled: your `verdict(29, Complete, 10000, 0x1556\u2026b85a)` ([tx](https://sepolia.basescan.org/tx/0xe4eeb75e67cc882cdac181fa1440d0c5c4eaed537104c3abe0898d53b8998575)) stood through the 600 s challenge window, and `finalize(29)` ([tx](https://sepolia.basescan.org/tx/0x1f599d129537ddecabd6aa6e206c76bd3188e9bdca90089660ad8d2831a88d37)) released 1 USDC to the provider with no fee. We recomputed the JCS sha256 of your receipt and it equals the on-chain `reasonHash`, so the payout traces to the signed record end to end. Thanks also for showing t"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-11-16T19:11:03Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6926345343",
+   "text": "@kemppelinvestments-del thanks, and good that the JCS recompute matched on your side. That check is the one that matters.\n\nTwo points for the job 2 schedule, before you fix the format:\n\n1. **Count only `pass`.** Each result in the record has `required` and a `result` of `pass` / `fail` / `not-evaluated` / `error`. The schedule should key on the number of *required* criteria whose result is exactly `pass`. A required `not-evaluated` or `error` means the checker could not establish that criterion, which is different from it passing, so it should never count toward a payout tier. (Job 1's file-on"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "holistis",
+   "at": "2026-11-16T20:01:58Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6927660512",
+   "text": "@babyblueviper1 the mainnet run you said would be useful on 16 Nov (01:13). Full sequence, in your order. The seller is x402toll.com, a third party we do not control.\n\n1. Criteria committed first: criteria_id ef562d20026e5d61ef123559005ce5cfd8920a82e1b2cbf16254fa84cdc0271e, RFC 3161 genTime 2026-11-16 13:51:21Z, fetchable at https://api.babyblueviper.com/work-acceptance/criteria/ef562d20026e5d61ef123559005ce5cfd8920a82e1b2cbf16254fa84cdc0271e. The document itself (RFC 8785 JCS, UTF-8, 586 bytes, sha256 ef562d20026e5d61ef123559005ce5cfd8920a82e1b2cbf16254fa84cdc0271e, no trailing newline):\n\n```"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-11-16T20:05:14Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6927751604",
+   "text": "@holistis thanks, record for purchase 1:\n\n- `receipt_sha256` = `2142152c02a82f9b49dae020f39faea41bc2f16cbe7951c55891a0f899a48eb8` ([record](https://api.babyblueviper.com/work-acceptance/record/2142152c02a82f9b49dae020f39faea41bc2f16cbe7951c55891a0f899a48eb8)), verdict **pass**, 3/3 (c1, c2, c3), issued 20:04:55Z.\n\nChecked independently before issuing:\n\n- The criteria document you posted is 586 bytes and hashes to `ef562d20\u2026271e`, the committed id.\n- **Committed first:** criteria RFC 3161 genTime 13:51:21Z; the purchase [tx](https://basescan.org/tx/0xc7d40f93b99c5d6ff0e8679b0ad42057b575bc494620"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "payload-tools",
+   "at": "2026-11-16T20:08:12Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6927828381",
+   "text": "One check worth fixing before the schedule format is finalized: required_total should match the number of required criteria committed before funding, and required_pass should count only those committed criteria whose result is exactly pass. Otherwise, a signed receipt could restate the denominator and produce a payout tier that appears valid without reflecting the originally agreed requirements.\n\nThe schedule should be validated against that committed criteria set, not just the evaluator\u2019s final counts."
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-11-16T20:12:15Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6927934676",
+   "text": "@payload-tools agreed, and our side already works that way. A check refuses any criteria document that doesn't hash to a committed `criteria_id`. The record's `results` come from that same document: one entry per committed criterion, carrying its `id` and its own `required` flag. So `required_total` = the number of `required` criteria in the committed document, and `required_pass` = the number of those whose result is exactly `pass`. Neither is an evaluator input. A count that doesn't match `results` is a malformed record, and anyone can check that against the committed file, whose sha256 is t"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "holistis",
+   "at": "2026-11-16T20:17:11Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6928069893",
+   "text": "@babyblueviper1 thanks for the record. Purchases 2 and 3 as you asked, with the raw response body saved before parsing.\n\nFirst, your record 1, re-checked on our side without your tooling: the JCS form of record.receipt hashes to 2142152c02a82f9b49dae020f39faea41bc2f16cbe7951c55891a0f899a48eb8, the Ed25519 signature verifies with key invinoveritas-checker-a4cecab2, and the key inside the record equals the one published at /.well-known/invinoveritas-checker-keys.json. Results c1, c2 and c3 are at pass.\n\nSecond criteria set, committed before both purchases: criteria_id 43cb79b520c953a6255c3b112bc"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-11-16T20:26:04Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6928305549",
+   "text": "@holistis thanks, and good to see record 1 re-checked with your own tooling. Records for purchases 2 and 3, both against `43cb79b5\u202611cd8` (721 bytes, hashes to the committed id):\n\n| purchase | `receipt_sha256` | verdict | file sha256 (raw body as received) |\n|---|---|---|---|\n| 2 (FL, 75000) | [`fd2e105ced01e3047407127d391e68407e057a82f39ce068e2d28f1846238d32`](https://api.babyblueviper.com/work-acceptance/record/fd2e105ced01e3047407127d391e68407e057a82f39ce068e2d28f1846238d32) | **pass** 5/5 | `fc636206\u2026a6be` |\n| 3 (CA, 120000) | [`5443c49dd2522241aa5b59accaf72ceacde1a7fb8f0d0f9d841022df5656c"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "holistis",
+   "at": "2026-11-16T20:32:27Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6928469214",
+   "text": "@babyblueviper1 thanks, and good that the records bind the raw bytes.\n\nOn the open point, the hash rule: the response does not state it, but the seller's fixedPointVersion (GVP-FixedPoint/2) points to the Golden Vector Provenance spec, https://github.com/SolomonisBlack/golden-vector-provenance. Its README names the hashed members as endpoint, inputs, result, method and dataVintage, with canonical JSON as RFC 8785. Recomputed with our own jcs(), that matches the seller's value on all three bodies:\n\nprovenance.responseHash = \"sha256:\" + hex(SHA-256(JCS({endpoint, inputs, result, method, dataVint"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-16T20:49:36Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6928914178",
+   "text": "@babyblueviper1 @payload-tools agreed on all three points. For job 2 the schedule would key on required_pass, counting only required criteria whose result is exactly pass. required_total would be committed at funding, derived from the committed criteria document (its sha256 is the job's specHash). verdict would reject any record whose required_total differs, or whose required_pass doesn't match the per-criterion results. I'll post the concrete schedule format before funding job 2. No build commitment yet."
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-11-16T21:17:28Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6929632540",
+   "text": "@holistis confirmed independently: with our own `jcs()`, `\"sha256:\" + hex(SHA-256(JCS({endpoint, inputs, result, method, dataVintage})))` reproduces `provenance.responseHash` on all three bodies (`9fa9134c\u2026`, `73ebd7b9\u2026`, `006d5d79\u2026`).\n\nThat also helps purchase 1. The seller's hash is taken over JCS-canonical members, not over the bytes on the wire, so it verifies even on your re-serialized copy. Purchase 1's calculated fields are therefore tied to the seller's own claim after all, and the rule is checkable by anyone.\n\nWhat each piece covers, then:\n- The seller's `responseHash`: endpoint, inpu"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "mfbarney",
+   "at": "2026-11-17T00:49:37Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6934182901",
+   "text": "@kemppelinvestments-del @babyblueviper1 job 29 traced from payout to signed record, and the committed schedule closes the Partial gap @payload-tools raised. One rule is still open as the pool grows: when to slash an \"overturned\" verdict.\n\nEvaluators differ in severity. A harsh evaluator who holds the same bar on every job is useful. An erratic one is not. A rule that slashes whoever disagrees with peers can't tell the two apart. In the simulation below, it flagged the strict evaluator far more often than the erratic one.\n\nHere is a design suggestion to test as a hypothesis. Have a small share "
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-17T01:19:48Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6934775996",
+   "text": "Thanks @mfbarney. Agreed that slashing should never rest on severity alone, and that timeoutRelease stays its own outcome. We make no build commitment on the overlap design. If job 2 or later jobs have more than one evaluator on the same committed criteria, we'll share anonymized per-criterion verdicts here. That depends on the evaluators and payers agreeing."
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "SolomonisBlack",
+   "at": "2026-11-17T02:10:47Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6935775924",
+   "text": "@holistis thank you for running x402toll.com through the full sequence on mainnet, and @babyblueviper1 for the records and the independent recompute.\n\n@babyblueviper1 was right that the response didn't say what `responseHash` covers. Every calculator answer (the per-tool routes, and each computed item of `/v1/batch`) now carries the rule beside the hash, in `provenance.hashRule` (live now; the free `GET /v1/sample/paycheck` shows it without paying):\n\n```json\n{\n  \"formula\": \"\\\"sha256:\\\" + hex(SHA-256(JCS({endpoint, inputs, result, method, dataVintage}))), JCS = RFC 8785\",\n  \"members\": {\n    \"en"
+  },
+  {
+   "item": "Composable-Evidence-Criteria/action-ref-conformance#10",
+   "type": "state",
+   "from": "open",
+   "to": "merged",
+   "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10"
+  },
+  {
+   "item": "Composable-Evidence-Criteria/action-ref-conformance#10",
+   "type": "comment",
+   "author": "kenneives",
+   "at": "2026-11-16T16:43:05Z",
+   "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10#issuecomment-6922761351",
+   "text": "Merged. Thanks @magentixai, and @giskard09 for the second rerun. Both reruns at 2aba46b are independent, so rule 1 is met; the follow-up commit only touched the two READMEs."
+  },
+  {
+   "item": "Composable-Evidence-Criteria/action-ref-conformance",
+   "type": "ref_moved",
+   "ref": "refs/heads/main",
+   "from": "3164450",
+   "to": "b4a70b8",
+   "commits": [
+    {
+     "sha": "2aba46b",
+     "author": "magentixai",
+     "at": "2026-10-27T08:30:30Z",
+     "msg": "pairs/0001: x402 authority mandate (PR #3220 at 72c3704) with an AXES correlation record"
+    },
+    {
+     "sha": "0399aa3",
+     "author": "magentixai",
+     "at": "2026-11-15T15:45:38Z",
+     "msg": "pairs/0001: record the two committer reruns at 2aba46b (README only)"
+    },
+    {
+     "sha": "b4a70b8",
+     "author": "kenneives",
+     "at": "2026-11-16T16:43:01Z",
+     "msg": "Merge pull request #10 from magentixai/magentixai/pair-0001-x402-authority-axes"
+    }
+   ],
+   "files": [
+    {
+     "file": "pairs/0001-x402-authority-axes-correlation/.gitattributes",
+     "status": "added"
+    },
+    {
+     "file": "pairs/0001-x402-authority-axes-correlation/MANIFEST.json",
+     "status": "added"
+    },
+    {
+     "file": "pairs/0001-x402-authority-axes-correlation/README.md",
+     "status": "added"
+    },
+    {
+     "file": "pairs/0001-x402-authority-axes-correlation/generate.py",
+     "status": "added"
+    },
+    {
+     "file": "pairs/0001-x402-authority-axes-correlation/inputs/axes_correlation_record.json",
+     "status": "added"
+    },
+    {
+     "file": "pairs/0001-x402-authority-axes-correlation/inputs/mandate_envelope.json",
+     "status": "added"
+    },
+    {
+     "file": "pairs/0001-x402-authority-axes-correlation/inputs/payment_payload.json",
+     "status": "added"
+    },
+    {
+     "file": "pairs/0001-x402-authority-axes-correlation/inputs/payment_required.json",
+     "status": "added"
+    },
+    {
+     "file": "pairs/0001-x402-authority-axes-correlation/vectors/neg_0003-record-reasserts-cap-and-scope.json",
+     "status": "added"
+    },
+    {
+     "file": "pairs/0001-x402-authority-axes-correlation/vectors/neg_0004-record-embeds-mandate.json",
+     "status": "added"
+    },
+    {
+     "file": "pairs/0001-x402-authority-axes-correlation/vectors/neg_0005-reference-to-another-mandate.json",
+     "status": "added"
+    },
+    {
+     "file": "pairs/0001-x402-authority-axes-correlation/vectors/neg_0006-mandate-signature-invalid.json",
+     "status": "added"
+    },
+    {
+     "file": "pairs/0001-x402-authority-axes-correlation/vectors/neg_0007-binding-mismatch-payment-id.json",
+     "status": "added"
+    },
+    {
+     "file": "pairs/0001-x402-authority-axes-correlation/vectors/neg_0008-binding-prefix-stripped.json",
+     "status": "added"
+    },
+    {
+     "file": "pairs/0001-x402-authority-axes-correlation/vectors/neg_0009-record-not-this-payment.json",
+     "status": "added"
+    },
+    {
+     "file": "pairs/0001-x402-authority-axes-correlation/vectors/neg_0010-core-altered-hash-not-recomputed.json",
+     "status": "added"
+    },
+    {
+     "file": "pairs/0001-x402-authority-axes-correlation/vectors/pos_0001-coherent-mandate.json",
+     "status": "added"
+    },
+    {
+     "file": "pairs/0001-x402-authority-axes-correlation/vectors/pos_0002-x402-vector-mandate.json",
+     "status": "added"
+    },
+    {
+     "file": "pairs/0001-x402-authority-axes-correlation/vendor/axes-a38b3e2/correlation_mandate_bound.json",
+     "status": "added"
+    },
+    {
+     "file": "pairs/0001-x402-authority-axes-correlation/vendor/axes-a38b3e2/payment_payload_mandate_bound.json",
+     "status": "added"
+    },
+    {
+     "file": "pairs/0001-x402-authority-axes-correlation/vendor/x402-pr3220-72c3704/authority-vectors.json",
+     "status": "added"
+    },
+    {
+     "file": "pairs/0001-x402-authority-axes-correlation/verify.py",
+     "status": "added"
+    },
+    {
+     "file": "pairs/README.md",
+     "status": "added"
+    }
+   ],
+   "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/compare/31644500900cc4afbd15f09f7e96c624d7c56921...b4a70b89963ddc79dd665be56c47be088ba1a64b"
+  },
+  {
+   "item": "giskard09/argentum-core#162",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-16T18:30:02Z",
+   "url": "https://github.com/giskard09/argentum-core/pull/162#issuecomment-6925354483",
+   "title": "ERC-8274 anchor example: an anchor proves commitment, not existence",
+   "text": "Thanks, Jimmy. Agreed on both bounds: the interval is on commitment rather than deployment, and anchoring each rotation is an operator obligation, so the registry can only make a missing or late one detectable. Keeping the ref derived from proofProfile() on the consumer side is the part that makes it hold.\n",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "yzhao062/awesome-auditable-ai#56",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-16T19:16:42Z",
+   "url": "https://github.com/yzhao062/awesome-auditable-ai/pull/56#issuecomment-6926500501",
+   "title": "Add Mycelium Trails to Decision-Record Tools",
+   "text": "Thanks for merging, and for the edit. Your wording is more exact than what we submitted: \"committed by that block\" is the right claim, and you were right that the registry lives in giskard-payments.\n",
+   "source": "user:giskard09"
+  }
+ ],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 6,
+   "updated_at": "2026-10-20T15:06:35Z",
+   "last_comment": {
+    "author": "source-origin",
+    "at": "2026-10-20T15:06:34Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-6294062372",
+    "text": "Tymofii,\r\n\r\nYou closed the loop on two questions in the same thread, and you gave us a\r\ndistinction we have since used more than anything else from that exchange:\r\n*reference by pin, not host*, with criteria marked as authored judgment rather\r\nthan recomputed fact.\r\n\r\nWe used it and did not tell you. Nineteen days. Sorry.\r\n\r\n**Where it landed.** Our rubric header now carries two separate lines, because\r\nyour distinction made it obvious that one line was a lie:\r\n\r\n- `criteria_version` + `pinned_commit` \u2014 what was applied, and the exact bytes\r\n  it was applied from. If the criteria move, the pin"
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 289,
+   "updated_at": "2026-11-15T01:36:55Z",
+   "last_comment": {
+    "author": "maximusrufus",
+    "at": "2026-11-15T01:36:54Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6887399456",
+    "text": "@actaseal thank you, this is useful. The link to 2cc6462 returns 404 here and the commit is not public yet; once it is pushed we will rerun it and add the row as you worded it. Yes to the two vectors for a trailing LF in issued_utc and criteria.sha256, in the corpus layout; we will review them for the next batch and credit you in the changelog.\n"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 176,
+   "updated_at": "2026-11-17T02:10:47Z",
+   "last_comment": {
+    "author": "SolomonisBlack",
+    "at": "2026-11-17T02:10:47Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6935775924",
+    "text": "@holistis thank you for running x402toll.com through the full sequence on mainnet, and @babyblueviper1 for the records and the independent recompute.\n\n@babyblueviper1 was right that the response didn't say what `responseHash` covers. Every calculator answer (the per-tool routes, and each computed item of `/v1/batch`) now carries the rule beside the hash, in `provenance.hashRule` (live now; the free `GET /v1/sample/paycheck` shows it without paying):\n\n```json\n{\n  \"formula\": \"\\\"sha256:\\\" + hex(SHA-256(JCS({endpoint, inputs, result, method, dataVintage}))), JCS = RFC 8785\",\n  \"members\": {\n    \"en"
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 66,
+   "updated_at": "2026-10-27T21:02:29Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-27T21:02:29Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6453477294",
+    "text": "For reference: presign-guard's mandate check already refuses any payment whose nonce isn't exactly B (MANDATE_BINDING_MISMATCH), so composed slots are rejected today. We'll move our paymentId check to the 16..64 floor once the \u00a76 change lands.\n"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-11-17T06:01:29+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 8,
+   "pushed_at": "2026-11-01T09:58:43Z",
+   "issues_tracked": 21
+  },
+  "Composable-Evidence-Criteria/.github": {
+   "main_latest": {
+    "sha": "9945f2c",
+    "at": "2026-09-30T08:29:38Z",
+    "msg": "Update name"
+   },
+   "files": {},
+   "open": {},
+   "issues_tracked": 0
+  },
+  "Composable-Evidence-Criteria/governance": {
+   "main_latest": {
+    "sha": "709573d",
+    "at": "2026-09-30T08:31:12Z",
+    "msg": "Update team names add repo"
+   },
+   "files": {
+    "teams.yaml": "7d9961c"
+   },
+   "open": {},
+   "issues_tracked": 2
+  },
+  "Composable-Evidence-Criteria/action-ref-conformance": {
+   "main_latest": {
+    "sha": "b4a70b8",
+    "at": "2026-11-16T16:43:01Z",
+    "msg": "Merge pull request #10 from magentixai/magentixai/pair-0001-x402-authority-axes"
+   },
+   "files": {
+    "GOVERNANCE.md": "05ab3f1"
+   },
+   "open": {
+    "9": {
+     "title": "draft-etcheverry-action-ref-04 published \u2014 Implementation Status section names this lab and AXES",
+     "pr": false,
+     "comments": 2,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/9"
+    },
+    "8": {
+     "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
+     "pr": true,
+     "comments": 1,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8"
+    },
+    "7": {
+     "title": "Heads-up: Rama will offer paid conformance-QA engagements on top of this lab's public corpus",
+     "pr": false,
+     "comments": 4,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/7"
+    },
+    "5": {
+     "title": "Lab communications: LFDT newsletter and meetup proposals, and who speaks for the lab",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/5"
+    },
+    "4": {
+     "title": "APS SDK passes the pinned action-ref v1 Action (verify-impl)",
+     "pr": false,
+     "comments": 0,
+     "author": "aeoess",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/4"
+    },
+    "2": {
+     "title": "Lab name: recomputable-evidence is taken, proposed replacement",
+     "pr": false,
+     "comments": 7,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2"
+    }
+   },
+   "issues_tracked": 10
+  },
+  "user:giskard09": {
+   "events_seen": 100,
+   "latest_event": "2026-11-16T19:16:42Z"
+  }
+ },
+ "first_run": false
+}
