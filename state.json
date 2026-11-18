@@ -398,7 +398,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 188,
+   "comments": 194,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -587,14 +587,20 @@
     6966793447,
     6967250880,
     6967798118,
-    6968643512
+    6968643512,
+    6972524710,
+    6972694465,
+    6974373324,
+    6974472428,
+    6974893369,
+    6976174644
    ],
-   "updated_at": "2026-11-18T04:02:05Z",
+   "updated_at": "2026-11-18T10:42:59Z",
    "last_comment": {
-    "author": "SolomonisBlack",
-    "at": "2026-11-18T04:02:05Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6968643512",
-    "text": "@giskard09 thank you for this, and for stating up front that the spec credits you and that the run was directed. That framing makes the result easier to rely on.\n\nYes, H1 is the mapping the code uses, for signing and for verification: `issuer` = `issuer.service`, `agentId` = `onChainAnchor.agentId` (JSON null when there is no anchor). `responseHash`, `endpoint`, `dataVintage` and `issuedAt` are taken as they appear at the top level of the receipt, `issuedAt` as the exact string. `payloadVersion` comes from `signature.payloadVersion`, and under /2 `fixedPointVersion` comes from the receipt's `f"
+    "author": "stillmarcus24",
+    "at": "2026-11-18T10:42:59Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6976174644",
+    "text": "@zambodotdev @babyblueviper1 - verified the citation end to end from the public receipt, since the whole value is that a third party can. Pulled the receipt you cited, decoded canonical_bytes (base64), recomputed the SHA-256, and it equals output_hash exactly (sha256:dcd6458b...f8415e8), with the decoded bytes parsing as valid JSON. Nothing needed from the producer.\n\nThat closes the loop on the gap I raised: for the 200-with-wrong-or-stale-content case, the dispute points at one fixed set of bytes on the delivery plane, and babyblueviper1's acceptance record can cite that same output_hash as t"
    }
   },
   "x402-foundation/x402#3220": {
@@ -694,10 +700,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-18T06:04:45+00:00",
+ "last_checked": "2026-11-18T14:26:12+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-18T06:04:45+00:00",
+   "checked": "2026-11-18T14:26:12+00:00",
    "items": {
     "23": {
      "title": "Publish the -00 build in ietf/ and explain it in the READMEs",
