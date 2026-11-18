@@ -398,7 +398,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 176,
+   "comments": 188,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -575,14 +575,26 @@
     6929632540,
     6934182901,
     6934775996,
-    6935775924
+    6935775924,
+    6955786960,
+    6956907431,
+    6960521324,
+    6964581674,
+    6964581988,
+    6965095298,
+    6965948509,
+    6966319006,
+    6966793447,
+    6967250880,
+    6967798118,
+    6968643512
    ],
-   "updated_at": "2026-11-17T02:10:47Z",
+   "updated_at": "2026-11-18T04:02:05Z",
    "last_comment": {
     "author": "SolomonisBlack",
-    "at": "2026-11-17T02:10:47Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6935775924",
-    "text": "@holistis thank you for running x402toll.com through the full sequence on mainnet, and @babyblueviper1 for the records and the independent recompute.\n\n@babyblueviper1 was right that the response didn't say what `responseHash` covers. Every calculator answer (the per-tool routes, and each computed item of `/v1/batch`) now carries the rule beside the hash, in `provenance.hashRule` (live now; the free `GET /v1/sample/paycheck` shows it without paying):\n\n```json\n{\n  \"formula\": \"\\\"sha256:\\\" + hex(SHA-256(JCS({endpoint, inputs, result, method, dataVintage}))), JCS = RFC 8785\",\n  \"members\": {\n    \"en"
+    "at": "2026-11-18T04:02:05Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6968643512",
+    "text": "@giskard09 thank you for this, and for stating up front that the spec credits you and that the run was directed. That framing makes the result easier to rely on.\n\nYes, H1 is the mapping the code uses, for signing and for verification: `issuer` = `issuer.service`, `agentId` = `onChainAnchor.agentId` (JSON null when there is no anchor). `responseHash`, `endpoint`, `dataVintage` and `issuedAt` are taken as they appear at the top level of the receipt, `issuedAt` as the exact string. `payloadVersion` comes from `signature.payloadVersion`, and under /2 `fixedPointVersion` comes from the receipt's `f"
    }
   },
   "x402-foundation/x402#3220": {
@@ -682,10 +694,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-17T14:45:30+00:00",
+ "last_checked": "2026-11-18T06:04:45+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-17T14:45:30+00:00",
+   "checked": "2026-11-18T06:04:45+00:00",
    "items": {
     "23": {
      "title": "Publish the -00 build in ietf/ and explain it in the READMEs",
@@ -1128,6 +1140,8 @@
  },
  "user_events": {
   "giskard09": [
+   "20466213287",
+   "20466198490",
    "27384505079",
    "20305780439",
    "20301116558",
@@ -1225,9 +1239,7 @@
    "26241715659",
    "26241141952",
    "19231291458",
-   "19229081012",
-   "19211980184",
-   "26193897521"
+   "19229081012"
   ]
  }
 }

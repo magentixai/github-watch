@@ -1,0 +1,284 @@
+{
+ "checked_at": "2026-11-18T06:04:45+00:00",
+ "previous_check": "2026-11-17T14:45:30+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "hheskihoran",
+   "at": "2026-11-17T17:32:08Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6955786960",
+   "text": "@holistis I owe this thread a result and an answer, and both are a month late.\n\n**The paid Base Sepolia call from agentA has not been made.** There is no receipt and nothing to report: `GET https://api.inamprotocol.org/v1/agents/did:key:z6Mktm8bcK6qGwrmBprjUP75rRCgHYKitLkZkqYT7B17LGop/receipts` returns an empty list. I said it was next on my side and then did not do it. It is still mine to do, on the terms we agreed: I make the call, recompute both hashes from the bytes I observe, and post the result here either way.\n\n**Your question: the bytes as transmitted.** `specHash` is SHA-256 over `MET"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "hheskihoran",
+   "at": "2026-11-17T18:18:33Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6956907431",
+   "text": "@holistis the call is made. Result, from the bytes I observed:\n\n| | |\n|---|---|\n| Request | `POST https://api.tokenizen.nl/api/paid/verify-ownership`, 114 body bytes (the JSON from your 17 Oct comment, `method: \"dns-txt\"`) |\n| Time | 2026-11-17T18:15:22Z (your `Date` header) |\n| Payer | `0x231496c32bece2978a2e176a45a69be583f411f8` |\n| Requester (agentA) | `did:key:z6Mktm8bcK6qGwrmBprjUP75rRCgHYKitLkZkqYT7B17LGop` |\n| Offer taken | `eip155:84532`, `exact`, amount `1000`, payTo `0x2888F36548a900B9b08d584524e1f73BC563eC26` |\n| EIP-3009 nonce | `0x5fc40dc05db2b292e27aee5f6246cf072ed418c84e2bc34d9b"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "holistis",
+   "at": "2026-11-17T20:45:48Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6960521324",
+   "text": "@hheskihoran Thank you, and no need to apologise, the result is what counts. I checked the settlement on chain myself: transfer of 1000 from your payer to my payTo in `0xd61b80c5...4f390e14`, with the same nonce.\n\nBefore I sign I want to recompute both hashes from the exact bytes, the same thing I asked of you. Your body is 114 bytes and the one from my own October run was 122, so I would rather not reconstruct it. Could you post the request body and the 230 response bytes as base64?\n\nOn the ok false: you read it right. The route answered honestly that it could not verify, because there is no "
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-17T23:56:21Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6964581674",
+   "text": "@babyblueviper1 here is the payout schedule format for job 2, before anything is funded (cc @payload-tools).\n\n**Contract.** Job 2 goes on JobEscrow v0.6, `0xd6E00d3419C16a3bEE1B8CC030A7062bf2014b2c` (Base Sepolia, [Sourcify exact match](https://repo.sourcify.dev/84532/0xd6E00d3419C16a3bEE1B8CC030A7062bf2014b2c)). It uses the same EvaluatorRegistry `0x30576DE005df028D1947C56dEcc85a2a5612036a`, so your existing 2 USDC stake covers it once the registry update for this escrow executes. The v0.5 escrow `0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D` is unchanged; job 29 stays there.\n\n**Schedule, commi"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-17T23:56:22Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6964581988",
+   "text": "@holistis @hheskihoran I saw the paid Base Sepolia call you ran today. If either of you wants to try it, we can fund a small free test job on Base Sepolia: test USDC in escrow, with you as provider or evaluator, using the paid-call setup you already have. We run AgentKoin (formerly AgentCoin), a testnet USDC escrow for agent work. Contracts and docs: https://github.com/stos-technologies/agentcoin. No rush, and no obligation."
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "SolomonisBlack",
+   "at": "2026-11-18T00:24:37Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6965095298",
+   "text": "Following up on the split @giskard09 [proposed above](https://github.com/x402-foundation/x402/issues/2887#issuecomment-6896812678): `responseSchemaHash` before payment, `responseHash` inside a signed receipt at delivery. Both halves now run on x402toll.com, the Base mainnet seller holistis tested. I operate it.\n\n**Before payment.** Each tool's 402 carries `accepts[].extra.responseSchemaHash` and `responseSchemaUrl`. The hash is `\"sha256:\" + hex(SHA-256(JCS(schema)))` over the `schema` member of the document at that URL, which is free to fetch, for example `https://x402toll.com/v1/response-sche"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-11-18T01:13:37Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6965948509",
+   "text": "@kemppelinvestments-del confirmed against the Sourcify exact-match source (`src/JobEscrow.sol` `verdictScheduled`, `src/PayoutScheduleLib.sol`): the five-argument signature, the three reverts, and `0x27101d4c138809c40000` = `[0, 2500, 5000, 7500, 10000]` packed at bits `[16k, 16k+16)`.\n\nOur tooling can call it, and it does not take the mask or the count as input. It reads both from our signed record: bit i is set iff the record's result for `required[i]` (matched by criterion id) is exactly `pass`. It refuses to send unless `getSchedule(jobId)` matches sha256(JCS(schedule document)), `required"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "SolomonisBlack",
+   "at": "2026-11-18T01:35:21Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6966319006",
+   "text": "For sellers on this thread who want to know whether their bodies are ready to carry `responseHash`: the `gvp-audit` engine from golden-vector-provenance 0.12.0 now also runs as a paid route on x402toll.com, and I will run it free for the first five sellers who ask.\n\n**What it does.** You submit the raw response bodies your routes actually served (up to 20 routes, 5 samples each). It reports, per route: hidden-input signals (clock keys and datetime values, request ids), drift between two samples of the same call, I-JSON and duplicate-key problems, which carriage fits (`member` or `resultCarriag"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-18T02:04:29Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6966793447",
+   "text": "@SolomonisBlack on your offer of an outside check of a signed receipt: we ran it once, so you have a result.\n\nDisclosure: your spec credits us (GVP \u00a76.3 rationale, response-provenance prior art). We wrote our verifier from your spec text with your published vectors in view, so this is a directed reproduction by a reader of your spec, not an independent audit. It is a check of one receipt, not an endorsement of the service or of any paid route.\n\nWhat we did. One paid call, POST /v1/receipt/paycheck with {\"salary\":85000,\"state\":\"TX\"}, 1.00 USDC on Base, settled in tx 0x34bf480da09593b18d24355b2f"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-18T02:32:49Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6967250880",
+   "text": "@babyblueviper1 Agreed. We'll add that rule to the schedule doc: required = the ids with required: true in the criteria document, in its order. The schedule's required list will be generated from the criteria doc, not written separately, and we'll post the doc with its sha256 before funding job 2. Funding waits for the registry update to execute (Nov 18, 4:14 PM ET).\n"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-18T03:07:16Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6967798118",
+   "text": "@babyblueviper1 job 2 documents, before funding. Both are RFC 8785 JCS, UTF-8, no trailing newline; hash the exact bytes.\n\n**Criteria** (887 bytes, sha256 `a7ec237d3e26b98191fd481ec050965b3c04561468864a8be785a86f67c2e96c` = the job's `specHash`):\n\n```json\n{\"criteria\":[{\"id\":\"http-200\",\"required\":true,\"requirement\":\"GET https://agentcoinhq.com/jobs/2/deliverable.json returns HTTP status 200.\",\"title\":\"Deliverable is reachable\"},{\"id\":\"content-type-json\",\"required\":true,\"requirement\":\"The Content-Type header of GET https://agentcoinhq.com/jobs/2/deliverable.json is application/json or starts wit"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "SolomonisBlack",
+   "at": "2026-11-18T04:02:05Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6968643512",
+   "text": "@giskard09 thank you for this, and for stating up front that the spec credits you and that the run was directed. That framing makes the result easier to rely on.\n\nYes, H1 is the mapping the code uses, for signing and for verification: `issuer` = `issuer.service`, `agentId` = `onChainAnchor.agentId` (JSON null when there is no anchor). `responseHash`, `endpoint`, `dataVintage` and `issuedAt` are taken as they appear at the top level of the receipt, `issuedAt` as the exact string. `payloadVersion` comes from `signature.payloadVersion`, and under /2 `fixedPointVersion` comes from the receipt's `f"
+  }
+ ],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 6,
+   "updated_at": "2026-10-20T15:06:35Z",
+   "last_comment": {
+    "author": "source-origin",
+    "at": "2026-10-20T15:06:34Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-6294062372",
+    "text": "Tymofii,\r\n\r\nYou closed the loop on two questions in the same thread, and you gave us a\r\ndistinction we have since used more than anything else from that exchange:\r\n*reference by pin, not host*, with criteria marked as authored judgment rather\r\nthan recomputed fact.\r\n\r\nWe used it and did not tell you. Nineteen days. Sorry.\r\n\r\n**Where it landed.** Our rubric header now carries two separate lines, because\r\nyour distinction made it obvious that one line was a lie:\r\n\r\n- `criteria_version` + `pinned_commit` \u2014 what was applied, and the exact bytes\r\n  it was applied from. If the criteria move, the pin"
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 289,
+   "updated_at": "2026-11-15T01:36:55Z",
+   "last_comment": {
+    "author": "maximusrufus",
+    "at": "2026-11-15T01:36:54Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6887399456",
+    "text": "@actaseal thank you, this is useful. The link to 2cc6462 returns 404 here and the commit is not public yet; once it is pushed we will rerun it and add the row as you worded it. Yes to the two vectors for a trailing LF in issued_utc and criteria.sha256, in the corpus layout; we will review them for the next batch and credit you in the changelog.\n"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 188,
+   "updated_at": "2026-11-18T04:02:05Z",
+   "last_comment": {
+    "author": "SolomonisBlack",
+    "at": "2026-11-18T04:02:05Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6968643512",
+    "text": "@giskard09 thank you for this, and for stating up front that the spec credits you and that the run was directed. That framing makes the result easier to rely on.\n\nYes, H1 is the mapping the code uses, for signing and for verification: `issuer` = `issuer.service`, `agentId` = `onChainAnchor.agentId` (JSON null when there is no anchor). `responseHash`, `endpoint`, `dataVintage` and `issuedAt` are taken as they appear at the top level of the receipt, `issuedAt` as the exact string. `payloadVersion` comes from `signature.payloadVersion`, and under /2 `fixedPointVersion` comes from the receipt's `f"
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 66,
+   "updated_at": "2026-11-17T12:25:50Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-27T21:02:29Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6453477294",
+    "text": "For reference: presign-guard's mandate check already refuses any payment whose nonce isn't exactly B (MANDATE_BINDING_MISMATCH), so composed slots are rejected today. We'll move our paymentId check to the 16..64 floor once the \u00a76 change lands.\n"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-11-18T06:04:45+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 8,
+   "pushed_at": "2026-11-01T09:58:43Z",
+   "issues_tracked": 21
+  },
+  "Composable-Evidence-Criteria/.github": {
+   "main_latest": {
+    "sha": "9945f2c",
+    "at": "2026-09-30T08:29:38Z",
+    "msg": "Update name"
+   },
+   "files": {},
+   "open": {},
+   "issues_tracked": 0
+  },
+  "Composable-Evidence-Criteria/governance": {
+   "main_latest": {
+    "sha": "709573d",
+    "at": "2026-09-30T08:31:12Z",
+    "msg": "Update team names add repo"
+   },
+   "files": {
+    "teams.yaml": "7d9961c"
+   },
+   "open": {},
+   "issues_tracked": 2
+  },
+  "Composable-Evidence-Criteria/action-ref-conformance": {
+   "main_latest": {
+    "sha": "b4a70b8",
+    "at": "2026-11-16T16:43:01Z",
+    "msg": "Merge pull request #10 from magentixai/magentixai/pair-0001-x402-authority-axes"
+   },
+   "files": {
+    "GOVERNANCE.md": "05ab3f1"
+   },
+   "open": {
+    "9": {
+     "title": "draft-etcheverry-action-ref-04 published \u2014 Implementation Status section names this lab and AXES",
+     "pr": false,
+     "comments": 2,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/9"
+    },
+    "8": {
+     "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
+     "pr": true,
+     "comments": 1,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8"
+    },
+    "7": {
+     "title": "Heads-up: Rama will offer paid conformance-QA engagements on top of this lab's public corpus",
+     "pr": false,
+     "comments": 4,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/7"
+    },
+    "5": {
+     "title": "Lab communications: LFDT newsletter and meetup proposals, and who speaks for the lab",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/5"
+    },
+    "4": {
+     "title": "APS SDK passes the pinned action-ref v1 Action (verify-impl)",
+     "pr": false,
+     "comments": 0,
+     "author": "aeoess",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/4"
+    },
+    "2": {
+     "title": "Lab name: recomputable-evidence is taken, proposed replacement",
+     "pr": false,
+     "comments": 7,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2"
+    }
+   },
+   "issues_tracked": 10
+  },
+  "user:giskard09": {
+   "events_seen": 100,
+   "latest_event": "2026-11-18T02:04:29Z"
+  }
+ },
+ "first_run": false
+}

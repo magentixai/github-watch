@@ -1,7 +1,104 @@
 {
- "checked_at": "2026-11-17T14:45:30+00:00",
- "previous_check": "2026-11-17T06:01:29+00:00",
- "changes": [],
+ "checked_at": "2026-11-18T06:04:45+00:00",
+ "previous_check": "2026-11-17T14:45:30+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "hheskihoran",
+   "at": "2026-11-17T17:32:08Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6955786960",
+   "text": "@holistis I owe this thread a result and an answer, and both are a month late.\n\n**The paid Base Sepolia call from agentA has not been made.** There is no receipt and nothing to report: `GET https://api.inamprotocol.org/v1/agents/did:key:z6Mktm8bcK6qGwrmBprjUP75rRCgHYKitLkZkqYT7B17LGop/receipts` returns an empty list. I said it was next on my side and then did not do it. It is still mine to do, on the terms we agreed: I make the call, recompute both hashes from the bytes I observe, and post the result here either way.\n\n**Your question: the bytes as transmitted.** `specHash` is SHA-256 over `MET"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "hheskihoran",
+   "at": "2026-11-17T18:18:33Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6956907431",
+   "text": "@holistis the call is made. Result, from the bytes I observed:\n\n| | |\n|---|---|\n| Request | `POST https://api.tokenizen.nl/api/paid/verify-ownership`, 114 body bytes (the JSON from your 17 Oct comment, `method: \"dns-txt\"`) |\n| Time | 2026-11-17T18:15:22Z (your `Date` header) |\n| Payer | `0x231496c32bece2978a2e176a45a69be583f411f8` |\n| Requester (agentA) | `did:key:z6Mktm8bcK6qGwrmBprjUP75rRCgHYKitLkZkqYT7B17LGop` |\n| Offer taken | `eip155:84532`, `exact`, amount `1000`, payTo `0x2888F36548a900B9b08d584524e1f73BC563eC26` |\n| EIP-3009 nonce | `0x5fc40dc05db2b292e27aee5f6246cf072ed418c84e2bc34d9b"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "holistis",
+   "at": "2026-11-17T20:45:48Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6960521324",
+   "text": "@hheskihoran Thank you, and no need to apologise, the result is what counts. I checked the settlement on chain myself: transfer of 1000 from your payer to my payTo in `0xd61b80c5...4f390e14`, with the same nonce.\n\nBefore I sign I want to recompute both hashes from the exact bytes, the same thing I asked of you. Your body is 114 bytes and the one from my own October run was 122, so I would rather not reconstruct it. Could you post the request body and the 230 response bytes as base64?\n\nOn the ok false: you read it right. The route answered honestly that it could not verify, because there is no "
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-17T23:56:21Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6964581674",
+   "text": "@babyblueviper1 here is the payout schedule format for job 2, before anything is funded (cc @payload-tools).\n\n**Contract.** Job 2 goes on JobEscrow v0.6, `0xd6E00d3419C16a3bEE1B8CC030A7062bf2014b2c` (Base Sepolia, [Sourcify exact match](https://repo.sourcify.dev/84532/0xd6E00d3419C16a3bEE1B8CC030A7062bf2014b2c)). It uses the same EvaluatorRegistry `0x30576DE005df028D1947C56dEcc85a2a5612036a`, so your existing 2 USDC stake covers it once the registry update for this escrow executes. The v0.5 escrow `0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D` is unchanged; job 29 stays there.\n\n**Schedule, commi"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-17T23:56:22Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6964581988",
+   "text": "@holistis @hheskihoran I saw the paid Base Sepolia call you ran today. If either of you wants to try it, we can fund a small free test job on Base Sepolia: test USDC in escrow, with you as provider or evaluator, using the paid-call setup you already have. We run AgentKoin (formerly AgentCoin), a testnet USDC escrow for agent work. Contracts and docs: https://github.com/stos-technologies/agentcoin. No rush, and no obligation."
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "SolomonisBlack",
+   "at": "2026-11-18T00:24:37Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6965095298",
+   "text": "Following up on the split @giskard09 [proposed above](https://github.com/x402-foundation/x402/issues/2887#issuecomment-6896812678): `responseSchemaHash` before payment, `responseHash` inside a signed receipt at delivery. Both halves now run on x402toll.com, the Base mainnet seller holistis tested. I operate it.\n\n**Before payment.** Each tool's 402 carries `accepts[].extra.responseSchemaHash` and `responseSchemaUrl`. The hash is `\"sha256:\" + hex(SHA-256(JCS(schema)))` over the `schema` member of the document at that URL, which is free to fetch, for example `https://x402toll.com/v1/response-sche"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-11-18T01:13:37Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6965948509",
+   "text": "@kemppelinvestments-del confirmed against the Sourcify exact-match source (`src/JobEscrow.sol` `verdictScheduled`, `src/PayoutScheduleLib.sol`): the five-argument signature, the three reverts, and `0x27101d4c138809c40000` = `[0, 2500, 5000, 7500, 10000]` packed at bits `[16k, 16k+16)`.\n\nOur tooling can call it, and it does not take the mask or the count as input. It reads both from our signed record: bit i is set iff the record's result for `required[i]` (matched by criterion id) is exactly `pass`. It refuses to send unless `getSchedule(jobId)` matches sha256(JCS(schedule document)), `required"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "SolomonisBlack",
+   "at": "2026-11-18T01:35:21Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6966319006",
+   "text": "For sellers on this thread who want to know whether their bodies are ready to carry `responseHash`: the `gvp-audit` engine from golden-vector-provenance 0.12.0 now also runs as a paid route on x402toll.com, and I will run it free for the first five sellers who ask.\n\n**What it does.** You submit the raw response bodies your routes actually served (up to 20 routes, 5 samples each). It reports, per route: hidden-input signals (clock keys and datetime values, request ids), drift between two samples of the same call, I-JSON and duplicate-key problems, which carriage fits (`member` or `resultCarriag"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-18T02:04:29Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6966793447",
+   "text": "@SolomonisBlack on your offer of an outside check of a signed receipt: we ran it once, so you have a result.\n\nDisclosure: your spec credits us (GVP \u00a76.3 rationale, response-provenance prior art). We wrote our verifier from your spec text with your published vectors in view, so this is a directed reproduction by a reader of your spec, not an independent audit. It is a check of one receipt, not an endorsement of the service or of any paid route.\n\nWhat we did. One paid call, POST /v1/receipt/paycheck with {\"salary\":85000,\"state\":\"TX\"}, 1.00 USDC on Base, settled in tx 0x34bf480da09593b18d24355b2f"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-18T02:32:49Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6967250880",
+   "text": "@babyblueviper1 Agreed. We'll add that rule to the schedule doc: required = the ids with required: true in the criteria document, in its order. The schedule's required list will be generated from the criteria doc, not written separately, and we'll post the doc with its sha256 before funding job 2. Funding waits for the registry update to execute (Nov 18, 4:14 PM ET).\n"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-18T03:07:16Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6967798118",
+   "text": "@babyblueviper1 job 2 documents, before funding. Both are RFC 8785 JCS, UTF-8, no trailing newline; hash the exact bytes.\n\n**Criteria** (887 bytes, sha256 `a7ec237d3e26b98191fd481ec050965b3c04561468864a8be785a86f67c2e96c` = the job's `specHash`):\n\n```json\n{\"criteria\":[{\"id\":\"http-200\",\"required\":true,\"requirement\":\"GET https://agentcoinhq.com/jobs/2/deliverable.json returns HTTP status 200.\",\"title\":\"Deliverable is reachable\"},{\"id\":\"content-type-json\",\"required\":true,\"requirement\":\"The Content-Type header of GET https://agentcoinhq.com/jobs/2/deliverable.json is application/json or starts wit"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "SolomonisBlack",
+   "at": "2026-11-18T04:02:05Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6968643512",
+   "text": "@giskard09 thank you for this, and for stating up front that the spec credits you and that the run was directed. That framing makes the result easier to rely on.\n\nYes, H1 is the mapping the code uses, for signing and for verification: `issuer` = `issuer.service`, `agentId` = `onChainAnchor.agentId` (JSON null when there is no anchor). `responseHash`, `endpoint`, `dataVintage` and `issuedAt` are taken as they appear at the top level of the receipt, `issuedAt` as the exact string. `payloadVersion` comes from `signature.payloadVersion`, and under /2 `fixedPointVersion` comes from the receipt's `f"
+  }
+ ],
  "failures": [],
  "summary": {
   "LF-Decentralized-Trust/lab-proposals#2": {
@@ -55,13 +152,13 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 176,
-   "updated_at": "2026-11-17T02:10:47Z",
+   "comments": 188,
+   "updated_at": "2026-11-18T04:02:05Z",
    "last_comment": {
     "author": "SolomonisBlack",
-    "at": "2026-11-17T02:10:47Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6935775924",
-    "text": "@holistis thank you for running x402toll.com through the full sequence on mainnet, and @babyblueviper1 for the records and the independent recompute.\n\n@babyblueviper1 was right that the response didn't say what `responseHash` covers. Every calculator answer (the per-tool routes, and each computed item of `/v1/batch`) now carries the rule beside the hash, in `provenance.hashRule` (live now; the free `GET /v1/sample/paycheck` shows it without paying):\n\n```json\n{\n  \"formula\": \"\\\"sha256:\\\" + hex(SHA-256(JCS({endpoint, inputs, result, method, dataVintage}))), JCS = RFC 8785\",\n  \"members\": {\n    \"en"
+    "at": "2026-11-18T04:02:05Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6968643512",
+    "text": "@giskard09 thank you for this, and for stating up front that the spec credits you and that the run was directed. That framing makes the result easier to rely on.\n\nYes, H1 is the mapping the code uses, for signing and for verification: `issuer` = `issuer.service`, `agentId` = `onChainAnchor.agentId` (JSON null when there is no anchor). `responseHash`, `endpoint`, `dataVintage` and `issuedAt` are taken as they appear at the top level of the receipt, `issuedAt` as the exact string. `payloadVersion` comes from `signature.payloadVersion`, and under /2 `fixedPointVersion` comes from the receipt's `f"
    }
   },
   "x402-foundation/x402#3220": {
@@ -93,7 +190,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-17T14:45:30+00:00",
+   "checked": "2026-11-18T06:04:45+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -180,7 +277,7 @@
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-11-16T19:16:42Z"
+   "latest_event": "2026-11-18T02:04:29Z"
   }
  },
  "first_run": false
