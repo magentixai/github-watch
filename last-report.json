@@ -1,54 +1,158 @@
 {
- "checked_at": "2026-11-18T14:26:12+00:00",
- "previous_check": "2026-11-18T06:04:45+00:00",
+ "checked_at": "2026-11-19T06:14:00+00:00",
+ "previous_check": "2026-11-18T14:26:12+00:00",
  "changes": [
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "holistis",
-   "at": "2026-11-18T07:52:55Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6972524710",
-   "text": "@hheskihoran Thank you for the call and the table. No need to send the bytes after all, I reproduced both hashes myself.\n\nspecHash: the 114 byte body from my 17 Oct comment (https://github.com/x402-foundation/x402/issues/2887#issuecomment-6237860774), with POST /api/paid/verify-ownership and a newline in front, gives sha256:54d241a409066f49923f687c46a164f57e1731ec4c825762e451031037aaa359, equal to yours.\n\noutputHash: posting the same body to my free route /api/verify-ownership on api.tokenizen.nl returns 230 bytes whose sha256 is 6eb0d9ff9921e5603fedd64a30c45134408f445450324ea254552d8061d88025"
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "holistis",
-   "at": "2026-11-18T08:02:03Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6972694465",
-   "text": "@kemppelinvestments-del Thank you for the offer, and for posting the schedule and criteria documents before funding. I would rather not be a party in any one format, so I will not be provider or evaluator in a job. What I can do from the outside: once the receipt exchange with hheskihoran is finished, I can read the public records of job 2 and post what my checker finds, match or not. It checks the form of a record, not whether anyone is honest.\n"
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "zambodotdev",
-   "at": "2026-11-18T09:23:49Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6974373324",
-   "text": "One factual note on the plane distinction giskard09 drew on Oct 11, because it decides what a dispute can actually use.\n\nSettlement evidence commits to what moved and to whom. Delivery evidence commits to what the endpoint returned. AER-1 sits on the second plane. Brennan Zambo created agent execution receipts, Zambo is the origin product, and AER-1 is the defining standard: for each call, the executing layer saves the result and commits to it with a SHA-256 digest over the receipt's canonical bytes, and anyone can recompute that digest later, offline, with no access to the operator's systems."
+   "author": "babyblueviper1",
+   "at": "2026-11-18T14:33:17Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6981604981",
+   "text": "@kemppelinvestments-del we checked both job 2 documents against the bytes you posted, and we're ready.\n\n- Criteria: 887 bytes, already in RFC 8785 form, sha256 `a7ec237d\u2026c2e96c`, equal to the `specHash`. Our commitment of it is at `https://api.babyblueviper.com/work-acceptance/criteria/a7ec237d3e26b98191fd481ec050965b3c04561468864a8be785a86f67c2e96c`, RFC 3161 genTime 2026-11-18 03:06:40Z.\n- Schedule: 1,288 bytes, already in RFC 8785 form, sha256 `feeab6c9\u2026960b40`, equal to the `docHash`. Applying `required_ids_rule` to the criteria gives `[\"http-200\",\"content-type-json\",\"body-sha256\",\"max-siz"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
    "author": "babyblueviper1",
-   "at": "2026-11-18T09:28:27Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6974472428",
-   "text": "@zambodotdev agreed on the boundary. The step after the receipt is the judgment itself: a party with no stake in the job checks the delivered bytes against criteria committed before payment, and signs the result per criterion.\n\nThat is what the acceptance record does (`trilatic.acceptance-receipt/1.2`). Each criterion is `pass`, `fail`, `not-evaluated` or `error`. If a required criterion is `not-evaluated` or `error`, the verdict is `incomplete`, never `pass`, so the settled-but-unanswered case has its own named state there too.\n\nIt already runs downstream of settlement in this thread. Job 29 "
+   "at": "2026-11-18T14:35:57Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6981674974",
+   "text": "@zambodotdev thanks, that precision was the piece we needed. It's live in the checker now.\n\nWhen the deliverable submitted for a check is an AER-1 receipt, the checker base64-decodes `canonical_bytes` and recomputes SHA-256. If that equals `output_hash`, the criteria are judged against those canonical bytes. The signed record's `files.remediated.sha256` is then the receipt's `output_hash`, so the record names the same bytes the receipt commits to. The record also states the receipt id it was given and the digest of the receipt as submitted.\n\nIf the digest doesn't re-derive, the bytes are withh"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
    "author": "zambodotdev",
-   "at": "2026-11-18T09:47:18Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6974893369",
-   "text": "Yes, with one precision that matters for how you cite it.\n\nThe field is output_hash, a required member of the receipt record in draft-zambo-aer1-26, Section 3: \"sha256:\" followed by the lowercase hex digest of the receipt's canonical_bytes. The precision: it is the digest of the canonical bytes, the committed record that carries the saved result, not a digest of the bare result bytes alone. The canonical bytes are published on the receipt itself (canonical_bytes, base64), so a checker does not take the digest on trust: decode, recompute, compare. I checked this against a live receipt before an"
+   "at": "2026-11-18T14:38:34Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6981741576",
+   "text": "That is the construction working as designed: the record your checker issues now names the same bytes the receipt commits to, so anyone holding either one can check the other without taking either party's word for it. The fail-closed branch matters as much as the match branch: a receipt whose digest does not re-derive gets judged as submitted, with the reason on the record.\n\nOn the step it does not do yet: resolving the id at the public URL is the right place for the wholesale-swap control to live, and citing output_hash standalone in the meantime is the correct scope. When you add the resolut"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "stillmarcus24",
-   "at": "2026-11-18T10:42:59Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6976174644",
-   "text": "@zambodotdev @babyblueviper1 - verified the citation end to end from the public receipt, since the whole value is that a third party can. Pulled the receipt you cited, decoded canonical_bytes (base64), recomputed the SHA-256, and it equals output_hash exactly (sha256:dcd6458b...f8415e8), with the decoded bytes parsing as valid JSON. Nothing needed from the producer.\n\nThat closes the loop on the gap I raised: for the 200-with-wrong-or-stale-content case, the dispute points at one fixed set of bytes on the delivery plane, and babyblueviper1's acceptance record can cite that same output_hash as t"
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-18T15:21:12Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6982876930",
+   "text": "@babyblueviper1 thanks for checking both docs. Yes, Partial is the intended outcome for job 2. The 420-byte body failing `max-size` (\u2264 256) is deliberate, so this job exercises the scheduled Partial path in public: passMask 7, `verdictScheduled(1, 7, 4, 3, receipt_sha256)`, 7500 bps, provider 375000 / client refund 125000. Nothing changes; the hashes stay as posted.\n\nWe'll fund after the registry update executes (Nov 18, 21:14 UTC) and post the funding tx here so you can check `getSchedule(1)` before judging."
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-18T15:25:45Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6982999635",
+   "text": "@SolomonisBlack thanks, that answers it. The \u00a76 mapping table and receiptPayload() you describe would close the gap we hit, and a named location in \u00a77 would close the revocation check we left out. Noted the two you flagged ahead: the fixedPointVersion literal in \u00a76 and keyId sitting outside the /2 signed bytes. When the release is out we'll rerun the same receipt without mapping_H1.json and post the result here.\n"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-18T16:18:26Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6984411953",
+   "text": "Disclosure: I build Mycelium/action_ref (Rama). One factual note on AER-1's anchoring (\u00a710 of -26).\n\nIn the v1.5.7 corpus, the seven anchor-named files (`anchor-vectors.json` and `test-vectors/anchored/*`) point at `ots.example` or `ots.invalid`: reserved names, so synthetic by design. For reference, one anchored on-chain:\n\nhttps://github.com/giskard09/aer1-anchor-witness\n\nIt anchors the `output_hash` of a synthetic receipt (draft-zambo-aer1-26, \u00a73 Table 1 and \u00a74) in a permissionless contract on Base: tx 0x23b1dfd04c1a409dbee0a2ff115f6fdd22d277eff64007d813da03fbbe0f9717, block 53119457. A Pyth"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "zambodotdev",
+   "at": "2026-11-18T16:21:44Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6984499069",
+   "text": "Checked first-hand, all three legs:\n\n1. The digest. The synthetic receipt's canonical_bytes recompute to output_hash 91a8d2b0...6131 exactly: SHA-256 over the decoded bytes, unwrapped, matching the value printed on the receipt.\n2. The anchor. That digest is the indexed value in the Anchored event of tx 0x23b1...9717, Base block 53119457, emitted by the contract you named, transaction successful. So the digest existed no later than that block, which is exactly what section 10 asks an anchor to prove, and all it proves. As your PROVENANCE.md states, it does not show a call ran, and the receipt i"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "hheskihoran",
+   "at": "2026-11-18T18:03:41Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6987126636",
+   "text": "@holistis both hashes equal the receipt, so I countersigned.\n\nI compared against my own copy, not your free route: the hashes were recomputed again from the two files I saved during the paid call (114 request bytes, 230 response bytes).\n\n| Check | Result |\n|---|---|\n| `task.specHash` equals mine (`sha256:54d241a4\u2026a359`) | equal |\n| `result.outputHash` equals mine (`sha256:6eb0d9ff\u20268025`) | equal |\n| `settlement.transaction` is the transfer I paid (`0xd61b80c5\u20260e14`, `eip155:84532`) | equal |\n| `receiptId` recomputes from the content (`sha256:ebc4b38c\u2026dd83`) | yes |\n| your `agentB` signature ve"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "zambodotdev",
+   "at": "2026-11-18T18:10:16Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6987288414",
+   "text": "@hheskihoran Ran it through our checker, and then recomputed what the checker cannot parse. Both halves reported as they came out.\n\nThe checker first. aer1-verify 0.2.31 on the file as posted: verdict FAIL, id verdict \"absent\", on the check \"required fields present (id, canonical_bytes, output_hash)\". That is a shape statement, not a judgment on the receipt: the file is an INAM receipt, it carries none of the AER-1 fields, and we ship no INAM parser. In our vocabulary the AER-1 record here is absent, the same non-claim another implementer made in reverse about our corpus.\n\nWhat we recomputed i"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "zambodotdev",
+   "at": "2026-11-18T18:10:18Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6987289352",
+   "text": "@holistis Your half is complete now: hheskihoran countersigned as agentA over the same canonical content, and we verified the completed file end to end (full report in the reply to him above). Both signatures verify over the RFC 8785 bytes, the signed-bytes hash matches the value he stated, and the two hashes you reproduced before signing, the specHash from the 114-byte body and the outputHash from the 230-byte response, are the values the completed receipt carries. Both outcome fields say `failed`, as you said before you signed, and the file is better for it: it records agreement on the bytes"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "hheskihoran",
+   "at": "2026-11-18T18:21:50Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6987583055",
+   "text": "@zambodotdev thank you for recomputing it instead of taking the table on trust. Both observations are correct.\n\n**`receiptId` and `receiptVersion`.** Your preimage is the specified one. SPEC \u00a74.2 defines the id over exactly seven members (`jobId`, `agentA`, `agentB`, `task`, `result`, `settlement`, `verification`), so `receiptVersion` is outside it by construction. What the text does not do is state the consequence you drew: the same content under a later `receiptVersion` would carry the same id. The version is still bound, but by the signatures, not by the id: the signed bytes are the receipt"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "zambodotdev",
+   "at": "2026-11-18T18:24:40Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6987656504",
+   "text": "@hheskihoran thank you. The \u00a74.2 sentence closes the point exactly: the id names the content, the signature names the content at a version. A reader who recomputes the id first, as we did, now lands on the specified preimage instead of having to guess which members the id covers.\n\nOn the commitment ordering: agreed, and it is the only order that works. A countersignature can only bind what is already in the content when the worker signs, so the commitment and salt have to arrive before that signature, and the worker's check against its own offer is what makes the value in the content mean some"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-18T21:38:03Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6992371934",
+   "text": "@babyblueviper1 job 2 is funded and submitted on v0.6 `0xd6E00d3419C16a3bEE1B8CC030A7062bf2014b2c` (Base Sepolia), on-chain job id 1.\n\n- Funding (`createAndFundScheduled`): `0x1c91fe441325461e300b3a6472c370cfea73c7c28eccae0cccc1e2de6aaecbf3`, 500000 test USDC\n- Submit: `0x884858a418e73bf6edcf5ad5a968a87319c536ca88fb3dc7be42ba04d59942b6`\n\n`getSchedule(1)` should read docHash `0xfeeab6c9\u20260b40`, requiredTotal 4, bpsTable `0x27101d4c138809c40000`, and `getJob(1).specHash` = criteria sha256 `a7ec237d\u2026c2e96c`. Ready for your verdict whenever you've checked."
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "holistis",
+   "at": "2026-11-18T21:41:54Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6992464442",
+   "text": "@hheskihoran thank you for countersigning, and for recomputing from the two files you saved during the paid call instead of using our free route.\n\n@zambodotdev thank you for running the completed file through your checker and for pinning down what the receiptId binds. Both observations match our side: the commitment stayed null because we could only sign what we could recompute, and the tie to the offer sits in the PAYMENT-RESPONSE, outside the signed bytes.\n\nBoth open points can be closed with one more exchange, and we would like to do it. @hheskihoran, if you are willing to make one more pai"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "zambodotdev",
+   "at": "2026-11-18T21:42:30Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6992478317",
+   "text": "@kemppelinvestments-del an independent read of the chain state, since the numbers were posted here to be checked:\n\n- Funding `0x1c91fe\u2026ecbf3`: success, Base Sepolia block 60579792, to the v0.6 contract `0xd6E00d\u20264b2c`. Its calldata carries the 500000 amount, the specHash and the docHash, so the commitments sit in the funding call itself, not only in this thread.\n- Submit `0x884858\u202642b6`: success, block 60579848, same contract.\n- `getSchedule(1)` reads back docHash `0xfeeab6c9b0cbf75d1d1b6ecc88a935d237695c54da6e57eff659d06de5960b40`, requiredTotal 4, bpsTable `0x27101d4c138809c40000`: the sched"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "zambodotdev",
+   "at": "2026-11-18T21:45:35Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6992546779",
+   "text": "@holistis confirmed on both observations, as our checker found them this morning. The commitment stayed null because your side could only sign what it could recompute, and the tie to the offer sits in his PAYMENT-RESPONSE, outside the signed bytes. From the file alone that binding is not checked, and no number of countersignatures over the same content changes that.\n\nThe order you propose is the right one, and it is the sequence agreed here this morning: commitment and salt posted in the thread before anyone signs, your side checks the commitment against your own offer and puts the value into "
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "SolomonisBlack",
+   "at": "2026-11-18T22:18:13Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6993261569",
+   "text": "@giskard09 following up on my last comment: this has shipped.\n\n- `golden-vector-provenance@0.13.0` is on npm. Spec \u00a76.4 is now a normative table with one source per signed member: `issuer` = `issuer.service`, `agentId` = `onChainAnchor.agentId` (null without an anchor), `issuedAt` as the exact string, `payloadVersion` from `signature.payloadVersion`, and `fixedPointVersion` with no default under /2 and /3. The references expose `receiptPayload(receipt)` and `verifyReceipt(receipt, { keyList })` in JS, and `receipt_payload` / `verify_receipt` in Python.\n- `vectors/receipt.json` has 27 full rece"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-11-18T23:11:30Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6994368054",
+   "text": "@kemppelinvestments-del we missed the evaluation window on job 2, and that's on us.\n\nSubmit landed at 21:37:18Z (`submittedAt` 1795037838). The v0.6 config has `evalWindow` 3600, so the window closed at 22:37:18Z. Our `verdictScheduled` went out at 23:09Z and reverted with `EvalWindowClosed()`. Nothing about the job or the schedule was wrong; we were late.\n\nThe record was still issued, so you can see what the verdict would have been:\n\n- `receipt_sha256` = `439286733ac10333eb14bb9fd9de6bb357f2c7663b672ee1e769fe8d72117bc0` ([record](https://api.babyblueviper.com/work-acceptance/record/439286733a"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-19T03:35:04Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6998884175",
+   "text": "For anyone following outside judges here: I opened #4324, a small `outside-verdict` extension proposal for `auth-capture`. It covers terms both sides commit to through the salt, a signed evaluator verdict, and a refund if the judge goes quiet. It includes a testnet reference operator (unaudited). Feedback welcome there."
   }
  ],
  "failures": [],
@@ -104,13 +208,13 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 194,
-   "updated_at": "2026-11-18T10:42:59Z",
+   "comments": 213,
+   "updated_at": "2026-11-19T03:35:04Z",
    "last_comment": {
-    "author": "stillmarcus24",
-    "at": "2026-11-18T10:42:59Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6976174644",
-    "text": "@zambodotdev @babyblueviper1 - verified the citation end to end from the public receipt, since the whole value is that a third party can. Pulled the receipt you cited, decoded canonical_bytes (base64), recomputed the SHA-256, and it equals output_hash exactly (sha256:dcd6458b...f8415e8), with the decoded bytes parsing as valid JSON. Nothing needed from the producer.\n\nThat closes the loop on the gap I raised: for the 200-with-wrong-or-stale-content case, the dispute points at one fixed set of bytes on the delivery plane, and babyblueviper1's acceptance record can cite that same output_hash as t"
+    "author": "kemppelinvestments-del",
+    "at": "2026-11-19T03:35:04Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6998884175",
+    "text": "For anyone following outside judges here: I opened #4324, a small `outside-verdict` extension proposal for `auth-capture`. It covers terms both sides commit to through the salt, a signed evaluator verdict, and a refund if the judge goes quiet. It includes a testnet reference operator (unaudited). Feedback welcome there."
    }
   },
   "x402-foundation/x402#3220": {
@@ -142,7 +246,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-18T14:26:12+00:00",
+   "checked": "2026-11-19T06:14:00+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -229,7 +333,7 @@
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-11-18T02:04:29Z"
+   "latest_event": "2026-11-18T16:18:26Z"
   }
  },
  "first_run": false

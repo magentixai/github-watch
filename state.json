@@ -398,7 +398,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 194,
+   "comments": 213,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -593,14 +593,33 @@
     6974373324,
     6974472428,
     6974893369,
-    6976174644
+    6976174644,
+    6981604981,
+    6981674974,
+    6981741576,
+    6982876930,
+    6982999635,
+    6984411953,
+    6984499069,
+    6987126636,
+    6987288414,
+    6987289352,
+    6987583055,
+    6987656504,
+    6992371934,
+    6992464442,
+    6992478317,
+    6992546779,
+    6993261569,
+    6994368054,
+    6998884175
    ],
-   "updated_at": "2026-11-18T10:42:59Z",
+   "updated_at": "2026-11-19T03:35:04Z",
    "last_comment": {
-    "author": "stillmarcus24",
-    "at": "2026-11-18T10:42:59Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6976174644",
-    "text": "@zambodotdev @babyblueviper1 - verified the citation end to end from the public receipt, since the whole value is that a third party can. Pulled the receipt you cited, decoded canonical_bytes (base64), recomputed the SHA-256, and it equals output_hash exactly (sha256:dcd6458b...f8415e8), with the decoded bytes parsing as valid JSON. Nothing needed from the producer.\n\nThat closes the loop on the gap I raised: for the 200-with-wrong-or-stale-content case, the dispute points at one fixed set of bytes on the delivery plane, and babyblueviper1's acceptance record can cite that same output_hash as t"
+    "author": "kemppelinvestments-del",
+    "at": "2026-11-19T03:35:04Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6998884175",
+    "text": "For anyone following outside judges here: I opened #4324, a small `outside-verdict` extension proposal for `auth-capture`. It covers terms both sides commit to through the salt, a signed evaluator verdict, and a refund if the judge goes quiet. It includes a testnet reference operator (unaudited). Feedback welcome there."
    }
   },
   "x402-foundation/x402#3220": {
@@ -700,10 +719,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-18T14:26:12+00:00",
+ "last_checked": "2026-11-19T06:14:00+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-18T14:26:12+00:00",
+   "checked": "2026-11-19T06:14:00+00:00",
    "items": {
     "23": {
      "title": "Publish the -00 build in ietf/ and explain it in the READMEs",
@@ -1146,6 +1165,8 @@
  },
  "user_events": {
   "giskard09": [
+   "20570113653",
+   "20551758034",
    "20466213287",
    "20466198490",
    "27384505079",
@@ -1243,9 +1264,7 @@
    "26245582269",
    "26242222019",
    "26241715659",
-   "26241141952",
-   "19231291458",
-   "19229081012"
+   "26241141952"
   ]
  }
 }
