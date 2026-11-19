@@ -398,7 +398,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 213,
+   "comments": 214,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -612,14 +612,15 @@
     6992546779,
     6993261569,
     6994368054,
-    6998884175
+    6998884175,
+    7012080521
    ],
-   "updated_at": "2026-11-19T03:35:04Z",
+   "updated_at": "2026-11-19T14:30:48Z",
    "last_comment": {
     "author": "kemppelinvestments-del",
-    "at": "2026-11-19T03:35:04Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-6998884175",
-    "text": "For anyone following outside judges here: I opened #4324, a small `outside-verdict` extension proposal for `auth-capture`. It covers terms both sides commit to through the salt, a signed evaluator verdict, and a refund if the judge goes quiet. It includes a testnet reference operator (unaudited). Feedback welcome there."
+    "at": "2026-11-19T14:30:48Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7012080521",
+    "text": "Two registry updates from the Base Sepolia testnet:\n\n1. A new evaluator staked on its own last night: `0x3E8B7382fd85dbad659B2887D88D020C05ca5f93` (stake tx `0xd3a500194f28133953444ce0426d2f59faa4a44fa8a1bb17f78da53bf4a194a2`). If that's you, thanks. Reply here or open an issue on stos-technologies/agentcoin with a verdict endpoint and the criteria kinds you want to judge, and I'll fund a small canary job assigned to you so you get a track record.\n2. @babyblueviper1, the missed window on job 2 closed via `timeoutRelease` (refund plus the 10% missed-verdict slash, split per the published schedu"
    }
   },
   "x402-foundation/x402#3220": {
@@ -719,10 +720,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-19T06:14:00+00:00",
+ "last_checked": "2026-11-19T14:37:07+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-19T06:14:00+00:00",
+   "checked": "2026-11-19T14:37:07+00:00",
    "items": {
     "23": {
      "title": "Publish the -00 build in ietf/ and explain it in the READMEs",
