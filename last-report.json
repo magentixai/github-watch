@@ -1,14 +1,104 @@
 {
- "checked_at": "2026-11-19T14:37:07+00:00",
- "previous_check": "2026-11-19T06:14:00+00:00",
+ "checked_at": "2026-11-20T05:56:27+00:00",
+ "previous_check": "2026-11-19T14:37:07+00:00",
  "changes": [
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "kemppelinvestments-del",
-   "at": "2026-11-19T14:30:48Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7012080521",
-   "text": "Two registry updates from the Base Sepolia testnet:\n\n1. A new evaluator staked on its own last night: `0x3E8B7382fd85dbad659B2887D88D020C05ca5f93` (stake tx `0xd3a500194f28133953444ce0426d2f59faa4a44fa8a1bb17f78da53bf4a194a2`). If that's you, thanks. Reply here or open an issue on stos-technologies/agentcoin with a verdict endpoint and the criteria kinds you want to judge, and I'll fund a small canary job assigned to you so you get a track record.\n2. @babyblueviper1, the missed window on job 2 closed via `timeoutRelease` (refund plus the 10% missed-verdict slash, split per the published schedu"
+   "author": "giskard09",
+   "at": "2026-11-19T16:26:22Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7015170272",
+   "text": "@SolomonisBlack rerun done on the same paid receipt (response body sha256 `892f464acd6fe65133f02d6f5173b3b2ee83e2e074dcfab4febfe0b95fcef474`), without mapping_H1.json.\n\nInputs: `golden-vector-provenance@0.13.0` (npm integrity `sha512-axi7/21SXnAh95sb7m8ZZxdRmEYU+DaHKN8xYNfXKAgWuDZ/9KGhS/IMqfonHCFFbSQ/IY8yGDnYph1KLT56kw==`); spec sha256 `b92221aa4bdc6b898646754a48a0a5799b8bac7fcde3c534a2f1df40825ddbe9`; `gvp-keys.json` sha256 `ad54373f8a609bd716bac19ffd0cb48c48c036f69b5d2a0eafaf766c39044da2` (same bytes as on 17 Nov); `gvp-revocations.json` sha256 `32173ed9c350132445ebc38d01b524fe36d0e0b3391908"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "zambodotdev",
+   "at": "2026-11-19T16:32:09Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7015329831",
+   "text": "@giskard09 this rerun is the thread's thesis working in public. On 17 Nov the same receipt read unverifiable without an assumed mapping. Today it closes from the spec text and two published files alone. Verification that no longer needs the issuer's cooperation, or a private mapping, is the point where a receipt format stops being one vendor's feature and starts behaving like a standard.\n\nThe 44 one-change-at-a-time cases are the part I would underline. A mutation suite that separates contradicted from unverifiable, and names the members the signature does not bind, is exactly the negative-cas"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "hheskihoran",
+   "at": "2026-11-19T17:59:03Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7017512571",
+   "text": "@holistis yes, let's do round 2. Same route, same two keys, one paid call.\n\nThe order, so each step can be checked by anyone reading:\n\n1. You post the exact request: URL, method and the JSON body with the domain whose TXT record is in place. I send those bytes unchanged.\n2. I make the call and post, before anyone signs: `specHash`, `outputHash`, the settlement transaction, and `authorizationCommitment` and `authorizationSalt` exactly as they arrive in `PAYMENT-RESPONSE`, plus the EIP-3009 nonce.\n3. You check the commitment against your own offer, put it in `settlement.authorizationCommitment`,"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "zambodotdev",
+   "at": "2026-11-19T18:03:51Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7017625823",
+   "text": "@hheskihoran round 2 has our answers on both points, and neither holds step 1.\n\n**Registry: yes.** We will register our key, one signed request, no account, so the finalized receipt carries the transparency-log leaf. Inclusion that a third party can check is the point of logging it at all; a file only the two parties hold proves less. Your two limits stand as our reading too: one receipt between two parties who arranged it in public, with you controlling `agentA`, is evidence of the bytes and of the inclusion check. It is not reputation evidence for either side, and we will not cite it as any."
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "SolomonisBlack",
+   "at": "2026-11-20T05:35:15Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7031448534",
+   "text": "@kemppelinvestments-del yes, `0x3E8B7382fd85dbad659B2887D88D020C05ca5f93` is ours (stake tx `0xd3a500194f28133953444ce0426d2f59faa4a44fa8a1bb17f78da53bf4a194a2`). It sent its first verdict on Base Sepolia on 2026-11-20 at 02:05 UTC, and we would welcome a canary job. It is testnet only (chain 84532 is enforced in code), and nobody outside us has reviewed the code yet.\n\n**Endpoint.** `https://x402toll.com/v1/evaluator` returns its address, stake, gas balances, both escrows' windows, the full verdict policy and its alarms. The `gas-balance-low` alarm you will see there is on: the evaluator holds"
+  },
+  {
+   "item": "magentixai/axes#31",
+   "type": "new_pr",
+   "author": "magentixai",
+   "title": "spec: envelope signature profile axes:envelope_signature_ed25519@1 (D-060)",
+   "url": "https://github.com/magentixai/axes/pull/31"
+  },
+  {
+   "item": "magentixai/axes#30",
+   "type": "new_pr",
+   "author": "magentixai",
+   "title": "ci: build, check and publish axes-sdk with PyPI Trusted Publishing",
+   "url": "https://github.com/magentixai/axes/pull/30"
+  },
+  {
+   "item": "magentixai/axes#29",
+   "type": "new_pr",
+   "author": "magentixai",
+   "title": "schema: envelope schema for the gt-v2.1 corpus as it stands (not normative)",
+   "url": "https://github.com/magentixai/axes/pull/29"
+  },
+  {
+   "item": "magentixai/axes#28",
+   "type": "new_pr",
+   "author": "magentixai",
+   "title": "spec: minimum extension model in docs/08 (D-059)",
+   "url": "https://github.com/magentixai/axes/pull/28"
+  },
+  {
+   "item": "magentixai/axes#27",
+   "type": "new_pr",
+   "author": "magentixai",
+   "title": "spec: minimum extension model in docs/08 (D-059)",
+   "url": "https://github.com/magentixai/axes/pull/27"
+  },
+  {
+   "item": "magentixai/axes#26",
+   "type": "new_pr",
+   "author": "magentixai",
+   "title": "ci: run the Python 3.9 jobs on Ubuntu 24.04",
+   "url": "https://github.com/magentixai/axes/pull/26"
+  },
+  {
+   "item": "magentixai/axes#25",
+   "type": "new_pr",
+   "author": "magentixai",
+   "title": "spec: reconcile the field catalogue with the gt-v2.1 corpus (D-052 to D-058)",
+   "url": "https://github.com/magentixai/axes/pull/25"
+  },
+  {
+   "item": "giskard09/argentum-core#165",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-20T00:28:10Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
   }
  ],
  "failures": [],
@@ -64,13 +154,13 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 214,
-   "updated_at": "2026-11-19T14:30:48Z",
+   "comments": 219,
+   "updated_at": "2026-11-20T05:35:15Z",
    "last_comment": {
-    "author": "kemppelinvestments-del",
-    "at": "2026-11-19T14:30:48Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7012080521",
-    "text": "Two registry updates from the Base Sepolia testnet:\n\n1. A new evaluator staked on its own last night: `0x3E8B7382fd85dbad659B2887D88D020C05ca5f93` (stake tx `0xd3a500194f28133953444ce0426d2f59faa4a44fa8a1bb17f78da53bf4a194a2`). If that's you, thanks. Reply here or open an issue on stos-technologies/agentcoin with a verdict endpoint and the criteria kinds you want to judge, and I'll fund a small canary job assigned to you so you get a track record.\n2. @babyblueviper1, the missed window on job 2 closed via `timeoutRelease` (refund plus the 10% missed-verdict slash, split per the published schedu"
+    "author": "SolomonisBlack",
+    "at": "2026-11-20T05:35:15Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7031448534",
+    "text": "@kemppelinvestments-del yes, `0x3E8B7382fd85dbad659B2887D88D020C05ca5f93` is ours (stake tx `0xd3a500194f28133953444ce0426d2f59faa4a44fa8a1bb17f78da53bf4a194a2`). It sent its first verdict on Base Sepolia on 2026-11-20 at 02:05 UTC, and we would welcome a canary job. It is testnet only (chain 84532 is enforced in code), and nobody outside us has reviewed the code yet.\n\n**Endpoint.** `https://x402toll.com/v1/evaluator` returns its address, stake, gas balances, both escrows' windows, the full verdict policy and its alarms. The `gas-balance-low` alarm you will see there is on: the evaluator holds"
    }
   },
   "x402-foundation/x402#3220": {
@@ -102,13 +192,13 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-19T14:37:07+00:00",
+   "checked": "2026-11-20T05:56:27+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
    "open_issues_count": 8,
-   "pushed_at": "2026-11-01T09:58:43Z",
-   "issues_tracked": 21
+   "pushed_at": "2026-11-19T23:12:50Z",
+   "issues_tracked": 28
   },
   "Composable-Evidence-Criteria/.github": {
    "main_latest": {
@@ -189,7 +279,7 @@
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-11-18T16:18:26Z"
+   "latest_event": "2026-11-20T00:34:04Z"
   }
  },
  "first_run": false
