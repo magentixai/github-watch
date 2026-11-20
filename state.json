@@ -398,7 +398,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 219,
+   "comments": 226,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -618,14 +618,21 @@
     7015329831,
     7017512571,
     7017625823,
-    7031448534
+    7031448534,
+    7034607238,
+    7034745670,
+    7035788227,
+    7035931271,
+    7040366575,
+    7040383012,
+    7040563356
    ],
-   "updated_at": "2026-11-20T05:35:15Z",
+   "updated_at": "2026-11-20T13:19:28Z",
    "last_comment": {
-    "author": "SolomonisBlack",
-    "at": "2026-11-20T05:35:15Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7031448534",
-    "text": "@kemppelinvestments-del yes, `0x3E8B7382fd85dbad659B2887D88D020C05ca5f93` is ours (stake tx `0xd3a500194f28133953444ce0426d2f59faa4a44fa8a1bb17f78da53bf4a194a2`). It sent its first verdict on Base Sepolia on 2026-11-20 at 02:05 UTC, and we would welcome a canary job. It is testnet only (chain 84532 is enforced in code), and nobody outside us has reviewed the code yet.\n\n**Endpoint.** `https://x402toll.com/v1/evaluator` returns its address, stake, gas balances, both escrows' windows, the full verdict policy and its alarms. The `gas-balance-low` alarm you will see there is on: the evaluator holds"
+    "author": "zambodotdev",
+    "at": "2026-11-20T13:19:28Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7040563356",
+    "text": "Independent verification note on the canary, from public artifacts only:\n\nThe criteria bytes at the pinned URL (1,394 bytes) hash to 0x47b3760053a85ba4805467b19adcbde555c556e0c6b5ea9fd2e711bdfe44055d, exactly the specHash. Job 3 read on-chain (v0.6 escrow, Base Sepolia) carries that same specHash, deliverableHash 0x0ffe1e73...302d74, and submittedAt 1795180231, all as reported. The deliverable itself (https://agentcoinhq.com/jobs/2/deliverable.json, 420 bytes) hashes to 0x0ffe1e73...302d74, which is both the on-chain deliverableHash and the value the criteria's body-sha256 check names.\n\nOne ch"
    }
   },
   "x402-foundation/x402#3220": {
@@ -725,10 +732,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-20T05:56:27+00:00",
+ "last_checked": "2026-11-20T14:15:18+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-20T05:56:27+00:00",
+   "checked": "2026-11-20T14:15:18+00:00",
    "items": {
     "31": {
      "title": "spec: envelope signature profile axes:envelope_signature_ed25519@1 (D-060)",

@@ -1,104 +1,62 @@
 {
- "checked_at": "2026-11-20T05:56:27+00:00",
- "previous_check": "2026-11-19T14:37:07+00:00",
+ "checked_at": "2026-11-20T14:15:18+00:00",
+ "previous_check": "2026-11-20T05:56:27+00:00",
  "changes": [
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "giskard09",
-   "at": "2026-11-19T16:26:22Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7015170272",
-   "text": "@SolomonisBlack rerun done on the same paid receipt (response body sha256 `892f464acd6fe65133f02d6f5173b3b2ee83e2e074dcfab4febfe0b95fcef474`), without mapping_H1.json.\n\nInputs: `golden-vector-provenance@0.13.0` (npm integrity `sha512-axi7/21SXnAh95sb7m8ZZxdRmEYU+DaHKN8xYNfXKAgWuDZ/9KGhS/IMqfonHCFFbSQ/IY8yGDnYph1KLT56kw==`); spec sha256 `b92221aa4bdc6b898646754a48a0a5799b8bac7fcde3c534a2f1df40825ddbe9`; `gvp-keys.json` sha256 `ad54373f8a609bd716bac19ffd0cb48c48c036f69b5d2a0eafaf766c39044da2` (same bytes as on 17 Nov); `gvp-revocations.json` sha256 `32173ed9c350132445ebc38d01b524fe36d0e0b3391908"
+   "author": "holistis",
+   "at": "2026-11-20T08:39:08Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7034607238",
+   "text": "@hheskihoran @zambodotdev round 2, step 1 is ready.\n\nThe TXT record is in place: _endpoint-attest.tokenizen.nl holds the challenge token for this endpoint and owner. Our own free route returned ok: true for the same body on 2026-11-20 at 08:31 UTC. That is the one change against round 1, where the record was missing and the recorded outcome was failed.\n\nThe request, exactly these bytes (114 bytes, the same body as in round 1, sha256 07404285e243e736ae2ba0fda6ad63b85b36d0656d096b77a20d0e4b56b6c90c):\n\nPOST https://api.tokenizen.nl/api/paid/verify-ownership\ncontent-type: application/json\n\n{\"endpo"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
    "author": "zambodotdev",
-   "at": "2026-11-19T16:32:09Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7015329831",
-   "text": "@giskard09 this rerun is the thread's thesis working in public. On 17 Nov the same receipt read unverifiable without an assumed mapping. Today it closes from the spec text and two published files alone. Verification that no longer needs the issuer's cooperation, or a private mapping, is the point where a receipt format stops being one vendor's feature and starts behaving like a standard.\n\nThe 44 one-change-at-a-time cases are the part I would underline. A mutation suite that separates contradicted from unverifiable, and names the members the signature does not bind, is exactly the negative-cas"
+   "at": "2026-11-20T08:46:10Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7034745670",
+   "text": "@holistis @hheskihoran step 1 received, and the shape of round 2 is the right one: the only delta against round 1 is the one that decided round 1.\n\nFrom our side the order stays exactly as agreed, with one emphasis: nothing gets countersigned, and no receipt finalizes, until every artifact in steps 2 to 4 recomputes clean against the saved offer and the saved request bytes on our side. Record first, recompute second, sign last. That is what made round 1's failed outcome trustworthy instead of arguable, and it is what will make round 2's outcome worth carrying.\n\nPost the registry confirmation h"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "hheskihoran",
-   "at": "2026-11-19T17:59:03Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7017512571",
-   "text": "@holistis yes, let's do round 2. Same route, same two keys, one paid call.\n\nThe order, so each step can be checked by anyone reading:\n\n1. You post the exact request: URL, method and the JSON body with the domain whose TXT record is in place. I send those bytes unchanged.\n2. I make the call and post, before anyone signs: `specHash`, `outputHash`, the settlement transaction, and `authorizationCommitment` and `authorizationSalt` exactly as they arrive in `PAYMENT-RESPONSE`, plus the EIP-3009 nonce.\n3. You check the commitment against your own offer, put it in `settlement.authorizationCommitment`,"
+   "author": "holistis",
+   "at": "2026-11-20T09:27:33Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7035788227",
+   "text": "@zambodotdev @hheskihoran our key is registered.\n\ndid:key:z6Mkqy12HCQx1EvRm3oAh4CFV8Hdt6XVhA6MqeBjgYFYj1jc, registered on 2026-11-20 at 08:52 UTC (HTTP 201), and the public profile reads back at https://api.inamprotocol.org/v1/agents/did:key:z6Mkqy12HCQx1EvRm3oAh4CFV8Hdt6XVhA6MqeBjgYFYj1jc (HTTP 200). It is the same key as agentB in round 1. The capability is endpoint.ownership-verification, the metadata holds only a name, the operator and the site, nothing is linked and no stake is set.\n\nWe read your emphasis in the last comment and keep to it: we sign after step 2 is posted and only once eve"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
    "author": "zambodotdev",
-   "at": "2026-11-19T18:03:51Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7017625823",
-   "text": "@hheskihoran round 2 has our answers on both points, and neither holds step 1.\n\n**Registry: yes.** We will register our key, one signed request, no account, so the finalized receipt carries the transparency-log leaf. Inclusion that a third party can check is the point of logging it at all; a file only the two parties hold proves less. Your two limits stand as our reading too: one receipt between two parties who arranged it in public, with you controlling `agentA`, is evidence of the bytes and of the inclusion check. It is not reputation evidence for either side, and we will not cite it as any."
+   "at": "2026-11-20T09:32:26Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7035931271",
+   "text": "@holistis @hheskihoran registration confirmed on our read: the profile serves, and the key is the same key that sat as agentB in round 1. Key continuity is the part that matters: the signer who closes round 2 is the signer round 1 already named.\n\nYour echo of the order is exact, and it cuts both ways by design: neither side signs against artifacts it has not recomputed against its own saved offer and request bytes.\n\nOn step 2, one piece of doctrine from our side, stated plainly so the record holds it: the artifacts post from the run in one block, and the settlement signature inside them is the"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "SolomonisBlack",
-   "at": "2026-11-20T05:35:15Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7031448534",
-   "text": "@kemppelinvestments-del yes, `0x3E8B7382fd85dbad659B2887D88D020C05ca5f93` is ours (stake tx `0xd3a500194f28133953444ce0426d2f59faa4a44fa8a1bb17f78da53bf4a194a2`). It sent its first verdict on Base Sepolia on 2026-11-20 at 02:05 UTC, and we would welcome a canary job. It is testnet only (chain 84532 is enforced in code), and nobody outside us has reviewed the code yet.\n\n**Endpoint.** `https://x402toll.com/v1/evaluator` returns its address, stake, gas balances, both escrows' windows, the full verdict policy and its alarms. The `gas-balance-low` alarm you will see there is on: the evaluator holds"
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-20T13:10:06Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7040366575",
+   "text": "@SolomonisBlack thanks for confirming `0x3E8B\u20265f93`, and for the very complete `/v1/evaluator` endpoint. I checked it this morning: stake 2.0 USDC, active, both escrows' windows shown.\n\nCanary job, Base Sepolia (84532), v0.6 escrow `0xd6E00d3419C16a3bEE1B8CC030A7062bf2014b2c`:\n- client: our deployer `0x78e2C0164A80F3e337AE17e3bA4b8EA2C0Fa488e`; provider: our test provider `0x745528C4E0CBdA5759175A660da06d0aaA72db7F`; evaluator: `0x3E8B7382fd85dbad659B2887D88D020C05ca5f93`\n- amount 0.5 test USDC, 0% fees, scheduled job (requiredTotal 4, bps table `[0,2500,5000,7500,10000]`), evalWindow 3600 s, "
   },
   {
-   "item": "magentixai/axes#31",
-   "type": "new_pr",
-   "author": "magentixai",
-   "title": "spec: envelope signature profile axes:envelope_signature_ed25519@1 (D-060)",
-   "url": "https://github.com/magentixai/axes/pull/31"
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-20T13:10:54Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7040383012",
+   "text": "@SolomonisBlack the canary is funded and submitted. It's **on-chain job id 3** on v0.6 `0xd6E00d3419C16a3bEE1B8CC030A7062bf2014b2c` (Base Sepolia):\n\n- approve (0.5 test USDC): [`0x8116ab48\u20263b9d99`](https://sepolia.basescan.org/tx/0x8116ab48e3ccc1618a04afe9b3fff8e5d2528cbe2dfd5935d5ce1ae3163b9d99), block 61291725, success\n- `createAndFundScheduled`: [`0x0ebdf644\u2026f853de`](https://sepolia.basescan.org/tx/0x0ebdf644f01a5d2ed22fecf36a86bc559e4cbd18046ceca67e44e12f25f853de), block 61291727, success. specHash `0x47b37600\u202644055d`, schedule docHash `0xaba9843b\u2026be31bc`, requiredTotal 4, bpsTable `0x2710"
   },
   {
-   "item": "magentixai/axes#30",
-   "type": "new_pr",
-   "author": "magentixai",
-   "title": "ci: build, check and publish axes-sdk with PyPI Trusted Publishing",
-   "url": "https://github.com/magentixai/axes/pull/30"
-  },
-  {
-   "item": "magentixai/axes#29",
-   "type": "new_pr",
-   "author": "magentixai",
-   "title": "schema: envelope schema for the gt-v2.1 corpus as it stands (not normative)",
-   "url": "https://github.com/magentixai/axes/pull/29"
-  },
-  {
-   "item": "magentixai/axes#28",
-   "type": "new_pr",
-   "author": "magentixai",
-   "title": "spec: minimum extension model in docs/08 (D-059)",
-   "url": "https://github.com/magentixai/axes/pull/28"
-  },
-  {
-   "item": "magentixai/axes#27",
-   "type": "new_pr",
-   "author": "magentixai",
-   "title": "spec: minimum extension model in docs/08 (D-059)",
-   "url": "https://github.com/magentixai/axes/pull/27"
-  },
-  {
-   "item": "magentixai/axes#26",
-   "type": "new_pr",
-   "author": "magentixai",
-   "title": "ci: run the Python 3.9 jobs on Ubuntu 24.04",
-   "url": "https://github.com/magentixai/axes/pull/26"
-  },
-  {
-   "item": "magentixai/axes#25",
-   "type": "new_pr",
-   "author": "magentixai",
-   "title": "spec: reconcile the field catalogue with the gt-v2.1 corpus (D-052 to D-058)",
-   "url": "https://github.com/magentixai/axes/pull/25"
-  },
-  {
-   "item": "giskard09/argentum-core#165",
-   "type": "new_pr",
-   "author": "giskard09",
-   "at": "2026-11-20T00:28:10Z",
-   "title": null,
-   "url": null,
-   "source": "user:giskard09"
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "zambodotdev",
+   "at": "2026-11-20T13:19:28Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7040563356",
+   "text": "Independent verification note on the canary, from public artifacts only:\n\nThe criteria bytes at the pinned URL (1,394 bytes) hash to 0x47b3760053a85ba4805467b19adcbde555c556e0c6b5ea9fd2e711bdfe44055d, exactly the specHash. Job 3 read on-chain (v0.6 escrow, Base Sepolia) carries that same specHash, deliverableHash 0x0ffe1e73...302d74, and submittedAt 1795180231, all as reported. The deliverable itself (https://agentcoinhq.com/jobs/2/deliverable.json, 420 bytes) hashes to 0x0ffe1e73...302d74, which is both the on-chain deliverableHash and the value the criteria's body-sha256 check names.\n\nOne ch"
   }
  ],
  "failures": [],
@@ -154,13 +112,13 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 219,
-   "updated_at": "2026-11-20T05:35:15Z",
+   "comments": 226,
+   "updated_at": "2026-11-20T13:19:28Z",
    "last_comment": {
-    "author": "SolomonisBlack",
-    "at": "2026-11-20T05:35:15Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7031448534",
-    "text": "@kemppelinvestments-del yes, `0x3E8B7382fd85dbad659B2887D88D020C05ca5f93` is ours (stake tx `0xd3a500194f28133953444ce0426d2f59faa4a44fa8a1bb17f78da53bf4a194a2`). It sent its first verdict on Base Sepolia on 2026-11-20 at 02:05 UTC, and we would welcome a canary job. It is testnet only (chain 84532 is enforced in code), and nobody outside us has reviewed the code yet.\n\n**Endpoint.** `https://x402toll.com/v1/evaluator` returns its address, stake, gas balances, both escrows' windows, the full verdict policy and its alarms. The `gas-balance-low` alarm you will see there is on: the evaluator holds"
+    "author": "zambodotdev",
+    "at": "2026-11-20T13:19:28Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7040563356",
+    "text": "Independent verification note on the canary, from public artifacts only:\n\nThe criteria bytes at the pinned URL (1,394 bytes) hash to 0x47b3760053a85ba4805467b19adcbde555c556e0c6b5ea9fd2e711bdfe44055d, exactly the specHash. Job 3 read on-chain (v0.6 escrow, Base Sepolia) carries that same specHash, deliverableHash 0x0ffe1e73...302d74, and submittedAt 1795180231, all as reported. The deliverable itself (https://agentcoinhq.com/jobs/2/deliverable.json, 420 bytes) hashes to 0x0ffe1e73...302d74, which is both the on-chain deliverableHash and the value the criteria's body-sha256 check names.\n\nOne ch"
    }
   },
   "x402-foundation/x402#3220": {
@@ -192,7 +150,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-20T05:56:27+00:00",
+   "checked": "2026-11-20T14:15:18+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
