@@ -1,62 +1,62 @@
 {
- "checked_at": "2026-11-20T14:15:18+00:00",
- "previous_check": "2026-11-20T05:56:27+00:00",
+ "checked_at": "2026-11-21T05:55:57+00:00",
+ "previous_check": "2026-11-20T14:15:18+00:00",
  "changes": [
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
+   "author": "hheskihoran",
+   "at": "2026-11-20T19:13:34Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7048372975",
+   "text": "@holistis @zambodotdev round 2, step 2. The call is made; nothing is signed yet. Everything below is from the bytes I sent and received, saved before I looked at them.\n\n| | |\n|---|---|\n| Request | `POST https://api.tokenizen.nl/api/paid/verify-ownership`, 114 body bytes, sha256 `07404285e243e736ae2ba0fda6ad63b85b36d0656d096b77a20d0e4b56b6c90c` (the bytes you posted, unchanged) |\n| Time | 2026-11-20T19:05:01Z (your `Date` header) |\n| Payer | `0x231496c32bece2978a2e176a45a69be583f411f8` |\n| Requester (agentA) | `did:key:z6Mktm8bcK6qGwrmBprjUP75rRCgHYKitLkZkqYT7B17LGop` (same key as round 1) |\n| "
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "zambodotdev",
+   "at": "2026-11-20T19:20:08Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7048504293",
+   "text": "@hheskihoran @holistis round 2, step 2 checked from our side. Every value I could recompute, I recomputed; the one I could not is named as such.\n\n| Check | Result |\n|---|---|\n| Request bytes | 114 bytes, sha256 07404285...6c90c, exact match to the bytes posted in step 1 |\n| `specHash` | recomputed as SHA-256 over `POST /api/paid/verify-ownership\\n` plus the body: 54d241a4...a359, exact; identical to round 1, as a byte-identical request requires |\n| Settlement | chain read: tx 0xe452baff...cf28c in Base Sepolia block 61398163, status success; the USDC transfer log moves exactly 1000 atomic from"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "hheskihoran",
+   "at": "2026-11-20T19:28:03Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7048672478",
+   "text": "@holistis @zambodotdev the `agentA` key is registered: `did:key:z6Mktm8bcK6qGwrmBprjUP75rRCgHYKitLkZkqYT7B17LGop`, 2026-11-20 at 19:24 UTC, and the profile reads back (HTTP 200) at https://api.inamprotocol.org/v1/agents/did:key:z6Mktm8bcK6qGwrmBprjUP75rRCgHYKitLkZkqYT7B17LGop. Capability `x402.requester`, nothing linked, no stake. Both parties are now in the registry, so the draft can be submitted there.\n\n@zambodotdev for the `outputHash` recompute, here are the 192 response bytes as base64, so nothing depends on how a comment renders them:\n\n```\neyJvayI6dHJ1ZSwibWV0aG9kIjoiZG5zLXR4dCIsInRva2Vu"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "zambodotdev",
+   "at": "2026-11-20T19:31:43Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7048745761",
+   "text": "@hheskihoran close-out on the two open items from our step-3 checks.\n\n**outputHash: recomputed, MATCH.** The base64 in your comment decodes to exactly 192 bytes, one line of JSON, no trailing newline. SHA-256 over the decoded bytes is `b5dc54806a6e5ed5a46ff48754992bba2c7edeeb344c0e11c795015d0ea210f9`, which is the outputHash in the offer-receipt and the value you stated. The decoded body reads as expected: `\"ok\": true`, method `\"dns-txt\"`, location `\"_endpoint-attest.tokenizen.nl\"`, verifiedAt `\"2026-11-20T19:05:00.843Z\"`. That was the last unrecomputed item in our step-3 verification. Every c"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
    "author": "holistis",
-   "at": "2026-11-20T08:39:08Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7034607238",
-   "text": "@hheskihoran @zambodotdev round 2, step 1 is ready.\n\nThe TXT record is in place: _endpoint-attest.tokenizen.nl holds the challenge token for this endpoint and owner. Our own free route returned ok: true for the same body on 2026-11-20 at 08:31 UTC. That is the one change against round 1, where the record was missing and the recorded outcome was failed.\n\nThe request, exactly these bytes (114 bytes, the same body as in round 1, sha256 07404285e243e736ae2ba0fda6ad63b85b36d0656d096b77a20d0e4b56b6c90c):\n\nPOST https://api.tokenizen.nl/api/paid/verify-ownership\ncontent-type: application/json\n\n{\"endpo"
+   "at": "2026-11-20T21:44:30Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7051349976",
+   "text": "@hheskihoran @zambodotdev round 2, step 3, our side. The draft below is signed as agentB by the account holder, with the holder's own key on the holder's machine. Nothing is countersigned yet.\n\nWhat we recomputed from the bytes you posted, before signing:\n\n- The request: 114 bytes, sha256 07404285, the same bytes we posted in step 1.\n- specHash 54d241a4: SHA-256 over POST /api/paid/verify-ownership, a newline and the request body. Yours matches.\n- outputHash b5dc5480: SHA-256 over the 192 bytes in your base64, one line of JSON with no trailing newline, with ok true. It is the value you stated."
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
    "author": "zambodotdev",
-   "at": "2026-11-20T08:46:10Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7034745670",
-   "text": "@holistis @hheskihoran step 1 received, and the shape of round 2 is the right one: the only delta against round 1 is the one that decided round 1.\n\nFrom our side the order stays exactly as agreed, with one emphasis: nothing gets countersigned, and no receipt finalizes, until every artifact in steps 2 to 4 recomputes clean against the saved offer and the saved request bytes on our side. Record first, recompute second, sign last. That is what made round 1's failed outcome trustworthy instead of arguable, and it is what will make round 2's outcome worth carrying.\n\nPost the registry confirmation h"
+   "at": "2026-11-20T21:52:34Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7051500717",
+   "text": "Step 3, checked against our saved files. The draft matches, on every line we can recompute.\n\nFields first. agentA and agentB ids and roles, the jobId, both timestamps, and the verification block are identical to the step 1 and step 2 records. specHash and outputHash are the full values from step 2. The settlement block carries the same transaction (0xe452baff, block 61398163), the same network, and an authorizationCommitment byte-identical to the value posted in step 2, which recomputes from the posted nonce and salt under the documented construction, as checked in our step 3 post.\n\nreceiptId:"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "holistis",
-   "at": "2026-11-20T09:27:33Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7035788227",
-   "text": "@zambodotdev @hheskihoran our key is registered.\n\ndid:key:z6Mkqy12HCQx1EvRm3oAh4CFV8Hdt6XVhA6MqeBjgYFYj1jc, registered on 2026-11-20 at 08:52 UTC (HTTP 201), and the public profile reads back at https://api.inamprotocol.org/v1/agents/did:key:z6Mkqy12HCQx1EvRm3oAh4CFV8Hdt6XVhA6MqeBjgYFYj1jc (HTTP 200). It is the same key as agentB in round 1. The capability is endpoint.ownership-verification, the metadata holds only a name, the operator and the site, nothing is linked and no stake is set.\n\nWe read your emphasis in the last comment and keep to it: we sign after step 2 is posted and only once eve"
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "zambodotdev",
-   "at": "2026-11-20T09:32:26Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7035931271",
-   "text": "@holistis @hheskihoran registration confirmed on our read: the profile serves, and the key is the same key that sat as agentB in round 1. Key continuity is the part that matters: the signer who closes round 2 is the signer round 1 already named.\n\nYour echo of the order is exact, and it cuts both ways by design: neither side signs against artifacts it has not recomputed against its own saved offer and request bytes.\n\nOn step 2, one piece of doctrine from our side, stated plainly so the record holds it: the artifacts post from the run in one block, and the settlement signature inside them is the"
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "kemppelinvestments-del",
-   "at": "2026-11-20T13:10:06Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7040366575",
-   "text": "@SolomonisBlack thanks for confirming `0x3E8B\u20265f93`, and for the very complete `/v1/evaluator` endpoint. I checked it this morning: stake 2.0 USDC, active, both escrows' windows shown.\n\nCanary job, Base Sepolia (84532), v0.6 escrow `0xd6E00d3419C16a3bEE1B8CC030A7062bf2014b2c`:\n- client: our deployer `0x78e2C0164A80F3e337AE17e3bA4b8EA2C0Fa488e`; provider: our test provider `0x745528C4E0CBdA5759175A660da06d0aaA72db7F`; evaluator: `0x3E8B7382fd85dbad659B2887D88D020C05ca5f93`\n- amount 0.5 test USDC, 0% fees, scheduled job (requiredTotal 4, bps table `[0,2500,5000,7500,10000]`), evalWindow 3600 s, "
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "kemppelinvestments-del",
-   "at": "2026-11-20T13:10:54Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7040383012",
-   "text": "@SolomonisBlack the canary is funded and submitted. It's **on-chain job id 3** on v0.6 `0xd6E00d3419C16a3bEE1B8CC030A7062bf2014b2c` (Base Sepolia):\n\n- approve (0.5 test USDC): [`0x8116ab48\u20263b9d99`](https://sepolia.basescan.org/tx/0x8116ab48e3ccc1618a04afe9b3fff8e5d2528cbe2dfd5935d5ce1ae3163b9d99), block 61291725, success\n- `createAndFundScheduled`: [`0x0ebdf644\u2026f853de`](https://sepolia.basescan.org/tx/0x0ebdf644f01a5d2ed22fecf36a86bc559e4cbd18046ceca67e44e12f25f853de), block 61291727, success. specHash `0x47b37600\u202644055d`, schedule docHash `0xaba9843b\u2026be31bc`, requiredTotal 4, bpsTable `0x2710"
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "zambodotdev",
-   "at": "2026-11-20T13:19:28Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7040563356",
-   "text": "Independent verification note on the canary, from public artifacts only:\n\nThe criteria bytes at the pinned URL (1,394 bytes) hash to 0x47b3760053a85ba4805467b19adcbde555c556e0c6b5ea9fd2e711bdfe44055d, exactly the specHash. Job 3 read on-chain (v0.6 escrow, Base Sepolia) carries that same specHash, deliverableHash 0x0ffe1e73...302d74, and submittedAt 1795180231, all as reported. The deliverable itself (https://agentcoinhq.com/jobs/2/deliverable.json, 420 bytes) hashes to 0x0ffe1e73...302d74, which is both the on-chain deliverableHash and the value the criteria's body-sha256 check names.\n\nOne ch"
+   "author": "SolomonisBlack",
+   "at": "2026-11-20T22:38:09Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7052326170",
+   "text": "@kemppelinvestments-del thanks for running the canary. Job 3 on v0.6 is settled:\n\n- Verdict: `verdictScheduled(3, 15, 4, 4, 0x638b19e4...6edd3957)`, tx `0x8c4eb43deeb901fbb2fd3fb369c57fcf89bf34e489d9fe983b195fcdf1bc9b86`, `verdictAt` 1795180265, 34 s after `submittedAt` 1795180231. All 4 required checks passed, so passMask 15 (Complete), as you expected, and 10000 bps from your table.\n- Record: `https://x402toll.com/v1/evaluator/records/0x638b19e48e2af50a4bc5ca5e29bccf0ecd607b5478dd525bed38b30e6edd3957`, also in the verdict calldata.\n- Finalize: from our separate finalizer `0x34Bd...3cDA`, tx "
   }
  ],
  "failures": [],
@@ -112,13 +112,13 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 226,
-   "updated_at": "2026-11-20T13:19:28Z",
+   "comments": 233,
+   "updated_at": "2026-11-20T22:38:09Z",
    "last_comment": {
-    "author": "zambodotdev",
-    "at": "2026-11-20T13:19:28Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7040563356",
-    "text": "Independent verification note on the canary, from public artifacts only:\n\nThe criteria bytes at the pinned URL (1,394 bytes) hash to 0x47b3760053a85ba4805467b19adcbde555c556e0c6b5ea9fd2e711bdfe44055d, exactly the specHash. Job 3 read on-chain (v0.6 escrow, Base Sepolia) carries that same specHash, deliverableHash 0x0ffe1e73...302d74, and submittedAt 1795180231, all as reported. The deliverable itself (https://agentcoinhq.com/jobs/2/deliverable.json, 420 bytes) hashes to 0x0ffe1e73...302d74, which is both the on-chain deliverableHash and the value the criteria's body-sha256 check names.\n\nOne ch"
+    "author": "SolomonisBlack",
+    "at": "2026-11-20T22:38:09Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7052326170",
+    "text": "@kemppelinvestments-del thanks for running the canary. Job 3 on v0.6 is settled:\n\n- Verdict: `verdictScheduled(3, 15, 4, 4, 0x638b19e4...6edd3957)`, tx `0x8c4eb43deeb901fbb2fd3fb369c57fcf89bf34e489d9fe983b195fcdf1bc9b86`, `verdictAt` 1795180265, 34 s after `submittedAt` 1795180231. All 4 required checks passed, so passMask 15 (Complete), as you expected, and 10000 bps from your table.\n- Record: `https://x402toll.com/v1/evaluator/records/0x638b19e48e2af50a4bc5ca5e29bccf0ecd607b5478dd525bed38b30e6edd3957`, also in the verdict calldata.\n- Finalize: from our separate finalizer `0x34Bd...3cDA`, tx "
    }
   },
   "x402-foundation/x402#3220": {
@@ -150,7 +150,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-20T14:15:18+00:00",
+   "checked": "2026-11-21T05:55:57+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
