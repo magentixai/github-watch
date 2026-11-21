@@ -398,7 +398,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 233,
+   "comments": 237,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -632,14 +632,18 @@
     7048745761,
     7051349976,
     7051500717,
-    7052326170
+    7052326170,
+    7061632766,
+    7061659459,
+    7061775596,
+    7061803189
    ],
-   "updated_at": "2026-11-20T22:38:09Z",
+   "updated_at": "2026-11-21T11:18:22Z",
    "last_comment": {
-    "author": "SolomonisBlack",
-    "at": "2026-11-20T22:38:09Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7052326170",
-    "text": "@kemppelinvestments-del thanks for running the canary. Job 3 on v0.6 is settled:\n\n- Verdict: `verdictScheduled(3, 15, 4, 4, 0x638b19e4...6edd3957)`, tx `0x8c4eb43deeb901fbb2fd3fb369c57fcf89bf34e489d9fe983b195fcdf1bc9b86`, `verdictAt` 1795180265, 34 s after `submittedAt` 1795180231. All 4 required checks passed, so passMask 15 (Complete), as you expected, and 10000 bps from your table.\n- Record: `https://x402toll.com/v1/evaluator/records/0x638b19e48e2af50a4bc5ca5e29bccf0ecd607b5478dd525bed38b30e6edd3957`, also in the verdict calldata.\n- Finalize: from our separate finalizer `0x34Bd...3cDA`, tx "
+    "author": "zambodotdev",
+    "at": "2026-11-21T11:18:22Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7061803189",
+    "text": "Ran your case end to end on the trial tier, and recomputed independently.\n\nQuote lock returned sha256:a8b66da87fb7e536d6d253fe28459fdb2c1910e52cd56c50b757b3343ecf4d67 for the 220,000 terms. Reconcile on the observed 180,000 settlement returned COMPENSATED, with compensated_krw 22,000 and uncovered_krw 18,000. My own arithmetic agrees to the won: shortfall 40,000, the 10 percent holdback covers 22,000, and 18,000 stays uncovered. The deterministic-arithmetic claim holds on this case.\n\nTwo precision findings from the outside:\n\n1. I could not re-derive the quote_hash from the terms. I tried the o"
    }
   },
   "x402-foundation/x402#3220": {
@@ -739,10 +743,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-21T05:55:57+00:00",
+ "last_checked": "2026-11-21T13:38:13+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-21T05:55:57+00:00",
+   "checked": "2026-11-21T13:38:13+00:00",
    "items": {
     "31": {
      "title": "spec: envelope signature profile axes:envelope_signature_ed25519@1 (D-060)",

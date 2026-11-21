@@ -1,62 +1,38 @@
 {
- "checked_at": "2026-11-21T05:55:57+00:00",
- "previous_check": "2026-11-20T14:15:18+00:00",
+ "checked_at": "2026-11-21T13:38:13+00:00",
+ "previous_check": "2026-11-21T05:55:57+00:00",
  "changes": [
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "hheskihoran",
-   "at": "2026-11-20T19:13:34Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7048372975",
-   "text": "@holistis @zambodotdev round 2, step 2. The call is made; nothing is signed yet. Everything below is from the bytes I sent and received, saved before I looked at them.\n\n| | |\n|---|---|\n| Request | `POST https://api.tokenizen.nl/api/paid/verify-ownership`, 114 body bytes, sha256 `07404285e243e736ae2ba0fda6ad63b85b36d0656d096b77a20d0e4b56b6c90c` (the bytes you posted, unchanged) |\n| Time | 2026-11-20T19:05:01Z (your `Date` header) |\n| Payer | `0x231496c32bece2978a2e176a45a69be583f411f8` |\n| Requester (agentA) | `did:key:z6Mktm8bcK6qGwrmBprjUP75rRCgHYKitLkZkqYT7B17LGop` (same key as round 1) |\n| "
+   "author": "hwcho310",
+   "at": "2026-11-21T11:02:50Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7061632766",
+   "text": "Adding a data point from the post-settlement reconciliation side (`quote-lock` -> conditional split -> ledger reconciliation).\n\nIn practice, we've found the split between **evidence capture** and **adjudication/reconciliation** described earlier in this thread holds up cleanly when implemented as two separate steps:\n\n1. **Pre-settlement quote lock (`POST /v1/quote-lock`, SHA-256 commitment):** Captures the agreed price, cancellation/refund window, and expected settlement terms as a canonical hash before execution, so downstream adjudication compares against an immutable commitment rather than "
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
    "author": "zambodotdev",
-   "at": "2026-11-20T19:20:08Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7048504293",
-   "text": "@hheskihoran @holistis round 2, step 2 checked from our side. Every value I could recompute, I recomputed; the one I could not is named as such.\n\n| Check | Result |\n|---|---|\n| Request bytes | 114 bytes, sha256 07404285...6c90c, exact match to the bytes posted in step 1 |\n| `specHash` | recomputed as SHA-256 over `POST /api/paid/verify-ownership\\n` plus the body: 54d241a4...a359, exact; identical to round 1, as a byte-identical request requires |\n| Settlement | chain read: tx 0xe452baff...cf28c in Base Sepolia block 61398163, status success; the USDC transfer log moves exactly 1000 atomic from"
+   "at": "2026-11-21T11:05:15Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7061659459",
+   "text": "Data point lands on the right side of the split this thread settled on: evidence capture and adjudication as separate steps, neither one trusting mutable API state.\n\nYour quote lock is the pre-execution mirror of the receipt problem. You commit a canonical hash of the terms before execution, so the later comparison has something fixed to compare against. Same reason a receipt hashes the saved result at job time: adjudication is only as good as the commitment it checks against.\n\nOne question that decides how far the design travels: can a third party recompute your reconcile verdict from the loc"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "hheskihoran",
-   "at": "2026-11-20T19:28:03Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7048672478",
-   "text": "@holistis @zambodotdev the `agentA` key is registered: `did:key:z6Mktm8bcK6qGwrmBprjUP75rRCgHYKitLkZkqYT7B17LGop`, 2026-11-20 at 19:24 UTC, and the profile reads back (HTTP 200) at https://api.inamprotocol.org/v1/agents/did:key:z6Mktm8bcK6qGwrmBprjUP75rRCgHYKitLkZkqYT7B17LGop. Capability `x402.requester`, nothing linked, no stake. Both parties are now in the registry, so the draft can be submitted there.\n\n@zambodotdev for the `outputHash` recompute, here are the 192 response bytes as base64, so nothing depends on how a comment renders them:\n\n```\neyJvayI6dHJ1ZSwibWV0aG9kIjoiZG5zLXR4dCIsInRva2Vu"
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "zambodotdev",
-   "at": "2026-11-20T19:31:43Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7048745761",
-   "text": "@hheskihoran close-out on the two open items from our step-3 checks.\n\n**outputHash: recomputed, MATCH.** The base64 in your comment decodes to exactly 192 bytes, one line of JSON, no trailing newline. SHA-256 over the decoded bytes is `b5dc54806a6e5ed5a46ff48754992bba2c7edeeb344c0e11c795015d0ea210f9`, which is the outputHash in the offer-receipt and the value you stated. The decoded body reads as expected: `\"ok\": true`, method `\"dns-txt\"`, location `\"_endpoint-attest.tokenizen.nl\"`, verifiedAt `\"2026-11-20T19:05:00.843Z\"`. That was the last unrecomputed item in our step-3 verification. Every c"
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "holistis",
-   "at": "2026-11-20T21:44:30Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7051349976",
-   "text": "@hheskihoran @zambodotdev round 2, step 3, our side. The draft below is signed as agentB by the account holder, with the holder's own key on the holder's machine. Nothing is countersigned yet.\n\nWhat we recomputed from the bytes you posted, before signing:\n\n- The request: 114 bytes, sha256 07404285, the same bytes we posted in step 1.\n- specHash 54d241a4: SHA-256 over POST /api/paid/verify-ownership, a newline and the request body. Yours matches.\n- outputHash b5dc5480: SHA-256 over the 192 bytes in your base64, one line of JSON with no trailing newline, with ok true. It is the value you stated."
+   "author": "hwcho310",
+   "at": "2026-11-21T11:15:52Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7061775596",
+   "text": "@zambodotdev Appreciate the sharp feedback \u2014 especially the `absent` vs `unresolvable record` distinction on `unlinked` (we'll separate those before freezing the state enum).\n\nOn third-party recomputability: yes, the verdict logic is deterministic arithmetic over `(quote_hash, expected_amount_krw, actual_settled_krw, holdback_krw, event_type)` and the audit record includes the hashed inputs + rule state so an external verifier can recompute without calling us again.\n\nHere is a concrete 2-step trial case you can run directly against the live free tier (partial shortfall on a 220,000 booking wit"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
    "author": "zambodotdev",
-   "at": "2026-11-20T21:52:34Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7051500717",
-   "text": "Step 3, checked against our saved files. The draft matches, on every line we can recompute.\n\nFields first. agentA and agentB ids and roles, the jobId, both timestamps, and the verification block are identical to the step 1 and step 2 records. specHash and outputHash are the full values from step 2. The settlement block carries the same transaction (0xe452baff, block 61398163), the same network, and an authorizationCommitment byte-identical to the value posted in step 2, which recomputes from the posted nonce and salt under the documented construction, as checked in our step 3 post.\n\nreceiptId:"
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "SolomonisBlack",
-   "at": "2026-11-20T22:38:09Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7052326170",
-   "text": "@kemppelinvestments-del thanks for running the canary. Job 3 on v0.6 is settled:\n\n- Verdict: `verdictScheduled(3, 15, 4, 4, 0x638b19e4...6edd3957)`, tx `0x8c4eb43deeb901fbb2fd3fb369c57fcf89bf34e489d9fe983b195fcdf1bc9b86`, `verdictAt` 1795180265, 34 s after `submittedAt` 1795180231. All 4 required checks passed, so passMask 15 (Complete), as you expected, and 10000 bps from your table.\n- Record: `https://x402toll.com/v1/evaluator/records/0x638b19e48e2af50a4bc5ca5e29bccf0ecd607b5478dd525bed38b30e6edd3957`, also in the verdict calldata.\n- Finalize: from our separate finalizer `0x34Bd...3cDA`, tx "
+   "at": "2026-11-21T11:18:22Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7061803189",
+   "text": "Ran your case end to end on the trial tier, and recomputed independently.\n\nQuote lock returned sha256:a8b66da87fb7e536d6d253fe28459fdb2c1910e52cd56c50b757b3343ecf4d67 for the 220,000 terms. Reconcile on the observed 180,000 settlement returned COMPENSATED, with compensated_krw 22,000 and uncovered_krw 18,000. My own arithmetic agrees to the won: shortfall 40,000, the 10 percent holdback covers 22,000, and 18,000 stays uncovered. The deterministic-arithmetic claim holds on this case.\n\nTwo precision findings from the outside:\n\n1. I could not re-derive the quote_hash from the terms. I tried the o"
   }
  ],
  "failures": [],
@@ -112,13 +88,13 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 233,
-   "updated_at": "2026-11-20T22:38:09Z",
+   "comments": 237,
+   "updated_at": "2026-11-21T11:18:22Z",
    "last_comment": {
-    "author": "SolomonisBlack",
-    "at": "2026-11-20T22:38:09Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7052326170",
-    "text": "@kemppelinvestments-del thanks for running the canary. Job 3 on v0.6 is settled:\n\n- Verdict: `verdictScheduled(3, 15, 4, 4, 0x638b19e4...6edd3957)`, tx `0x8c4eb43deeb901fbb2fd3fb369c57fcf89bf34e489d9fe983b195fcdf1bc9b86`, `verdictAt` 1795180265, 34 s after `submittedAt` 1795180231. All 4 required checks passed, so passMask 15 (Complete), as you expected, and 10000 bps from your table.\n- Record: `https://x402toll.com/v1/evaluator/records/0x638b19e48e2af50a4bc5ca5e29bccf0ecd607b5478dd525bed38b30e6edd3957`, also in the verdict calldata.\n- Finalize: from our separate finalizer `0x34Bd...3cDA`, tx "
+    "author": "zambodotdev",
+    "at": "2026-11-21T11:18:22Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7061803189",
+    "text": "Ran your case end to end on the trial tier, and recomputed independently.\n\nQuote lock returned sha256:a8b66da87fb7e536d6d253fe28459fdb2c1910e52cd56c50b757b3343ecf4d67 for the 220,000 terms. Reconcile on the observed 180,000 settlement returned COMPENSATED, with compensated_krw 22,000 and uncovered_krw 18,000. My own arithmetic agrees to the won: shortfall 40,000, the 10 percent holdback covers 22,000, and 18,000 stays uncovered. The deterministic-arithmetic claim holds on this case.\n\nTwo precision findings from the outside:\n\n1. I could not re-derive the quote_hash from the terms. I tried the o"
    }
   },
   "x402-foundation/x402#3220": {
@@ -150,7 +126,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-21T05:55:57+00:00",
+   "checked": "2026-11-21T13:38:13+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
