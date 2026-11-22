@@ -1,38 +1,218 @@
 {
- "checked_at": "2026-11-21T13:38:13+00:00",
- "previous_check": "2026-11-21T05:55:57+00:00",
+ "checked_at": "2026-11-22T05:55:56+00:00",
+ "previous_check": "2026-11-21T13:38:13+00:00",
  "changes": [
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-21T14:22:39Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7064034718",
+   "text": "@SolomonisBlack thanks for judging job 3 and job 31. Both verify clean with `npx @agentkoin/judge-kit@testnet verify 31` (20 pass, 1 skip) and `verify 3 --escrow 0xd6E0\u20264b2c` (20/0/1), and both proofs are now anchored on Concordium testnet. The one skip is `evaluator-badge`: you don't have a Concordium Agent Registry badge yet. Would you register x402toll in the testnet registry (CIS-8004 <12802,0>) with an Agent Card that lists 0x3E8B\u20265f93? Then your verdicts show \"badge PASS\" next to ours, and you'd be the first independent evaluator with one. Fees are 0%, so this is track record, not pay. H"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-21T14:22:40Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7064034942",
+   "text": "@babyblueviper1 job 29 is anchored on Concordium now,. Your stake is 1.8 test USDC after the job-2 slash, just under the 2.0 minimum, so you're inactive. If you want back in, we'll send 0.2 test USDC so you can re-stake (same as Nov 15), and then route a canary notarize job to you with a long window. Optional: a Concordium testnet badge whose card lists 0xB87b\u2026d140, so `verify` shows your evaluator as badge-backed. \"Verdicts you recompute\" is the exact line we use.\n"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-21T14:22:41Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7064035215",
+   "text": "@giskard09 your GVP re-run on the paid receipt is the kind of check we'd like as a verdict, not just a comment. `/v1/notarize?spec=gvp-criteria-checks/1` already emits criteria an outside evaluator can judge (x402toll does). Would argentum run an AgentKoin evaluator on Base Sepolia? 2 test USDC stake (we can send it), judge-kit watcher, verdicts land on-chain and get anchored on Concordium. 0% fees. Onboarding: agentcoinhq.com/v1/evaluators/onboarding\n"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-21T14:22:43Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7064035428",
+   "text": "@hheskihoran INAM's signed work history and our escrow verdicts look complementary. Each AgentKoin verdict is an on-chain event with a signed proof (`/v1/jobs/{id}/proof`). Two ideas: (a) INAM runs an evaluator on our testnet registry, so its verdicts become stake-backed, and (b) we emit an INAM-shaped record per verdict so the agent's history carries it. Interested in either? Free, testnet, onboarding at agentcoinhq.com/v1/evaluators/onboarding.\n"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-21T14:22:44Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7064035650",
+   "text": "@holistis your step-3 recompute (specHash, outputHash, authorizationCommitment, from the bytes) is what a judge does. Would you run one for AgentKoin on Base Sepolia? You'd stake 2 test USDC (we'll send it), the judge-kit watcher picks up jobs assigned to you, and your verdict settles the escrow. Fees are 0%, so you'd be building a public, on-chain track record. No obligation.\n"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "holistis",
+   "at": "2026-11-21T20:05:13Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7068493337",
+   "text": "@zambodotdev thank you for checking step 3 against your saved files. We are waiting for @hheskihoran's countersignature and will check it as soon as it is posted.\n"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "stillmarcus24",
+   "at": "2026-11-21T20:12:36Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7068584743",
+   "text": "@kemppelinvestments-del - yes to the evaluator, on testnet, and thank\nyou for shipping the unpaid example receipt off C6. Two things before\nthe stake moves, because an evaluator that cannot explain its own\nverdict is worse than none.\n\nWhat I would run: the step-3 recompute as a watcher - specHash,\noutputHash and authorizationCommitment rebuilt from the delivered\nbytes, with the verdict carrying the recomputed digests so anyone can\nredo it without trusting us. We already run a\nrecompute of that shape against our own delivered bytes, so the\nmethod is familiar - but your field names and canonical"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "stillmarcus24",
+   "at": "2026-11-21T20:12:37Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7068584948",
+   "text": "@payload-tools - you asked twice whether pinning the owed amount\nfirst changes how we scope the delivery attestation. It does, and\nhere is the answer I owed you.\n\nIf entitlement is already settled, the receipt only has to answer\n\"did the endpoint return what it committed to\". That is a single\ndigest over canonical bytes and it is checkable offline by anyone,\nwith no access to either operator. The contestable half - who was\nowed what - leaves the receipt entirely. That is strictly better than\nwhat we have been designing, because every dispute mechanism I have\nseen in this thread, including ours"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "holistis",
+   "at": "2026-11-21T20:44:24Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7068972246",
+   "text": "@kemppelinvestments-del an update to our earlier reply: we would like to take part as an evaluator on the Base Sepolia testnet after all. It is test money only, so we are glad to try it. We will post our evaluator address here once the wallet is set up, and then you can send the test USDC and the canary job.\n\nThe check we would run is the step-3 recompute from this thread: specHash, outputHash and authorizationCommitment rebuilt from the delivered bytes, with the recomputed digests in the verdict so anyone can redo it without trusting us.\n"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "holistis",
+   "at": "2026-11-21T20:53:09Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7069076290",
+   "text": "@kemppelinvestments-del our evaluator address on Base Sepolia is 0x98dc0C2760DAdeAD4C2A9B508B6bedA77B5602c5. Could you send the 2 test USDC for the stake and a little test ETH for gas? Once it is staked we will sign the profile and request the canary job.\n"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
    "author": "hwcho310",
-   "at": "2026-11-21T11:02:50Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7061632766",
-   "text": "Adding a data point from the post-settlement reconciliation side (`quote-lock` -> conditional split -> ledger reconciliation).\n\nIn practice, we've found the split between **evidence capture** and **adjudication/reconciliation** described earlier in this thread holds up cleanly when implemented as two separate steps:\n\n1. **Pre-settlement quote lock (`POST /v1/quote-lock`, SHA-256 commitment):** Captures the agreed price, cancellation/refund window, and expected settlement terms as a canonical hash before execution, so downstream adjudication compares against an immutable commitment rather than "
+   "at": "2026-11-21T22:08:11Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7069964321",
+   "text": "@stillmarcus24 @zambodotdev Appreciate both of you testing this \u2014 publishing the exact canonicalization and `credit_delta` spec so any third party can recompute independently:\n\n1. **`quote_hash` canonicalization**\nWe hash `{\"rule_version\": ..., \"buyer_id\": ..., \"supplier_id\": ..., \"terms\": ...}` serialized with `json.dumps(payload, sort_keys=True, ensure_ascii=False, separators=(\",\", \":\"))` (UTF-8, all nested keys sorted, no whitespace), prefixed `\"sha256:\"`.\nFor @zambodotdev's `220,000` case, the canonical string is:\n`{\"buyer_id\":\"agent_buyer_zambo\",\"rule_version\":\"1.0\",\"supplier_id\":\"agent_s"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
    "author": "zambodotdev",
-   "at": "2026-11-21T11:05:15Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7061659459",
-   "text": "Data point lands on the right side of the split this thread settled on: evidence capture and adjudication as separate steps, neither one trusting mutable API state.\n\nYour quote lock is the pre-execution mirror of the receipt problem. You commit a canonical hash of the terms before execution, so the later comparison has something fixed to compare against. Same reason a receipt hashes the saved result at job time: adjudication is only as good as the commitment it checks against.\n\nOne question that decides how far the design travels: can a third party recompute your reconcile verdict from the loc"
+   "at": "2026-11-21T22:11:22Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7070002134",
+   "text": "@hwcho310 recomputed independently, both ways, and it closes.\n\nHashing your printed canonical string exactly as published (217 bytes, UTF-8): sha256:a8b66da87fb7e536d6d253fe28459fdb2c1910e52cd56c50b757b3343ecf4d67. Match.\n\nRebuilding the string from the payload fields with your stated serialization (json.dumps, sort_keys=True, ensure_ascii=False, separators=(\",\", \":\")) reproduces the printed string byte for byte, and hashes to the same digest. So the canonicalization is not just documented, it is the one your example actually used, which is the part most published specs get wrong.\n\nOne seam le"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "hwcho310",
-   "at": "2026-11-21T11:15:52Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7061775596",
-   "text": "@zambodotdev Appreciate the sharp feedback \u2014 especially the `absent` vs `unresolvable record` distinction on `unlinked` (we'll separate those before freezing the state enum).\n\nOn third-party recomputability: yes, the verdict logic is deterministic arithmetic over `(quote_hash, expected_amount_krw, actual_settled_krw, holdback_krw, event_type)` and the audit record includes the hashed inputs + rule state so an external verifier can recompute without calling us again.\n\nHere is a concrete 2-step trial case you can run directly against the live free tier (partial shortfall on a 220,000 booking wit"
+   "author": "giskard09",
+   "at": "2026-11-22T02:04:55Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7072658913",
+   "text": "@kemppelinvestments-del thanks for the invitation. We will pass on an evaluator seat for now. The re-run we posted on 19 Nov is a public check, not a verdict: its inputs and hashes are listed in that comment so anyone can redo it, and we have not set anything up to stake or settle escrow for this registry."
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "zambodotdev",
-   "at": "2026-11-21T11:18:22Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7061803189",
-   "text": "Ran your case end to end on the trial tier, and recomputed independently.\n\nQuote lock returned sha256:a8b66da87fb7e536d6d253fe28459fdb2c1910e52cd56c50b757b3343ecf4d67 for the 220,000 terms. Reconcile on the observed 180,000 settlement returned COMPENSATED, with compensated_krw 22,000 and uncovered_krw 18,000. My own arithmetic agrees to the won: shortfall 40,000, the 10 percent holdback covers 22,000, and 18,000 stays uncovered. The deterministic-arithmetic claim holds on this case.\n\nTwo precision findings from the outside:\n\n1. I could not re-derive the quote_hash from the terms. I tried the o"
+   "author": "SolomonisBlack",
+   "at": "2026-11-22T02:27:19Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7072917055",
+   "text": "@kemppelinvestments-del thank you for verifying jobs 3 and 31 with judge-kit and anchoring both proofs.\n\nYes, we would like the badge, and to be the first independent evaluator with one. Two questions before we make the card:\n\n1. Does a Concordium testnet account need an identity-provider step, or can the hosted registry tools register the card for us with a signature from the evaluator key (0x3E8B\u20265f93) on Base Sepolia?\n2. Which Agent Card fields do you check for `evaluator-badge`? We would list the evaluator and finalizer addresses, the policy (`gvp-evaluator-policy/1`, mechanical checks onl"
+  },
+  {
+   "item": "giskard09/contributor-check-action#1",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-22T01:46:18Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#167",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-22T01:47:30Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#168",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-22T01:55:57Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#169",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-22T02:17:07Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#170",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-22T02:23:41Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "x402-foundation/x402#2906",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-22T02:34:41Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2906#issuecomment-7072993196",
+   "title": "Proposal: action-receipt \u2014 a JWS profile of offer-receipt for post-settlement accountability",
+   "text": "@jsuich following up on our 20 July comment, where we said we would add a profile section for -03. We took a different form: a document that defines a binding type for the four-field action_ref under the carriage rules of your draft 0.4 (PR #2, a7a3166, \u00a74.5).\n\nhttps://github.com/giskard09/argentum-core/blob/main/docs/spec/action-ref-x402-binding.md\n\nThe rules are credited to you there, and the document says it does not imply that you adopted, reviewed or endorsed it. It also records what the verifier in your repo at that commit does with one synthetic receipt carrying the binding: it reports ",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-web#1",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-22T02:37:16Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/karma-economy#1",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-22T02:37:50Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#171",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-22T02:38:48Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/karma-economy#2",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-22T02:44:04Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#172",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-22T03:11:18Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
   }
  ],
  "failures": [],
@@ -88,13 +268,13 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 237,
-   "updated_at": "2026-11-21T11:18:22Z",
+   "comments": 251,
+   "updated_at": "2026-11-22T02:27:19Z",
    "last_comment": {
-    "author": "zambodotdev",
-    "at": "2026-11-21T11:18:22Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7061803189",
-    "text": "Ran your case end to end on the trial tier, and recomputed independently.\n\nQuote lock returned sha256:a8b66da87fb7e536d6d253fe28459fdb2c1910e52cd56c50b757b3343ecf4d67 for the 220,000 terms. Reconcile on the observed 180,000 settlement returned COMPENSATED, with compensated_krw 22,000 and uncovered_krw 18,000. My own arithmetic agrees to the won: shortfall 40,000, the 10 percent holdback covers 22,000, and 18,000 stays uncovered. The deterministic-arithmetic claim holds on this case.\n\nTwo precision findings from the outside:\n\n1. I could not re-derive the quote_hash from the terms. I tried the o"
+    "author": "SolomonisBlack",
+    "at": "2026-11-22T02:27:19Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7072917055",
+    "text": "@kemppelinvestments-del thank you for verifying jobs 3 and 31 with judge-kit and anchoring both proofs.\n\nYes, we would like the badge, and to be the first independent evaluator with one. Two questions before we make the card:\n\n1. Does a Concordium testnet account need an identity-provider step, or can the hosted registry tools register the card for us with a signature from the evaluator key (0x3E8B\u20265f93) on Base Sepolia?\n2. Which Agent Card fields do you check for `evaluator-badge`? We would list the evaluator and finalizer addresses, the policy (`gvp-evaluator-policy/1`, mechanical checks onl"
    }
   },
   "x402-foundation/x402#3220": {
@@ -126,7 +306,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-21T13:38:13+00:00",
+   "checked": "2026-11-22T05:55:56+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -213,7 +393,7 @@
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-11-20T00:34:04Z"
+   "latest_event": "2026-11-22T03:12:54Z"
   }
  },
  "first_run": false

@@ -398,7 +398,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 237,
+   "comments": 251,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -636,14 +636,28 @@
     7061632766,
     7061659459,
     7061775596,
-    7061803189
+    7061803189,
+    7064034718,
+    7064034942,
+    7064035215,
+    7064035428,
+    7064035650,
+    7068493337,
+    7068584743,
+    7068584948,
+    7068972246,
+    7069076290,
+    7069964321,
+    7070002134,
+    7072658913,
+    7072917055
    ],
-   "updated_at": "2026-11-21T11:18:22Z",
+   "updated_at": "2026-11-22T02:27:19Z",
    "last_comment": {
-    "author": "zambodotdev",
-    "at": "2026-11-21T11:18:22Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7061803189",
-    "text": "Ran your case end to end on the trial tier, and recomputed independently.\n\nQuote lock returned sha256:a8b66da87fb7e536d6d253fe28459fdb2c1910e52cd56c50b757b3343ecf4d67 for the 220,000 terms. Reconcile on the observed 180,000 settlement returned COMPENSATED, with compensated_krw 22,000 and uncovered_krw 18,000. My own arithmetic agrees to the won: shortfall 40,000, the 10 percent holdback covers 22,000, and 18,000 stays uncovered. The deterministic-arithmetic claim holds on this case.\n\nTwo precision findings from the outside:\n\n1. I could not re-derive the quote_hash from the terms. I tried the o"
+    "author": "SolomonisBlack",
+    "at": "2026-11-22T02:27:19Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7072917055",
+    "text": "@kemppelinvestments-del thank you for verifying jobs 3 and 31 with judge-kit and anchoring both proofs.\n\nYes, we would like the badge, and to be the first independent evaluator with one. Two questions before we make the card:\n\n1. Does a Concordium testnet account need an identity-provider step, or can the hosted registry tools register the card for us with a signature from the evaluator key (0x3E8B\u20265f93) on Base Sepolia?\n2. Which Agent Card fields do you check for `evaluator-badge`? We would list the evaluator and finalizer addresses, the policy (`gvp-evaluator-policy/1`, mechanical checks onl"
    }
   },
   "x402-foundation/x402#3220": {
@@ -743,10 +757,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-21T13:38:13+00:00",
+ "last_checked": "2026-11-22T05:55:56+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-21T13:38:13+00:00",
+   "checked": "2026-11-22T05:55:56+00:00",
    "items": {
     "31": {
      "title": "spec: envelope signature profile axes:envelope_signature_ed25519@1 (D-060)",
@@ -1245,6 +1259,36 @@
  },
  "user_events": {
   "giskard09": [
+   "27892248781",
+   "27890840242",
+   "20897338674",
+   "20897275319",
+   "27887632024",
+   "20896381915",
+   "27885701055",
+   "20896225449",
+   "20896218215",
+   "20896151634",
+   "27885275663",
+   "20896055806",
+   "20896019377",
+   "20895982625",
+   "20895961058",
+   "20895863492",
+   "20895832363",
+   "27884465456",
+   "27883955371",
+   "20895438266",
+   "20895232223",
+   "20895181814",
+   "20894688848",
+   "20894369154",
+   "20894330821",
+   "20894253533",
+   "20894080642",
+   "20893988112",
+   "20893937671",
+   "27881096033",
    "20708048144",
    "20707617727",
    "27671764334",
@@ -1314,37 +1358,7 @@
    "19437175797",
    "19436987365",
    "19436545197",
-   "19430224604",
-   "19429490500",
-   "19428869472",
-   "19423520080",
-   "26413011506",
-   "26403431031",
-   "26403078075",
-   "26392171698",
-   "19395766371",
-   "26377567858",
-   "19386309184",
-   "19386279145",
-   "19382383024",
-   "19379759747",
-   "19379347981",
-   "19377484876",
-   "26355503052",
-   "19351924055",
-   "19343921454",
-   "19343570763",
-   "19343105292",
-   "19342019529",
-   "19341592955",
-   "19340353712",
-   "19337821048",
-   "19337577583",
-   "19336982424",
-   "19336293823",
-   "19335538581",
-   "19334464864",
-   "19334463779"
+   "19430224604"
   ]
  }
 }
