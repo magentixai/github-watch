@@ -398,7 +398,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 251,
+   "comments": 252,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -650,14 +650,15 @@
     7069964321,
     7070002134,
     7072658913,
-    7072917055
+    7072917055,
+    7079416085
    ],
-   "updated_at": "2026-11-22T02:27:19Z",
+   "updated_at": "2026-11-22T12:52:52Z",
    "last_comment": {
-    "author": "SolomonisBlack",
-    "at": "2026-11-22T02:27:19Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7072917055",
-    "text": "@kemppelinvestments-del thank you for verifying jobs 3 and 31 with judge-kit and anchoring both proofs.\n\nYes, we would like the badge, and to be the first independent evaluator with one. Two questions before we make the card:\n\n1. Does a Concordium testnet account need an identity-provider step, or can the hosted registry tools register the card for us with a signature from the evaluator key (0x3E8B\u20265f93) on Base Sepolia?\n2. Which Agent Card fields do you check for `evaluator-badge`? We would list the evaluator and finalizer addresses, the policy (`gvp-evaluator-policy/1`, mechanical checks onl"
+    "author": "stillmarcus24",
+    "at": "2026-11-22T12:52:52Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7079416085",
+    "text": "@guidoalejo - picking this back up, and the delay was ours, not a\ndecision. The links in this thread are all past their 8-day window,\nso if the production issuer path is still open I would take a fresh\none-use invite.\n\nTo be concrete about what we would do with it, since a key we do not\nexercise is worth nothing to either of us:\n\nWe run an Ed25519 delivery notary over 30-odd priced endpoints. What\nyour `originAssertion` passthrough gives us is the one join we cannot\nmake ourselves: a settlement record and a delivery commitment that\nshare an identifier, written by two parties with no shared cod"
    }
   },
   "x402-foundation/x402#3220": {
@@ -757,10 +758,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-22T05:55:56+00:00",
+ "last_checked": "2026-11-22T13:31:03+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-22T05:55:56+00:00",
+   "checked": "2026-11-22T13:31:03+00:00",
    "items": {
     "31": {
      "title": "spec: envelope signature profile axes:envelope_signature_ed25519@1 (D-060)",
