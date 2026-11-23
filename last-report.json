@@ -1,126 +1,41 @@
 {
- "checked_at": "2026-11-23T05:57:37+00:00",
- "previous_check": "2026-11-22T13:31:03+00:00",
+ "checked_at": "2026-11-23T16:19:48+00:00",
+ "previous_check": "2026-11-23T05:57:37+00:00",
  "changes": [
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "kemppelinvestments-del",
-   "at": "2026-11-22T15:05:53Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7081040714",
-   "text": "@stillmarcus24 thanks. Straight answers:\n\n1. **Appeals.** The contract has one. Within 48h of a verdict, the client or the provider can `challenge()` by posting a bond (5% of the job, minimum 1 test USDC) plus the arbitrator's fee. The verdict is overturned only if the ruling differs from it by more than 20%. Then the evaluator pays the arbitration fee and is slashed 25% of minStake. If the challenge fails, the evaluator gets half of the challenger's bond. So a correct evaluator gets paid, not hit, when a seller disputes. To be honest about where things stand: **the arbitrator is switched off "
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
    "author": "holistis",
-   "at": "2026-11-22T19:21:05Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7084321784",
-   "text": "@kemppelinvestments-del checked the evaluator address from our own side rather than wait on the confirmation here: 0.0003 testnet ETH and 2 test USDC are both already on 0x98dc0C2760DAdeAD4C2A9B508B6bedA77B5602c5 on Base Sepolia. Happy to go ahead now and approve, stake(2000000), sign the profile and request the canary, unless you would rather we hold until your own confirmation lands in this thread.\n"
+   "at": "2026-11-23T09:47:15Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7097093784",
+   "text": "@kemppelinvestments-del thank you. We already went ahead last night, so there is nothing you need to wait for on our side. On Base Sepolia, approve 0xaf4daf3f8ed12108d91d0893fa1f6cda9b10f4a07d36e03ec7939a9d83a80340 and stake(2000000) 0x0c901b8c5b9cedf885ead86c8991955a78d89e6964e0b6d693e46928025761b8 landed together at 2026-11-22 20:07:59 UTC. Your evaluator endpoint now shows 0x98dc0C2760DAdeAD4C2A9B508B6bedA77B5602c5 as active, stake 2000000, no open jobs and nothing slashed. The profile was submitted and the canary request is queued as cr_3aa24277f7c4059e.\n\nOne ask: when you assign the canar"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "hwcho310",
-   "at": "2026-11-22T22:20:12Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7086737732",
-   "text": "@zambodotdev You're right that `-17` as published is a value, not a function. Here is the function \u2014 four rows, first match wins, and it covers every input, so there is nothing left to ask.\n\nDerived quantities, integer KRW:\n\n```\ndelta       = expected_amount_krw - actual_settled_krw\ncompensated = min(holdback_krw, delta)        # only reached when delta > 0\nuncovered   = max(0, delta - compensated)\n```\n\n| # | condition | `status` | `compensated_krw` | `uncovered_krw` | `credit_delta` |\n|---|---|---|---|---|---|\n| 1 | `event_type == \"HALF_OPEN_TIMEOUT\"` and `delta > 0` | `PENDING_RECONCILIATION"
+   "author": "igor-vii",
+   "at": "2026-11-23T13:00:27Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7101927853",
+   "text": "We run Argus Agent Test Lab (github.com/igor-vii/Argus-Agent-Test-Lab) \u2014 an independent proof layer for x402 payment flows: Ed25519-signed, hash-chained registry, one-command verification (git clone + node, no npm), and a pre-registration discipline \u2014 expectations frozen and verified before the first call. Registry at 30 records.\n\nThis thread's working rule \u2014 no verdict before our own recompute, recompute published with the verdict \u2014 is the rule our registry was built to carry. What we add is the persistence half: a verdict posted here today stays independently verifiable tomorrow, re-derivabl"
   },
   {
-   "item": "x402-foundation/x402#2887",
+   "item": "google-agentic-commerce/AP2#290",
    "type": "comment",
-   "author": "zambodotdev",
-   "at": "2026-11-22T22:26:04Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7086813059",
-   "text": "@hwcho310 Recomputed all three of your rows against the four-row table, on paper, no call to your endpoint needed. All three land exactly as posted: row 2 COMPENSATED at 10,000 with 0 uncovered, row 3 COMPENSATED at 22,000 with 18,000 uncovered, and the timeout at PENDING_RECONCILIATION with 0 compensated and 40,000 uncovered.\n\nThe timeout row is the one that proves the ordering matters. Same amounts as row 3, and without row 1 firing first it would come out COMPENSATED at 22,000. First match wins is load-bearing, not decoration.\n\nThat closes the -17 question on our side. It is a value by desi"
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "kemppelinvestments-del",
-   "at": "2026-11-23T00:30:59Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7088412847",
-   "text": "@holistis confirmed on our side too: 0x98dc0C2760DAdeAD4C2A9B508B6bedA77B5602c5 holds 2 test USDC and 0.0003 test ETH on Base Sepolia. Go ahead: approve 2 test USDC to the EvaluatorRegistry 0x30576DE005df028D1947C56dEcc85a2a5612036a, call stake(2000000), sign the profile, and request the canary. Post the stake tx here when it lands and we'll run your first canary job."
-  },
-  {
-   "item": "giskard09/argentum-core#173",
-   "type": "new_pr",
    "author": "giskard09",
-   "at": "2026-11-23T01:49:10Z",
-   "title": null,
-   "url": null,
+   "at": "2026-11-23T15:50:51Z",
+   "url": "https://github.com/google-agentic-commerce/AP2/issues/290#issuecomment-7106200944",
+   "title": "[Feat]: Post-checkout agent action record \u2014 verifiable audit trail after Checkout Receipt",
+   "text": "Thanks, No\u00fbs. I reran your rerun.py as published: cryptovalid-opencore==0.28.1 in a fresh venv, argentum-core at 217009a, agent-passport-system at 638ac26. It prints 37 lines, 37 True, 0 False.\n\nI did not run the 0.28.0 comparison or the 20,012-tuple side-by-side, so those stay your measurements.\n\nThe ASCII rule that 0.28.1 now applies is stated in our spec (docs/spec/action-ref.md), and the APS SDK's docs/specs/action-ref-v1.md notes that \u00a75.2 does not state it. So the acceptance domains line up because 0.28.1 was brought to that rule, not because the \u00a75.2 text gives it.\n\nIf you would like it",
    "source": "user:giskard09"
   },
   {
-   "item": "giskard09/dapr-history-anchor#1",
-   "type": "new_pr",
+   "item": "x402-foundation/x402#3304",
+   "type": "review",
    "author": "giskard09",
-   "at": "2026-11-23T01:49:30Z",
+   "at": "2026-11-23T15:54:18Z",
+   "url": "https://github.com/x402-foundation/x402/pull/3304#pullrequestreview-6024776658",
    "title": null,
-   "url": null,
-   "source": "user:giskard09"
-  },
-  {
-   "item": "giskard09/scitt-capsule-anchor#1",
-   "type": "new_pr",
-   "author": "giskard09",
-   "at": "2026-11-23T01:49:38Z",
-   "title": null,
-   "url": null,
-   "source": "user:giskard09"
-  },
-  {
-   "item": "giskard09/card-charge-action-ref-anchor#1",
-   "type": "new_pr",
-   "author": "giskard09",
-   "at": "2026-11-23T01:49:45Z",
-   "title": null,
-   "url": null,
-   "source": "user:giskard09"
-  },
-  {
-   "item": "giskard09/giskard-origin#3",
-   "type": "new_pr",
-   "author": "giskard09",
-   "at": "2026-11-23T01:55:14Z",
-   "title": null,
-   "url": null,
-   "source": "user:giskard09"
-  },
-  {
-   "item": "giskard09/mycelium-agt#1",
-   "type": "new_pr",
-   "author": "giskard09",
-   "at": "2026-11-23T01:55:21Z",
-   "title": null,
-   "url": null,
-   "source": "user:giskard09"
-  },
-  {
-   "item": "giskard09/argentum-web#2",
-   "type": "new_pr",
-   "author": "giskard09",
-   "at": "2026-11-23T01:55:29Z",
-   "title": null,
-   "url": null,
-   "source": "user:giskard09"
-  },
-  {
-   "item": "giskard09/giskard-payments#2",
-   "type": "new_pr",
-   "author": "giskard09",
-   "at": "2026-11-23T01:55:37Z",
-   "title": null,
-   "url": null,
-   "source": "user:giskard09"
-  },
-  {
-   "item": "giskard09/flashprove-action-ref-anchor#1",
-   "type": "new_pr",
-   "author": "giskard09",
-   "at": "2026-11-23T01:55:45Z",
-   "title": null,
-   "url": null,
+   "text": "Approving at the current head, `7f7489b`. My earlier approval was on `e92dfa0`, so it does not cover this head.\n\nWhat I checked for this head: the kept-key text first appears in `7f7489b` (committed 21 Oct, no commits since), and my comment of 22 Oct above ran a clean-room reimplementation of the kept-key dispatch from that text over the 15 cases in `vectors/attestation-kept.json`, 15/15 match. I have not re-run it today, and I did not re-read the sections outside the kept-key change for this review.\n\nI have no open question on this head. The scope boundary I noted on 22 Oct (the verifier's ow",
    "source": "user:giskard09"
   }
  ],
@@ -177,13 +92,13 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 257,
-   "updated_at": "2026-11-23T00:30:59Z",
+   "comments": 259,
+   "updated_at": "2026-11-23T13:00:27Z",
    "last_comment": {
-    "author": "kemppelinvestments-del",
-    "at": "2026-11-23T00:30:59Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7088412847",
-    "text": "@holistis confirmed on our side too: 0x98dc0C2760DAdeAD4C2A9B508B6bedA77B5602c5 holds 2 test USDC and 0.0003 test ETH on Base Sepolia. Go ahead: approve 2 test USDC to the EvaluatorRegistry 0x30576DE005df028D1947C56dEcc85a2a5612036a, call stake(2000000), sign the profile, and request the canary. Post the stake tx here when it lands and we'll run your first canary job."
+    "author": "igor-vii",
+    "at": "2026-11-23T13:00:27Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7101927853",
+    "text": "We run Argus Agent Test Lab (github.com/igor-vii/Argus-Agent-Test-Lab) \u2014 an independent proof layer for x402 payment flows: Ed25519-signed, hash-chained registry, one-command verification (git clone + node, no npm), and a pre-registration discipline \u2014 expectations frozen and verified before the first call. Registry at 30 records.\n\nThis thread's working rule \u2014 no verdict before our own recompute, recompute published with the verdict \u2014 is the rule our registry was built to carry. What we add is the persistence half: a verdict posted here today stays independently verifiable tomorrow, re-derivabl"
    }
   },
   "x402-foundation/x402#3220": {
@@ -215,7 +130,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-23T05:57:37+00:00",
+   "checked": "2026-11-23T16:19:48+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -302,7 +217,7 @@
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-11-23T01:55:45Z"
+   "latest_event": "2026-11-23T15:54:18Z"
   }
  },
  "first_run": false

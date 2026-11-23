@@ -398,7 +398,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 257,
+   "comments": 259,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -656,14 +656,16 @@
     7084321784,
     7086737732,
     7086813059,
-    7088412847
+    7088412847,
+    7097093784,
+    7101927853
    ],
-   "updated_at": "2026-11-23T00:30:59Z",
+   "updated_at": "2026-11-23T13:00:27Z",
    "last_comment": {
-    "author": "kemppelinvestments-del",
-    "at": "2026-11-23T00:30:59Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7088412847",
-    "text": "@holistis confirmed on our side too: 0x98dc0C2760DAdeAD4C2A9B508B6bedA77B5602c5 holds 2 test USDC and 0.0003 test ETH on Base Sepolia. Go ahead: approve 2 test USDC to the EvaluatorRegistry 0x30576DE005df028D1947C56dEcc85a2a5612036a, call stake(2000000), sign the profile, and request the canary. Post the stake tx here when it lands and we'll run your first canary job."
+    "author": "igor-vii",
+    "at": "2026-11-23T13:00:27Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7101927853",
+    "text": "We run Argus Agent Test Lab (github.com/igor-vii/Argus-Agent-Test-Lab) \u2014 an independent proof layer for x402 payment flows: Ed25519-signed, hash-chained registry, one-command verification (git clone + node, no npm), and a pre-registration discipline \u2014 expectations frozen and verified before the first call. Registry at 30 records.\n\nThis thread's working rule \u2014 no verdict before our own recompute, recompute published with the verdict \u2014 is the rule our registry was built to carry. What we add is the persistence half: a verdict posted here today stays independently verifiable tomorrow, re-derivabl"
    }
   },
   "x402-foundation/x402#3220": {
@@ -763,10 +765,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-23T05:57:37+00:00",
+ "last_checked": "2026-11-23T16:19:48+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-23T05:57:37+00:00",
+   "checked": "2026-11-23T16:19:48+00:00",
    "items": {
     "31": {
      "title": "spec: envelope signature profile axes:envelope_signature_ed25519@1 (D-060)",
@@ -1265,6 +1267,11 @@
  },
  "user_events": {
   "giskard09": [
+   "21025624923",
+   "21025422808",
+   "28011480180",
+   "28011289857",
+   "28011120449",
    "27995033529",
    "27992192761",
    "20960236749",
@@ -1359,12 +1366,7 @@
    "19678029301",
    "19677240836",
    "26711091784",
-   "26695064945",
-   "19610160904",
-   "19608650610",
-   "19581411391",
-   "19575919544",
-   "19574648405"
+   "26695064945"
   ]
  }
 }
