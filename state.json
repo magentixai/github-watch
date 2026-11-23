@@ -398,7 +398,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 252,
+   "comments": 257,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -651,14 +651,19 @@
     7070002134,
     7072658913,
     7072917055,
-    7079416085
+    7079416085,
+    7081040714,
+    7084321784,
+    7086737732,
+    7086813059,
+    7088412847
    ],
-   "updated_at": "2026-11-22T12:52:52Z",
+   "updated_at": "2026-11-23T00:30:59Z",
    "last_comment": {
-    "author": "stillmarcus24",
-    "at": "2026-11-22T12:52:52Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7079416085",
-    "text": "@guidoalejo - picking this back up, and the delay was ours, not a\ndecision. The links in this thread are all past their 8-day window,\nso if the production issuer path is still open I would take a fresh\none-use invite.\n\nTo be concrete about what we would do with it, since a key we do not\nexercise is worth nothing to either of us:\n\nWe run an Ed25519 delivery notary over 30-odd priced endpoints. What\nyour `originAssertion` passthrough gives us is the one join we cannot\nmake ourselves: a settlement record and a delivery commitment that\nshare an identifier, written by two parties with no shared cod"
+    "author": "kemppelinvestments-del",
+    "at": "2026-11-23T00:30:59Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7088412847",
+    "text": "@holistis confirmed on our side too: 0x98dc0C2760DAdeAD4C2A9B508B6bedA77B5602c5 holds 2 test USDC and 0.0003 test ETH on Base Sepolia. Go ahead: approve 2 test USDC to the EvaluatorRegistry 0x30576DE005df028D1947C56dEcc85a2a5612036a, call stake(2000000), sign the profile, and request the canary. Post the stake tx here when it lands and we'll run your first canary job."
    }
   },
   "x402-foundation/x402#3220": {
@@ -758,10 +763,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-22T13:31:03+00:00",
+ "last_checked": "2026-11-23T05:57:37+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-22T13:31:03+00:00",
+   "checked": "2026-11-23T05:57:37+00:00",
    "items": {
     "31": {
      "title": "spec: envelope signature profile axes:envelope_signature_ed25519@1 (D-060)",
@@ -1260,6 +1265,20 @@
  },
  "user_events": {
   "giskard09": [
+   "27995033529",
+   "27992192761",
+   "20960236749",
+   "27990407282",
+   "20960230459",
+   "20960222945",
+   "20960216519",
+   "20960210063",
+   "20959936678",
+   "20959930059",
+   "27989925832",
+   "20959923109",
+   "20959906474",
+   "27956358144",
    "27892248781",
    "27890840242",
    "20897338674",
@@ -1345,21 +1364,7 @@
    "19608650610",
    "19581411391",
    "19575919544",
-   "19574648405",
-   "19556996583",
-   "26642408030",
-   "26621024908",
-   "26567826420",
-   "26559847389",
-   "26519454127",
-   "26501181372",
-   "26497767374",
-   "26495818015",
-   "26490818989",
-   "19437175797",
-   "19436987365",
-   "19436545197",
-   "19430224604"
+   "19574648405"
   ]
  }
 }

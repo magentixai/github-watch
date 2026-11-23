@@ -1,14 +1,127 @@
 {
- "checked_at": "2026-11-22T13:31:03+00:00",
- "previous_check": "2026-11-22T05:55:56+00:00",
+ "checked_at": "2026-11-23T05:57:37+00:00",
+ "previous_check": "2026-11-22T13:31:03+00:00",
  "changes": [
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "stillmarcus24",
-   "at": "2026-11-22T12:52:52Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7079416085",
-   "text": "@guidoalejo - picking this back up, and the delay was ours, not a\ndecision. The links in this thread are all past their 8-day window,\nso if the production issuer path is still open I would take a fresh\none-use invite.\n\nTo be concrete about what we would do with it, since a key we do not\nexercise is worth nothing to either of us:\n\nWe run an Ed25519 delivery notary over 30-odd priced endpoints. What\nyour `originAssertion` passthrough gives us is the one join we cannot\nmake ourselves: a settlement record and a delivery commitment that\nshare an identifier, written by two parties with no shared cod"
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-22T15:05:53Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7081040714",
+   "text": "@stillmarcus24 thanks. Straight answers:\n\n1. **Appeals.** The contract has one. Within 48h of a verdict, the client or the provider can `challenge()` by posting a bond (5% of the job, minimum 1 test USDC) plus the arbitrator's fee. The verdict is overturned only if the ruling differs from it by more than 20%. Then the evaluator pays the arbitration fee and is slashed 25% of minStake. If the challenge fails, the evaluator gets half of the challenger's bond. So a correct evaluator gets paid, not hit, when a seller disputes. To be honest about where things stand: **the arbitrator is switched off "
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "holistis",
+   "at": "2026-11-22T19:21:05Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7084321784",
+   "text": "@kemppelinvestments-del checked the evaluator address from our own side rather than wait on the confirmation here: 0.0003 testnet ETH and 2 test USDC are both already on 0x98dc0C2760DAdeAD4C2A9B508B6bedA77B5602c5 on Base Sepolia. Happy to go ahead now and approve, stake(2000000), sign the profile and request the canary, unless you would rather we hold until your own confirmation lands in this thread.\n"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "hwcho310",
+   "at": "2026-11-22T22:20:12Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7086737732",
+   "text": "@zambodotdev You're right that `-17` as published is a value, not a function. Here is the function \u2014 four rows, first match wins, and it covers every input, so there is nothing left to ask.\n\nDerived quantities, integer KRW:\n\n```\ndelta       = expected_amount_krw - actual_settled_krw\ncompensated = min(holdback_krw, delta)        # only reached when delta > 0\nuncovered   = max(0, delta - compensated)\n```\n\n| # | condition | `status` | `compensated_krw` | `uncovered_krw` | `credit_delta` |\n|---|---|---|---|---|---|\n| 1 | `event_type == \"HALF_OPEN_TIMEOUT\"` and `delta > 0` | `PENDING_RECONCILIATION"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "zambodotdev",
+   "at": "2026-11-22T22:26:04Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7086813059",
+   "text": "@hwcho310 Recomputed all three of your rows against the four-row table, on paper, no call to your endpoint needed. All three land exactly as posted: row 2 COMPENSATED at 10,000 with 0 uncovered, row 3 COMPENSATED at 22,000 with 18,000 uncovered, and the timeout at PENDING_RECONCILIATION with 0 compensated and 40,000 uncovered.\n\nThe timeout row is the one that proves the ordering matters. Same amounts as row 3, and without row 1 firing first it would come out COMPENSATED at 22,000. First match wins is load-bearing, not decoration.\n\nThat closes the -17 question on our side. It is a value by desi"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-23T00:30:59Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7088412847",
+   "text": "@holistis confirmed on our side too: 0x98dc0C2760DAdeAD4C2A9B508B6bedA77B5602c5 holds 2 test USDC and 0.0003 test ETH on Base Sepolia. Go ahead: approve 2 test USDC to the EvaluatorRegistry 0x30576DE005df028D1947C56dEcc85a2a5612036a, call stake(2000000), sign the profile, and request the canary. Post the stake tx here when it lands and we'll run your first canary job."
+  },
+  {
+   "item": "giskard09/argentum-core#173",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-23T01:49:10Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/dapr-history-anchor#1",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-23T01:49:30Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/scitt-capsule-anchor#1",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-23T01:49:38Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/card-charge-action-ref-anchor#1",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-23T01:49:45Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/giskard-origin#3",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-23T01:55:14Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/mycelium-agt#1",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-23T01:55:21Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-web#2",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-23T01:55:29Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/giskard-payments#2",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-23T01:55:37Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/flashprove-action-ref-anchor#1",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-23T01:55:45Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
   }
  ],
  "failures": [],
@@ -64,13 +177,13 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 252,
-   "updated_at": "2026-11-22T12:52:52Z",
+   "comments": 257,
+   "updated_at": "2026-11-23T00:30:59Z",
    "last_comment": {
-    "author": "stillmarcus24",
-    "at": "2026-11-22T12:52:52Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7079416085",
-    "text": "@guidoalejo - picking this back up, and the delay was ours, not a\ndecision. The links in this thread are all past their 8-day window,\nso if the production issuer path is still open I would take a fresh\none-use invite.\n\nTo be concrete about what we would do with it, since a key we do not\nexercise is worth nothing to either of us:\n\nWe run an Ed25519 delivery notary over 30-odd priced endpoints. What\nyour `originAssertion` passthrough gives us is the one join we cannot\nmake ourselves: a settlement record and a delivery commitment that\nshare an identifier, written by two parties with no shared cod"
+    "author": "kemppelinvestments-del",
+    "at": "2026-11-23T00:30:59Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7088412847",
+    "text": "@holistis confirmed on our side too: 0x98dc0C2760DAdeAD4C2A9B508B6bedA77B5602c5 holds 2 test USDC and 0.0003 test ETH on Base Sepolia. Go ahead: approve 2 test USDC to the EvaluatorRegistry 0x30576DE005df028D1947C56dEcc85a2a5612036a, call stake(2000000), sign the profile, and request the canary. Post the stake tx here when it lands and we'll run your first canary job."
    }
   },
   "x402-foundation/x402#3220": {
@@ -102,7 +215,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-22T13:31:03+00:00",
+   "checked": "2026-11-23T05:57:37+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -189,7 +302,7 @@
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-11-22T03:12:54Z"
+   "latest_event": "2026-11-23T01:55:45Z"
   }
  },
  "first_run": false
