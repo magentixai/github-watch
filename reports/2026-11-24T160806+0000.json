@@ -1,0 +1,292 @@
+{
+ "checked_at": "2026-11-24T16:08:06+00:00",
+ "previous_check": "2026-11-23T16:19:48+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/tsc#4",
+   "type": "comment",
+   "author": "astrogilda",
+   "at": "2026-11-24T09:47:22Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-7127890194",
+   "text": "For the TSC call on 25 Nov (agenda topic https://github.com/x402-foundation/tsc/issues/21), I propose a route that needs no new working group. The Identity WG hosts the evidence record, which the WG's own evidence-chain request for proposals already covers; each record proposal is an XP under https://github.com/x402-foundation/x402/pull/3801, with conformance tests as a WG-pinned release run in CI, as https://github.com/x402-foundation/wg-identity/pull/54 does for agent identity. Could the TSC settle that route on the call?\n\nAI use: an AI assistant helped draft this; I reviewed it.\n"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "holistis",
+   "at": "2026-11-24T07:45:28Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7125338010",
+   "text": "@kemppelinvestments-del, thanks for the update, and sorry about job 41. That miss was on our side: nobody was watching when it was assigned. We are at the keyboard today, 24 November, from now until 19:30 UTC (20:30 Amsterdam time). Please submit the next canary any time in that window and post the job number here when you do.\n\nTwo questions so that we watch the right place. First, which escrow contract is the canary on? The judge-kit default (0xd6E00d3419C16a3bEE1B8CC030A7062bf2014b2c) shows 3 jobs for us, so job 41 is not there. Second, your API at /v1/evaluators now reports chainId 8453 and"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-24T14:34:15Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7134591937",
+   "text": "@holistis Answers:\n\n1. Job 41 used the Base Sepolia JobEscrow at `0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D`, not the judge-kit default.\n2. Yes, Base Sepolia with test USDC only. agentcoinhq.com is now our Base mainnet site (chainId 8453), which is why `/v1/evaluators` there shows `realValue: true`; for testnet use testnet.agentcoinhq.com.\n3. Yes, on testnet `timeoutRelease` slashes a missed verdict: it takes `slashBase \u00d7 missedVerdictSlashBps` from the evaluator, pays that to the provider, and refunds the client. On that Sepolia escrow `missedVerdictSlashBps` is 1000 (10% of the evaluator's "
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-24T14:34:16Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7134592520",
+   "text": "@igor-vii Thanks. We'll include the on-chain verdict tx in each mirrored entry.\n"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "holistis",
+   "at": "2026-11-24T15:18:31Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7135805813",
+   "text": "@kemppelinvestments-del, thank you, that answers all three. I requested a new canary just now from testnet.agentcoinhq.com (request cr_001d699e0845d356, queued), and our watcher now looks at the escrow 0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D. Job 41 still shows there as submitted and past its window, and our stake reads 2 test-USDC, active, nothing slashed so far. If you call timeoutRelease on it, we will top the stake back up above the minimum with test USDC, so please post here when you do. We are at the keyboard until 19:30 UTC today. If the canary is submitted outside that window, pleas"
+  },
+  {
+   "item": "giskard09/argentum-core#179",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-24T12:19:03Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#180",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-24T15:22:14Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "probityai/agent-evidence-vectors#731",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-24T15:43:16Z",
+   "url": "https://github.com/probityai/agent-evidence-vectors/pull/731#issuecomment-7136499023",
+   "title": "Record four outside runs, the v0.12 anchor-stream run and a guide",
+   "text": "@astrogilda thanks for both rows. One correction to my own posting, for the receipt-signature row: `jcs.py` is not shared with your repository.\n\nThe verifier's docstring says \"The only code shared with this repository is jcs.py\", meaning argentum-core. I carried that wording into #352, where \"this repository\" reads as yours. The file is argentum-core's own `jcs.py` (blob `41457d1` at `80579e5`), and no file in your tree at `v0.36.3` has that blob.\n\nThe label stays directed, and the rest of what the row takes from my posting is right.\n",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#181",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-24T16:02:52Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#182",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-24T16:02:55Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#183",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-24T16:02:58Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#184",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-24T16:03:13Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  }
+ ],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 6,
+   "updated_at": "2026-10-20T15:06:35Z",
+   "last_comment": {
+    "author": "source-origin",
+    "at": "2026-10-20T15:06:34Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-6294062372",
+    "text": "Tymofii,\r\n\r\nYou closed the loop on two questions in the same thread, and you gave us a\r\ndistinction we have since used more than anything else from that exchange:\r\n*reference by pin, not host*, with criteria marked as authored judgment rather\r\nthan recomputed fact.\r\n\r\nWe used it and did not tell you. Nineteen days. Sorry.\r\n\r\n**Where it landed.** Our rubric header now carries two separate lines, because\r\nyour distinction made it obvious that one line was a lie:\r\n\r\n- `criteria_version` + `pinned_commit` \u2014 what was applied, and the exact bytes\r\n  it was applied from. If the criteria move, the pin"
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 290,
+   "updated_at": "2026-11-24T09:47:22Z",
+   "last_comment": {
+    "author": "astrogilda",
+    "at": "2026-11-24T09:47:22Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-7127890194",
+    "text": "For the TSC call on 25 Nov (agenda topic https://github.com/x402-foundation/tsc/issues/21), I propose a route that needs no new working group. The Identity WG hosts the evidence record, which the WG's own evidence-chain request for proposals already covers; each record proposal is an XP under https://github.com/x402-foundation/x402/pull/3801, with conformance tests as a WG-pinned release run in CI, as https://github.com/x402-foundation/wg-identity/pull/54 does for agent identity. Could the TSC settle that route on the call?\n\nAI use: an AI assistant helped draft this; I reviewed it.\n"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 268,
+   "updated_at": "2026-11-24T15:18:31Z",
+   "last_comment": {
+    "author": "holistis",
+    "at": "2026-11-24T15:18:31Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7135805813",
+    "text": "@kemppelinvestments-del, thank you, that answers all three. I requested a new canary just now from testnet.agentcoinhq.com (request cr_001d699e0845d356, queued), and our watcher now looks at the escrow 0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D. Job 41 still shows there as submitted and past its window, and our stake reads 2 test-USDC, active, nothing slashed so far. If you call timeoutRelease on it, we will top the stake back up above the minimum with test USDC, so please post here when you do. We are at the keyboard until 19:30 UTC today. If the canary is submitted outside that window, pleas"
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 66,
+   "updated_at": "2026-11-17T12:25:50Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-27T21:02:29Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6453477294",
+    "text": "For reference: presign-guard's mandate check already refuses any payment whose nonce isn't exactly B (MANDATE_BINDING_MISMATCH), so composed slots are rejected today. We'll move our paymentId check to the 16..64 floor once the \u00a76 change lands.\n"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-11-24T16:08:06+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 8,
+   "pushed_at": "2026-11-19T23:12:50Z",
+   "issues_tracked": 28
+  },
+  "Composable-Evidence-Criteria/.github": {
+   "main_latest": {
+    "sha": "9945f2c",
+    "at": "2026-09-30T08:29:38Z",
+    "msg": "Update name"
+   },
+   "files": {},
+   "open": {},
+   "issues_tracked": 0
+  },
+  "Composable-Evidence-Criteria/governance": {
+   "main_latest": {
+    "sha": "709573d",
+    "at": "2026-09-30T08:31:12Z",
+    "msg": "Update team names add repo"
+   },
+   "files": {
+    "teams.yaml": "7d9961c"
+   },
+   "open": {},
+   "issues_tracked": 2
+  },
+  "Composable-Evidence-Criteria/action-ref-conformance": {
+   "main_latest": {
+    "sha": "b4a70b8",
+    "at": "2026-11-16T16:43:01Z",
+    "msg": "Merge pull request #10 from magentixai/magentixai/pair-0001-x402-authority-axes"
+   },
+   "files": {
+    "GOVERNANCE.md": "05ab3f1"
+   },
+   "open": {
+    "9": {
+     "title": "draft-etcheverry-action-ref-04 published \u2014 Implementation Status section names this lab and AXES",
+     "pr": false,
+     "comments": 2,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/9"
+    },
+    "8": {
+     "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
+     "pr": true,
+     "comments": 1,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8"
+    },
+    "7": {
+     "title": "Heads-up: Rama will offer paid conformance-QA engagements on top of this lab's public corpus",
+     "pr": false,
+     "comments": 4,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/7"
+    },
+    "5": {
+     "title": "Lab communications: LFDT newsletter and meetup proposals, and who speaks for the lab",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/5"
+    },
+    "4": {
+     "title": "APS SDK passes the pinned action-ref v1 Action (verify-impl)",
+     "pr": false,
+     "comments": 0,
+     "author": "aeoess",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/4"
+    },
+    "2": {
+     "title": "Lab name: recomputable-evidence is taken, proposed replacement",
+     "pr": false,
+     "comments": 7,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2"
+    }
+   },
+   "issues_tracked": 10
+  },
+  "user:giskard09": {
+   "events_seen": 100,
+   "latest_event": "2026-11-24T16:04:56Z"
+  }
+ },
+ "first_run": false
+}

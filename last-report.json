@@ -1,128 +1,113 @@
 {
- "checked_at": "2026-11-24T06:02:44+00:00",
+ "checked_at": "2026-11-24T16:08:06+00:00",
  "previous_check": "2026-11-23T16:19:48+00:00",
  "changes": [
   {
-   "item": "x402-foundation/x402#2887",
+   "item": "x402-foundation/tsc#4",
    "type": "comment",
-   "author": "kemppelinvestments-del",
-   "at": "2026-11-23T20:11:32Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7112703489",
-   "text": "@holistis thanks, confirmed: 0x98dc\u202602c5 shows active with 2000000 staked. On the canary: we'll post here the minute the job is submitted, with the job id, spec digest and the one-hour judging deadline in UTC, so you can be at the keyboard. If you have a preferred time window, tell us and we'll fit it.\n"
+   "author": "astrogilda",
+   "at": "2026-11-24T09:47:22Z",
+   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-7127890194",
+   "text": "For the TSC call on 25 Nov (agenda topic https://github.com/x402-foundation/tsc/issues/21), I propose a route that needs no new working group. The Identity WG hosts the evidence record, which the WG's own evidence-chain request for proposals already covers; each record proposal is an XP under https://github.com/x402-foundation/x402/pull/3801, with conformance tests as a WG-pinned release run in CI, as https://github.com/x402-foundation/wg-identity/pull/54 does for agent identity. Could the TSC settle that route on the call?\n\nAI use: an AI assistant helped draft this; I reviewed it.\n"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "kemppelinvestments-del",
-   "at": "2026-11-23T20:11:33Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7112703937",
-   "text": "@igor-vii welcome, and yes to the evaluator seat (option 2) under the same three rules: spec digest pinned before the first job, verdict posted with the full recompute, binding-only scope. Post the Base Sepolia address you'll stake from and we'll send 2 test USDC plus a gas drip. After that: approve 2 test USDC to the EvaluatorRegistry 0x30576DE005df028D1947C56dEcc85a2a5612036a, call stake(2000000), sign the profile and request a canary. Like holistis, we'll post the canary here the minute it's assigned. Option 1 (mirroring verdicts into your registry) is fine by us as long as the mirror links"
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "kemppelinvestments-del",
-   "at": "2026-11-23T20:14:42Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7112788645",
-   "text": "@holistis your canary is live on Base Sepolia, as promised:\n\n- **Job id:** 41 on JobEscrow `0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D` (state: Submitted, 0.1 test USDC)\n- **Evaluator:** `0x98dc0C2760DAdeAD4C2A9B508B6bedA77B5602c5`\n- **Spec digest (on-chain specHash):** `0xfbd41ac40bba2b4eee49ec884aae517c050277a8d41e4857559606cd46743dc6`\n- **Judging deadline:** **2026-11-23 21:13:46 UTC** (submit 20:13:46 UTC + 3600 s eval window). With no verdict by then, timeoutRelease refunds the client.\n- Txs: createAndFund `0x0ec5ef2a3a698b43c6307ff43ecccc28ace455a8fc3caf168ae4af4d449bd50e`, submit `0xa86"
+   "author": "holistis",
+   "at": "2026-11-24T07:45:28Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7125338010",
+   "text": "@kemppelinvestments-del, thanks for the update, and sorry about job 41. That miss was on our side: nobody was watching when it was assigned. We are at the keyboard today, 24 November, from now until 19:30 UTC (20:30 Amsterdam time). Please submit the next canary any time in that window and post the job number here when you do.\n\nTwo questions so that we watch the right place. First, which escrow contract is the canary on? The judge-kit default (0xd6E00d3419C16a3bEE1B8CC030A7062bf2014b2c) shows 3 jobs for us, so job 41 is not there. Second, your API at /v1/evaluators now reports chainId 8453 and"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
    "author": "kemppelinvestments-del",
-   "at": "2026-11-23T21:21:50Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7114359448",
-   "text": "Quick update on canary job 41: the judging window closed at 4:13 PM ET and no verdict was posted, so it timed out on Base Sepolia (testnet only, 0.1 test USDC). No problem on your side, just timing. We'll release the escrow back and open a fresh canary with a longer window. If you tell us a time you'll be at the keyboard, we'll submit it then.\n"
+   "at": "2026-11-24T14:34:15Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7134591937",
+   "text": "@holistis Answers:\n\n1. Job 41 used the Base Sepolia JobEscrow at `0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D`, not the judge-kit default.\n2. Yes, Base Sepolia with test USDC only. agentcoinhq.com is now our Base mainnet site (chainId 8453), which is why `/v1/evaluators` there shows `realValue: true`; for testnet use testnet.agentcoinhq.com.\n3. Yes, on testnet `timeoutRelease` slashes a missed verdict: it takes `slashBase \u00d7 missedVerdictSlashBps` from the evaluator, pays that to the provider, and refunds the client. On that Sepolia escrow `missedVerdictSlashBps` is 1000 (10% of the evaluator's "
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "igor-vii",
-   "at": "2026-11-24T05:57:48Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7123440462",
-   "text": "On the two connection options you offered after our intro:\n\nOption 1 (mirroring verdicts into our registry) \u2014 yes, with your condition accepted: each mirror entry carries the on-chain tx reference of the verdict it mirrors, and the mirror is signed offline with the hash posted before the bytes go public \u2014 the same extension rule we already apply to pre-registered runs. No stake, no cost, no liability on either side.\n\nOption 2 (evaluator seat) \u2014 we pass. We don't issue verdicts; pre-registration and recompute are our discipline, and a staked seat with a one-hour window is a different job than t"
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-24T14:34:16Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7134592520",
+   "text": "@igor-vii Thanks. We'll include the on-chain verdict tx in each mirrored entry.\n"
   },
   {
-   "item": "google-agentic-commerce/AP2#290",
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "holistis",
+   "at": "2026-11-24T15:18:31Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7135805813",
+   "text": "@kemppelinvestments-del, thank you, that answers all three. I requested a new canary just now from testnet.agentcoinhq.com (request cr_001d699e0845d356, queued), and our watcher now looks at the escrow 0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D. Job 41 still shows there as submitted and past its window, and our stake reads 2 test-USDC, active, nothing slashed so far. If you call timeoutRelease on it, we will top the stake back up above the minimum with test USDC, so please post here when you do. We are at the keyboard until 19:30 UTC today. If the canary is submitted outside that window, pleas"
+  },
+  {
+   "item": "giskard09/argentum-core#179",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-24T12:19:03Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#180",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-24T15:22:14Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "probityai/agent-evidence-vectors#731",
    "type": "comment",
    "author": "giskard09",
-   "at": "2026-11-23T16:56:39Z",
-   "url": "https://github.com/google-agentic-commerce/AP2/issues/290#issuecomment-7107912636",
-   "title": "[Feat]: Post-checkout agent action record \u2014 verifiable audit trail after Checkout Receipt",
-   "text": "Received, thank you. The entry is recorded as you wrote it, for the next revision of draft-etcheverry-action-ref. There is no date for that revision yet, and I will tell you here when there is one.\n",
+   "at": "2026-11-24T15:43:16Z",
+   "url": "https://github.com/probityai/agent-evidence-vectors/pull/731#issuecomment-7136499023",
+   "title": "Record four outside runs, the v0.12 anchor-stream run and a guide",
+   "text": "@astrogilda thanks for both rows. One correction to my own posting, for the receipt-signature row: `jcs.py` is not shared with your repository.\n\nThe verifier's docstring says \"The only code shared with this repository is jcs.py\", meaning argentum-core. I carried that wording into #352, where \"this repository\" reads as yours. The file is argentum-core's own `jcs.py` (blob `41457d1` at `80579e5`), and no file in your tree at `v0.36.3` has that blob.\n\nThe label stays directed, and the rest of what the row takes from my posting is right.\n",
    "source": "user:giskard09"
   },
   {
-   "item": "x402-foundation/x402#2906",
-   "type": "comment",
-   "author": "giskard09",
-   "at": "2026-11-23T18:43:04Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2906#issuecomment-7110554102",
-   "title": "Proposal: action-receipt \u2014 a JWS profile of offer-receipt for post-settlement accountability",
-   "text": "Thanks, jsuich. Reran the v1 receipt against master at ee8e805 and got the same result: PASS, binding not_evaluated. Noted the no-overriding rule in \u00a74.5.1.",
-   "source": "user:giskard09"
-  },
-  {
-   "item": "SatGate-io/satgate#320",
-   "type": "new_issue",
-   "author": "giskard09",
-   "at": "2026-11-24T00:32:09Z",
-   "title": "Public demo route returns 503 (PAYEE_WALLET_UNAVAILABLE), and contact@satgate.io bounced",
-   "url": "https://github.com/SatGate-io/satgate/issues/320",
-   "source": "user:giskard09"
-  },
-  {
-   "item": "giskard09/argentum-core#174",
+   "item": "giskard09/argentum-core#181",
    "type": "new_pr",
    "author": "giskard09",
-   "at": "2026-11-24T01:54:16Z",
+   "at": "2026-11-24T16:02:52Z",
    "title": null,
    "url": null,
    "source": "user:giskard09"
   },
   {
-   "item": "giskard09/argentum-core#175",
+   "item": "giskard09/argentum-core#182",
    "type": "new_pr",
    "author": "giskard09",
-   "at": "2026-11-24T01:55:58Z",
+   "at": "2026-11-24T16:02:55Z",
    "title": null,
    "url": null,
    "source": "user:giskard09"
   },
   {
-   "item": "giskard09/argentum-core#176",
+   "item": "giskard09/argentum-core#183",
    "type": "new_pr",
    "author": "giskard09",
-   "at": "2026-11-24T01:57:43Z",
+   "at": "2026-11-24T16:02:58Z",
    "title": null,
    "url": null,
    "source": "user:giskard09"
   },
   {
-   "item": "giskard09/argentum-core#177",
+   "item": "giskard09/argentum-core#184",
    "type": "new_pr",
    "author": "giskard09",
-   "at": "2026-11-24T01:59:15Z",
-   "title": null,
-   "url": null,
-   "source": "user:giskard09"
-  },
-  {
-   "item": "giskard09/soma#8",
-   "type": "new_pr",
-   "author": "giskard09",
-   "at": "2026-11-24T02:00:38Z",
+   "at": "2026-11-24T16:03:13Z",
    "title": null,
    "url": null,
    "source": "user:giskard09"
   }
  ],
- "failures": [
-  {
-   "item": "Composable-Evidence-Criteria/action-ref-conformance",
-   "error": "<HTTPError 502: 'Bad Gateway'>"
-  }
- ],
+ "failures": [],
  "summary": {
   "LF-Decentralized-Trust/lab-proposals#2": {
    "title": "[Lab Proposal] recomputable-evidence",
@@ -161,13 +146,13 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 289,
-   "updated_at": "2026-11-15T01:36:55Z",
+   "comments": 290,
+   "updated_at": "2026-11-24T09:47:22Z",
    "last_comment": {
-    "author": "maximusrufus",
-    "at": "2026-11-15T01:36:54Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6887399456",
-    "text": "@actaseal thank you, this is useful. The link to 2cc6462 returns 404 here and the commit is not public yet; once it is pushed we will rerun it and add the row as you worded it. Yes to the two vectors for a trailing LF in issued_utc and criteria.sha256, in the corpus layout; we will review them for the next batch and credit you in the changelog.\n"
+    "author": "astrogilda",
+    "at": "2026-11-24T09:47:22Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-7127890194",
+    "text": "For the TSC call on 25 Nov (agenda topic https://github.com/x402-foundation/tsc/issues/21), I propose a route that needs no new working group. The Identity WG hosts the evidence record, which the WG's own evidence-chain request for proposals already covers; each record proposal is an XP under https://github.com/x402-foundation/x402/pull/3801, with conformance tests as a WG-pinned release run in CI, as https://github.com/x402-foundation/wg-identity/pull/54 does for agent identity. Could the TSC settle that route on the call?\n\nAI use: an AI assistant helped draft this; I reviewed it.\n"
    }
   },
   "x402-foundation/x402#2887": {
@@ -175,13 +160,13 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 264,
-   "updated_at": "2026-11-24T05:57:48Z",
+   "comments": 268,
+   "updated_at": "2026-11-24T15:18:31Z",
    "last_comment": {
-    "author": "igor-vii",
-    "at": "2026-11-24T05:57:48Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7123440462",
-    "text": "On the two connection options you offered after our intro:\n\nOption 1 (mirroring verdicts into our registry) \u2014 yes, with your condition accepted: each mirror entry carries the on-chain tx reference of the verdict it mirrors, and the mirror is signed offline with the hash posted before the bytes go public \u2014 the same extension rule we already apply to pre-registered runs. No stake, no cost, no liability on either side.\n\nOption 2 (evaluator seat) \u2014 we pass. We don't issue verdicts; pre-registration and recompute are our discipline, and a staked seat with a one-hour window is a different job than t"
+    "author": "holistis",
+    "at": "2026-11-24T15:18:31Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7135805813",
+    "text": "@kemppelinvestments-del, thank you, that answers all three. I requested a new canary just now from testnet.agentcoinhq.com (request cr_001d699e0845d356, queued), and our watcher now looks at the escrow 0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D. Job 41 still shows there as submitted and past its window, and our stake reads 2 test-USDC, active, nothing slashed so far. If you call timeoutRelease on it, we will top the stake back up above the minimum with test USDC, so please post here when you do. We are at the keyboard until 19:30 UTC today. If the canary is submitted outside that window, pleas"
    }
   },
   "x402-foundation/x402#3220": {
@@ -213,7 +198,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-24T06:02:44+00:00",
+   "checked": "2026-11-24T16:08:06+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -243,9 +228,64 @@
    "open": {},
    "issues_tracked": 2
   },
+  "Composable-Evidence-Criteria/action-ref-conformance": {
+   "main_latest": {
+    "sha": "b4a70b8",
+    "at": "2026-11-16T16:43:01Z",
+    "msg": "Merge pull request #10 from magentixai/magentixai/pair-0001-x402-authority-axes"
+   },
+   "files": {
+    "GOVERNANCE.md": "05ab3f1"
+   },
+   "open": {
+    "9": {
+     "title": "draft-etcheverry-action-ref-04 published \u2014 Implementation Status section names this lab and AXES",
+     "pr": false,
+     "comments": 2,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/9"
+    },
+    "8": {
+     "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
+     "pr": true,
+     "comments": 1,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8"
+    },
+    "7": {
+     "title": "Heads-up: Rama will offer paid conformance-QA engagements on top of this lab's public corpus",
+     "pr": false,
+     "comments": 4,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/7"
+    },
+    "5": {
+     "title": "Lab communications: LFDT newsletter and meetup proposals, and who speaks for the lab",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/5"
+    },
+    "4": {
+     "title": "APS SDK passes the pinned action-ref v1 Action (verify-impl)",
+     "pr": false,
+     "comments": 0,
+     "author": "aeoess",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/4"
+    },
+    "2": {
+     "title": "Lab name: recomputable-evidence is taken, proposed replacement",
+     "pr": false,
+     "comments": 7,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2"
+    }
+   },
+   "issues_tracked": 10
+  },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-11-24T02:01:13Z"
+   "latest_event": "2026-11-24T16:04:56Z"
   }
  },
  "first_run": false

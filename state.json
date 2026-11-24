@@ -93,7 +93,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 289,
+   "comments": 290,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -383,14 +383,15 @@
     6781333569,
     6798531098,
     6853868251,
-    6887399456
+    6887399456,
+    7127890194
    ],
-   "updated_at": "2026-11-15T01:36:55Z",
+   "updated_at": "2026-11-24T09:47:22Z",
    "last_comment": {
-    "author": "maximusrufus",
-    "at": "2026-11-15T01:36:54Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6887399456",
-    "text": "@actaseal thank you, this is useful. The link to 2cc6462 returns 404 here and the commit is not public yet; once it is pushed we will rerun it and add the row as you worded it. Yes to the two vectors for a trailing LF in issued_utc and criteria.sha256, in the corpus layout; we will review them for the next batch and credit you in the changelog.\n"
+    "author": "astrogilda",
+    "at": "2026-11-24T09:47:22Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-7127890194",
+    "text": "For the TSC call on 25 Nov (agenda topic https://github.com/x402-foundation/tsc/issues/21), I propose a route that needs no new working group. The Identity WG hosts the evidence record, which the WG's own evidence-chain request for proposals already covers; each record proposal is an XP under https://github.com/x402-foundation/x402/pull/3801, with conformance tests as a WG-pinned release run in CI, as https://github.com/x402-foundation/wg-identity/pull/54 does for agent identity. Could the TSC settle that route on the call?\n\nAI use: an AI assistant helped draft this; I reviewed it.\n"
    }
   },
   "x402-foundation/x402#2887": {
@@ -398,7 +399,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 264,
+   "comments": 268,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -663,14 +664,18 @@
     7112703937,
     7112788645,
     7114359448,
-    7123440462
+    7123440462,
+    7125338010,
+    7134591937,
+    7134592520,
+    7135805813
    ],
-   "updated_at": "2026-11-24T05:57:48Z",
+   "updated_at": "2026-11-24T15:18:31Z",
    "last_comment": {
-    "author": "igor-vii",
-    "at": "2026-11-24T05:57:48Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7123440462",
-    "text": "On the two connection options you offered after our intro:\n\nOption 1 (mirroring verdicts into our registry) \u2014 yes, with your condition accepted: each mirror entry carries the on-chain tx reference of the verdict it mirrors, and the mirror is signed offline with the hash posted before the bytes go public \u2014 the same extension rule we already apply to pre-registered runs. No stake, no cost, no liability on either side.\n\nOption 2 (evaluator seat) \u2014 we pass. We don't issue verdicts; pre-registration and recompute are our discipline, and a staked seat with a one-hour window is a different job than t"
+    "author": "holistis",
+    "at": "2026-11-24T15:18:31Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7135805813",
+    "text": "@kemppelinvestments-del, thank you, that answers all three. I requested a new canary just now from testnet.agentcoinhq.com (request cr_001d699e0845d356, queued), and our watcher now looks at the escrow 0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D. Job 41 still shows there as submitted and past its window, and our stake reads 2 test-USDC, active, nothing slashed so far. If you call timeoutRelease on it, we will top the stake back up above the minimum with test USDC, so please post here when you do. We are at the keyboard until 19:30 UTC today. If the canary is submitted outside that window, pleas"
    }
   },
   "x402-foundation/x402#3220": {
@@ -770,10 +775,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-23T16:19:48+00:00",
+ "last_checked": "2026-11-24T16:08:06+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-24T06:02:44+00:00",
+   "checked": "2026-11-24T16:08:06+00:00",
    "items": {
     "31": {
      "title": "spec: envelope signature profile axes:envelope_signature_ed25519@1 (D-060)",
@@ -1272,6 +1277,21 @@
  },
  "user_events": {
   "giskard09": [
+   "21150665473",
+   "21150409355",
+   "21150387793",
+   "21150381292",
+   "21150378938",
+   "28145598330",
+   "28145518928",
+   "21148387844",
+   "21146386582",
+   "21146258928",
+   "28134599396",
+   "28133262774",
+   "21128550076",
+   "21128441489",
+   "28129741367",
    "28101459509",
    "28101299685",
    "28095198002",
@@ -1356,22 +1376,7 @@
    "27356043220",
    "27346908562",
    "20272343662",
-   "27310345341",
-   "27298905969",
-   "20218923160",
-   "20218821435",
-   "20218514319",
-   "20218340610",
-   "20214058997",
-   "20202936829",
-   "27264549847",
-   "27264422447",
-   "20188458952",
-   "20188307199",
-   "20188060706",
-   "20186357987",
-   "20183913920",
-   "19956858054"
+   "27310345341"
   ]
  }
 }
