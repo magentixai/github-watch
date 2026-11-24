@@ -1,0 +1,252 @@
+{
+ "checked_at": "2026-11-24T06:02:44+00:00",
+ "previous_check": "2026-11-23T16:19:48+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-23T20:11:32Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7112703489",
+   "text": "@holistis thanks, confirmed: 0x98dc\u202602c5 shows active with 2000000 staked. On the canary: we'll post here the minute the job is submitted, with the job id, spec digest and the one-hour judging deadline in UTC, so you can be at the keyboard. If you have a preferred time window, tell us and we'll fit it.\n"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-23T20:11:33Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7112703937",
+   "text": "@igor-vii welcome, and yes to the evaluator seat (option 2) under the same three rules: spec digest pinned before the first job, verdict posted with the full recompute, binding-only scope. Post the Base Sepolia address you'll stake from and we'll send 2 test USDC plus a gas drip. After that: approve 2 test USDC to the EvaluatorRegistry 0x30576DE005df028D1947C56dEcc85a2a5612036a, call stake(2000000), sign the profile and request a canary. Like holistis, we'll post the canary here the minute it's assigned. Option 1 (mirroring verdicts into your registry) is fine by us as long as the mirror links"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-23T20:14:42Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7112788645",
+   "text": "@holistis your canary is live on Base Sepolia, as promised:\n\n- **Job id:** 41 on JobEscrow `0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D` (state: Submitted, 0.1 test USDC)\n- **Evaluator:** `0x98dc0C2760DAdeAD4C2A9B508B6bedA77B5602c5`\n- **Spec digest (on-chain specHash):** `0xfbd41ac40bba2b4eee49ec884aae517c050277a8d41e4857559606cd46743dc6`\n- **Judging deadline:** **2026-11-23 21:13:46 UTC** (submit 20:13:46 UTC + 3600 s eval window). With no verdict by then, timeoutRelease refunds the client.\n- Txs: createAndFund `0x0ec5ef2a3a698b43c6307ff43ecccc28ace455a8fc3caf168ae4af4d449bd50e`, submit `0xa86"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "kemppelinvestments-del",
+   "at": "2026-11-23T21:21:50Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7114359448",
+   "text": "Quick update on canary job 41: the judging window closed at 4:13 PM ET and no verdict was posted, so it timed out on Base Sepolia (testnet only, 0.1 test USDC). No problem on your side, just timing. We'll release the escrow back and open a fresh canary with a longer window. If you tell us a time you'll be at the keyboard, we'll submit it then.\n"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "igor-vii",
+   "at": "2026-11-24T05:57:48Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7123440462",
+   "text": "On the two connection options you offered after our intro:\n\nOption 1 (mirroring verdicts into our registry) \u2014 yes, with your condition accepted: each mirror entry carries the on-chain tx reference of the verdict it mirrors, and the mirror is signed offline with the hash posted before the bytes go public \u2014 the same extension rule we already apply to pre-registered runs. No stake, no cost, no liability on either side.\n\nOption 2 (evaluator seat) \u2014 we pass. We don't issue verdicts; pre-registration and recompute are our discipline, and a staked seat with a one-hour window is a different job than t"
+  },
+  {
+   "item": "google-agentic-commerce/AP2#290",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-23T16:56:39Z",
+   "url": "https://github.com/google-agentic-commerce/AP2/issues/290#issuecomment-7107912636",
+   "title": "[Feat]: Post-checkout agent action record \u2014 verifiable audit trail after Checkout Receipt",
+   "text": "Received, thank you. The entry is recorded as you wrote it, for the next revision of draft-etcheverry-action-ref. There is no date for that revision yet, and I will tell you here when there is one.\n",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "x402-foundation/x402#2906",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-23T18:43:04Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2906#issuecomment-7110554102",
+   "title": "Proposal: action-receipt \u2014 a JWS profile of offer-receipt for post-settlement accountability",
+   "text": "Thanks, jsuich. Reran the v1 receipt against master at ee8e805 and got the same result: PASS, binding not_evaluated. Noted the no-overriding rule in \u00a74.5.1.",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "SatGate-io/satgate#320",
+   "type": "new_issue",
+   "author": "giskard09",
+   "at": "2026-11-24T00:32:09Z",
+   "title": "Public demo route returns 503 (PAYEE_WALLET_UNAVAILABLE), and contact@satgate.io bounced",
+   "url": "https://github.com/SatGate-io/satgate/issues/320",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#174",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-24T01:54:16Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#175",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-24T01:55:58Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#176",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-24T01:57:43Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#177",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-24T01:59:15Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/soma#8",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-24T02:00:38Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  }
+ ],
+ "failures": [
+  {
+   "item": "Composable-Evidence-Criteria/action-ref-conformance",
+   "error": "<HTTPError 502: 'Bad Gateway'>"
+  }
+ ],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 6,
+   "updated_at": "2026-10-20T15:06:35Z",
+   "last_comment": {
+    "author": "source-origin",
+    "at": "2026-10-20T15:06:34Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-6294062372",
+    "text": "Tymofii,\r\n\r\nYou closed the loop on two questions in the same thread, and you gave us a\r\ndistinction we have since used more than anything else from that exchange:\r\n*reference by pin, not host*, with criteria marked as authored judgment rather\r\nthan recomputed fact.\r\n\r\nWe used it and did not tell you. Nineteen days. Sorry.\r\n\r\n**Where it landed.** Our rubric header now carries two separate lines, because\r\nyour distinction made it obvious that one line was a lie:\r\n\r\n- `criteria_version` + `pinned_commit` \u2014 what was applied, and the exact bytes\r\n  it was applied from. If the criteria move, the pin"
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 289,
+   "updated_at": "2026-11-15T01:36:55Z",
+   "last_comment": {
+    "author": "maximusrufus",
+    "at": "2026-11-15T01:36:54Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-6887399456",
+    "text": "@actaseal thank you, this is useful. The link to 2cc6462 returns 404 here and the commit is not public yet; once it is pushed we will rerun it and add the row as you worded it. Yes to the two vectors for a trailing LF in issued_utc and criteria.sha256, in the corpus layout; we will review them for the next batch and credit you in the changelog.\n"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 264,
+   "updated_at": "2026-11-24T05:57:48Z",
+   "last_comment": {
+    "author": "igor-vii",
+    "at": "2026-11-24T05:57:48Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7123440462",
+    "text": "On the two connection options you offered after our intro:\n\nOption 1 (mirroring verdicts into our registry) \u2014 yes, with your condition accepted: each mirror entry carries the on-chain tx reference of the verdict it mirrors, and the mirror is signed offline with the hash posted before the bytes go public \u2014 the same extension rule we already apply to pre-registered runs. No stake, no cost, no liability on either side.\n\nOption 2 (evaluator seat) \u2014 we pass. We don't issue verdicts; pre-registration and recompute are our discipline, and a staked seat with a one-hour window is a different job than t"
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 66,
+   "updated_at": "2026-11-17T12:25:50Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-27T21:02:29Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6453477294",
+    "text": "For reference: presign-guard's mandate check already refuses any payment whose nonce isn't exactly B (MANDATE_BINDING_MISMATCH), so composed slots are rejected today. We'll move our paymentId check to the 16..64 floor once the \u00a76 change lands.\n"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-11-24T06:02:44+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 8,
+   "pushed_at": "2026-11-19T23:12:50Z",
+   "issues_tracked": 28
+  },
+  "Composable-Evidence-Criteria/.github": {
+   "main_latest": {
+    "sha": "9945f2c",
+    "at": "2026-09-30T08:29:38Z",
+    "msg": "Update name"
+   },
+   "files": {},
+   "open": {},
+   "issues_tracked": 0
+  },
+  "Composable-Evidence-Criteria/governance": {
+   "main_latest": {
+    "sha": "709573d",
+    "at": "2026-09-30T08:31:12Z",
+    "msg": "Update team names add repo"
+   },
+   "files": {
+    "teams.yaml": "7d9961c"
+   },
+   "open": {},
+   "issues_tracked": 2
+  },
+  "user:giskard09": {
+   "events_seen": 100,
+   "latest_event": "2026-11-24T02:01:13Z"
+  }
+ },
+ "first_run": false
+}

@@ -398,7 +398,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 259,
+   "comments": 264,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -658,14 +658,19 @@
     7086813059,
     7088412847,
     7097093784,
-    7101927853
+    7101927853,
+    7112703489,
+    7112703937,
+    7112788645,
+    7114359448,
+    7123440462
    ],
-   "updated_at": "2026-11-23T13:00:27Z",
+   "updated_at": "2026-11-24T05:57:48Z",
    "last_comment": {
     "author": "igor-vii",
-    "at": "2026-11-23T13:00:27Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7101927853",
-    "text": "We run Argus Agent Test Lab (github.com/igor-vii/Argus-Agent-Test-Lab) \u2014 an independent proof layer for x402 payment flows: Ed25519-signed, hash-chained registry, one-command verification (git clone + node, no npm), and a pre-registration discipline \u2014 expectations frozen and verified before the first call. Registry at 30 records.\n\nThis thread's working rule \u2014 no verdict before our own recompute, recompute published with the verdict \u2014 is the rule our registry was built to carry. What we add is the persistence half: a verdict posted here today stays independently verifiable tomorrow, re-derivabl"
+    "at": "2026-11-24T05:57:48Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7123440462",
+    "text": "On the two connection options you offered after our intro:\n\nOption 1 (mirroring verdicts into our registry) \u2014 yes, with your condition accepted: each mirror entry carries the on-chain tx reference of the verdict it mirrors, and the mirror is signed offline with the hash posted before the bytes go public \u2014 the same extension rule we already apply to pre-registered runs. No stake, no cost, no liability on either side.\n\nOption 2 (evaluator seat) \u2014 we pass. We don't issue verdicts; pre-registration and recompute are our discipline, and a staked seat with a one-hour window is a different job than t"
    }
   },
   "x402-foundation/x402#3220": {
@@ -768,7 +773,7 @@
  "last_checked": "2026-11-23T16:19:48+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-23T16:19:48+00:00",
+   "checked": "2026-11-24T06:02:44+00:00",
    "items": {
     "31": {
      "title": "spec: envelope signature profile axes:envelope_signature_ed25519@1 (D-060)",
@@ -1267,6 +1272,27 @@
  },
  "user_events": {
   "giskard09": [
+   "28101459509",
+   "28101299685",
+   "28095198002",
+   "28094836581",
+   "28091254931",
+   "21081141792",
+   "21081100992",
+   "21081083665",
+   "21081009938",
+   "21080979075",
+   "21080908409",
+   "21080860155",
+   "21080792129",
+   "21080750180",
+   "21080674584",
+   "21080000425",
+   "21074884658",
+   "28070264752",
+   "28069780159",
+   "21046145089",
+   "21032394985",
    "21025624923",
    "21025422808",
    "28011480180",
@@ -1345,28 +1371,7 @@
    "20188060706",
    "20186357987",
    "20183913920",
-   "19956858054",
-   "19955902111",
-   "19914787875",
-   "19799129621",
-   "19794175963",
-   "26850747481",
-   "26840125928",
-   "26833375524",
-   "26830567376",
-   "26830115146",
-   "26826173063",
-   "19692623112",
-   "19685851987",
-   "19680363568",
-   "19680350103",
-   "19680318150",
-   "19679363345",
-   "19678430721",
-   "19678029301",
-   "19677240836",
-   "26711091784",
-   "26695064945"
+   "19956858054"
   ]
  }
 }
