@@ -389,12 +389,12 @@
     7147264618,
     7152760620
    ],
-   "updated_at": "2026-11-25T04:20:55Z",
+   "updated_at": "2026-11-25T10:46:28Z",
    "last_comment": {
     "author": "astrogilda",
     "at": "2026-11-25T04:20:55Z",
     "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-7152760620",
-    "text": "@robertolocatelli81-dev, thanks; we propose the Identity WG pin agent-evidence-vectors 0.38.0, our x402 evidence-join test records on PyPI, by the sha256 digests in https://github.com/probityai/agent-evidence-vectors/pull/739.\n\nIf it does, your verifier can run those test records in CI through that repository's GitHub Action, probityai/agent-evidence-vectors@v0.38.0, with Dependabot bumping it.\n\nThat pull request also holds the x402 payment-binding test cases, planned for 0.39.0.\n\nAI use: an AI assistant helped draft this; I reviewed it before posting.\n"
+    "text": "@robertolocatelli81-dev, thank you for the 130 of 130 result; we will read your results in wg-identity when you post them. We propose the Identity WG pin agent-evidence-vectors 0.38.0, our x402 evidence-join test records on PyPI, by the sha256 digests in https://github.com/probityai/agent-evidence-vectors/pull/739.\n\nIf the WG does, your verifiers can run those records in CI on every change through the GitHub Action probityai/agent-evidence-vectors@v0.38.0, which also runs agent-evidence-verify as its reference stage, with Dependabot bumping it.\n\nThat pull request also holds the x402 payment-bi"
    }
   },
   "x402-foundation/x402#2887": {
@@ -402,7 +402,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 271,
+   "comments": 275,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -674,14 +674,18 @@
     7135805813,
     7142612734,
     7143343768,
-    7143511225
+    7143511225,
+    7157644489,
+    7157859638,
+    7164313336,
+    7165352974
    ],
-   "updated_at": "2026-11-24T20:24:54Z",
+   "updated_at": "2026-11-25T14:29:13Z",
    "last_comment": {
-    "author": "kemppelinvestments-del",
-    "at": "2026-11-24T20:24:54Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7143511225",
-    "text": "@holistis job 41 is released: timeoutRelease tx `0xbfefa754d101222b3bf41050006393faa670c7878ad64339ea5995a66c72e50e` (Base Sepolia, block 63149018, escrow 0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D). Job is Expired and the client was refunded.\n\nOne thing before tomorrow: the missed-verdict slash on job 41 took your stake to 1.8 test USDC, under the 2.0 minimum, so the escrow treats your evaluator as inactive and createAndFund would revert. Could you stake at least 0.2 more test USDC, ideally before 14:05 UTC on 25 Nov? The canary submits automatically at 14:05 UTC and retries every 2 minutes u"
+    "author": "holistis",
+    "at": "2026-11-25T14:29:13Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7165352974",
+    "text": "@kemppelinvestments-del, the verdict for job 42 is in. Escrow 0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D, evaluator 0x98dc0C2760DAdeAD4C2A9B508B6bedA77B5602c5, outcome Complete with payoutBps 10000. Tx 0x1f4e1c0dfab50665fb5be68c62f1f4f5fc095b19164a384d8afd5639a83e6c74 on Base Sepolia, block 63470673, 499 seconds after the submit (window 3600). The job now reads Completed on your API.\n\nWhat we recomputed before signing: sha256 over the canonical JSON of the agentkoin-canary/v1 spec for request cr_001d699e0845d356 (our evaluator address, amount 100000, the rule text from agent/scripts/run-canary"
    }
   },
   "x402-foundation/x402#3220": {
@@ -781,10 +785,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-25T05:56:21+00:00",
+ "last_checked": "2026-11-25T15:54:15+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-25T05:56:21+00:00",
+   "checked": "2026-11-25T15:54:15+00:00",
    "items": {
     "31": {
      "title": "spec: envelope signature profile axes:envelope_signature_ed25519@1 (D-060)",
@@ -1283,6 +1287,12 @@
  },
  "user_events": {
   "giskard09": [
+   "28228578436",
+   "28228467195",
+   "28226851955",
+   "28218100112",
+   "28216084889",
+   "28205394095",
    "28200420966",
    "28198938215",
    "21205436552",
@@ -1376,13 +1386,7 @@
    "20895961058",
    "20895863492",
    "20895832363",
-   "27884465456",
-   "27883955371",
-   "20895438266",
-   "20895232223",
-   "20895181814",
-   "20894688848",
-   "20894369154"
+   "27884465456"
   ]
  }
 }

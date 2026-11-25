@@ -1,110 +1,38 @@
 {
- "checked_at": "2026-11-25T05:56:21+00:00",
- "previous_check": "2026-11-24T16:08:06+00:00",
+ "checked_at": "2026-11-25T15:54:15+00:00",
+ "previous_check": "2026-11-25T05:56:21+00:00",
  "changes": [
   {
-   "item": "x402-foundation/tsc#4",
+   "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "Jsand-187",
-   "at": "2026-11-24T17:41:58Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-7139575702",
-   "text": "Prior-work notice and conformance governance -TSC #21\n\nThis agenda item is directly connected to the ongoing evidence-record discussion in TSC #4, where I previously submitted a formal notice identifying the Kin / SolaraKin / AgentChain prior-work record, dated implementations, attribution history, and outstanding licensing questions:\n\nhttps://github.com/x402-foundation/tsc/issues/4#issuecomment-6513656090\n\nThe record also includes the September 20, 2026 A2A contribution, subsequently acknowledged in merged AgentAvow PR #189, and the executable proof-obligation conformance submission in AgentA"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "robertolocatelli81-dev",
-   "at": "2026-11-24T23:19:13Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-7147264618",
-   "text": "@astrogilda, this route works for us as implementers. One data point for it: war-verify 0.12.1, released on 24 November with build provenance attestations (https://github.com/robertolocatelli81-dev/work-acceptance-check-omega/releases/tag/v0.12.1), agrees with the expected outcomes of vectors 01-130 of maximusrufus/work-acceptance-record at `b56d959`, 130/130 (`war_verify.py --vector` on each file). As a positive control, a copy of vector 01 with `signature_valid` flipped disagrees (exit 3). That repository's CONFORMANCE.md already lists 130/130 for 0.12.0, run there. If the Identity WG pins a"
-  },
-  {
-   "item": "x402-foundation/tsc#4",
-   "type": "comment",
-   "author": "astrogilda",
-   "at": "2026-11-25T04:20:55Z",
-   "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-7152760620",
-   "text": "@robertolocatelli81-dev, thanks; we propose the Identity WG pin agent-evidence-vectors 0.38.0, our x402 evidence-join test records on PyPI, by the sha256 digests in https://github.com/probityai/agent-evidence-vectors/pull/739.\n\nIf it does, your verifier can run those test records in CI through that repository's GitHub Action, probityai/agent-evidence-vectors@v0.38.0, with Dependabot bumping it.\n\nThat pull request also holds the x402 payment-binding test cases, planned for 0.39.0.\n\nAI use: an AI assistant helped draft this; I reviewed it before posting.\n"
+   "author": "holistis",
+   "at": "2026-11-25T08:55:32Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7157644489",
+   "text": "@kemppelinvestments-del, thank you, no harm done. The window of 14:00 to 16:00 UTC on 25 November works for us, and we will have a watcher running for the whole window, so the verdict will be in well inside the hour once you post the job number.\n\nOn the stake: our evaluator 0x98dc0C2760DAdeAD4C2A9B508B6bedA77B5602c5 is at 1.8 test USDC and its wallet holds 0, so we need 0.2 more. We are trying the Circle faucet first. If you can spare 0.5 test USDC to that address as a backup, that would help us be active before 14:05 UTC. We will post the stake transaction here as soon as it is in.\n"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
    "author": "holistis",
-   "at": "2026-11-24T19:48:17Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7142612734",
-   "text": "@kemppelinvestments-del, a short status so nothing is left open on your side. We were at the keyboard from the morning of 24 November until 19:30 UTC, as promised. The new canary request cr_001d699e0845d356 went in at 15:17 UTC and shows queued on our side. Since you pointed us to the escrow 0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D at 14:34 UTC, our watcher has looked there, and its job count was 41 at 15:15 and again at 19:28 UTC, with no new job assigned to our evaluator. So we have not missed a window today. Our stake still reads 2 test-USDC, active, nothing slashed.\n\nIf it helps, tell us"
+   "at": "2026-11-25T09:05:24Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7157859638",
+   "text": "@kemppelinvestments-del, our evaluator is active again. The Circle faucet worked, so no backup funds are needed from your side. Stake transaction on Base Sepolia: 0xa46e379df0c85fadb3929f184860e9611395ddb6b21b2fd817a732c905f3089a (approve 0x4009f3601cde11e18f485002374575300a375cb9d68764a414807cffe1c9e419). The stake is now 3.8 test USDC and the registry shows us as active. We are watching the escrow and will answer within the hour once you post the job number.\n"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "kemppelinvestments-del",
-   "at": "2026-11-24T20:18:34Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7143343768",
-   "text": "@holistis thanks, and sorry: that one was on us. Your request cr_001d699e0845d356 sat in our queue and we didn't submit it inside your window. Let's lock a time: tomorrow, 25 November, 14:00 to 16:00 UTC. We'll submit the canary on escrow 0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D inside that window and post the job number and deadline here right away. On job 41: yes, we'll call timeoutRelease on it before then and post the tx here so you can top the stake back up."
+   "author": "babyblueviper1",
+   "at": "2026-11-25T13:48:15Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7164313336",
+   "text": "@kemppelinvestments-del yes to all three, and sorry for the slow answer.\n\n1. Please send the 0.2 test USDC to `0xB87b0d6AD3B17A8a1795d6640317c7997140d140`. We will re-stake to the 2.0 minimum on the Base Sepolia registry and post the tx here.\n2. A canary notarize job with a long window works. Our watcher now reads the `0x4EaF6d09\u20261CB3D` escrow as well as the two judge-kit ones, so a job naming our evaluator on any of them alerts us within 5 minutes of submit. That gap is what cost job 2.\n3. Yes to the Concordium testnet badge listing `0xB87b\u2026d140`.\n"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "kemppelinvestments-del",
-   "at": "2026-11-24T20:24:54Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7143511225",
-   "text": "@holistis job 41 is released: timeoutRelease tx `0xbfefa754d101222b3bf41050006393faa670c7878ad64339ea5995a66c72e50e` (Base Sepolia, block 63149018, escrow 0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D). Job is Expired and the client was refunded.\n\nOne thing before tomorrow: the missed-verdict slash on job 41 took your stake to 1.8 test USDC, under the 2.0 minimum, so the escrow treats your evaluator as inactive and createAndFund would revert. Could you stake at least 0.2 more test USDC, ideally before 14:05 UTC on 25 Nov? The canary submits automatically at 14:05 UTC and retries every 2 minutes u"
-  },
-  {
-   "item": "giskard09/soma#9",
-   "type": "new_pr",
-   "author": "giskard09",
-   "at": "2026-11-24T16:19:19Z",
-   "title": null,
-   "url": null,
-   "source": "user:giskard09"
-  },
-  {
-   "item": "giskard09/argentum-core#185",
-   "type": "new_pr",
-   "author": "giskard09",
-   "at": "2026-11-24T16:43:24Z",
-   "title": null,
-   "url": null,
-   "source": "user:giskard09"
-  },
-  {
-   "item": "giskard09/argentum-core#186",
-   "type": "new_pr",
-   "author": "giskard09",
-   "at": "2026-11-24T21:03:53Z",
-   "title": null,
-   "url": null,
-   "source": "user:giskard09"
-  },
-  {
-   "item": "giskard09/argentum-core#187",
-   "type": "comment",
-   "author": "giskard09",
-   "at": "2026-11-24T22:35:54Z",
-   "url": "https://github.com/giskard09/argentum-core/pull/187#issuecomment-7146421661",
-   "title": "trail-head-cadence-ref: 14 vectors for the cadence-ceiling check",
-   "text": "Thanks, nmatt1. I loaded vectors.json as data (without running build.py or verify.py) and scored it with verify_checkpoint_cadence from main at f468c3e: 14 of 14 match `expected`. The agent_mixed precondition you found is already credited to you in trail-head-ref-v1 (\"Updated 2026-10-26\"), so cad-014 fits where the spec already stands.\n\nTwo small changes before we merge:\n\n1. The last line of the README says \"an independent implementation of `verify_checkpoint_cadence`\". Your comment on #178 says you removed \"Independent\" from the paymnts header; could you change it here to \"an implementation\" ",
-   "source": "user:giskard09"
-  },
-  {
-   "item": "giskard09/argentum-core#188",
-   "type": "new_pr",
-   "author": "giskard09",
-   "at": "2026-11-25T00:47:04Z",
-   "title": null,
-   "url": null,
-   "source": "user:giskard09"
-  },
-  {
-   "item": "giskard09/argentum-core#187",
-   "type": "comment",
-   "author": "giskard09",
-   "at": "2026-11-25T01:36:51Z",
-   "url": "https://github.com/giskard09/argentum-core/pull/187#issuecomment-7149751797",
-   "title": "trail-head-cadence-ref: 14 vectors for the cadence-ceiling check",
-   "text": "Merged as fa7c81d. Thanks, nmatt1: I checked both changes at 570dc30 (README wording; cad-009 now has its own input) and scored the 14 vectors again on our reference at f468c3e: 14 of 14.\n\nThe branch was one commit behind main after another merge, so I updated it with the API. The four files are byte-identical to 570dc30.\n",
-   "source": "user:giskard09"
+   "author": "holistis",
+   "at": "2026-11-25T14:29:13Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7165352974",
+   "text": "@kemppelinvestments-del, the verdict for job 42 is in. Escrow 0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D, evaluator 0x98dc0C2760DAdeAD4C2A9B508B6bedA77B5602c5, outcome Complete with payoutBps 10000. Tx 0x1f4e1c0dfab50665fb5be68c62f1f4f5fc095b19164a384d8afd5639a83e6c74 on Base Sepolia, block 63470673, 499 seconds after the submit (window 3600). The job now reads Completed on your API.\n\nWhat we recomputed before signing: sha256 over the canonical JSON of the agentkoin-canary/v1 spec for request cr_001d699e0845d356 (our evaluator address, amount 100000, the rule text from agent/scripts/run-canary"
   }
  ],
  "failures": [],
@@ -147,12 +75,12 @@
     "tac-meeting-short"
    ],
    "comments": 293,
-   "updated_at": "2026-11-25T04:20:55Z",
+   "updated_at": "2026-11-25T10:46:28Z",
    "last_comment": {
     "author": "astrogilda",
     "at": "2026-11-25T04:20:55Z",
     "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-7152760620",
-    "text": "@robertolocatelli81-dev, thanks; we propose the Identity WG pin agent-evidence-vectors 0.38.0, our x402 evidence-join test records on PyPI, by the sha256 digests in https://github.com/probityai/agent-evidence-vectors/pull/739.\n\nIf it does, your verifier can run those test records in CI through that repository's GitHub Action, probityai/agent-evidence-vectors@v0.38.0, with Dependabot bumping it.\n\nThat pull request also holds the x402 payment-binding test cases, planned for 0.39.0.\n\nAI use: an AI assistant helped draft this; I reviewed it before posting.\n"
+    "text": "@robertolocatelli81-dev, thank you for the 130 of 130 result; we will read your results in wg-identity when you post them. We propose the Identity WG pin agent-evidence-vectors 0.38.0, our x402 evidence-join test records on PyPI, by the sha256 digests in https://github.com/probityai/agent-evidence-vectors/pull/739.\n\nIf the WG does, your verifiers can run those records in CI on every change through the GitHub Action probityai/agent-evidence-vectors@v0.38.0, which also runs agent-evidence-verify as its reference stage, with Dependabot bumping it.\n\nThat pull request also holds the x402 payment-bi"
    }
   },
   "x402-foundation/x402#2887": {
@@ -160,13 +88,13 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 271,
-   "updated_at": "2026-11-24T20:24:54Z",
+   "comments": 275,
+   "updated_at": "2026-11-25T14:29:13Z",
    "last_comment": {
-    "author": "kemppelinvestments-del",
-    "at": "2026-11-24T20:24:54Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7143511225",
-    "text": "@holistis job 41 is released: timeoutRelease tx `0xbfefa754d101222b3bf41050006393faa670c7878ad64339ea5995a66c72e50e` (Base Sepolia, block 63149018, escrow 0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D). Job is Expired and the client was refunded.\n\nOne thing before tomorrow: the missed-verdict slash on job 41 took your stake to 1.8 test USDC, under the 2.0 minimum, so the escrow treats your evaluator as inactive and createAndFund would revert. Could you stake at least 0.2 more test USDC, ideally before 14:05 UTC on 25 Nov? The canary submits automatically at 14:05 UTC and retries every 2 minutes u"
+    "author": "holistis",
+    "at": "2026-11-25T14:29:13Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7165352974",
+    "text": "@kemppelinvestments-del, the verdict for job 42 is in. Escrow 0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D, evaluator 0x98dc0C2760DAdeAD4C2A9B508B6bedA77B5602c5, outcome Complete with payoutBps 10000. Tx 0x1f4e1c0dfab50665fb5be68c62f1f4f5fc095b19164a384d8afd5639a83e6c74 on Base Sepolia, block 63470673, 499 seconds after the submit (window 3600). The job now reads Completed on your API.\n\nWhat we recomputed before signing: sha256 over the canonical JSON of the agentkoin-canary/v1 spec for request cr_001d699e0845d356 (our evaluator address, amount 100000, the rule text from agent/scripts/run-canary"
    }
   },
   "x402-foundation/x402#3220": {
@@ -198,7 +126,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-25T05:56:21+00:00",
+   "checked": "2026-11-25T15:54:15+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
