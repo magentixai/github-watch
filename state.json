@@ -93,7 +93,7 @@
    "labels": [
     "tac-meeting-short"
    ],
-   "comments": 290,
+   "comments": 293,
    "comment_ids": [
     5094617711,
     5123484993,
@@ -384,14 +384,17 @@
     6798531098,
     6853868251,
     6887399456,
-    7127890194
+    7127890194,
+    7139575702,
+    7147264618,
+    7152760620
    ],
-   "updated_at": "2026-11-24T09:47:22Z",
+   "updated_at": "2026-11-25T04:20:55Z",
    "last_comment": {
     "author": "astrogilda",
-    "at": "2026-11-24T09:47:22Z",
-    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-7127890194",
-    "text": "For the TSC call on 25 Nov (agenda topic https://github.com/x402-foundation/tsc/issues/21), I propose a route that needs no new working group. The Identity WG hosts the evidence record, which the WG's own evidence-chain request for proposals already covers; each record proposal is an XP under https://github.com/x402-foundation/x402/pull/3801, with conformance tests as a WG-pinned release run in CI, as https://github.com/x402-foundation/wg-identity/pull/54 does for agent identity. Could the TSC settle that route on the call?\n\nAI use: an AI assistant helped draft this; I reviewed it.\n"
+    "at": "2026-11-25T04:20:55Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-7152760620",
+    "text": "@robertolocatelli81-dev, thanks; we propose the Identity WG pin agent-evidence-vectors 0.38.0, our x402 evidence-join test records on PyPI, by the sha256 digests in https://github.com/probityai/agent-evidence-vectors/pull/739.\n\nIf it does, your verifier can run those test records in CI through that repository's GitHub Action, probityai/agent-evidence-vectors@v0.38.0, with Dependabot bumping it.\n\nThat pull request also holds the x402 payment-binding test cases, planned for 0.39.0.\n\nAI use: an AI assistant helped draft this; I reviewed it before posting.\n"
    }
   },
   "x402-foundation/x402#2887": {
@@ -399,7 +402,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 268,
+   "comments": 271,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -668,14 +671,17 @@
     7125338010,
     7134591937,
     7134592520,
-    7135805813
+    7135805813,
+    7142612734,
+    7143343768,
+    7143511225
    ],
-   "updated_at": "2026-11-24T15:18:31Z",
+   "updated_at": "2026-11-24T20:24:54Z",
    "last_comment": {
-    "author": "holistis",
-    "at": "2026-11-24T15:18:31Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7135805813",
-    "text": "@kemppelinvestments-del, thank you, that answers all three. I requested a new canary just now from testnet.agentcoinhq.com (request cr_001d699e0845d356, queued), and our watcher now looks at the escrow 0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D. Job 41 still shows there as submitted and past its window, and our stake reads 2 test-USDC, active, nothing slashed so far. If you call timeoutRelease on it, we will top the stake back up above the minimum with test USDC, so please post here when you do. We are at the keyboard until 19:30 UTC today. If the canary is submitted outside that window, pleas"
+    "author": "kemppelinvestments-del",
+    "at": "2026-11-24T20:24:54Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7143511225",
+    "text": "@holistis job 41 is released: timeoutRelease tx `0xbfefa754d101222b3bf41050006393faa670c7878ad64339ea5995a66c72e50e` (Base Sepolia, block 63149018, escrow 0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D). Job is Expired and the client was refunded.\n\nOne thing before tomorrow: the missed-verdict slash on job 41 took your stake to 1.8 test USDC, under the 2.0 minimum, so the escrow treats your evaluator as inactive and createAndFund would revert. Could you stake at least 0.2 more test USDC, ideally before 14:05 UTC on 25 Nov? The canary submits automatically at 14:05 UTC and retries every 2 minutes u"
    }
   },
   "x402-foundation/x402#3220": {
@@ -775,10 +781,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-24T16:08:06+00:00",
+ "last_checked": "2026-11-25T05:56:21+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-24T16:08:06+00:00",
+   "checked": "2026-11-25T05:56:21+00:00",
    "items": {
     "31": {
      "title": "spec: envelope signature profile axes:envelope_signature_ed25519@1 (D-060)",
@@ -1277,6 +1283,27 @@
  },
  "user_events": {
   "giskard09": [
+   "28200420966",
+   "28198938215",
+   "21205436552",
+   "21205218126",
+   "21201570433",
+   "28172304349",
+   "28172163754",
+   "21190753876",
+   "21184558251",
+   "21182209795",
+   "21182080776",
+   "28162671540",
+   "21160234936",
+   "21155005016",
+   "21154848845",
+   "28147468328",
+   "21152289680",
+   "21152224071",
+   "21151830271",
+   "21151716267",
+   "21151599335",
    "21150665473",
    "21150409355",
    "21150387793",
@@ -1355,28 +1382,7 @@
    "20895232223",
    "20895181814",
    "20894688848",
-   "20894369154",
-   "20894330821",
-   "20894253533",
-   "20894080642",
-   "20893988112",
-   "20893937671",
-   "27881096033",
-   "20708048144",
-   "20707617727",
-   "27671764334",
-   "20675690196",
-   "20570113653",
-   "20551758034",
-   "20466213287",
-   "20466198490",
-   "27384505079",
-   "20305780439",
-   "20301116558",
-   "27356043220",
-   "27346908562",
-   "20272343662",
-   "27310345341"
+   "20894369154"
   ]
  }
 }
