@@ -1,38 +1,104 @@
 {
- "checked_at": "2026-11-25T15:54:15+00:00",
- "previous_check": "2026-11-25T05:56:21+00:00",
+ "checked_at": "2026-11-26T06:04:35+00:00",
+ "previous_check": "2026-11-25T15:54:15+00:00",
  "changes": [
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "holistis",
-   "at": "2026-11-25T08:55:32Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7157644489",
-   "text": "@kemppelinvestments-del, thank you, no harm done. The window of 14:00 to 16:00 UTC on 25 November works for us, and we will have a watcher running for the whole window, so the verdict will be in well inside the hour once you post the job number.\n\nOn the stake: our evaluator 0x98dc0C2760DAdeAD4C2A9B508B6bedA77B5602c5 is at 1.8 test USDC and its wallet holds 0, so we need 0.2 more. We are trying the Circle faucet first. If you can spare 0.5 test USDC to that address as a backup, that would help us be active before 14:05 UTC. We will post the stake transaction here as soon as it is in.\n"
+   "author": "hheskihoran",
+   "at": "2026-11-25T17:32:59Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7169662509",
+   "text": "@holistis @zambodotdev round 2, step 4. Sorry for the five days; the delay was mine.\n\nI compared your draft with the files I saved during the paid call, not with the values I posted, and countersigned.\n\n| Check | Result |\n|---|---|\n| `agentA` and `agentB` are the two registered keys | yes |\n| `task.specHash`, recomputed from my 114 saved request bytes | equal (`sha256:54d241a4\u2026a359`) |\n| `result.outputHash`, recomputed from my 192 saved response bytes | equal (`sha256:b5dc5480\u202610f9`) |\n| `settlement.transaction` and `network` are the transfer I paid | equal (`0xe452baff\u2026f28c`, `eip155:84532`) "
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "hheskihoran",
+   "at": "2026-11-25T17:33:03Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7169663967",
+   "text": "@kemppelinvestments-del thank you, and sorry for the late answer.\n\n**(b) yes: an INAM-shaped record per verdict.** The fit is direct, because your job already has the two hashes a receipt needs: the on-chain `specHash` and `deliverableHash`. What a receipt adds is the two signatures: the provider signs first, and the client countersigns only after recomputing `outputHash` from the bytes it received. So the record cannot be emitted by the escrow alone. Each party signs with its own Ed25519 key.\n\nWhat I can do on my side, without you changing anything: write a small adapter that reads a job and "
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "zambodotdev",
+   "at": "2026-11-25T17:47:34Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7170005883",
+   "text": "@hheskihoran @holistis step 4 checked from our side, independently, from the file as posted. Everything I could recompute, I recomputed.\n\n| Check | Result |\n|---|---|\n| Signed bytes | SHA-256 over the RFC 8785 form of the receipt without `signatures` is `8d2f267b\u2026840d01`, equal to the value you stated |\n| `receiptId` | recomputes to `sha256:a34d39f7\u2026995c`, on the same preimage as round 1: canonical content without `signatures`, without `receiptId`, without `receiptVersion` |\n| Both signatures | verify over those bytes against the two did:key keys, agentA and agentB |\n| `task.specHash` / `resul"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
    "author": "holistis",
-   "at": "2026-11-25T09:05:24Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7157859638",
-   "text": "@kemppelinvestments-del, our evaluator is active again. The Circle faucet worked, so no backup funds are needed from your side. Stake transaction on Base Sepolia: 0xa46e379df0c85fadb3929f184860e9611395ddb6b21b2fd817a732c905f3089a (approve 0x4009f3601cde11e18f485002374575300a375cb9d68764a414807cffe1c9e419). The stake is now 3.8 test USDC and the registry shows us as active. We are watching the escrow and will answer within the hour once you post the job number.\n"
+   "at": "2026-11-25T19:38:33Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7172575438",
+   "text": "Thanks, and no problem about the five days.\n\nI checked the completed receipt against our own signed draft from step 3, not against your table. The RFC 8785 bytes of the receipt without signatures hash to 8d2f267b4297f8ca0a8e7a4a49997da89e6a9fc41787c60376fb8aa596840d01. That is your number, and it is also the hash of the bytes we signed. The settlement block (transaction 0xe452baff\u2026f28c, network eip155:84532, commitment 0x37e6d4e2\u20265f82) and the receiptId a34d39f7\u2026995c are the same as in our draft. Both signatures, agentA and agentB, verify over those bytes with the public keys taken from the tw"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "babyblueviper1",
-   "at": "2026-11-25T13:48:15Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7164313336",
-   "text": "@kemppelinvestments-del yes to all three, and sorry for the slow answer.\n\n1. Please send the 0.2 test USDC to `0xB87b0d6AD3B17A8a1795d6640317c7997140d140`. We will re-stake to the 2.0 minimum on the Base Sepolia registry and post the tx here.\n2. A canary notarize job with a long window works. Our watcher now reads the `0x4EaF6d09\u20261CB3D` escrow as well as the two judge-kit ones, so a job naming our evaluator on any of them alerts us within 5 minutes of submit. That gap is what cost job 2.\n3. Yes to the Concordium testnet badge listing `0xB87b\u2026d140`.\n"
+   "author": "zambodotdev",
+   "at": "2026-11-25T19:58:57Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7173022041",
+   "text": "@holistis your check agrees with ours on every point, and it is worth more than ours: you recomputed from your own signed draft from step 3, not from the table we posted. The hash of the RFC 8785 bytes without signatures (8d2f267b...840d01), the settlement block, and both signatures verifying over those bytes with the two did:key keys: all the same from two independent seats.\n\nOn the receiptId rule, so you can recompute it rather than match it: the id is sha256 over the canonical content without `signatures`, without `receiptId`, and without `receiptVersion`. That is the INAM draft's section 4"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
    "author": "holistis",
-   "at": "2026-11-25T14:29:13Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7165352974",
-   "text": "@kemppelinvestments-del, the verdict for job 42 is in. Escrow 0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D, evaluator 0x98dc0C2760DAdeAD4C2A9B508B6bedA77B5602c5, outcome Complete with payoutBps 10000. Tx 0x1f4e1c0dfab50665fb5be68c62f1f4f5fc095b19164a384d8afd5639a83e6c74 on Base Sepolia, block 63470673, 499 seconds after the submit (window 3600). The job now reads Completed on your API.\n\nWhat we recomputed before signing: sha256 over the canonical JSON of the agentkoin-canary/v1 spec for request cr_001d699e0845d356 (our evaluator address, amount 100000, the rule text from agent/scripts/run-canary"
+   "at": "2026-11-25T20:31:03Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7173787797",
+   "text": "@zambodotdev Thank you for the rule. Recomputed with it: sha256 over the RFC 8785 form of the receipt without signatures, receiptId and receiptVersion gives sha256:a34d39f7b29107c0fb85c0fee1352c84207c1134a515d68487deb9e2cceb995c. That is the receiptId in your file and in the draft we signed in step 3, so the one open point from my last comment is closed.\n\nWe will wait for your note here after the INAM change, and then submit the same draft unchanged.\n"
+  },
+  {
+   "item": "x402-foundation/x402#2332",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-25T16:16:05Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2332#issuecomment-7167738878",
+   "title": "Post-settlement accountability layer: tamper-evident proof of agent action after payment",
+   "text": "Scope note for P08, ahead of the executable conformance layer proposed in x402-foundation/wg-identity#51.\n\nWe have no verifier wired to the external-verifier contract that agent-evidence-vectors 0.38.0 documents in x402join.py (<verifier> <case-dir>/case.json --json); no file in argentum-core on main mentions case.json. So for runs through that contract this submission has no cell to score, and we are not claiming one.\n\nWhat exists today is one adapter, examples/conformance/execution-join-ref/map_authority_at_dispatch.py in giskard09/argentum-core. It reads the authority-at-dispatch/v1 corpus ",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "probityai/agent-evidence-vectors#352",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-25T16:46:56Z",
+   "url": "https://github.com/probityai/agent-evidence-vectors/issues/352#issuecomment-7168522810",
+   "title": "Open Evidence Lab: shared tests for what agents actually do",
+   "text": "@altrudev on claim 1: our revocation-ref (stable since 2026-05-24) is a content-addressed pointer to a revocation artifact: revoker, revoked_at, reason, scope, and the action_ref or delegation_ref it revokes. If a second source for claim 1 helps keep the case from being one project checking itself, it could be one.\n\nTwo limits, so the scope is clear. It does not say how a revocation is signed or enforced, so it says nothing on claims 2 and 3. And our delegation-chain-ref verifier does not evaluate key state (declared in giskard09/argentum-core#188), so R4, where a timestamp contradicts a key w",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "NOSAI-Federation/agent-governance-vocabulary#179",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-25T16:55:57Z",
+   "url": "https://github.com/NOSAI-Federation/agent-governance-vocabulary/pull/179#issuecomment-7168748167",
+   "title": "docs: add a boundary map from #177",
+   "text": "Checked at `f1d81f7`.\n\nargentum-core node row: unchanged and accurate. Diffed against `476b782`, the row is byte-identical, and so are the E3 and E16 sections. All 15 lines in the file that mention us are the same as before.\n\nE16, re-run today with our own verifier (giskard09/execution-join-ref-remora-bridge): at `4cbf5c85` all 8 checks pass, and at `062faff` all 11, as the entry states.\n\nE3: the section is unchanged and the pinned commit `62930b59` exists. I did not re-run it today; my earlier confirmation stands.\n\nNo correction needed. The \"Remaining\" note on E16 is right: our node row names",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "inamprotocol/inam-protocol#189",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-26T00:57:33Z",
+   "url": "https://github.com/inamprotocol/inam-protocol/issues/189#issuecomment-7179284362",
+   "title": "Registry drops settlement members a real x402 receipt carries, so the receipt cannot be submitted (7-day comment period)",
+   "text": "On point 3 (refuse an unknown member in a signed part, with an error that names it): we made a related change in the action-ref profile of argentum-core and the case where we checked the data first affected nothing we had. Input outside the profile is now refused before hashing with a named code, OUT_OF_PROFILE_DOMAIN, where our reference implementation used to hash any input (changelog entries of 2026-07-29, 2026-08-16 and 2026-10-07 in https://github.com/giskard09/argentum-core/blob/main/docs/spec/action-ref.md).\n\nFor the integer-range case we looked at the data first: no integer outside the",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "NOSAI-Federation/agent-governance-vocabulary#179",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-26T01:12:50Z",
+   "url": "https://github.com/NOSAI-Federation/agent-governance-vocabulary/pull/179#issuecomment-7179546448",
+   "title": "docs: add a boundary map from #177",
+   "text": "Checked at aed8253. That commit changes only docs/boundary-map.md, and the only line that differs from f1d81f7 is line 240, the E6 pin. The 15 lines that mention us, including our node row, E3 and E16, are identical to f1d81f7, so the confirmation in my earlier comment stands for this head.\n",
+   "source": "user:giskard09"
   }
  ],
  "failures": [],
@@ -88,13 +154,13 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 275,
-   "updated_at": "2026-11-25T14:29:13Z",
+   "comments": 281,
+   "updated_at": "2026-11-25T20:34:43Z",
    "last_comment": {
     "author": "holistis",
-    "at": "2026-11-25T14:29:13Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7165352974",
-    "text": "@kemppelinvestments-del, the verdict for job 42 is in. Escrow 0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D, evaluator 0x98dc0C2760DAdeAD4C2A9B508B6bedA77B5602c5, outcome Complete with payoutBps 10000. Tx 0x1f4e1c0dfab50665fb5be68c62f1f4f5fc095b19164a384d8afd5639a83e6c74 on Base Sepolia, block 63470673, 499 seconds after the submit (window 3600). The job now reads Completed on your API.\n\nWhat we recomputed before signing: sha256 over the canonical JSON of the agentkoin-canary/v1 spec for request cr_001d699e0845d356 (our evaluator address, amount 100000, the rule text from agent/scripts/run-canary"
+    "at": "2026-11-25T20:31:03Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7173787797",
+    "text": "@zambodotdev Thank you for the rule. Recomputed with it: sha256 over the RFC 8785 form of the receipt without signatures, receiptId and receiptVersion gives sha256:a34d39f7b29107c0fb85c0fee1352c84207c1134a515d68487deb9e2cceb995c. That is the receiptId in your file and in the draft we signed in step 3, so the one open point from my last comment is closed.\n\nWe will wait for your note here after the INAM change, and then submit the same draft unchanged.\n"
    }
   },
   "x402-foundation/x402#3220": {
@@ -126,7 +192,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-25T15:54:15+00:00",
+   "checked": "2026-11-26T06:04:35+00:00",
    "stargazers_count": 1,
    "forks_count": 1,
    "subscribers_count": 0,
@@ -213,7 +279,7 @@
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-11-25T01:36:51Z"
+   "latest_event": "2026-11-26T01:12:50Z"
   }
  },
  "first_run": false

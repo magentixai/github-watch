@@ -402,7 +402,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 275,
+   "comments": 281,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -678,14 +678,20 @@
     7157644489,
     7157859638,
     7164313336,
-    7165352974
+    7165352974,
+    7169662509,
+    7169663967,
+    7170005883,
+    7172575438,
+    7173022041,
+    7173787797
    ],
-   "updated_at": "2026-11-25T14:29:13Z",
+   "updated_at": "2026-11-25T20:34:43Z",
    "last_comment": {
     "author": "holistis",
-    "at": "2026-11-25T14:29:13Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7165352974",
-    "text": "@kemppelinvestments-del, the verdict for job 42 is in. Escrow 0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D, evaluator 0x98dc0C2760DAdeAD4C2A9B508B6bedA77B5602c5, outcome Complete with payoutBps 10000. Tx 0x1f4e1c0dfab50665fb5be68c62f1f4f5fc095b19164a384d8afd5639a83e6c74 on Base Sepolia, block 63470673, 499 seconds after the submit (window 3600). The job now reads Completed on your API.\n\nWhat we recomputed before signing: sha256 over the canonical JSON of the agentkoin-canary/v1 spec for request cr_001d699e0845d356 (our evaluator address, amount 100000, the rule text from agent/scripts/run-canary"
+    "at": "2026-11-25T20:31:03Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7173787797",
+    "text": "@zambodotdev Thank you for the rule. Recomputed with it: sha256 over the RFC 8785 form of the receipt without signatures, receiptId and receiptVersion gives sha256:a34d39f7b29107c0fb85c0fee1352c84207c1134a515d68487deb9e2cceb995c. That is the receiptId in your file and in the draft we signed in step 3, so the one open point from my last comment is closed.\n\nWe will wait for your note here after the INAM change, and then submit the same draft unchanged.\n"
    }
   },
   "x402-foundation/x402#3220": {
@@ -785,10 +791,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-25T15:54:15+00:00",
+ "last_checked": "2026-11-26T06:04:35+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-25T15:54:15+00:00",
+   "checked": "2026-11-26T06:04:35+00:00",
    "items": {
     "31": {
      "title": "spec: envelope signature profile axes:envelope_signature_ed25519@1 (D-060)",
@@ -1287,6 +1293,19 @@
  },
  "user_events": {
   "giskard09": [
+   "28289695985",
+   "28282191496",
+   "21329051187",
+   "21328009975",
+   "28265260371",
+   "28262343379",
+   "21285392563",
+   "21284399969",
+   "28242080986",
+   "28241943857",
+   "28241620110",
+   "21281021353",
+   "28239900467",
    "28228578436",
    "28228467195",
    "28226851955",
@@ -1373,20 +1392,7 @@
    "27890840242",
    "20897338674",
    "20897275319",
-   "27887632024",
-   "20896381915",
-   "27885701055",
-   "20896225449",
-   "20896218215",
-   "20896151634",
-   "27885275663",
-   "20896055806",
-   "20896019377",
-   "20895982625",
-   "20895961058",
-   "20895863492",
-   "20895832363",
-   "27884465456"
+   "27887632024"
   ]
  }
 }

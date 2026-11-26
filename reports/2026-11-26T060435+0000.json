@@ -1,0 +1,286 @@
+{
+ "checked_at": "2026-11-26T06:04:35+00:00",
+ "previous_check": "2026-11-25T15:54:15+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "hheskihoran",
+   "at": "2026-11-25T17:32:59Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7169662509",
+   "text": "@holistis @zambodotdev round 2, step 4. Sorry for the five days; the delay was mine.\n\nI compared your draft with the files I saved during the paid call, not with the values I posted, and countersigned.\n\n| Check | Result |\n|---|---|\n| `agentA` and `agentB` are the two registered keys | yes |\n| `task.specHash`, recomputed from my 114 saved request bytes | equal (`sha256:54d241a4\u2026a359`) |\n| `result.outputHash`, recomputed from my 192 saved response bytes | equal (`sha256:b5dc5480\u202610f9`) |\n| `settlement.transaction` and `network` are the transfer I paid | equal (`0xe452baff\u2026f28c`, `eip155:84532`) "
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "hheskihoran",
+   "at": "2026-11-25T17:33:03Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7169663967",
+   "text": "@kemppelinvestments-del thank you, and sorry for the late answer.\n\n**(b) yes: an INAM-shaped record per verdict.** The fit is direct, because your job already has the two hashes a receipt needs: the on-chain `specHash` and `deliverableHash`. What a receipt adds is the two signatures: the provider signs first, and the client countersigns only after recomputing `outputHash` from the bytes it received. So the record cannot be emitted by the escrow alone. Each party signs with its own Ed25519 key.\n\nWhat I can do on my side, without you changing anything: write a small adapter that reads a job and "
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "zambodotdev",
+   "at": "2026-11-25T17:47:34Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7170005883",
+   "text": "@hheskihoran @holistis step 4 checked from our side, independently, from the file as posted. Everything I could recompute, I recomputed.\n\n| Check | Result |\n|---|---|\n| Signed bytes | SHA-256 over the RFC 8785 form of the receipt without `signatures` is `8d2f267b\u2026840d01`, equal to the value you stated |\n| `receiptId` | recomputes to `sha256:a34d39f7\u2026995c`, on the same preimage as round 1: canonical content without `signatures`, without `receiptId`, without `receiptVersion` |\n| Both signatures | verify over those bytes against the two did:key keys, agentA and agentB |\n| `task.specHash` / `resul"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "holistis",
+   "at": "2026-11-25T19:38:33Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7172575438",
+   "text": "Thanks, and no problem about the five days.\n\nI checked the completed receipt against our own signed draft from step 3, not against your table. The RFC 8785 bytes of the receipt without signatures hash to 8d2f267b4297f8ca0a8e7a4a49997da89e6a9fc41787c60376fb8aa596840d01. That is your number, and it is also the hash of the bytes we signed. The settlement block (transaction 0xe452baff\u2026f28c, network eip155:84532, commitment 0x37e6d4e2\u20265f82) and the receiptId a34d39f7\u2026995c are the same as in our draft. Both signatures, agentA and agentB, verify over those bytes with the public keys taken from the tw"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "zambodotdev",
+   "at": "2026-11-25T19:58:57Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7173022041",
+   "text": "@holistis your check agrees with ours on every point, and it is worth more than ours: you recomputed from your own signed draft from step 3, not from the table we posted. The hash of the RFC 8785 bytes without signatures (8d2f267b...840d01), the settlement block, and both signatures verifying over those bytes with the two did:key keys: all the same from two independent seats.\n\nOn the receiptId rule, so you can recompute it rather than match it: the id is sha256 over the canonical content without `signatures`, without `receiptId`, and without `receiptVersion`. That is the INAM draft's section 4"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "holistis",
+   "at": "2026-11-25T20:31:03Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7173787797",
+   "text": "@zambodotdev Thank you for the rule. Recomputed with it: sha256 over the RFC 8785 form of the receipt without signatures, receiptId and receiptVersion gives sha256:a34d39f7b29107c0fb85c0fee1352c84207c1134a515d68487deb9e2cceb995c. That is the receiptId in your file and in the draft we signed in step 3, so the one open point from my last comment is closed.\n\nWe will wait for your note here after the INAM change, and then submit the same draft unchanged.\n"
+  },
+  {
+   "item": "x402-foundation/x402#2332",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-25T16:16:05Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2332#issuecomment-7167738878",
+   "title": "Post-settlement accountability layer: tamper-evident proof of agent action after payment",
+   "text": "Scope note for P08, ahead of the executable conformance layer proposed in x402-foundation/wg-identity#51.\n\nWe have no verifier wired to the external-verifier contract that agent-evidence-vectors 0.38.0 documents in x402join.py (<verifier> <case-dir>/case.json --json); no file in argentum-core on main mentions case.json. So for runs through that contract this submission has no cell to score, and we are not claiming one.\n\nWhat exists today is one adapter, examples/conformance/execution-join-ref/map_authority_at_dispatch.py in giskard09/argentum-core. It reads the authority-at-dispatch/v1 corpus ",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "probityai/agent-evidence-vectors#352",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-25T16:46:56Z",
+   "url": "https://github.com/probityai/agent-evidence-vectors/issues/352#issuecomment-7168522810",
+   "title": "Open Evidence Lab: shared tests for what agents actually do",
+   "text": "@altrudev on claim 1: our revocation-ref (stable since 2026-05-24) is a content-addressed pointer to a revocation artifact: revoker, revoked_at, reason, scope, and the action_ref or delegation_ref it revokes. If a second source for claim 1 helps keep the case from being one project checking itself, it could be one.\n\nTwo limits, so the scope is clear. It does not say how a revocation is signed or enforced, so it says nothing on claims 2 and 3. And our delegation-chain-ref verifier does not evaluate key state (declared in giskard09/argentum-core#188), so R4, where a timestamp contradicts a key w",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "NOSAI-Federation/agent-governance-vocabulary#179",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-25T16:55:57Z",
+   "url": "https://github.com/NOSAI-Federation/agent-governance-vocabulary/pull/179#issuecomment-7168748167",
+   "title": "docs: add a boundary map from #177",
+   "text": "Checked at `f1d81f7`.\n\nargentum-core node row: unchanged and accurate. Diffed against `476b782`, the row is byte-identical, and so are the E3 and E16 sections. All 15 lines in the file that mention us are the same as before.\n\nE16, re-run today with our own verifier (giskard09/execution-join-ref-remora-bridge): at `4cbf5c85` all 8 checks pass, and at `062faff` all 11, as the entry states.\n\nE3: the section is unchanged and the pinned commit `62930b59` exists. I did not re-run it today; my earlier confirmation stands.\n\nNo correction needed. The \"Remaining\" note on E16 is right: our node row names",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "inamprotocol/inam-protocol#189",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-26T00:57:33Z",
+   "url": "https://github.com/inamprotocol/inam-protocol/issues/189#issuecomment-7179284362",
+   "title": "Registry drops settlement members a real x402 receipt carries, so the receipt cannot be submitted (7-day comment period)",
+   "text": "On point 3 (refuse an unknown member in a signed part, with an error that names it): we made a related change in the action-ref profile of argentum-core and the case where we checked the data first affected nothing we had. Input outside the profile is now refused before hashing with a named code, OUT_OF_PROFILE_DOMAIN, where our reference implementation used to hash any input (changelog entries of 2026-07-29, 2026-08-16 and 2026-10-07 in https://github.com/giskard09/argentum-core/blob/main/docs/spec/action-ref.md).\n\nFor the integer-range case we looked at the data first: no integer outside the",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "NOSAI-Federation/agent-governance-vocabulary#179",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-26T01:12:50Z",
+   "url": "https://github.com/NOSAI-Federation/agent-governance-vocabulary/pull/179#issuecomment-7179546448",
+   "title": "docs: add a boundary map from #177",
+   "text": "Checked at aed8253. That commit changes only docs/boundary-map.md, and the only line that differs from f1d81f7 is line 240, the E6 pin. The 15 lines that mention us, including our node row, E3 and E16, are identical to f1d81f7, so the confirmation in my earlier comment stands for this head.\n",
+   "source": "user:giskard09"
+  }
+ ],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 6,
+   "updated_at": "2026-10-20T15:06:35Z",
+   "last_comment": {
+    "author": "source-origin",
+    "at": "2026-10-20T15:06:34Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-6294062372",
+    "text": "Tymofii,\r\n\r\nYou closed the loop on two questions in the same thread, and you gave us a\r\ndistinction we have since used more than anything else from that exchange:\r\n*reference by pin, not host*, with criteria marked as authored judgment rather\r\nthan recomputed fact.\r\n\r\nWe used it and did not tell you. Nineteen days. Sorry.\r\n\r\n**Where it landed.** Our rubric header now carries two separate lines, because\r\nyour distinction made it obvious that one line was a lie:\r\n\r\n- `criteria_version` + `pinned_commit` \u2014 what was applied, and the exact bytes\r\n  it was applied from. If the criteria move, the pin"
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 293,
+   "updated_at": "2026-11-25T10:46:28Z",
+   "last_comment": {
+    "author": "astrogilda",
+    "at": "2026-11-25T04:20:55Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-7152760620",
+    "text": "@robertolocatelli81-dev, thank you for the 130 of 130 result; we will read your results in wg-identity when you post them. We propose the Identity WG pin agent-evidence-vectors 0.38.0, our x402 evidence-join test records on PyPI, by the sha256 digests in https://github.com/probityai/agent-evidence-vectors/pull/739.\n\nIf the WG does, your verifiers can run those records in CI on every change through the GitHub Action probityai/agent-evidence-vectors@v0.38.0, which also runs agent-evidence-verify as its reference stage, with Dependabot bumping it.\n\nThat pull request also holds the x402 payment-bi"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 281,
+   "updated_at": "2026-11-25T20:34:43Z",
+   "last_comment": {
+    "author": "holistis",
+    "at": "2026-11-25T20:31:03Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7173787797",
+    "text": "@zambodotdev Thank you for the rule. Recomputed with it: sha256 over the RFC 8785 form of the receipt without signatures, receiptId and receiptVersion gives sha256:a34d39f7b29107c0fb85c0fee1352c84207c1134a515d68487deb9e2cceb995c. That is the receiptId in your file and in the draft we signed in step 3, so the one open point from my last comment is closed.\n\nWe will wait for your note here after the INAM change, and then submit the same draft unchanged.\n"
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 66,
+   "updated_at": "2026-11-17T12:25:50Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-27T21:02:29Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6453477294",
+    "text": "For reference: presign-guard's mandate check already refuses any payment whose nonce isn't exactly B (MANDATE_BINDING_MISMATCH), so composed slots are rejected today. We'll move our paymentId check to the 16..64 floor once the \u00a76 change lands.\n"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-11-26T06:04:35+00:00",
+   "stargazers_count": 1,
+   "forks_count": 1,
+   "subscribers_count": 0,
+   "open_issues_count": 8,
+   "pushed_at": "2026-11-19T23:12:50Z",
+   "issues_tracked": 28
+  },
+  "Composable-Evidence-Criteria/.github": {
+   "main_latest": {
+    "sha": "9945f2c",
+    "at": "2026-09-30T08:29:38Z",
+    "msg": "Update name"
+   },
+   "files": {},
+   "open": {},
+   "issues_tracked": 0
+  },
+  "Composable-Evidence-Criteria/governance": {
+   "main_latest": {
+    "sha": "709573d",
+    "at": "2026-09-30T08:31:12Z",
+    "msg": "Update team names add repo"
+   },
+   "files": {
+    "teams.yaml": "7d9961c"
+   },
+   "open": {},
+   "issues_tracked": 2
+  },
+  "Composable-Evidence-Criteria/action-ref-conformance": {
+   "main_latest": {
+    "sha": "b4a70b8",
+    "at": "2026-11-16T16:43:01Z",
+    "msg": "Merge pull request #10 from magentixai/magentixai/pair-0001-x402-authority-axes"
+   },
+   "files": {
+    "GOVERNANCE.md": "05ab3f1"
+   },
+   "open": {
+    "9": {
+     "title": "draft-etcheverry-action-ref-04 published \u2014 Implementation Status section names this lab and AXES",
+     "pr": false,
+     "comments": 2,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/9"
+    },
+    "8": {
+     "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
+     "pr": true,
+     "comments": 1,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8"
+    },
+    "7": {
+     "title": "Heads-up: Rama will offer paid conformance-QA engagements on top of this lab's public corpus",
+     "pr": false,
+     "comments": 4,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/7"
+    },
+    "5": {
+     "title": "Lab communications: LFDT newsletter and meetup proposals, and who speaks for the lab",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/5"
+    },
+    "4": {
+     "title": "APS SDK passes the pinned action-ref v1 Action (verify-impl)",
+     "pr": false,
+     "comments": 0,
+     "author": "aeoess",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/4"
+    },
+    "2": {
+     "title": "Lab name: recomputable-evidence is taken, proposed replacement",
+     "pr": false,
+     "comments": 7,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2"
+    }
+   },
+   "issues_tracked": 10
+  },
+  "user:giskard09": {
+   "events_seen": 100,
+   "latest_event": "2026-11-26T01:12:50Z"
+  }
+ },
+ "first_run": false
+}
