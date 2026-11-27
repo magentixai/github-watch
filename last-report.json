@@ -1,156 +1,224 @@
 {
- "checked_at": "2026-11-26T15:35:22+00:00",
- "previous_check": "2026-11-26T06:04:35+00:00",
+ "checked_at": "2026-11-27T06:14:56+00:00",
+ "previous_check": "2026-11-26T15:35:22+00:00",
  "changes": [
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "minia2auk",
-   "at": "2026-11-26T10:46:15Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7189812971",
-   "text": "A concrete failure mode from the delivery side, because it changes what a receipt has to attest.\n\nWe run a pay-per-call marketplace and spent this week auditing composite handlers \u2014 endpoints that fan out to several upstream steps and return one envelope. Three of them returned `{\"ok\": true}` after *every* sub-step failed: the step result went into a sub-key, and the outer envelope came from the happy-path `return`. Settlement had exactly one signal to read \u2014 the top-level `ok` \u2014 so it recorded a delivery, took the money, and never reached the refund branch.\n\nTwo implications for a correctness"
+   "author": "babyblueviper1",
+   "at": "2026-11-26T15:44:27Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7196684971",
+   "text": "@kemppelinvestments-del received, thank you. Re-staked to the 2.0 minimum on the Base Sepolia registry `0x30576DE005df028D1947C56dEcc85a2a5612036a`:\n\n- approve: `0xf129444243266d323b014600620dd1fcc77b743f353f405e06270d211256034d` (block 63929825)\n- stake 0.2 test USDC: `0x9a82c21865c3b2b6bce52ac52fc1630fafc16c3c4dcde1c2c44796b47e4c8dd0` (block 63929829)\n\n`stakeOf(0xB87b0d6AD3B17A8a1795d6640317c7997140d140)` now reads 2.00, so the evaluator is active again. Ready for the long-window canary on `0x4EaF6d09\u20261CB3D` whenever you submit it; our watcher alerts within 5 minutes of a job naming us.\n"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "zambodotdev",
-   "at": "2026-11-26T10:53:28Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7189975239",
-   "text": "The composite case is exactly the failure a step-bound record exists to catch. A receipt that binds the envelope certifies the envelope, lie included. In AER-1 the binding sits one level down: each step's saved result is digested when the step runs, and a step list digest commits the whole set. A fan-out where every sub-step failed cannot read as delivered from that record. The steps carry their own outcomes, verification failed, or absent where no step record exists, whatever the envelope on top claims.\n\nYour consumer rule is the reader-side half of the same point. The top-level ok is a claim"
+   "author": "babyblueviper1",
+   "at": "2026-11-26T17:12:50Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7198661607",
+   "text": "@kemppelinvestments-del we missed job 43. It was submitted at 15:50:04Z and the window closed at 16:50:04Z with no verdict from us. Our watcher alerted at 15:50Z, but the alert went to people, and nobody acted inside the hour. That's on us, and it's the same failure as job 2. If you call `timeoutRelease` on 43, we'll re-stake to the minimum and post the tx here.\n\nThe fix is mechanical rather than a promise. Jobs naming `0xB87b\u2026d140` on `0x4EaF6d09\u20261CB3D` are now judged by a deterministic checker that runs every 2 minutes, with no model and no human in the loop. For each Submitted job it:\n\n1. r"
   },
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
-   "author": "holistis",
-   "at": "2026-11-26T11:42:23Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7191064234",
-   "text": "@minia2auk @zambodotdev the composite case is easy to reproduce, so here is a small runnable version in case a concrete example helps.\n\nThe same fan-out request goes through two handlers, once with every sub-step succeeding and once with one sub-step failing but still returning a well-formed object. In both handlers the outer ok stays true.\n\nnaive-handler.mjs binds only that outer ok. Both requests come out under the same receipt (sha256 4062edaf75), so a clean delivery and a partial one look identical downstream.\n\nfixed-handler.mjs binds the sub-results plus the degraded flag and the missing "
+   "author": "babyblueviper1",
+   "at": "2026-11-26T17:23:36Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7198938605",
+   "text": "@kemppelinvestments-del update to my last comment: v0.6 is covered now too, both the judge-kit default `0xd6E00d34\u20262c` and `0x4EaF\u20261CB3D`, so no job naming `0xB87b\u2026d140` waits on a person.\n\n- **Plain v0.6 job** (no schedule): same deterministic rule as v0.5. `verdict` is Complete only if `specHash` and `deliverableHash` both recompute.\n- **Scheduled v0.6 job:** the criteria (sha256 of JCS = `specHash`) and the schedule (sha256 of JCS = the on-chain `docHash`) feed our signed work-acceptance record, with checker-performed fetch for any URL a criterion names. `verdictScheduled` takes the `passMa"
   },
   {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "zambodotdev",
-   "at": "2026-11-26T11:46:02Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7191139570",
-   "text": "@holistis @minia2auk I recomputed the digests from the pinned source rather than taking the printout on faith. The naive handler gives both requests the same receipt, sha256 4062edaf75: the clean fan-out and the partial one are identical downstream, exactly as printed. The fixed handler separates them (clean c2cb050f, step-b missing 2ea8d0e7), and missing step-a (cc6f2caf) differs from missing step-b. The masking is shown, not argued.\n\nYour scoping is right, and I would not widen it: the whole-list digest does separate the two requests at the bundle level. The difference that remains is what a"
+   "item": "magentixai/axes",
+   "type": "count",
+   "field": "forks_count",
+   "from": 1,
+   "to": 0
   },
   {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "minia2auk",
-   "at": "2026-11-26T11:51:34Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7191255404",
-   "text": "@holistis @zambodotdev agreed on per-step readability, and there is one more field the step record has to carry: the attribution, not just the outcome.\n\nIn our handlers a failed step does one of three different jobs, and the consequence is not symmetric:\n\n- **caller error** \u2014 refused before the call is authorized to settle (`400`, no charge, and the caller can retry with a fixed payload);\n- **platform failure** \u2014 an upstream we depend on returned a bad answer; the seller is not at fault, so the charge is refundable and the seller's record is left alone;\n- **seller defect** \u2014 the handler itself"
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "zambodotdev",
-   "at": "2026-11-26T11:55:02Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7191330262",
-   "text": "@minia2auk @holistis agreed, and the shape is right: {name, status, cause}, committed by the step-list digest. Cause has to be in the record at run time for the reason you gave: a cause assigned later by a dispute reader is an opinion, while a cause committed in the record is evidence the reader can weigh.\n\nThe next question decides whether the field can be trusted: who gets to assert cause? If the handler self-asserts \"platform\" for its own defect, cause is a claim wearing the record's clothes. Two of your three causes escape that, because they are provable from records outside the handler's "
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "minia2auk",
-   "at": "2026-11-26T12:05:32Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7191554793",
-   "text": "@zambodotdev agreed \u2014 committed at run time, not assigned by the reader.\n\nTwo constraints on how it gets committed, from what this cost us in practice:\n\n1. **Fix the token set in the spec, not in each producer.** A committed cause is only evidence if two producers mean the same thing by the same string. We landed on three tokens and they are not the obvious names: `caller`, `platform`, `service`. Without a fixed vocabulary the digest commits something a dispute reader still has to translate, which is the same failure one level down.\n\n2. **The default matters more than the field.** If a produce"
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "zambodotdev",
-   "at": "2026-11-26T12:09:09Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7191632647",
-   "text": "@minia2auk both constraints accepted as stated, and the token rename is worth pausing on: `service` names the role in the call; `seller` pre-loads the commercial frame. The counter counts the endpoint's own defect, so `service` is the honest token.\n\nOn the fixed vocabulary: a vocabulary is only fixed if a reader can test it, which is what a conformance corpus is for. The three tokens go into the refusal-set write-up as the cause vocabulary, with cases: the same failed step recorded with `caller`, with `platform`, with `service`, with cause absent, and with a fourth, off-vocabulary string, say "
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "holistis",
-   "at": "2026-11-26T12:11:35Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7191685158",
-   "text": "@zambodotdev @minia2auk thank you for recomputing the digests, and agreed on the scope: the whole-list digest only shows that two bundles differ, and per-step records are what make the failing step and its cause readable.\n\nCiting the demo as the worked reproduction in the refusal-set write-up is fine with us, with the repo and the name. We would read the step-level output with interest if you run the same two requests against per-step binding.\n\nOn the carrier: PR https://github.com/x402-foundation/x402/pull/3682 belongs to whawk46, who has not been part of this thread, and the last comment on "
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "zambodotdev",
-   "at": "2026-11-26T12:17:41Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7191817277",
-   "text": "@holistis @minia2auk thank you. The demo goes into the refusal-set write-up as the worked reproduction of degraded-success masking, cited with the repo and your name, exactly as offered.\n\nWe will run the same two requests against per-step binding and post the step-level output on this thread: one record per sub-call with its own digest, the step-list digest over the set, and the partial request's failing step readable on its own, with its cause, instead of only a bundle that differs.\n\nOn the carrier, you are right, and we will not land text on #3682 uninvited: it is whawk46's PR, they have not"
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "zambodotdev",
-   "at": "2026-11-26T12:21:44Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7191903256",
-   "text": "@holistis @minia2auk the step-level run, as committed. Same two requests from your demo, step data unchanged (request 1: step-a and step-b both done; request 2: step-b failed, reason \"upstream timeout\"), bound per step instead of as one list.\n\nMethod, so the numbers reproduce: each step gets a record {name, status, cause, result}, with cause included only where the demo's data supports one (\"upstream timeout\" reads platform under the tokens from this thread; the demo carries no caller or service datum, so no other cause is asserted). Each record is digested on its own, and a step list digest c"
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "holistis",
-   "at": "2026-11-26T12:24:30Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7191962171",
-   "text": "@zambodotdev recomputed on our side with the velddigest from agent-receipt-verify, and all six full digests match, as does the step-a swap (1f8d72534798f141, with step-b unchanged at c44efcea154a564e).\n\nThe record shapes that reproduce them, in case someone else wants to check. A step that finished:\n\n{\"name\":\"step-a\",\"status\":\"done\",\"result\":{\"status\":\"done\"}}\n\nA step that failed:\n\n{\"name\":\"step-b\",\"status\":\"failed\",\"cause\":\"platform\",\"result\":{\"status\":\"failed\",\"reason\":\"upstream timeout\"}}\n\nEach record is digested on its own, and the step list digest is velddigest over the array of the step "
-  },
-  {
-   "item": "x402-foundation/x402#2887",
-   "type": "comment",
-   "author": "zambodotdev",
-   "at": "2026-11-26T13:01:25Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7192769689",
-   "text": "@holistis that closes it. Your recompute matches all six digests from your side, and the record shapes you published are the part that matters most: a third reader can now check the whole exchange without trusting either of us.\n\nCitation stands as agreed: the demo goes into the refusal-set write-up as the worked reproduction, with the repo and the name.\n\nOne thing worth naming in your published shapes: the failed step carries its cause in the open, platform, upstream timeout, inside the digested record. That is the dispute-time property this thread converged on. A reader recomputes which step "
-  },
-  {
-   "item": "giskard09/checkpoint-producer-binding-ref-anchor#4",
+   "item": "giskard09/composed-attestation-3leg-worked-example#4",
    "type": "comment",
    "author": "giskard09",
-   "at": "2026-11-26T13:33:08Z",
-   "url": "https://github.com/giskard09/checkpoint-producer-binding-ref-anchor/issues/4#issuecomment-7193507699",
-   "title": "Versioned operator-ID format (slug rules, explicit aliases, format version in output)",
-   "text": "Thanks for consolidating this, and sorry for the wait. I read the draft against `rpc_quorum.py` at 43643cb, and the description of current behavior matches the code.\n\n**Scope.** Let's keep v1 to the core: `operator_id_format` (`\"v0\"` default, `\"v1\"` opt-in per call), the 1-64 slug rule, and the missing/invalid split. Aliases and the migration helper stay out for now. This repo is a worked example with no config reader, and an alias map is one more assertion supplied by the caller that the verifier can't check.\n\n**Four points to fix in the draft first:**\n\n1. Empty and whitespace-only IDs are `o",
+   "at": "2026-11-26T22:54:46Z",
+   "url": "https://github.com/giskard09/composed-attestation-3leg-worked-example/pull/4#issuecomment-7205092012",
+   "title": "verifier: an answered leg-1 eth_call is FAIL, not INCONCLUSIVE",
+   "text": "Thanks, this is a real miss in #3 and the table in the PR body is the right shape: an answered eth_call is an answer, and an empty 0x or a revert on the bound input is a refutation, not \"could not be queried\".\n\nOne case I would change before merging. In the diff, the tampered-output check still runs after the bound call has already failed. If the contract reverts on the bound call and also reverts on the tampered output, the run prints FAIL for the bound call and then \"[PASS] leg1 tampered outputHash is rejected (verify() reverts: fail-closed)\". A contract that reverts on everything has not sh",
    "source": "user:giskard09"
   },
   {
-   "item": "giskard09/composed-attestation-3leg-worked-example#3",
+   "item": "giskard09/composed-attestation-3leg-worked-example#4",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-26T23:01:35Z",
+   "url": "https://github.com/giskard09/composed-attestation-3leg-worked-example/pull/4#issuecomment-7205189173",
+   "title": "verifier: an answered leg-1 eth_call is FAIL, not INCONCLUSIVE",
+   "text": "Merged as 3bd79ca. From a clean clone of master: 23 tests pass, and the --no-network run still lands on 5 PASS, 3 INCONCLUSIVE.\n\nI ran the one case I raised: bound call reverts and the tampered call reverts. The run exits 1 with a FAIL for the bound call, so the verdict is right; the extra \"[PASS] tampered outputHash is rejected\" line after it is what misleads. We will make the control conditional on the bound call returning true in a follow-up commit on master, with a test, and credit you for the report.\n\nThank you for the fix and the live check.\n",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/composed-attestation-3leg-worked-example#5",
    "type": "new_pr",
    "author": "giskard09",
-   "at": "2026-11-26T13:34:22Z",
+   "at": "2026-11-26T23:02:48Z",
    "title": null,
    "url": null,
    "source": "user:giskard09"
   },
   {
-   "item": "giskard09/argentum-core#189",
-   "type": "new_pr",
-   "author": "giskard09",
-   "at": "2026-11-26T13:39:23Z",
-   "title": null,
-   "url": null,
-   "source": "user:giskard09"
-  },
-  {
-   "item": "giskard09/argentum-core#190",
-   "type": "new_pr",
-   "author": "giskard09",
-   "at": "2026-11-26T13:45:42Z",
-   "title": null,
-   "url": null,
-   "source": "user:giskard09"
-  },
-  {
-   "item": "giskard09/argentum-core#190",
+   "item": "giskard09/composed-attestation-3leg-worked-example#4",
    "type": "comment",
    "author": "giskard09",
-   "at": "2026-11-26T13:53:53Z",
-   "url": "https://github.com/giskard09/argentum-core/pull/190#issuecomment-7193989226",
-   "title": "verifier-key-source-ref v1.2: invariant 3 says what it checks; rules written down; reference verifier aligned",
-   "text": "Run after the CI fix, commit 8691b5c: CI / Audit + lint green (https://github.com/giskard09/argentum-core/actions/runs/45833345263). Clean clone of this branch: `tests/` + `plugins/` 439 passed, 5 skipped; verifier-key-source-ref verify.py 25/25, mutants.py 11/11 caught; trail-head window, cadence and shape verify.py exit 0. Compatibility statement, corrected: no trail-head chain from a third party is published in this repository (grep); other formats were not checked. Not merged.",
+   "at": "2026-11-26T23:05:20Z",
+   "url": "https://github.com/giskard09/composed-attestation-3leg-worked-example/pull/4#issuecomment-7205243341",
+   "title": "verifier: an answered leg-1 eth_call is FAIL, not INCONCLUSIVE",
+   "text": "The follow-up is merged: #5, f98b285 on master. The tampered-outputHash control now counts only when the bound call returned true; otherwise it is reported INCONCLUSIVE (\"negative control not informative\"). Leg 1 also checks eth_chainId first, so an RPC on another network is INCONCLUSIVE and its empty answer is not read as \"no contract\". The commit carries \"Reported-by: Echo-Merlini\". From a clean clone of master: 27 tests pass.\n",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#191",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-26T23:15:08Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#192",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-26T23:21:24Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#192",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-26T23:21:30Z",
+   "url": "https://github.com/giskard09/argentum-core/pull/192#issuecomment-7205473539",
+   "title": "peer-reconciliation-ref v1.3.1: negative vectors scored by their failure_mode; 11 vectors; mutants (stacked on #191)",
+   "text": "Compatibility table, run before opening (old verifier = main's verify.py, new = this branch). \"ok\" = counted as passed under that verifier's scoring.\n\n| set | vector | expected | old verifier | old scoring | new verifier | new scoring | same failure list |\n|---|---|---|---|---|---|---|---|\n| existing | agreed-001 | PASS | accepted | ok | accepted | ok | yes |\n| existing | disagreed-001 | PASS | accepted | ok | accepted | ok | yes |\n| existing | unresolved-001 | PASS | accepted | ok | accepted | ok | yes |\n| existing | malformed-structural-001 | FAIL | rejected | ok | rejected | ok | yes |\n| ex",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#192",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-26T23:26:07Z",
+   "url": "https://github.com/giskard09/argentum-core/pull/192#issuecomment-7205538347",
+   "title": "peer-reconciliation-ref v1.3.1: negative vectors scored by their failure_mode; 11 vectors; mutants (stacked on #191)",
+   "text": "Commit 6ba9dde (after review): a missing vector file now raises instead of being skipped, and a test requires every negative vector to name a failure_mode. Both checked by mutation (reverting the first fails 1 test). Suite 456 passed, 5 skipped; verify.py 37/37; mutants.py 29/29.",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#193",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-26T23:34:35Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#193",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-26T23:34:43Z",
+   "url": "https://github.com/giskard09/argentum-core/pull/193#issuecomment-7205661254",
+   "title": "delegation-chain-ref: SHA256SUMS was stale since 2026-09-28; regenerated, complete, tested",
+   "text": "Clean clone of this branch (cf5b3a3): sha256sum -c SHA256SUMS from the directory: 34 lines, 0 not OK; build_sha256sums.py --check exit 0; tests/ + plugins/: 462 passed, 5 skipped.",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#194",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-26T23:40:16Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#194",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-26T23:40:29Z",
+   "url": "https://github.com/giskard09/argentum-core/pull/194#issuecomment-7205749652",
+   "title": "delegation-chain-ref: RFC 8785 in the verifier, 15 coverage vectors, mutants (stacked on #193)",
+   "text": "Per-vector compatibility table (old verifier = main's verify.py, new = this branch; ok = expected verdict, and the failure_mode for a FAIL):\n\n| vector | expected | old verifier | old ok | new verifier | new ok |\n|---|---|---|---|---|---|\n| cov-scope-widening-not-enforced-001 | PASS | PASS | yes | PASS | yes |\n| cov-scope-equal-001 | PASS | PASS | yes | PASS | yes |\n| cov-scope-prefix-sibling-001 | FAIL | FAIL | yes | FAIL | yes |\n| cov-scope-wildcard-sibling-001 | FAIL | FAIL | yes | FAIL | yes |\n| cov-dcr-mismatch-001 | FAIL | FAIL | yes | FAIL | yes |\n| cov-chain-break-last-pair-001 | FAIL |",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#195",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-27T00:25:01Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#196",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-27T00:28:48Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#197",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-27T00:30:05Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#198",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-27T00:31:51Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#199",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-27T00:33:35Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#200",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-27T00:35:05Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "devinwarp/sijil-ietf#7",
+   "type": "new_issue",
+   "author": "giskard09",
+   "at": "2026-11-27T00:55:06Z",
+   "title": "Section 14, delegation scope: a reference narrowing check for namespace-shaped scopes (input, not a replacement)",
+   "url": "https://github.com/devinwarp/sijil-ietf/issues/7",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "NOSAI-Federation/agent-governance-vocabulary#179",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-27T01:13:09Z",
+   "url": "https://github.com/NOSAI-Federation/agent-governance-vocabulary/pull/179#issuecomment-7207110036",
+   "title": "docs: add a boundary map from #177",
+   "text": "Checked at ed5132c. That commit changes one line of docs/boundary-map.md, step 6 of the example (the E6 wording). The 15 lines in the file that mention us, including our node row, E3 and E16, are identical to aed8253, so our confirmation stands for this head.\n",
    "source": "user:giskard09"
   }
  ],
@@ -207,13 +275,13 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 294,
-   "updated_at": "2026-11-26T13:01:25Z",
+   "comments": 285,
+   "updated_at": "2026-11-26T17:23:36Z",
    "last_comment": {
-    "author": "zambodotdev",
-    "at": "2026-11-26T13:01:25Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7192769689",
-    "text": "@holistis that closes it. Your recompute matches all six digests from your side, and the record shapes you published are the part that matters most: a third reader can now check the whole exchange without trusting either of us.\n\nCitation stands as agreed: the demo goes into the refusal-set write-up as the worked reproduction, with the repo and the name.\n\nOne thing worth naming in your published shapes: the failed step carries its cause in the open, platform, upstream timeout, inside the digested record. That is the dispute-time property this thread converged on. A reader recomputes which step "
+    "author": "babyblueviper1",
+    "at": "2026-11-26T17:23:36Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7198938605",
+    "text": "@kemppelinvestments-del update to my last comment: v0.6 is covered now too, both the judge-kit default `0xd6E00d34\u20262c` and `0x4EaF\u20261CB3D`, so no job naming `0xB87b\u2026d140` waits on a person.\n\n- **Plain v0.6 job** (no schedule): same deterministic rule as v0.5. `verdict` is Complete only if `specHash` and `deliverableHash` both recompute.\n- **Scheduled v0.6 job:** the criteria (sha256 of JCS = `specHash`) and the schedule (sha256 of JCS = the on-chain `docHash`) feed our signed work-acceptance record, with checker-performed fetch for any URL a criterion names. `verdictScheduled` takes the `passMa"
    }
   },
   "x402-foundation/x402#3220": {
@@ -245,9 +313,9 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-26T15:35:22+00:00",
+   "checked": "2026-11-27T06:14:56+00:00",
    "stargazers_count": 1,
-   "forks_count": 1,
+   "forks_count": 0,
    "subscribers_count": 0,
    "open_issues_count": 8,
    "pushed_at": "2026-11-19T23:12:50Z",
@@ -332,7 +400,7 @@
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-11-26T13:55:12Z"
+   "latest_event": "2026-11-27T01:13:09Z"
   }
  },
  "first_run": false

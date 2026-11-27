@@ -1,0 +1,407 @@
+{
+ "checked_at": "2026-11-27T06:14:56+00:00",
+ "previous_check": "2026-11-26T15:35:22+00:00",
+ "changes": [
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-11-26T15:44:27Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7196684971",
+   "text": "@kemppelinvestments-del received, thank you. Re-staked to the 2.0 minimum on the Base Sepolia registry `0x30576DE005df028D1947C56dEcc85a2a5612036a`:\n\n- approve: `0xf129444243266d323b014600620dd1fcc77b743f353f405e06270d211256034d` (block 63929825)\n- stake 0.2 test USDC: `0x9a82c21865c3b2b6bce52ac52fc1630fafc16c3c4dcde1c2c44796b47e4c8dd0` (block 63929829)\n\n`stakeOf(0xB87b0d6AD3B17A8a1795d6640317c7997140d140)` now reads 2.00, so the evaluator is active again. Ready for the long-window canary on `0x4EaF6d09\u20261CB3D` whenever you submit it; our watcher alerts within 5 minutes of a job naming us.\n"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-11-26T17:12:50Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7198661607",
+   "text": "@kemppelinvestments-del we missed job 43. It was submitted at 15:50:04Z and the window closed at 16:50:04Z with no verdict from us. Our watcher alerted at 15:50Z, but the alert went to people, and nobody acted inside the hour. That's on us, and it's the same failure as job 2. If you call `timeoutRelease` on 43, we'll re-stake to the minimum and post the tx here.\n\nThe fix is mechanical rather than a promise. Jobs naming `0xB87b\u2026d140` on `0x4EaF6d09\u20261CB3D` are now judged by a deterministic checker that runs every 2 minutes, with no model and no human in the loop. For each Submitted job it:\n\n1. r"
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
+   "author": "babyblueviper1",
+   "at": "2026-11-26T17:23:36Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7198938605",
+   "text": "@kemppelinvestments-del update to my last comment: v0.6 is covered now too, both the judge-kit default `0xd6E00d34\u20262c` and `0x4EaF\u20261CB3D`, so no job naming `0xB87b\u2026d140` waits on a person.\n\n- **Plain v0.6 job** (no schedule): same deterministic rule as v0.5. `verdict` is Complete only if `specHash` and `deliverableHash` both recompute.\n- **Scheduled v0.6 job:** the criteria (sha256 of JCS = `specHash`) and the schedule (sha256 of JCS = the on-chain `docHash`) feed our signed work-acceptance record, with checker-performed fetch for any URL a criterion names. `verdictScheduled` takes the `passMa"
+  },
+  {
+   "item": "magentixai/axes",
+   "type": "count",
+   "field": "forks_count",
+   "from": 1,
+   "to": 0
+  },
+  {
+   "item": "giskard09/composed-attestation-3leg-worked-example#4",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-26T22:54:46Z",
+   "url": "https://github.com/giskard09/composed-attestation-3leg-worked-example/pull/4#issuecomment-7205092012",
+   "title": "verifier: an answered leg-1 eth_call is FAIL, not INCONCLUSIVE",
+   "text": "Thanks, this is a real miss in #3 and the table in the PR body is the right shape: an answered eth_call is an answer, and an empty 0x or a revert on the bound input is a refutation, not \"could not be queried\".\n\nOne case I would change before merging. In the diff, the tampered-output check still runs after the bound call has already failed. If the contract reverts on the bound call and also reverts on the tampered output, the run prints FAIL for the bound call and then \"[PASS] leg1 tampered outputHash is rejected (verify() reverts: fail-closed)\". A contract that reverts on everything has not sh",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/composed-attestation-3leg-worked-example#4",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-26T23:01:35Z",
+   "url": "https://github.com/giskard09/composed-attestation-3leg-worked-example/pull/4#issuecomment-7205189173",
+   "title": "verifier: an answered leg-1 eth_call is FAIL, not INCONCLUSIVE",
+   "text": "Merged as 3bd79ca. From a clean clone of master: 23 tests pass, and the --no-network run still lands on 5 PASS, 3 INCONCLUSIVE.\n\nI ran the one case I raised: bound call reverts and the tampered call reverts. The run exits 1 with a FAIL for the bound call, so the verdict is right; the extra \"[PASS] tampered outputHash is rejected\" line after it is what misleads. We will make the control conditional on the bound call returning true in a follow-up commit on master, with a test, and credit you for the report.\n\nThank you for the fix and the live check.\n",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/composed-attestation-3leg-worked-example#5",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-26T23:02:48Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/composed-attestation-3leg-worked-example#4",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-26T23:05:20Z",
+   "url": "https://github.com/giskard09/composed-attestation-3leg-worked-example/pull/4#issuecomment-7205243341",
+   "title": "verifier: an answered leg-1 eth_call is FAIL, not INCONCLUSIVE",
+   "text": "The follow-up is merged: #5, f98b285 on master. The tampered-outputHash control now counts only when the bound call returned true; otherwise it is reported INCONCLUSIVE (\"negative control not informative\"). Leg 1 also checks eth_chainId first, so an RPC on another network is INCONCLUSIVE and its empty answer is not read as \"no contract\". The commit carries \"Reported-by: Echo-Merlini\". From a clean clone of master: 27 tests pass.\n",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#191",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-26T23:15:08Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#192",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-26T23:21:24Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#192",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-26T23:21:30Z",
+   "url": "https://github.com/giskard09/argentum-core/pull/192#issuecomment-7205473539",
+   "title": "peer-reconciliation-ref v1.3.1: negative vectors scored by their failure_mode; 11 vectors; mutants (stacked on #191)",
+   "text": "Compatibility table, run before opening (old verifier = main's verify.py, new = this branch). \"ok\" = counted as passed under that verifier's scoring.\n\n| set | vector | expected | old verifier | old scoring | new verifier | new scoring | same failure list |\n|---|---|---|---|---|---|---|---|\n| existing | agreed-001 | PASS | accepted | ok | accepted | ok | yes |\n| existing | disagreed-001 | PASS | accepted | ok | accepted | ok | yes |\n| existing | unresolved-001 | PASS | accepted | ok | accepted | ok | yes |\n| existing | malformed-structural-001 | FAIL | rejected | ok | rejected | ok | yes |\n| ex",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#192",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-26T23:26:07Z",
+   "url": "https://github.com/giskard09/argentum-core/pull/192#issuecomment-7205538347",
+   "title": "peer-reconciliation-ref v1.3.1: negative vectors scored by their failure_mode; 11 vectors; mutants (stacked on #191)",
+   "text": "Commit 6ba9dde (after review): a missing vector file now raises instead of being skipped, and a test requires every negative vector to name a failure_mode. Both checked by mutation (reverting the first fails 1 test). Suite 456 passed, 5 skipped; verify.py 37/37; mutants.py 29/29.",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#193",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-26T23:34:35Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#193",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-26T23:34:43Z",
+   "url": "https://github.com/giskard09/argentum-core/pull/193#issuecomment-7205661254",
+   "title": "delegation-chain-ref: SHA256SUMS was stale since 2026-09-28; regenerated, complete, tested",
+   "text": "Clean clone of this branch (cf5b3a3): sha256sum -c SHA256SUMS from the directory: 34 lines, 0 not OK; build_sha256sums.py --check exit 0; tests/ + plugins/: 462 passed, 5 skipped.",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#194",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-26T23:40:16Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#194",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-26T23:40:29Z",
+   "url": "https://github.com/giskard09/argentum-core/pull/194#issuecomment-7205749652",
+   "title": "delegation-chain-ref: RFC 8785 in the verifier, 15 coverage vectors, mutants (stacked on #193)",
+   "text": "Per-vector compatibility table (old verifier = main's verify.py, new = this branch; ok = expected verdict, and the failure_mode for a FAIL):\n\n| vector | expected | old verifier | old ok | new verifier | new ok |\n|---|---|---|---|---|---|\n| cov-scope-widening-not-enforced-001 | PASS | PASS | yes | PASS | yes |\n| cov-scope-equal-001 | PASS | PASS | yes | PASS | yes |\n| cov-scope-prefix-sibling-001 | FAIL | FAIL | yes | FAIL | yes |\n| cov-scope-wildcard-sibling-001 | FAIL | FAIL | yes | FAIL | yes |\n| cov-dcr-mismatch-001 | FAIL | FAIL | yes | FAIL | yes |\n| cov-chain-break-last-pair-001 | FAIL |",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#195",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-27T00:25:01Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#196",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-27T00:28:48Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#197",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-27T00:30:05Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#198",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-27T00:31:51Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#199",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-27T00:33:35Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "giskard09/argentum-core#200",
+   "type": "new_pr",
+   "author": "giskard09",
+   "at": "2026-11-27T00:35:05Z",
+   "title": null,
+   "url": null,
+   "source": "user:giskard09"
+  },
+  {
+   "item": "devinwarp/sijil-ietf#7",
+   "type": "new_issue",
+   "author": "giskard09",
+   "at": "2026-11-27T00:55:06Z",
+   "title": "Section 14, delegation scope: a reference narrowing check for namespace-shaped scopes (input, not a replacement)",
+   "url": "https://github.com/devinwarp/sijil-ietf/issues/7",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "NOSAI-Federation/agent-governance-vocabulary#179",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-27T01:13:09Z",
+   "url": "https://github.com/NOSAI-Federation/agent-governance-vocabulary/pull/179#issuecomment-7207110036",
+   "title": "docs: add a boundary map from #177",
+   "text": "Checked at ed5132c. That commit changes one line of docs/boundary-map.md, step 6 of the example (the E6 wording). The 15 lines in the file that mention us, including our node row, E3 and E16, are identical to aed8253, so our confirmation stands for this head.\n",
+   "source": "user:giskard09"
+  }
+ ],
+ "failures": [],
+ "summary": {
+  "LF-Decentralized-Trust/lab-proposals#2": {
+   "title": "[Lab Proposal] recomputable-evidence",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [
+    "Approved"
+   ],
+   "comments": 46,
+   "updated_at": "2026-09-24T08:40:46Z",
+   "last_comment": {
+    "author": "ryjones",
+    "at": "2026-09-24T08:40:46Z",
+    "url": "https://github.com/LF-Decentralized-Trust/lab-proposals/issues/2#issuecomment-5810796376",
+    "text": "Approved see #20 "
+   }
+  },
+  "Agent-Authority-Conformance/aps-conformance-suite#121": {
+   "title": "Cross-referencing with a proposed LFDT lab (recomputable-evidence)",
+   "state": "closed",
+   "state_reason": "completed",
+   "labels": [],
+   "comments": 6,
+   "updated_at": "2026-10-20T15:06:35Z",
+   "last_comment": {
+    "author": "source-origin",
+    "at": "2026-10-20T15:06:34Z",
+    "url": "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121#issuecomment-6294062372",
+    "text": "Tymofii,\r\n\r\nYou closed the loop on two questions in the same thread, and you gave us a\r\ndistinction we have since used more than anything else from that exchange:\r\n*reference by pin, not host*, with criteria marked as authored judgment rather\r\nthan recomputed fact.\r\n\r\nWe used it and did not tell you. Nineteen days. Sorry.\r\n\r\n**Where it landed.** Our rubric header now carries two separate lines, because\r\nyour distinction made it obvious that one line was a lie:\r\n\r\n- `criteria_version` + `pinned_commit` \u2014 what was applied, and the exact bytes\r\n  it was applied from. If the criteria move, the pin"
+   }
+  },
+  "x402-foundation/tsc#4": {
+   "title": "AGENDA TOPIC - Answer the post-settlement accountability scope question and charter an evidence-record working group",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "tac-meeting-short"
+   ],
+   "comments": 293,
+   "updated_at": "2026-11-25T10:46:28Z",
+   "last_comment": {
+    "author": "astrogilda",
+    "at": "2026-11-25T04:20:55Z",
+    "url": "https://github.com/x402-foundation/tsc/issues/4#issuecomment-7152760620",
+    "text": "@robertolocatelli81-dev, thank you for the 130 of 130 result; we will read your results in wg-identity when you post them. We propose the Identity WG pin agent-evidence-vectors 0.38.0, our x402 evidence-join test records on PyPI, by the sha256 digests in https://github.com/probityai/agent-evidence-vectors/pull/739.\n\nIf the WG does, your verifiers can run those records in CI on every change through the GitHub Action probityai/agent-evidence-vectors@v0.38.0, which also runs agent-evidence-verify as its reference stage, with Dependabot bumping it.\n\nThat pull request also holds the x402 payment-bi"
+   }
+  },
+  "x402-foundation/x402#2887": {
+   "title": "Correctness/dispute layer as the missing piece downstream of settlement",
+   "state": "open",
+   "state_reason": null,
+   "labels": [],
+   "comments": 285,
+   "updated_at": "2026-11-26T17:23:36Z",
+   "last_comment": {
+    "author": "babyblueviper1",
+    "at": "2026-11-26T17:23:36Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7198938605",
+    "text": "@kemppelinvestments-del update to my last comment: v0.6 is covered now too, both the judge-kit default `0xd6E00d34\u20262c` and `0x4EaF\u20261CB3D`, so no job naming `0xB87b\u2026d140` waits on a person.\n\n- **Plain v0.6 job** (no schedule): same deterministic rule as v0.5. `verdict` is Complete only if `specHash` and `deliverableHash` both recompute.\n- **Scheduled v0.6 job:** the criteria (sha256 of JCS = `specHash`) and the schedule (sha256 of JCS = the on-chain `docHash`) feed our signed work-acceptance record, with checker-performed fetch for any URL a criterion names. `verdictScheduled` takes the `passMa"
+   }
+  },
+  "x402-foundation/x402#3220": {
+   "title": "Add `authority` extension: bounded, offline-verifiable spending mandates",
+   "state": "open",
+   "state_reason": null,
+   "labels": [
+    "specs"
+   ],
+   "comments": 66,
+   "updated_at": "2026-11-17T12:25:50Z",
+   "last_comment": {
+    "author": "Fizzl13",
+    "at": "2026-10-27T21:02:29Z",
+    "url": "https://github.com/x402-foundation/x402/pull/3220#issuecomment-6453477294",
+    "text": "For reference: presign-guard's mandate check already refuses any payment whose nonce isn't exactly B (MANDATE_BINDING_MISMATCH), so composed slots are rejected today. We'll move our paymentId check to the 16..64 floor once the \u00a76 change lands.\n"
+   }
+  },
+  "giskard09/action-ref-conformance": {
+   "refs": {
+    "refs/heads/lab-seed": "56e25a8353ba02b76edb072c5bd405b56238bb12",
+    "refs/heads/main": "9fa189f0dbbaab745f8be64a555ee6f7b11ffd2c",
+    "refs/tags/v1": "2cb873a7bcedd8197ebbf1cb85bc3bff1194d3c0"
+   },
+   "main_latest": {
+    "sha": "9fa189f",
+    "at": "2026-09-24T06:25:33Z",
+    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
+   }
+  },
+  "magentixai/axes": {
+   "checked": "2026-11-27T06:14:56+00:00",
+   "stargazers_count": 1,
+   "forks_count": 0,
+   "subscribers_count": 0,
+   "open_issues_count": 8,
+   "pushed_at": "2026-11-19T23:12:50Z",
+   "issues_tracked": 28
+  },
+  "Composable-Evidence-Criteria/.github": {
+   "main_latest": {
+    "sha": "9945f2c",
+    "at": "2026-09-30T08:29:38Z",
+    "msg": "Update name"
+   },
+   "files": {},
+   "open": {},
+   "issues_tracked": 0
+  },
+  "Composable-Evidence-Criteria/governance": {
+   "main_latest": {
+    "sha": "709573d",
+    "at": "2026-09-30T08:31:12Z",
+    "msg": "Update team names add repo"
+   },
+   "files": {
+    "teams.yaml": "7d9961c"
+   },
+   "open": {},
+   "issues_tracked": 2
+  },
+  "Composable-Evidence-Criteria/action-ref-conformance": {
+   "main_latest": {
+    "sha": "b4a70b8",
+    "at": "2026-11-16T16:43:01Z",
+    "msg": "Merge pull request #10 from magentixai/magentixai/pair-0001-x402-authority-axes"
+   },
+   "files": {
+    "GOVERNANCE.md": "05ab3f1"
+   },
+   "open": {
+    "9": {
+     "title": "draft-etcheverry-action-ref-04 published \u2014 Implementation Status section names this lab and AXES",
+     "pr": false,
+     "comments": 2,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/9"
+    },
+    "8": {
+     "title": "GOVERNANCE: add Commercial use by committers section, declare Rama QA tie",
+     "pr": true,
+     "comments": 1,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/8"
+    },
+    "7": {
+     "title": "Heads-up: Rama will offer paid conformance-QA engagements on top of this lab's public corpus",
+     "pr": false,
+     "comments": 4,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/7"
+    },
+    "5": {
+     "title": "Lab communications: LFDT newsletter and meetup proposals, and who speaks for the lab",
+     "pr": false,
+     "comments": 5,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/5"
+    },
+    "4": {
+     "title": "APS SDK passes the pinned action-ref v1 Action (verify-impl)",
+     "pr": false,
+     "comments": 0,
+     "author": "aeoess",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/4"
+    },
+    "2": {
+     "title": "Lab name: recomputable-evidence is taken, proposed replacement",
+     "pr": false,
+     "comments": 7,
+     "author": "giskard09",
+     "url": "https://github.com/Composable-Evidence-Criteria/action-ref-conformance/issues/2"
+    }
+   },
+   "issues_tracked": 10
+  },
+  "user:giskard09": {
+   "events_seen": 100,
+   "latest_event": "2026-11-27T01:13:09Z"
+  }
+ },
+ "first_run": false
+}
