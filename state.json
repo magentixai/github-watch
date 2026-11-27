@@ -402,7 +402,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 285,
+   "comments": 286,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -688,14 +688,15 @@
     7192769689,
     7196684971,
     7198661607,
-    7198938605
+    7198938605,
+    7221106990
    ],
-   "updated_at": "2026-11-26T17:23:36Z",
+   "updated_at": "2026-11-27T14:41:38Z",
    "last_comment": {
-    "author": "babyblueviper1",
-    "at": "2026-11-26T17:23:36Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7198938605",
-    "text": "@kemppelinvestments-del update to my last comment: v0.6 is covered now too, both the judge-kit default `0xd6E00d34\u20262c` and `0x4EaF\u20261CB3D`, so no job naming `0xB87b\u2026d140` waits on a person.\n\n- **Plain v0.6 job** (no schedule): same deterministic rule as v0.5. `verdict` is Complete only if `specHash` and `deliverableHash` both recompute.\n- **Scheduled v0.6 job:** the criteria (sha256 of JCS = `specHash`) and the schedule (sha256 of JCS = the on-chain `docHash`) feed our signed work-acceptance record, with checker-performed fetch for any URL a criterion names. `verdictScheduled` takes the `passMa"
+    "author": "kemppelinvestments-del",
+    "at": "2026-11-27T14:41:38Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7221106990",
+    "text": "@babyblueviper1 job 43 (Base Sepolia, escrow 0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D) got no verdict inside the 3600 s window, so it was released by timeout: tx 0x7f1869c7970ed2c7b39d2371e0fc3fa809bedb03693d6056c1210f20357f1961 (block 64341879, status 1). The job is Expired and the 0.1 test USDC went back to the client. The missed-verdict slash took 0.2 test USDC: evaluator 0xB87b0d6AD3B17A8a1795d6640317c7997140d140 is now at 1.8 stake, isActive=false. You can re-stake to the 2.0 minimum whenever you're ready.\n\nNext canary: it runs automatically once 0xB87b\u2026d140 is active again, on escrow 0"
    }
   },
   "x402-foundation/x402#3220": {
@@ -795,10 +796,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-27T06:14:56+00:00",
+ "last_checked": "2026-11-27T15:27:01+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-27T06:14:56+00:00",
+   "checked": "2026-11-27T15:27:01+00:00",
    "items": {
     "31": {
      "title": "spec: envelope signature profile axes:envelope_signature_ed25519@1 (D-060)",
@@ -1297,6 +1298,9 @@
  },
  "user_events": {
   "giskard09": [
+   "28419088526",
+   "28418949298",
+   "28418670326",
    "21441388704",
    "21440365314",
    "21439539261",
@@ -1393,10 +1397,7 @@
    "28133262774",
    "21128550076",
    "21128441489",
-   "28129741367",
-   "28101459509",
-   "28101299685",
-   "28095198002"
+   "28129741367"
   ]
  }
 }
