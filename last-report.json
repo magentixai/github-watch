@@ -1,14 +1,72 @@
 {
- "checked_at": "2026-11-27T15:27:01+00:00",
- "previous_check": "2026-11-27T06:14:56+00:00",
+ "checked_at": "2026-11-28T05:56:18+00:00",
+ "previous_check": "2026-11-27T15:27:01+00:00",
  "changes": [
   {
    "item": "x402-foundation/x402#2887",
    "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-27T17:28:36Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7224448161",
+   "text": "@kemppelinvestments-del on hash modes: you tell adapter builders to read the mode from the job's criteria doc or receipt rather than infer it. One data point on carrying it in the receipt: the canonical receipt envelope in our action-ref spec has a hash_algo field next to the digest, so a verifier can see which algorithm produced it.\n\nhttps://github.com/giskard09/argentum-core/blob/9c78c9e4583f529f96cf61ec19dc09c74c36c7f0/docs/spec/action-ref.md\n\nLimits: in our spec the field is a SHOULD, and the profile we define specifies sha256 over RFC 8785 only, so it does not cover your keccak256 notary "
+  },
+  {
+   "item": "x402-foundation/x402#2887",
+   "type": "comment",
    "author": "kemppelinvestments-del",
-   "at": "2026-11-27T14:41:38Z",
-   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7221106990",
-   "text": "@babyblueviper1 job 43 (Base Sepolia, escrow 0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D) got no verdict inside the 3600 s window, so it was released by timeout: tx 0x7f1869c7970ed2c7b39d2371e0fc3fa809bedb03693d6056c1210f20357f1961 (block 64341879, status 1). The job is Expired and the 0.1 test USDC went back to the client. The missed-verdict slash took 0.2 test USDC: evaluator 0xB87b0d6AD3B17A8a1795d6640317c7997140d140 is now at 1.8 stake, isActive=false. You can re-stake to the 2.0 minimum whenever you're ready.\n\nNext canary: it runs automatically once 0xB87b\u2026d140 is active again, on escrow 0"
+   "at": "2026-11-27T20:11:07Z",
+   "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7227256789",
+   "text": "@giskard09 thanks, that's a useful pointer. Naming the hash algorithm in the receipt is cleaner than making verifiers infer it from the job type. We may add a hash_algo field (sha256 | keccak256) to our receipts and criteria docs so an adapter can read the mode directly. Noted that your validator only covers sha256 over RFC 8785.\n\nCarter\nAgentKoin"
+  },
+  {
+   "item": "giskard09/checkpoint-producer-binding-ref-anchor#6",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-27T17:18:57Z",
+   "url": "https://github.com/giskard09/checkpoint-producer-binding-ref-anchor/pull/6#issuecomment-7224268843",
+   "title": "v1 operator_id_format: missing/invalid split, 1-64 slug rule, trailing-LF fix",
+   "text": "Thanks, this is close to what we scoped, and the osr21 credit is in both the README and the commit body. I read the diff at 720f270 and ran it in a clean clone: 50 of 50 pass, and the original 36 tests pass unchanged against your code. Three things before I merge, each confirmed by running it:\n\n1. An unknown `operator_id_format` is silently treated as v0. `\"V1\"` or `\"v2\"` falls into the v0 branch, and the result carries no format marker, so a typo downgrades the caller with no signal. Please return `unknown(\"invalid_operator_id_format\", ...)` for any value other than \"v0\" and \"v1\", with a test",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "NOSAI-Federation/agent-governance-vocabulary#177",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-27T17:33:29Z",
+   "url": "https://github.com/NOSAI-Federation/agent-governance-vocabulary/issues/177#issuecomment-7224538776",
+   "title": "Proposal: a federation for neutral open-source AI infrastructure",
+   "text": "Thank you, Tymofii, and happy Thanksgiving. You asked for more experiments in independent verification. There is a concrete one waiting in probityai/agent-evidence-vectors#352: for claim 1 of altrudev's revocation case you said APS can provide signed delegation revocation records, and we offered our revocation-ref as a second source, so the case is not one project checking itself. Our limits are stated in that comment.\n\nhttps://github.com/probityai/agent-evidence-vectors/issues/352\n\naltrudev has not answered yet, so we have not run anything. If the case goes ahead we can supply a claim 1 vecto",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "ethereum/ERCs#1810",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-27T17:58:52Z",
+   "url": "https://github.com/ethereum/ERCs/pull/1810#issuecomment-7224990257",
+   "title": "Add ERC: WYRIWE \u2014 Input Provenance for AI Inference",
+   "text": "Independent recompute of the values in the revised text (head a9e4907), from the text alone: Foundry cast 1.5.1 for the hashes and the signature, and a short Python script for the CID.\n\n- The 760 bytes in Section 2.1 give the CIDv0 Qmccvom6aRVgZ2dtFWvT6Wm3DmTvoAUHHotK7uQufnStVR, as declared. The same code reproduces the CID of the empty file.\n- Cases 1 and 2: rawInputHash and sanitizationPipelineHash match.\n- Case 3: modelHash, outputHash, commitmentHash, the EIP-712 digest and the attestor address match, and signing the digest with the published test key reproduces the declared signature exac",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "ethereum/ERCs#1810",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-27T18:19:29Z",
+   "url": "https://github.com/ethereum/ERCs/pull/1810#issuecomment-7225369269",
+   "title": "Add ERC: WYRIWE \u2014 Input Provenance for AI Inference",
+   "text": "Thanks, Tiago. Agreed on Cases 4 and 5: we did not recompute them, so our check stays limited to the values listed in our comment.\n",
+   "source": "user:giskard09"
+  },
+  {
+   "item": "NOSAI-Federation/agent-governance-vocabulary#294",
+   "type": "comment",
+   "author": "giskard09",
+   "at": "2026-11-28T02:44:15Z",
+   "url": "https://github.com/NOSAI-Federation/agent-governance-vocabulary/issues/294#issuecomment-7232560870",
+   "title": "Proposal: GitHub Discussions for the federation, and a page that lists systems by the problem they address",
+   "text": "@aeoess on #294: no objection to organization-level Discussions in a `community` repository. For our work the existing categories fit, for example \"Cryptography and verifiable evidence\".\n\nFor the page: as maintainer of giskard09/argentum-core, we confirm Mycelium Trails (crosswalk/mycelium-trails.yaml) under \"evidence and receipts\". The source links are the ones in that file.\n",
+   "source": "user:giskard09"
   }
  ],
  "failures": [],
@@ -64,13 +122,13 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 286,
-   "updated_at": "2026-11-27T14:41:38Z",
+   "comments": 288,
+   "updated_at": "2026-11-27T20:11:07Z",
    "last_comment": {
     "author": "kemppelinvestments-del",
-    "at": "2026-11-27T14:41:38Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7221106990",
-    "text": "@babyblueviper1 job 43 (Base Sepolia, escrow 0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D) got no verdict inside the 3600 s window, so it was released by timeout: tx 0x7f1869c7970ed2c7b39d2371e0fc3fa809bedb03693d6056c1210f20357f1961 (block 64341879, status 1). The job is Expired and the 0.1 test USDC went back to the client. The missed-verdict slash took 0.2 test USDC: evaluator 0xB87b0d6AD3B17A8a1795d6640317c7997140d140 is now at 1.8 stake, isActive=false. You can re-stake to the 2.0 minimum whenever you're ready.\n\nNext canary: it runs automatically once 0xB87b\u2026d140 is active again, on escrow 0"
+    "at": "2026-11-27T20:11:07Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7227256789",
+    "text": "@giskard09 thanks, that's a useful pointer. Naming the hash algorithm in the receipt is cleaner than making verifiers infer it from the job type. We may add a hash_algo field (sha256 | keccak256) to our receipts and criteria docs so an adapter can read the mode directly. Noted that your validator only covers sha256 over RFC 8785.\n\nCarter\nAgentKoin"
    }
   },
   "x402-foundation/x402#3220": {
@@ -102,7 +160,7 @@
    }
   },
   "magentixai/axes": {
-   "checked": "2026-11-27T15:27:01+00:00",
+   "checked": "2026-11-28T05:56:18+00:00",
    "stargazers_count": 1,
    "forks_count": 0,
    "subscribers_count": 0,
@@ -189,7 +247,7 @@
   },
   "user:giskard09": {
    "events_seen": 100,
-   "latest_event": "2026-11-27T01:13:09Z"
+   "latest_event": "2026-11-28T02:44:15Z"
   }
  },
  "first_run": false

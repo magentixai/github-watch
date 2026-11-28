@@ -402,7 +402,7 @@
    "state": "open",
    "state_reason": null,
    "labels": [],
-   "comments": 286,
+   "comments": 288,
    "comment_ids": [
     5011570068,
     5015656529,
@@ -689,14 +689,16 @@
     7196684971,
     7198661607,
     7198938605,
-    7221106990
+    7221106990,
+    7224448161,
+    7227256789
    ],
-   "updated_at": "2026-11-27T14:41:38Z",
+   "updated_at": "2026-11-27T20:11:07Z",
    "last_comment": {
     "author": "kemppelinvestments-del",
-    "at": "2026-11-27T14:41:38Z",
-    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7221106990",
-    "text": "@babyblueviper1 job 43 (Base Sepolia, escrow 0x4EaF6d09F8C22980Bb16E719779ACe73A7b1CB3D) got no verdict inside the 3600 s window, so it was released by timeout: tx 0x7f1869c7970ed2c7b39d2371e0fc3fa809bedb03693d6056c1210f20357f1961 (block 64341879, status 1). The job is Expired and the 0.1 test USDC went back to the client. The missed-verdict slash took 0.2 test USDC: evaluator 0xB87b0d6AD3B17A8a1795d6640317c7997140d140 is now at 1.8 stake, isActive=false. You can re-stake to the 2.0 minimum whenever you're ready.\n\nNext canary: it runs automatically once 0xB87b\u2026d140 is active again, on escrow 0"
+    "at": "2026-11-27T20:11:07Z",
+    "url": "https://github.com/x402-foundation/x402/issues/2887#issuecomment-7227256789",
+    "text": "@giskard09 thanks, that's a useful pointer. Naming the hash algorithm in the receipt is cleaner than making verifiers infer it from the job type. We may add a hash_algo field (sha256 | keccak256) to our receipts and criteria docs so an adapter can read the mode directly. Noted that your validator only covers sha256 over RFC 8785.\n\nCarter\nAgentKoin"
    }
   },
   "x402-foundation/x402#3220": {
@@ -796,10 +798,10 @@
    "msg": "docs: add draft GOVERNANCE.md (open for committer review)"
   }
  },
- "last_checked": "2026-11-27T15:27:01+00:00",
+ "last_checked": "2026-11-28T05:56:18+00:00",
  "repos": {
   "magentixai/axes": {
-   "checked": "2026-11-27T15:27:01+00:00",
+   "checked": "2026-11-28T05:56:18+00:00",
    "items": {
     "31": {
      "title": "spec: envelope signature profile axes:envelope_signature_ed25519@1 (D-060)",
@@ -1298,6 +1300,17 @@
  },
  "user_events": {
   "giskard09": [
+   "28487537026",
+   "21548597921",
+   "21546764117",
+   "21546440235",
+   "21546377683",
+   "21546219154",
+   "21518844761",
+   "21517278465",
+   "21515366373",
+   "21514980587",
+   "21514192928",
    "28419088526",
    "28418949298",
    "28418670326",
@@ -1386,18 +1399,7 @@
    "21150665473",
    "21150409355",
    "21150387793",
-   "21150381292",
-   "21150378938",
-   "28145598330",
-   "28145518928",
-   "21148387844",
-   "21146386582",
-   "21146258928",
-   "28134599396",
-   "28133262774",
-   "21128550076",
-   "21128441489",
-   "28129741367"
+   "21150381292"
   ]
  }
 }
